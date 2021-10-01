@@ -97,6 +97,8 @@
 		E2F8909E270700AF00277863 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2F890DC2707018500277863 /* Models */,
+				E2F890DB2707017C00277863 /* Network */,
 				E2F8909F270700AF00277863 /* GaryTubeApp.swift */,
 				E2F890A0270700AF00277863 /* ContentView.swift */,
 				E2F890A1270700B000277863 /* Assets.xcassets */,
@@ -139,6 +141,20 @@
 				E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		E2F890DB2707017C00277863 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		E2F890DC2707018500277863 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
