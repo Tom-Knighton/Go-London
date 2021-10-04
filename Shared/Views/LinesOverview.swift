@@ -27,13 +27,13 @@ struct LinesOverviewView: View {
                                     .padding(.horizontal, 8)
                                 HStack {
                                     Text(Image(systemName: "exclamationmark.triangle.fill"))
-                                        .foregroundColor(.yellow)
+                                        .foregroundColor(line.currentStatus?.severityColour)
                                         .isHidden(line.currentStatus?.statusSeverity == 10, remove: true)
                                     Text("Status - \(line.currentStatus?.statusSeverityDescription ?? "")")
                                         .frame(maxWidth: .infinity)
                                         .padding(.horizontal, 8)
                                     Text(Image(systemName: "exclamationmark.triangle.fill"))
-                                        .foregroundColor(.yellow)
+                                        .foregroundColor(line.currentStatus?.severityColour)
                                         .isHidden(line.currentStatus?.statusSeverity == 10, remove: true)
                                 }
                             }

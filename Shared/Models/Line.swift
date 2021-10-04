@@ -92,3 +92,12 @@ struct LineStatusValidityPeriod: Codable {
     let toDate: Date?
     let isNow: Bool?
 }
+
+struct LineRoute: Codable {
+    let id: String?
+    let name: String?
+    let direction: String?
+    let originationName: String?
+    let destinationName: String?
+    
+}

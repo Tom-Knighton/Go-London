@@ -14,7 +14,8 @@ struct Disruption: Codable {
     let description: String?
     let created: Date?
     let lastUpdate: String?
-    
+    let affectedRoutes: [LineRoute]?
+
     enum DelayType {
         case none, MinorDelays, SevereDelays, PlannedClosure
         
