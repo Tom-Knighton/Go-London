@@ -87,10 +87,11 @@ struct LineStatusView: View {
     @ViewBuilder
     func dogView() -> some View {
         VStack {
-            Button(action: { SoundService.shared.playSound(soundfile: "dogbark.wav") }) {
-                LottieView(name: self.dogGif.dogGifName, loopMode: .loop)
-                    .frame(width: 250, height: 250)
-            }
+            LottieView(name: self.dogGif.dogGifName, loopMode: .loop)
+                .frame(width: 250, height: 250)
+                .onTapGesture {
+                    SoundService.shared.playSound(soundfile: "dogbark.wav")
+                }
             Group {
                 Text("Congratulations! This line has good service and ") +
                 Text(self.dogGif.dogName)
