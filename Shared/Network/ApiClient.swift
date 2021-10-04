@@ -87,7 +87,6 @@ struct ApiClient {
         
         do {
             let (data, _) = try await URLSession.shared.data(from: finalUrl)
-            print(String(data: data, encoding: .utf8))
             return try data.decode(to: T.self) ?? nil
         } catch {
             print(String(describing: error))

@@ -13,6 +13,8 @@ struct LineStatusView: View {
     
     @State var line: Line
     
+    @State var dogGif: DogGif = DogGifController.getRandomDogGif()
+    
     var body: some View {
         VStack(spacing: 0) {
             LineStatusViewHeader(lineName: line.name ?? "" , colour: line.tubeColour)
@@ -40,6 +42,23 @@ struct LineStatusView: View {
 
                     if line.currentStatus?.disruption?.affectedRoutes != nil && line.currentStatus?.disruption?.affectedRoutes?.count != 0 {
                         affectedRoutesSection()
+                    }
+                    
+                    if line.currentStatus?.statusSeverity == 10 {
+                        VStack {
+                            LottieView(name: self.dogGif.dogGifName, loopMode: .loop)
+                                .frame(width: 250, height: 250)
+                            Group {
+                                Text("Congratulations! This line has good service and ") +
+                                Text(self.dogGif.dogName)
+                                    .bold() +
+                                Text(" is happy :) Turn up your volume and tap \(self.dogGif.dogPronoun) for a barking-mad surprise!")
+                            }
+                            .font(.title3)
+                            .multilineTextAlignment(.center)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            
+                        }
                     }
                 }
             }

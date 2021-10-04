@@ -7,6 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
+		E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
+		E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
+		E25AAC6C270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
+		E25AAC6D270B8E3900A0749B /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC62270B8E3900A0749B /* Dog_Rambo.json */; };
+		E25AAC6E270B8E3900A0749B /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC62270B8E3900A0749B /* Dog_Rambo.json */; };
+		E25AAC6F270B8E3900A0749B /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */; };
+		E25AAC70270B8E3900A0749B /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */; };
+		E25AAC71270B8E3900A0749B /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC64270B8E3900A0749B /* Dog_Frankie.json */; };
+		E25AAC72270B8E3900A0749B /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC64270B8E3900A0749B /* Dog_Frankie.json */; };
+		E25AAC73270B8E3900A0749B /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC65270B8E3900A0749B /* Dog_Gromit.json */; };
+		E25AAC74270B8E3900A0749B /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC65270B8E3900A0749B /* Dog_Gromit.json */; };
+		E25AAC75270B8E3900A0749B /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC66270B8E3900A0749B /* Dog_Tom.json */; };
+		E25AAC76270B8E3900A0749B /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC66270B8E3900A0749B /* Dog_Tom.json */; };
+		E25AAC77270B8E3900A0749B /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC67270B8E3900A0749B /* Dog_Tutu.json */; };
+		E25AAC78270B8E3900A0749B /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC67270B8E3900A0749B /* Dog_Tutu.json */; };
+		E25AAC79270B8E3900A0749B /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC68270B8E3900A0749B /* Dog_Wally.json */; };
+		E25AAC7A270B8E3900A0749B /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC68270B8E3900A0749B /* Dog_Wally.json */; };
 		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
 		E2F890BA270700B000277863 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */; };
 		E2F890C4270700B000277863 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890C3270700B000277863 /* Tests_macOS.swift */; };
@@ -36,6 +54,15 @@
 		E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F82707A6E000277863 /* LinesOverview.swift */; };
 		E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F82707A6E000277863 /* LinesOverview.swift */; };
 		E2F890FD270908CE00277863 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E2F890FC270908CE00277863 /* Introspect */; };
+		E2F89100270B87B500277863 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2F890FF270B87B500277863 /* Lottie */; };
+		E2F89102270B888600277863 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89101270B888600277863 /* LottieView.swift */; };
+		E2F89103270B888600277863 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89101270B888600277863 /* LottieView.swift */; };
+		E2F89106270B891200277863 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F89105270B891200277863 /* Dog_Peter.json */; };
+		E2F89107270B891200277863 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F89105270B891200277863 /* Dog_Peter.json */; };
+		E2F89109270B896900277863 /* DogGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89108270B896900277863 /* DogGif.swift */; };
+		E2F8910A270B896900277863 /* DogGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89108270B896900277863 /* DogGif.swift */; };
+		E2F8910C270B8BA300277863 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F8910B270B8BA300277863 /* Dog_Fabio.json */; };
+		E2F8910D270B8BA300277863 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F8910B270B8BA300277863 /* Dog_Fabio.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +83,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E25AAC60270B8E3900A0749B /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
+		E25AAC61270B8E3900A0749B /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
+		E25AAC62270B8E3900A0749B /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
+		E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Franchesca.json; sourceTree = "<group>"; };
+		E25AAC64270B8E3900A0749B /* Dog_Frankie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Frankie.json; sourceTree = "<group>"; };
+		E25AAC65270B8E3900A0749B /* Dog_Gromit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Gromit.json; sourceTree = "<group>"; };
+		E25AAC66270B8E3900A0749B /* Dog_Tom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tom.json; sourceTree = "<group>"; };
+		E25AAC67270B8E3900A0749B /* Dog_Tutu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tutu.json; sourceTree = "<group>"; };
+		E25AAC68270B8E3900A0749B /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
 		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
 		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2F890A1270700B000277863 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +113,10 @@
 		E2F890F127075E3300277863 /* View+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GaryTube.swift"; sourceTree = "<group>"; };
 		E2F890F52707639600277863 /* LineStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStatusView.swift; sourceTree = "<group>"; };
 		E2F890F82707A6E000277863 /* LinesOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinesOverview.swift; sourceTree = "<group>"; };
+		E2F89101270B888600277863 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		E2F89105270B891200277863 /* Dog_Peter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Peter.json; sourceTree = "<group>"; };
+		E2F89108270B896900277863 /* DogGif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGif.swift; sourceTree = "<group>"; };
+		E2F8910B270B8BA300277863 /* Dog_Fabio.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Fabio.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F890FD270908CE00277863 /* Introspect in Frameworks */,
+				E2F89100270B87B500277863 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,6 +167,7 @@
 		E2F8909E270700AF00277863 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2F89104270B890800277863 /* Lottie */,
 				E2F890F42707638400277863 /* Views */,
 				E2F890ED2707582600277863 /* Extensions */,
 				E2F890DC2707018500277863 /* Models */,
@@ -133,6 +175,7 @@
 				E2F8909F270700AF00277863 /* GaryTubeApp.swift */,
 				E2F890A1270700B000277863 /* Assets.xcassets */,
 				E2F890E2270706BE00277863 /* Constants.swift */,
+				E2F89108270B896900277863 /* DogGif.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -207,8 +250,27 @@
 				E2F890A0270700AF00277863 /* ContentView.swift */,
 				E2F890F52707639600277863 /* LineStatusView.swift */,
 				E2F890F82707A6E000277863 /* LinesOverview.swift */,
+				E2F89101270B888600277863 /* LottieView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E2F89104270B890800277863 /* Lottie */ = {
+			isa = PBXGroup;
+			children = (
+				E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */,
+				E25AAC64270B8E3900A0749B /* Dog_Frankie.json */,
+				E25AAC65270B8E3900A0749B /* Dog_Gromit.json */,
+				E25AAC61270B8E3900A0749B /* Dog_Louie.json */,
+				E25AAC60270B8E3900A0749B /* Dog_Polly.json */,
+				E25AAC62270B8E3900A0749B /* Dog_Rambo.json */,
+				E25AAC66270B8E3900A0749B /* Dog_Tom.json */,
+				E25AAC67270B8E3900A0749B /* Dog_Tutu.json */,
+				E25AAC68270B8E3900A0749B /* Dog_Wally.json */,
+				E2F8910B270B8BA300277863 /* Dog_Fabio.json */,
+				E2F89105270B891200277863 /* Dog_Peter.json */,
+			);
+			path = Lottie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +291,7 @@
 			name = "GaryTube (iOS)";
 			packageProductDependencies = (
 				E2F890FC270908CE00277863 /* Introspect */,
+				E2F890FF270B87B500277863 /* Lottie */,
 			);
 			productName = "GaryTube (iOS)";
 			productReference = E2F890A6270700B000277863 /* GaryTube.app */;
@@ -324,6 +387,7 @@
 			mainGroup = E2F89099270700AF00277863;
 			packageReferences = (
 				E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = E2F890A7270700B000277863 /* Products */;
 			projectDirPath = "";
@@ -343,6 +407,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F890CB270700B000277863 /* Assets.xcassets in Resources */,
+				E25AAC71270B8E3900A0749B /* Dog_Frankie.json in Resources */,
+				E25AAC77270B8E3900A0749B /* Dog_Tutu.json in Resources */,
+				E25AAC6F270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
+				E25AAC79270B8E3900A0749B /* Dog_Wally.json in Resources */,
+				E2F8910C270B8BA300277863 /* Dog_Fabio.json in Resources */,
+				E25AAC73270B8E3900A0749B /* Dog_Gromit.json in Resources */,
+				E25AAC75270B8E3900A0749B /* Dog_Tom.json in Resources */,
+				E25AAC6D270B8E3900A0749B /* Dog_Rambo.json in Resources */,
+				E2F89106270B891200277863 /* Dog_Peter.json in Resources */,
+				E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */,
+				E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +426,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F890CC270700B000277863 /* Assets.xcassets in Resources */,
+				E25AAC72270B8E3900A0749B /* Dog_Frankie.json in Resources */,
+				E25AAC78270B8E3900A0749B /* Dog_Tutu.json in Resources */,
+				E25AAC70270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
+				E25AAC7A270B8E3900A0749B /* Dog_Wally.json in Resources */,
+				E2F8910D270B8BA300277863 /* Dog_Fabio.json in Resources */,
+				E25AAC74270B8E3900A0749B /* Dog_Gromit.json in Resources */,
+				E25AAC76270B8E3900A0749B /* Dog_Tom.json in Resources */,
+				E25AAC6E270B8E3900A0749B /* Dog_Rambo.json in Resources */,
+				E2F89107270B891200277863 /* Dog_Peter.json in Resources */,
+				E25AAC6C270B8E3900A0749B /* Dog_Louie.json in Resources */,
+				E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +461,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F89109270B896900277863 /* DogGif.swift in Sources */,
 				E2F890E3270706BE00277863 /* Constants.swift in Sources */,
 				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
 				E2F890E1270706AB00277863 /* LineService.swift in Sources */,
@@ -386,6 +473,7 @@
 				E2F890EB2707531300277863 /* Line.swift in Sources */,
 				E2F890E82707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
+				E2F89102270B888600277863 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +481,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F8910A270B896900277863 /* DogGif.swift in Sources */,
 				E2F890CA270700B000277863 /* ContentView.swift in Sources */,
 				E2F890E5270706C500277863 /* LineService.swift in Sources */,
 				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
@@ -404,6 +493,7 @@
 				E2F890EC2707531300277863 /* Line.swift in Sources */,
 				E2F890E92707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
+				E2F89103270B888600277863 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -829,6 +919,14 @@
 				minimumVersion = 0.1.3;
 			};
 		};
+		E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -836,6 +934,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		E2F890FF270B87B500277863 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

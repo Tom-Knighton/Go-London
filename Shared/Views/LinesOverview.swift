@@ -16,7 +16,7 @@ struct LinesOverviewView: View {
         ScrollView {
             LazyVStack {
                 ForEach(self.tubeLines, id: \.id) { line in
-                    NavigationLink(destination: LineStatusView(line: line)) {
+                    NavigationLink(destination: NavigationLazyView(LineStatusView(line: line))) {
                         ZStack {
                             line.tubeColour.cornerRadius(15)
                             VStack {
