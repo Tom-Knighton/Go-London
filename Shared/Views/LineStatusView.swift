@@ -93,7 +93,7 @@ struct LineStatusView: View {
                     SoundService.shared.playSound(soundfile: "dogbark.wav")
                 }
             Group {
-                Text("Congratulations! This line has good service and ") +
+                Text("Yay! This line has good service and ") +
                 Text(self.dogGif.dogName)
                     .bold() +
                 Text(" is happy :) Turn up your volume and tap \(self.dogGif.dogPronoun) for a barking-mad surprise!")
