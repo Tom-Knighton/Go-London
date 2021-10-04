@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
+		E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
 		E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
 		E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
 		E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
@@ -29,6 +31,8 @@
 		E25AAC7E270B935400A0749B /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC7C270B935400A0749B /* SoundService.swift */; };
 		E25AAC81270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
 		E25AAC82270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
+		E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
+		E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
 		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
 		E2F890BA270700B000277863 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */; };
 		E2F890C4270700B000277863 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890C3270700B000277863 /* Tests_macOS.swift */; };
@@ -87,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GaryGo.swift"; sourceTree = "<group>"; };
 		E25AAC60270B8E3900A0749B /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
 		E25AAC61270B8E3900A0749B /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
 		E25AAC62270B8E3900A0749B /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
@@ -98,6 +103,7 @@
 		E25AAC68270B8E3900A0749B /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
 		E25AAC7C270B935400A0749B /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		E25AAC80270B94F200A0749B /* dogbark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogbark.wav; sourceTree = "<group>"; };
+		E25AAC83270BB1DB00A0749B /* TabViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewManager.swift; sourceTree = "<group>"; };
 		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
 		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2F890A1270700B000277863 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -167,6 +173,7 @@
 				E2F890E2270706BE00277863 /* Constants.swift */,
 				E2F89108270B896900277863 /* DogGif.swift */,
 				E25AAC7C270B935400A0749B /* SoundService.swift */,
+				E25AAC83270BB1DB00A0749B /* TabViewManager.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -264,6 +271,7 @@
 			children = (
 				E2F890EE2707583400277863 /* Color+GaryTube.swift */,
 				E2F890F127075E3300277863 /* View+GaryTube.swift */,
+				E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -498,8 +506,10 @@
 				E2F890F62707639600277863 /* LineStatusView.swift in Sources */,
 				E25AAC7D270B935400A0749B /* SoundService.swift in Sources */,
 				E2F890EB2707531300277863 /* Line.swift in Sources */,
+				E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
 				E2F890E82707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
+				E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */,
 				E2F89102270B888600277863 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,8 +529,10 @@
 				E2F890F72707639600277863 /* LineStatusView.swift in Sources */,
 				E25AAC7E270B935400A0749B /* SoundService.swift in Sources */,
 				E2F890EC2707531300277863 /* Line.swift in Sources */,
+				E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
 				E2F890E92707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
+				E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */,
 				E2F89103270B888600277863 /* LottieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

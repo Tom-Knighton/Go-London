@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct GaryTubeApp: App {
+    
+    @StateObject var tabManager = TabViewManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(viewManager: tabManager)
         }
     }
 }
