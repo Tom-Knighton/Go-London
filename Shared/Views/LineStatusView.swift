@@ -45,20 +45,7 @@ struct LineStatusView: View {
                     }
                     
                     if line.currentStatus?.statusSeverity == 10 {
-                        VStack {
-                            LottieView(name: self.dogGif.dogGifName, loopMode: .loop)
-                                .frame(width: 250, height: 250)
-                            Group {
-                                Text("Congratulations! This line has good service and ") +
-                                Text(self.dogGif.dogName)
-                                    .bold() +
-                                Text(" is happy :) Turn up your volume and tap \(self.dogGif.dogPronoun) for a barking-mad surprise!")
-                            }
-                            .font(.title3)
-                            .multilineTextAlignment(.center)
-                            .frame(maxWidth: .infinity, alignment: .center)
-                            
-                        }
+                        dogView()
                     }
                 }
             }
@@ -94,6 +81,26 @@ struct LineStatusView: View {
                     }
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    func dogView() -> some View {
+        VStack {
+            Button(action: { SoundService.shared.playSound(soundfile: "dogbark.wav") }) {
+                LottieView(name: self.dogGif.dogGifName, loopMode: .loop)
+                    .frame(width: 250, height: 250)
+            }
+            Group {
+                Text("Congratulations! This line has good service and ") +
+                Text(self.dogGif.dogName)
+                    .bold() +
+                Text(" is happy :) Turn up your volume and tap \(self.dogGif.dogPronoun) for a barking-mad surprise!")
+            }
+            .font(.title3)
+            .multilineTextAlignment(.center)
+            .frame(maxWidth: .infinity, alignment: .center)
+            
         }
     }
     
