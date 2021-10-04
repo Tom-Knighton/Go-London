@@ -25,6 +25,10 @@
 		E25AAC78270B8E3900A0749B /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC67270B8E3900A0749B /* Dog_Tutu.json */; };
 		E25AAC79270B8E3900A0749B /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC68270B8E3900A0749B /* Dog_Wally.json */; };
 		E25AAC7A270B8E3900A0749B /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC68270B8E3900A0749B /* Dog_Wally.json */; };
+		E25AAC7D270B935400A0749B /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC7C270B935400A0749B /* SoundService.swift */; };
+		E25AAC7E270B935400A0749B /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC7C270B935400A0749B /* SoundService.swift */; };
+		E25AAC81270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
+		E25AAC82270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
 		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
 		E2F890BA270700B000277863 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */; };
 		E2F890C4270700B000277863 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890C3270700B000277863 /* Tests_macOS.swift */; };
@@ -92,6 +96,8 @@
 		E25AAC66270B8E3900A0749B /* Dog_Tom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tom.json; sourceTree = "<group>"; };
 		E25AAC67270B8E3900A0749B /* Dog_Tutu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tutu.json; sourceTree = "<group>"; };
 		E25AAC68270B8E3900A0749B /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
+		E25AAC7C270B935400A0749B /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
+		E25AAC80270B94F200A0749B /* dogbark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogbark.wav; sourceTree = "<group>"; };
 		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
 		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2F890A1270700B000277863 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -153,6 +159,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E25AAC7B270B932200A0749B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E25AAC7F270B947C00A0749B /* Sounds */,
+				E2F890A1270700B000277863 /* Assets.xcassets */,
+				E2F890E2270706BE00277863 /* Constants.swift */,
+				E2F89108270B896900277863 /* DogGif.swift */,
+				E25AAC7C270B935400A0749B /* SoundService.swift */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		E25AAC7F270B947C00A0749B /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				E25AAC80270B94F200A0749B /* dogbark.wav */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		E2F89099270700AF00277863 = {
 			isa = PBXGroup;
 			children = (
@@ -167,15 +193,13 @@
 		E2F8909E270700AF00277863 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E25AAC7B270B932200A0749B /* Assets */,
 				E2F89104270B890800277863 /* Lottie */,
 				E2F890F42707638400277863 /* Views */,
 				E2F890ED2707582600277863 /* Extensions */,
 				E2F890DC2707018500277863 /* Models */,
 				E2F890DB2707017C00277863 /* Network */,
 				E2F8909F270700AF00277863 /* GaryTubeApp.swift */,
-				E2F890A1270700B000277863 /* Assets.xcassets */,
-				E2F890E2270706BE00277863 /* Constants.swift */,
-				E2F89108270B896900277863 /* DogGif.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -412,6 +436,7 @@
 				E25AAC6F270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
 				E25AAC79270B8E3900A0749B /* Dog_Wally.json in Resources */,
 				E2F8910C270B8BA300277863 /* Dog_Fabio.json in Resources */,
+				E25AAC81270B94F200A0749B /* dogbark.wav in Resources */,
 				E25AAC73270B8E3900A0749B /* Dog_Gromit.json in Resources */,
 				E25AAC75270B8E3900A0749B /* Dog_Tom.json in Resources */,
 				E25AAC6D270B8E3900A0749B /* Dog_Rambo.json in Resources */,
@@ -431,6 +456,7 @@
 				E25AAC70270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
 				E25AAC7A270B8E3900A0749B /* Dog_Wally.json in Resources */,
 				E2F8910D270B8BA300277863 /* Dog_Fabio.json in Resources */,
+				E25AAC82270B94F200A0749B /* dogbark.wav in Resources */,
 				E25AAC74270B8E3900A0749B /* Dog_Gromit.json in Resources */,
 				E25AAC76270B8E3900A0749B /* Dog_Tom.json in Resources */,
 				E25AAC6E270B8E3900A0749B /* Dog_Rambo.json in Resources */,
@@ -470,6 +496,7 @@
 				E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */,
 				E2F890C7270700B000277863 /* GaryTubeApp.swift in Sources */,
 				E2F890F62707639600277863 /* LineStatusView.swift in Sources */,
+				E25AAC7D270B935400A0749B /* SoundService.swift in Sources */,
 				E2F890EB2707531300277863 /* Line.swift in Sources */,
 				E2F890E82707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
@@ -490,6 +517,7 @@
 				E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */,
 				E2F890E6270706C500277863 /* Disruption.swift in Sources */,
 				E2F890F72707639600277863 /* LineStatusView.swift in Sources */,
+				E25AAC7E270B935400A0749B /* SoundService.swift in Sources */,
 				E2F890EC2707531300277863 /* Line.swift in Sources */,
 				E2F890E92707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
