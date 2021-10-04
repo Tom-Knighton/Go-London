@@ -11,7 +11,8 @@ import SwiftUI
 struct LinesOverviewView: View {
     
     @State var tubeLines: [Line] = []
-    
+    @Environment(\.safeAreaInsets) var edges
+
     var body: some View {
         ScrollView {
             LazyVStack {
@@ -47,6 +48,7 @@ struct LinesOverviewView: View {
                 }
             }
             .padding(.horizontal, 16)
+            .padding(.bottom, edges.bottom + (edges.bottom == 0 ? 80 : 40))
         }
         .background(Color("Section"))
         .task {
