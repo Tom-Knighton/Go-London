@@ -16,6 +16,7 @@ struct LinesOverviewView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
+                statusOverviewTooltip()
                 ForEach(self.tubeLines, id: \.id) { line in
                     NavigationLink(destination: NavigationLazyView(LineStatusView(line: line))) {
                         ZStack {
@@ -55,5 +56,39 @@ struct LinesOverviewView: View {
             self.tubeLines = await LineService.getTrainStatus() ?? []
         }
         .navigationTitle("Tube Status:")
+    }
+    
+    @ViewBuilder
+    func statusOverviewTooltip() -> some View {
+        let totalLines = self.tubeLines.count == 0 ? 10 : self.tubeLines.count
+        let totalGood = self.tubeLines.filter({ $0.currentStatus?.statusSeverity == 10 }).count
+        let percentageGood: Int = Int((Double(totalGood) / Double(totalLines)) * 100)
+        
+        Group {
+            if percentageGood == 0 {
+                Text("All lines are experiencing Good Service!")
+                    .bold()
+                    .font(.title3)
+                    .foregroundColor(.green)
+            } else if percentageGood > 0 && percentageGood <= 60 {
+                Text("Some lines are experiencing problems")
+                    .bold()
+                    .font(.title3)
+                    .foregroundColor(.yellow)
+            } else if percentageGood > 60 && percentageGood < 100 {
+                Text("Many lines are experiencing problems")
+                    .bold()
+                    .font(.title3)
+                    .foregroundColor(.orange)
+            } else {
+                Text("All lines are experiencing problems")
+                    .bold()
+                    .font(.title3)
+                    .foregroundColor(.red)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .isHidden(self.tubeLines.count == 0, remove: true)
+        
     }
 }
