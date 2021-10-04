@@ -33,6 +33,8 @@ struct Line: Codable {
         switch name {
         case "TfL Rail":
             return Color(hex: 0x604099)
+        case "London Overground":
+            return Color(hex: 0xEF7C09)
         case "Bakerloo":
             return Color(hex: 0xB05F0F)
         case "Central":
