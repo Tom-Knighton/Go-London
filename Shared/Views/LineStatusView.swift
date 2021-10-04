@@ -17,7 +17,7 @@ struct LineStatusView: View {
         VStack(spacing: 0) {
             LineStatusViewHeader(lineName: line.name ?? "" , colour: line.tubeColour)
             ScrollView {
-                VStack(spacing: 0) {
+                LineStatusCard {
                     HStack {
                         Spacer()
                         Text("\(line.name ?? "") is reporting: ")
@@ -30,15 +30,7 @@ struct LineStatusView: View {
                             .font(.title2)
                         Spacer()
                     }
-                    .multilineTextAlignment(.center)
-                    .padding(16)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .background(Color("Section2").cornerRadius(15).shadow(radius: 5))
-                    .padding(16)
-                    
-                    Spacer()
                 }
-                Spacer()
             }
         }
         .background(Color("Section"))
@@ -46,6 +38,21 @@ struct LineStatusView: View {
         .navigationBarHidden(true)
         .task {
             self.line = await LineService.getDetailedLineInformation(lineId: line.id ?? "") ?? self.line
+        }
+    }
+    
+    struct LineStatusCard<Content>: View where Content: View {
+        var content: () -> Content
+        
+        var body: some View {
+            VStack(spacing: 0) {
+                content()
+            }
+            .multilineTextAlignment(.center)
+            .padding(16)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background(Color("Section2").cornerRadius(15).shadow(radius: 5))
+            .padding(16)
         }
     }
 }
