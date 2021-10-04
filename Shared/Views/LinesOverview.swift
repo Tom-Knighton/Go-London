@@ -48,6 +48,7 @@ struct LinesOverviewView: View {
             }
             .padding(.horizontal, 16)
         }
+        .background(Color("Section"))
         .task {
             self.tubeLines = await LineService.getTrainStatus() ?? []
         }
