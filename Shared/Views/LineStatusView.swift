@@ -153,7 +153,7 @@ fileprivate struct LineStatusViewHeader: View {
         }
         .edgesIgnoringSafeArea(.top)
         .frame(maxWidth: .infinity, minHeight: 90, maxHeight: 90)
-        .background(colour.overlay(.ultraThinMaterial).cornerRadius(15).edgesIgnoringSafeArea(.top).shadow(radius: 3))
+        .background(colour.overlay(.ultraThinMaterial).cornerRadius(15, corners: [.bottomLeft, .bottomRight]).edgesIgnoringSafeArea(.top).shadow(radius: 3))
     }
     
 }
