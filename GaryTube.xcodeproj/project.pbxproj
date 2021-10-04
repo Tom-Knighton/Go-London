@@ -17,6 +17,25 @@
 		E2F890CA270700B000277863 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890A0270700AF00277863 /* ContentView.swift */; };
 		E2F890CB270700B000277863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F890A1270700B000277863 /* Assets.xcassets */; };
 		E2F890CC270700B000277863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F890A1270700B000277863 /* Assets.xcassets */; };
+		E2F890DE2707059700277863 /* Disruption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890DD2707059700277863 /* Disruption.swift */; };
+		E2F890E1270706AB00277863 /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E0270706AB00277863 /* LineService.swift */; };
+		E2F890E3270706BE00277863 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E2270706BE00277863 /* Constants.swift */; };
+		E2F890E4270706BE00277863 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E2270706BE00277863 /* Constants.swift */; };
+		E2F890E5270706C500277863 /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E0270706AB00277863 /* LineService.swift */; };
+		E2F890E6270706C500277863 /* Disruption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890DD2707059700277863 /* Disruption.swift */; };
+		E2F890E82707079300277863 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E72707079300277863 /* ApiClient.swift */; };
+		E2F890E92707079300277863 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E72707079300277863 /* ApiClient.swift */; };
+		E2F890EB2707531300277863 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EA2707531300277863 /* Line.swift */; };
+		E2F890EC2707531300277863 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EA2707531300277863 /* Line.swift */; };
+		E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EE2707583400277863 /* Color+GaryTube.swift */; };
+		E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EE2707583400277863 /* Color+GaryTube.swift */; };
+		E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F127075E3300277863 /* View+GaryTube.swift */; };
+		E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F127075E3300277863 /* View+GaryTube.swift */; };
+		E2F890F62707639600277863 /* LineStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F52707639600277863 /* LineStatusView.swift */; };
+		E2F890F72707639600277863 /* LineStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F52707639600277863 /* LineStatusView.swift */; };
+		E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F82707A6E000277863 /* LinesOverview.swift */; };
+		E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F82707A6E000277863 /* LinesOverview.swift */; };
+		E2F890FD270908CE00277863 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E2F890FC270908CE00277863 /* Introspect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +68,15 @@
 		E2F890BF270700B000277863 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F890C3270700B000277863 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		E2F890DD2707059700277863 /* Disruption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disruption.swift; sourceTree = "<group>"; };
+		E2F890E0270706AB00277863 /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
+		E2F890E2270706BE00277863 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E2F890E72707079300277863 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		E2F890EA2707531300277863 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		E2F890EE2707583400277863 /* Color+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GaryTube.swift"; sourceTree = "<group>"; };
+		E2F890F127075E3300277863 /* View+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GaryTube.swift"; sourceTree = "<group>"; };
+		E2F890F52707639600277863 /* LineStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStatusView.swift; sourceTree = "<group>"; };
+		E2F890F82707A6E000277863 /* LinesOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinesOverview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F890FD270908CE00277863 /* Introspect in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,11 +126,13 @@
 		E2F8909E270700AF00277863 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2F890F42707638400277863 /* Views */,
+				E2F890ED2707582600277863 /* Extensions */,
 				E2F890DC2707018500277863 /* Models */,
 				E2F890DB2707017C00277863 /* Network */,
 				E2F8909F270700AF00277863 /* GaryTubeApp.swift */,
-				E2F890A0270700AF00277863 /* ContentView.swift */,
 				E2F890A1270700B000277863 /* Assets.xcassets */,
+				E2F890E2270706BE00277863 /* Constants.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -146,6 +177,8 @@
 		E2F890DB2707017C00277863 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				E2F890E0270706AB00277863 /* LineService.swift */,
+				E2F890E72707079300277863 /* ApiClient.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -153,8 +186,29 @@
 		E2F890DC2707018500277863 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E2F890DD2707059700277863 /* Disruption.swift */,
+				E2F890EA2707531300277863 /* Line.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E2F890ED2707582600277863 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2F890EE2707583400277863 /* Color+GaryTube.swift */,
+				E2F890F127075E3300277863 /* View+GaryTube.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E2F890F42707638400277863 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E2F890A0270700AF00277863 /* ContentView.swift */,
+				E2F890F52707639600277863 /* LineStatusView.swift */,
+				E2F890F82707A6E000277863 /* LinesOverview.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +227,9 @@
 			dependencies = (
 			);
 			name = "GaryTube (iOS)";
+			packageProductDependencies = (
+				E2F890FC270908CE00277863 /* Introspect */,
+			);
 			productName = "GaryTube (iOS)";
 			productReference = E2F890A6270700B000277863 /* GaryTube.app */;
 			productType = "com.apple.product-type.application";
@@ -265,6 +322,9 @@
 				Base,
 			);
 			mainGroup = E2F89099270700AF00277863;
+			packageReferences = (
+				E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+			);
 			productRefGroup = E2F890A7270700B000277863 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -315,8 +375,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F890E3270706BE00277863 /* Constants.swift in Sources */,
 				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
+				E2F890E1270706AB00277863 /* LineService.swift in Sources */,
+				E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */,
+				E2F890DE2707059700277863 /* Disruption.swift in Sources */,
+				E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */,
 				E2F890C7270700B000277863 /* GaryTubeApp.swift in Sources */,
+				E2F890F62707639600277863 /* LineStatusView.swift in Sources */,
+				E2F890EB2707531300277863 /* Line.swift in Sources */,
+				E2F890E82707079300277863 /* ApiClient.swift in Sources */,
+				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +394,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F890CA270700B000277863 /* ContentView.swift in Sources */,
+				E2F890E5270706C500277863 /* LineService.swift in Sources */,
 				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
+				E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */,
+				E2F890E4270706BE00277863 /* Constants.swift in Sources */,
+				E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */,
+				E2F890E6270706C500277863 /* Disruption.swift in Sources */,
+				E2F890F72707639600277863 /* LineStatusView.swift in Sources */,
+				E2F890EC2707531300277863 /* Line.swift in Sources */,
+				E2F890E92707079300277863 /* ApiClient.swift in Sources */,
+				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +567,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -519,7 +597,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,6 +819,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2F890FC270908CE00277863 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2F8909A270700AF00277863 /* Project object */;
 }
