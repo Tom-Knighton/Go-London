@@ -19,12 +19,11 @@ struct ContentView: View {
                 case .lines:
                     LinesOverviewView()
                 case .route:
-                    LinesOverviewView()
+                    DirectionsHomeView()
                 }
                 
                 GPTabBar(viewManager: self.viewManager)
             }
-            
         }
         .navigationViewStyle(.stack)
     }
@@ -34,11 +33,12 @@ struct GPTabBar: View {
     
     @StateObject var viewManager: TabViewManager
     @State var pages: [Page] = [.route, .lines]
-    @State var tabIcons: [TabIcon] = [TabIcon(iconName: "globe.europe.africa", selectedIconName: "globe.europe.africa.fill", fontSize: 30), TabIcon(iconName: "tram", selectedIconName: "tram.fill", fontSize: 24)]
+    @State var tabIcons: [TabIcon] = [TabIcon(pageName: "Directions", iconName: "map", selectedIconName: "map.fill", fontSize: 30), TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24)]
     
     @Environment(\.safeAreaInsets) var edges
     
     struct TabIcon {
+        let pageName: String
         let iconName: String
         let selectedIconName: String
         let fontSize: CGFloat
@@ -54,9 +54,15 @@ struct GPTabBar: View {
                 ForEach(0..<pages.count) { index in
                     Button(action: { viewManager.currentPage = pages[index] }, label: {
                         Spacer()
-                        Image(systemName: viewManager.currentPage == pages[index] ? self.tabIcons[index].selectedIconName : self.tabIcons[index].iconName)
-                            .font(.system(size: self.tabIcons[index].fontSize, weight: viewManager.currentPage == pages[index] ? .bold : .regular))
-                            .foregroundColor(Color(.label))
+                        VStack {
+                            Image(systemName: viewManager.currentPage == pages[index] ? self.tabIcons[index].selectedIconName : self.tabIcons[index].iconName)
+                                .font(.system(size: viewManager.currentPage == pages[index] ? self.tabIcons[index].fontSize - 1 : self.tabIcons[index].fontSize, weight: viewManager.currentPage == pages[index] ? .bold : .regular))
+                                .foregroundColor(Color(.label))
+                            Text(self.tabIcons[index].pageName)
+                                .foregroundColor(Color(.label))
+                                .font(.system(size: 12, weight: .bold))
+                                .fixedSize()
+                        }
                         Spacer()
                     })
                 }
