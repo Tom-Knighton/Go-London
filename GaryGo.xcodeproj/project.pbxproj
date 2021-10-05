@@ -39,6 +39,8 @@
 		E25AAC82270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
 		E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
 		E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
+		E2C165D7270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
+		E2C165D8270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
 		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
 		E2F890BA270700B000277863 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */; };
 		E2F890C4270700B000277863 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890C3270700B000277863 /* Tests_macOS.swift */; };
@@ -113,6 +115,7 @@
 		E25AAC7C270B935400A0749B /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		E25AAC80270B94F200A0749B /* dogbark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogbark.wav; sourceTree = "<group>"; };
 		E25AAC83270BB1DB00A0749B /* TabViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewManager.swift; sourceTree = "<group>"; };
+		E2C165D6270CF26600DC3B16 /* SearchingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchingGif.json; sourceTree = "<group>"; };
 		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
 		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2F890A1270700B000277863 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -302,6 +305,7 @@
 		E2F89104270B890800277863 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				E2C165D6270CF26600DC3B16 /* SearchingGif.json */,
 				E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */,
 				E25AAC64270B8E3900A0749B /* Dog_Frankie.json */,
 				E25AAC65270B8E3900A0749B /* Dog_Gromit.json */,
@@ -451,6 +455,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F890CB270700B000277863 /* Assets.xcassets in Resources */,
+				E2C165D7270CF26600DC3B16 /* SearchingGif.json in Resources */,
 				E25AAC71270B8E3900A0749B /* Dog_Frankie.json in Resources */,
 				E25AAC77270B8E3900A0749B /* Dog_Tutu.json in Resources */,
 				E25AAC6F270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
@@ -471,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2F890CC270700B000277863 /* Assets.xcassets in Resources */,
+				E2C165D8270CF26600DC3B16 /* SearchingGif.json in Resources */,
 				E25AAC72270B8E3900A0749B /* Dog_Frankie.json in Resources */,
 				E25AAC78270B8E3900A0749B /* Dog_Tutu.json in Resources */,
 				E25AAC70270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
