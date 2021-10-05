@@ -70,6 +70,19 @@ extension Data {
 struct ApiClient {
     
     static func perform<T: Decodable>(url: String, to type: T.Type) async -> T? {
+        let data = await performNoDecoding(url: url)
+        guard let data = data else { return nil }
+        
+        do {
+            return try data.decode(to: T.self) ?? nil
+        } catch {
+            print(String(describing: error))
+            return nil
+        }
+    }
+    
+    static func performNoDecoding(url: String) async -> Data? {
+        let url = url.replacingOccurrences(of: " ", with: "%20")
         guard let url = URL(string: url) else {
             return nil
         }
@@ -86,8 +99,9 @@ struct ApiClient {
         guard let finalUrl = components?.url else { return nil }
         
         do {
+            print(finalUrl)
             let (data, _) = try await URLSession.shared.data(from: finalUrl)
-            return try data.decode(to: T.self) ?? nil
+            return data
         } catch {
             print(String(describing: error))
             return nil
