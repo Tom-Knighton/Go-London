@@ -65,17 +65,17 @@ struct LinesOverviewView: View {
         let percentageGood: Int = Int((Double(totalGood) / Double(totalLines)) * 100)
         
         Group {
-            if percentageGood == 0 {
+            if percentageGood == 100 {
                 Text("All lines are experiencing Good Service!")
                     .bold()
                     .font(.title3)
                     .foregroundColor(.green)
-            } else if percentageGood > 0 && percentageGood <= 60 {
+            } else if percentageGood < 100 && percentageGood >= 40 {
                 Text("Some lines are experiencing problems")
                     .bold()
                     .font(.title3)
                     .foregroundColor(.yellow)
-            } else if percentageGood > 60 && percentageGood < 100 {
+            } else if percentageGood < 40 && percentageGood > 0 {
                 Text("Many lines are experiencing problems")
                     .bold()
                     .font(.title3)
