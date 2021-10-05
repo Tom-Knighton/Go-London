@@ -11,6 +11,10 @@
 		E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
 		E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
 		E2510F9C270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
+		E2510F9E270BCCA800A7AEBE /* StopPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9D270BCCA800A7AEBE /* StopPoint.swift */; };
+		E2510F9F270BCCA800A7AEBE /* StopPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9D270BCCA800A7AEBE /* StopPoint.swift */; };
+		E2510FA1270BCCEB00A7AEBE /* StopPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */; };
+		E2510FA2270BCCEB00A7AEBE /* StopPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */; };
 		E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
 		E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
 		E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
@@ -95,6 +99,8 @@
 /* Begin PBXFileReference section */
 		E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GaryGo.swift"; sourceTree = "<group>"; };
 		E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
+		E2510F9D270BCCA800A7AEBE /* StopPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPoint.swift; sourceTree = "<group>"; };
+		E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointService.swift; sourceTree = "<group>"; };
 		E25AAC60270B8E3900A0749B /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
 		E25AAC61270B8E3900A0749B /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
 		E25AAC62270B8E3900A0749B /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
@@ -256,6 +262,7 @@
 			children = (
 				E2F890E0270706AB00277863 /* LineService.swift */,
 				E2F890E72707079300277863 /* ApiClient.swift */,
+				E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -265,6 +272,7 @@
 			children = (
 				E2F890DD2707059700277863 /* Disruption.swift */,
 				E2F890EA2707531300277863 /* Line.swift */,
+				E2510F9D270BCCA800A7AEBE /* StopPoint.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -501,12 +509,14 @@
 			files = (
 				E2F89109270B896900277863 /* DogGif.swift in Sources */,
 				E2F890E3270706BE00277863 /* Constants.swift in Sources */,
+				E2510F9E270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
 				E2F890E1270706AB00277863 /* LineService.swift in Sources */,
 				E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */,
 				E2F890DE2707059700277863 /* Disruption.swift in Sources */,
 				E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */,
 				E2F890C7270700B000277863 /* GaryTubeApp.swift in Sources */,
+				E2510FA1270BCCEB00A7AEBE /* StopPointService.swift in Sources */,
 				E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */,
 				E2F890F62707639600277863 /* LineStatusView.swift in Sources */,
 				E25AAC7D270B935400A0749B /* SoundService.swift in Sources */,
@@ -525,12 +535,14 @@
 			files = (
 				E2F8910A270B896900277863 /* DogGif.swift in Sources */,
 				E2F890CA270700B000277863 /* ContentView.swift in Sources */,
+				E2510F9F270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890E5270706C500277863 /* LineService.swift in Sources */,
 				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
 				E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */,
 				E2F890E4270706BE00277863 /* Constants.swift in Sources */,
 				E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */,
 				E2F890E6270706C500277863 /* Disruption.swift in Sources */,
+				E2510FA2270BCCEB00A7AEBE /* StopPointService.swift in Sources */,
 				E2510F9C270BCA6A00A7AEBE /* DirectionsView.swift in Sources */,
 				E2F890F72707639600277863 /* LineStatusView.swift in Sources */,
 				E25AAC7E270B935400A0749B /* SoundService.swift in Sources */,
