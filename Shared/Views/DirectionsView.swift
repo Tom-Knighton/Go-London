@@ -40,6 +40,7 @@ struct DirectionsHomeView: View {
                                 SearchStopResultView(stop: stopPoint)
                             }
                         }
+                        .padding(.bottom, edges.bottom + (edges.bottom == 0 ? 80 : 60))
                     }
                 } else {
                     if isSearching {
