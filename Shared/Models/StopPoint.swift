@@ -31,6 +31,16 @@ struct StopPoint: Codable {
                 ids.append(LineIdentifier(lineId: lineModeGroup.modeName))
             }
         })
+        
+        let busIndex = ids.firstIndex(where: { $0.lineId == "bus" })
+        let nrIndex = ids.firstIndex(where: { $0.lineId == "national-rail" })
+        if let nrIndex = nrIndex {
+            ids.insert(ids.remove(at: nrIndex), at: 0)
+        }
+        if let busIndex = busIndex {
+            ids.insert(ids.remove(at: busIndex), at: 0)
+        }
+        
         return ids
     }
 }
