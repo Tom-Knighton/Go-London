@@ -80,6 +80,8 @@ struct LineIdentifier: Codable {
             return Color(hex: 0xEF7C09)
         case "tflrail":
             return Color(hex: 0x604099)
+        case "dlr":
+            return Color(hex: 0x02B0AE)
         case "bakerloo":
             return Color(hex: 0xB05F0F)
         case "central":
