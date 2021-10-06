@@ -49,7 +49,7 @@ struct LinesOverviewView: View {
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.bottom, edges.bottom + (edges.bottom == 0 ? 80 : 40))
+            .padding(.bottom, edges.bottom + (edges.bottom == 0 ? 80 : 60))
         }
         .background(Color("Section"))
         .task {
@@ -70,7 +70,12 @@ struct LinesOverviewView: View {
                     .bold()
                     .font(.title3)
                     .foregroundColor(.green)
-            } else if percentageGood < 100 && percentageGood >= 40 {
+            } else if percentageGood >= 90 {
+                Text("Most lines are experiencing Good Service")
+                    .bold()
+                    .font(.title3)
+                    .foregroundColor(.green)
+            } else if percentageGood < 90 && percentageGood >= 40 {
                 Text("Some lines are experiencing problems")
                     .bold()
                     .font(.title3)
