@@ -57,17 +57,17 @@ struct LineIdentifier: Codable {
     var lineIndicator: some View {
         switch lineId {
         case "national-rail":
-            Image(systemName: "tram")
+            Image("nationalrail")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 25, height: 25)
         case "bus":
-            Image(systemName: "bus")
+            Image("buseslogo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 25, height: 25)
         default:
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 5)
                 .frame(width: 25, height: 25)
                 .foregroundColor(colour)
         }
