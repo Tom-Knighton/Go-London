@@ -71,7 +71,7 @@ struct StopPoint: Codable, Identifiable {
     }
     
     func getStopPointInfo() -> [StopPointInfo] {
-        return [StopPointInfo(infoName: "WiFi", infoValue: wifiInfo), StopPointInfo(infoName: "Zone", infoValue: zoneInfo), StopPointInfo(infoName: "Toilets", infoValue: toiletsInfo), StopPointInfo(infoName: "Lifts", infoValue: liftsInfo), StopPointInfo(infoName: "Waiting Rooms", infoValue: waitingRoomInfo), StopPointInfo(infoName: "Car Parks", infoValue: carParkInfo)]
+        return [StopPointInfo(infoName: "WiFi", infoValue: wifiInfo), StopPointInfo(infoName: "Zone", infoValue: zoneInfo), StopPointInfo(infoName: "Toilets", infoValue: toiletsInfo), StopPointInfo(infoName: "Lifts", infoValue: liftsInfo), StopPointInfo(infoName: "Waiting Rooms", infoValue: waitingRoomInfo), StopPointInfo(infoName: "Car Parks", infoValue: carParkInfo)].filter({ $0.infoValue != "No Information"})
     }
     
     struct StopPointInfo {
