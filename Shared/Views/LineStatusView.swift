@@ -17,7 +17,7 @@ struct LineStatusView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            LineStatusViewHeader(lineName: line.name ?? "" , colour: line.tubeColour)
+            GaryGoHeaderView(headerTitle: line.name ?? "" , colour: line.tubeColour)
             ScrollView {
                 VStack(spacing: 0) {
                     LineStatusCard {
@@ -104,59 +104,24 @@ struct LineStatusView: View {
             
         }
     }
-    
-    struct LineStatusCard<Content>: View where Content: View {
-        var textAlignment: TextAlignment = .center
-        var verticalPadding: CGFloat = 16
-        var content: () -> Content
-        
-        var body: some View {
-            VStack(spacing: 0) {
-                content()
-            }
-            .multilineTextAlignment(textAlignment)
-            .padding(16)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .background(Color("Section2").cornerRadius(15).shadow(radius: 5))
-            .padding(.vertical, verticalPadding)
-            .padding(.horizontal, 16)
-        }
-    }
 }
 
-fileprivate struct LineStatusViewHeader: View {
-    
-    var lineName: String
-    var colour: Color
-    
-    @Environment(\.dismiss) var dismiss
+struct LineStatusCard<Content>: View where Content: View {
+    var textAlignment: TextAlignment = .center
+    var verticalPadding: CGFloat = 16
+    var content: () -> Content
     
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Button(action: { dismiss() } ) {
-                    Text(Image(systemName: "chevron.backward")) +
-                    Text(" Back")
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 16)
-            
-            Spacer().frame(height: 16)
-            Text(lineName)
-                .bold()
-                .font(.largeTitle)
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, 16)
-            Spacer().frame(height: 8)
+        VStack(spacing: 0) {
+            content()
         }
-        .edgesIgnoringSafeArea(.top)
-        .frame(maxWidth: .infinity, minHeight: 90, maxHeight: 90)
-        .background(colour.overlay(.ultraThinMaterial).cornerRadius(15, corners: [.bottomLeft, .bottomRight]).edgesIgnoringSafeArea(.top).shadow(radius: 3))
+        .multilineTextAlignment(textAlignment)
+        .padding(16)
+        .frame(maxWidth: .infinity, alignment: .center)
+        .background(Color("Section2").cornerRadius(15).shadow(radius: 5))
+        .padding(.vertical, verticalPadding)
+        .padding(.horizontal, 16)
     }
-    
 }
 
 extension UINavigationController: UIGestureRecognizerDelegate {
