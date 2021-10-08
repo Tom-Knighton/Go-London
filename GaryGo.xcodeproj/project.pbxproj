@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2111F72270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
+		E2111F73270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
 		E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
 		E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
 		E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
@@ -99,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2111F71270F7F8600672C25 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
 		E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GaryGo.swift"; sourceTree = "<group>"; };
 		E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
 		E2510F9D270BCCA800A7AEBE /* StopPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPoint.swift; sourceTree = "<group>"; };
@@ -305,6 +308,7 @@
 		E2F89104270B890800277863 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
+				E2111F71270F7F8600672C25 /* LoadingGif.json */,
 				E2C165D6270CF26600DC3B16 /* SearchingGif.json */,
 				E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */,
 				E25AAC64270B8E3900A0749B /* Dog_Frankie.json */,
@@ -465,6 +469,7 @@
 				E25AAC73270B8E3900A0749B /* Dog_Gromit.json in Resources */,
 				E25AAC75270B8E3900A0749B /* Dog_Tom.json in Resources */,
 				E25AAC6D270B8E3900A0749B /* Dog_Rambo.json in Resources */,
+				E2111F72270F7F8600672C25 /* LoadingGif.json in Resources */,
 				E2F89106270B891200277863 /* Dog_Peter.json in Resources */,
 				E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */,
 				E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */,
@@ -486,6 +491,7 @@
 				E25AAC74270B8E3900A0749B /* Dog_Gromit.json in Resources */,
 				E25AAC76270B8E3900A0749B /* Dog_Tom.json in Resources */,
 				E25AAC6E270B8E3900A0749B /* Dog_Rambo.json in Resources */,
+				E2111F73270F7F8600672C25 /* LoadingGif.json in Resources */,
 				E2F89107270B891200277863 /* Dog_Peter.json in Resources */,
 				E25AAC6C270B8E3900A0749B /* Dog_Louie.json in Resources */,
 				E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */,

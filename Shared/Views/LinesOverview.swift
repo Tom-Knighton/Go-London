@@ -16,6 +16,12 @@ struct LinesOverviewView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
+                if self.tubeLines.isEmpty {
+                    Spacer()
+                    LottieView(name: "LoadingGif", loopMode: .loop)
+                        .frame(width: 250, height: 250)
+                    Spacer()
+                }
                 statusOverviewTooltip()
                 ForEach(self.tubeLines, id: \.id) { line in
                     NavigationLink(destination: NavigationLazyView(LineStatusView(line: line))) {
