@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct StopPoint: Codable {
+struct StopPoint: Codable, Identifiable {
     let icsId: String?
     let modes: [String]?
     let zone: String?
@@ -17,8 +17,10 @@ struct StopPoint: Codable {
     let commonName: String?
     let lat: Double?
     let lon: Double?
-    
+        
     let lineModeGroups: [LineModeGroup]?
+    
+    private let additionalProperties: [StopPointProperty]?
     
     var lineIdentifiers: [LineIdentifier]? {
         var ids: [LineIdentifier] = []
@@ -43,6 +45,40 @@ struct StopPoint: Codable {
         
         return ids
     }
+    
+    private var wifiInfo: String {
+        return additionalProperties?.first(where: { $0.key == "WiFi" })?.value?.capitalized ?? "No"
+    }
+    
+    private var zoneInfo: String {
+        return additionalProperties?.first(where: { $0.key == "Zone" })?.value?.capitalized ?? "No Information"
+    }
+    
+    private var waitingRoomInfo: String {
+        return additionalProperties?.first(where: { $0.key == "Waiting Room" })?.value?.capitalized ?? "No Information"
+    }
+    
+    private var carParkInfo: String {
+        return additionalProperties?.first(where: { $0.key == "Car park" })?.value?.capitalized ?? "No Information"
+    }
+    
+    private var liftsInfo: String {
+        return additionalProperties?.first(where: { $0.key == "Lifts" })?.value?.capitalized ?? "No Information"
+    }
+    
+    private var toiletsInfo: String {
+        return additionalProperties?.first(where: { $0.key == "Toilets" })?.value?.capitalized ?? "No Information"
+    }
+    
+    func getStopPointInfo() -> [StopPointInfo] {
+        return [StopPointInfo(infoName: "WiFi", infoValue: wifiInfo), StopPointInfo(infoName: "Zone", infoValue: zoneInfo), StopPointInfo(infoName: "Toilets", infoValue: toiletsInfo), StopPointInfo(infoName: "Lifts", infoValue: liftsInfo), StopPointInfo(infoName: "Waiting Rooms", infoValue: waitingRoomInfo), StopPointInfo(infoName: "Car Parks", infoValue: carParkInfo)]
+    }
+    
+    struct StopPointInfo {
+        let infoName: String
+        let infoValue: String
+    }
+    
 }
 
 struct LineModeGroup: Codable {
@@ -114,4 +150,11 @@ struct StopPointQueryResult: Codable {
     let query: String?
     let total: Int?
     let matches: [StopPoint]?
+}
+
+struct StopPointProperty: Codable {
+    let category: String?
+    let key: String?
+    let sourcesSystemKey: String?
+    let value: String?
 }
