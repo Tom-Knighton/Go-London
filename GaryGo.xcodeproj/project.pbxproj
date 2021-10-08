@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		E2111F72270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
 		E2111F73270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
+		E2111F7527103FC600672C25 /* StopPointOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7427103FC600672C25 /* StopPointOverview.swift */; };
+		E2111F7627103FC600672C25 /* StopPointOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7427103FC600672C25 /* StopPointOverview.swift */; };
 		E2111F7827104A9000672C25 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7727104A9000672C25 /* CustomHeaderView.swift */; };
 		E2111F7927104A9000672C25 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7727104A9000672C25 /* CustomHeaderView.swift */; };
 		E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
@@ -104,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		E2111F71270F7F8600672C25 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
+		E2111F7427103FC600672C25 /* StopPointOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointOverview.swift; sourceTree = "<group>"; };
 		E2111F7727104A9000672C25 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GaryGo.swift"; sourceTree = "<group>"; };
 		E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
@@ -304,6 +307,7 @@
 				E2F890F82707A6E000277863 /* LinesOverview.swift */,
 				E2F89101270B888600277863 /* LottieView.swift */,
 				E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */,
+				E2111F7427103FC600672C25 /* StopPointOverview.swift */,
 				E2111F7727104A9000672C25 /* CustomHeaderView.swift */,
 			);
 			path = Views;
@@ -541,6 +545,7 @@
 				E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
 				E2F890E82707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
+				E2111F7527103FC600672C25 /* StopPointOverview.swift in Sources */,
 				E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */,
 				E2F89102270B888600277863 /* LottieView.swift in Sources */,
 			);
@@ -568,6 +573,7 @@
 				E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
 				E2F890E92707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
+				E2111F7627103FC600672C25 /* StopPointOverview.swift in Sources */,
 				E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */,
 				E2F89103270B888600277863 /* LottieView.swift in Sources */,
 			);

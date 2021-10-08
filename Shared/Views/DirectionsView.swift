@@ -37,7 +37,9 @@ struct DirectionsHomeView: View {
                     ScrollView {
                         LazyVStack(spacing: 8) {
                             ForEach(searchResults, id: \.id) { stopPoint in
-                                SearchStopResultView(stop: stopPoint)
+                                NavigationLink(destination: NavigationLazyView(StopPointOverview(stopPoint: stopPoint))) {
+                                    SearchStopResultView(stop: stopPoint)
+                                }
                             }
                         }
                         .padding(.bottom, edges.bottom + (edges.bottom == 0 ? 80 : 60))
