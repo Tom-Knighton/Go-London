@@ -45,13 +45,15 @@ struct DirectionsHomeView: View {
                         .padding(.bottom, edges.bottom + (edges.bottom == 0 ? 80 : 60))
                     }
                 } else {
-                    if isSearching {
-                        LottieView(name: "SearchingGif", loopMode: .loop)
-                            .frame(width: 150, height: 150)
-                    } else {
-                        Text("No Results :(")
-                            .fontWeight(.light)
-                            .padding(.top, 32)
+                    if self.searchText.count >= 3 {
+                        if isSearching {
+                            LottieView(name: "SearchingGif", loopMode: .loop)
+                                .frame(width: 150, height: 150)
+                        } else {
+                            Text("No Results :(")
+                                .fontWeight(.light)
+                                .padding(.top, 32)
+                        }
                     }
                 }
             }
@@ -63,7 +65,7 @@ struct DirectionsHomeView: View {
         .navigationBarTitle("Directions")
         .onChange(of: searchText) { newValue in
             self.searchTask?.cancel()
-            if self.searchText.isEmpty == false && self.searchText.count > 3 {
+            if self.searchText.isEmpty == false && self.searchText.count >= 3 {
                 self.isSearching = true
                 self.searchTask = Task {
                     print("Searching for \(self.searchText)")
