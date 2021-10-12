@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E208307B2714A2A900721A73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208307A2714A2A900721A73 /* MapView.swift */; };
+		E208307C2714A2A900721A73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208307A2714A2A900721A73 /* MapView.swift */; };
 		E2111F72270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
 		E2111F73270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
 		E2111F7527103FC600672C25 /* StopPointOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7427103FC600672C25 /* StopPointOverview.swift */; };
@@ -105,6 +107,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E208307A2714A2A900721A73 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2111F71270F7F8600672C25 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
 		E2111F7427103FC600672C25 /* StopPointOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointOverview.swift; sourceTree = "<group>"; };
 		E2111F7727104A9000672C25 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
@@ -309,6 +312,7 @@
 				E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */,
 				E2111F7427103FC600672C25 /* StopPointOverview.swift */,
 				E2111F7727104A9000672C25 /* CustomHeaderView.swift */,
+				E208307A2714A2A900721A73 /* MapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -530,6 +534,7 @@
 				E2F89109270B896900277863 /* DogGif.swift in Sources */,
 				E2111F7827104A9000672C25 /* CustomHeaderView.swift in Sources */,
 				E2F890E3270706BE00277863 /* Constants.swift in Sources */,
+				E208307B2714A2A900721A73 /* MapView.swift in Sources */,
 				E2510F9E270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
 				E2F890E1270706AB00277863 /* LineService.swift in Sources */,
@@ -558,6 +563,7 @@
 				E2F8910A270B896900277863 /* DogGif.swift in Sources */,
 				E2111F7927104A9000672C25 /* CustomHeaderView.swift in Sources */,
 				E2F890CA270700B000277863 /* ContentView.swift in Sources */,
+				E208307C2714A2A900721A73 /* MapView.swift in Sources */,
 				E2510F9F270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890E5270706C500277863 /* LineService.swift in Sources */,
 				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
@@ -734,6 +740,10 @@
 				DEVELOPMENT_TEAM = 8H3J46CN24;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Location;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -764,6 +774,10 @@
 				DEVELOPMENT_TEAM = 8H3J46CN24;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Location;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
