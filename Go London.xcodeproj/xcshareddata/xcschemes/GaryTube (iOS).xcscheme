@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E2F890A5270700B000277863"
-               BuildableName = "Gary Go.app"
-               BlueprintName = "GaryGo (iOS)"
-               ReferencedContainer = "container:GaryGo.xcodeproj">
+               BuildableName = "Go London.app"
+               BlueprintName = "Go London (iOS)"
+               ReferencedContainer = "container:Go London.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "E2F890B2270700B000277863"
                BuildableName = "Tests iOS.xctest"
                BlueprintName = "Tests iOS"
-               ReferencedContainer = "container:GaryGo.xcodeproj">
+               ReferencedContainer = "container:Go London.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2F890A5270700B000277863"
-            BuildableName = "Gary Go.app"
-            BlueprintName = "GaryGo (iOS)"
-            ReferencedContainer = "container:GaryGo.xcodeproj">
+            BuildableName = "Go London.app"
+            BlueprintName = "Go London (iOS)"
+            ReferencedContainer = "container:Go London.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E2F890A5270700B000277863"
-            BuildableName = "Gary Go.app"
-            BlueprintName = "GaryGo (iOS)"
-            ReferencedContainer = "container:GaryGo.xcodeproj">
+            BuildableName = "Go London.app"
+            BlueprintName = "Go London (iOS)"
+            ReferencedContainer = "container:Go London.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
