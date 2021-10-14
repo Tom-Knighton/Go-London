@@ -13,7 +13,7 @@ import SwiftUI
 final class GGMapLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     @Published var allowedMapZoomModes: [GGMapView.showLocationMode] = [.stopPoint]
-    @Published var currentMapZoomMode: GGMapView.showLocationMode = .annotations
+    @Published var currentMapZoomMode: GGMapView.showLocationMode = .stopPoint
     
     private var manager: CLLocationManager?
     
