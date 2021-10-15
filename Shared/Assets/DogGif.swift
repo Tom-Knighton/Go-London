@@ -32,7 +32,6 @@ struct DogGifController {
     
     static func getRandomDogGif() -> DogGif {
         let dog = dogGifs.randomElement() ?? dogGifs[0]
-        print(dog.dogName)
         return dog
     }
 }

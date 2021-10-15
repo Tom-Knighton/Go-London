@@ -99,7 +99,6 @@ struct ApiClient {
         guard let finalUrl = components?.url else { return nil }
         
         do {
-            print(finalUrl)
             let (data, _) = try await URLSession.shared.data(from: finalUrl)
             return data
         } catch {

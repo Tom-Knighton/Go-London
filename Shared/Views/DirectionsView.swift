@@ -68,7 +68,6 @@ struct DirectionsHomeView: View {
             if self.searchText.isEmpty == false && self.searchText.count >= 3 {
                 self.isSearching = true
                 self.searchTask = Task {
-                    print("Searching for \(self.searchText)")
                     self.searchResults = await StopPointService.DetailedCachedSearch(by: self.searchText)
                     self.isSearching = false
                 }
