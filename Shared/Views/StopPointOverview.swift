@@ -202,6 +202,13 @@ fileprivate struct StopPointArrivalsard: View {
                 .font(.title3)
                 .padding(.horizontal, 8)
             }
+            
+            if arrivals.count == 0 {
+                Text("Check Station Boards")
+                    .bold()
+                    .font(.system(.title3, design: .rounded))
+                    .frame(maxWidth: .infinity, alignment: .center)
+            }
             Spacer().frame(height: 8)
         }
         .frame(maxWidth: .infinity, alignment: .center)
