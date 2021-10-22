@@ -22,6 +22,8 @@ struct StopPoint: Codable, Identifiable {
     
     private let additionalProperties: [StopPointProperty]?
     
+    let children: [StopPoint]?
+    
     var lineIdentifiers: [LineIdentifier]? {
         var ids: [LineIdentifier] = []
         lineModeGroups?.forEach({ lineModeGroup in
@@ -74,11 +76,53 @@ struct StopPoint: Codable, Identifiable {
         return [StopPointInfo(infoName: "WiFi", infoValue: wifiInfo), StopPointInfo(infoName: "Zone", infoValue: zoneInfo), StopPointInfo(infoName: "Toilets", infoValue: toiletsInfo), StopPointInfo(infoName: "Lifts", infoValue: liftsInfo), StopPointInfo(infoName: "Waiting Rooms", infoValue: waitingRoomInfo), StopPointInfo(infoName: "Car Parks", infoValue: carParkInfo)].filter({ $0.infoValue != "No Information"})
     }
     
+    func getChildStationIds() -> StopChildInfoIterator {
+        let acceptableModes: [String] = ["tube", "central", "jubilee", "bakerloo", "circle", "district", "hammersmit-city", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city", "tfl-rail", "london-overground", "national-rail", "dlr"]
+        let childrenFiltered = children?.filter({ stopPoint in
+            return (stopPoint.lineIdentifiers?.filter({ acceptableModes.contains($0.lineId ?? "") }).count ?? 0) > 0
+        })
+        let finalResult: [StopPointChildInfo] = childrenFiltered?.compactMap { stopPoint in
+            return StopPointChildInfo(stationId: stopPoint.id ?? "", lines: stopPoint.lineIdentifiers?.compactMap({ $0.lineId ?? "" }) ?? [])
+        } ?? []
+        return StopChildInfoIterator(elements: finalResult)
+    }
+    
     struct StopPointInfo {
         let infoName: String
         let infoValue: String
     }
+}
+
+struct StopChildInfoIterator: AsyncSequence {
+    typealias Element = StopPointChildInfo
     
+    var elements: [StopPointChildInfo]
+    
+    struct AsyncIterator: AsyncIteratorProtocol {
+        var current = 1
+        fileprivate var currentIndex = 0
+        var elements: [StopPointChildInfo]
+
+        mutating func next() async -> Element? {
+            guard currentIndex < elements.count else {
+                return nil
+            }
+            
+            let element = elements[currentIndex]
+            currentIndex += 1
+            
+            return element
+        }
+    }
+    
+    func makeAsyncIterator() -> AsyncIterator {
+        AsyncIterator(elements: elements)
+    }
+}
+
+struct StopPointChildInfo {
+    let stationId: String
+    let lines: [String]
 }
 
 struct LineModeGroup: Codable {
@@ -158,3 +202,102 @@ struct StopPointProperty: Codable {
     let sourcesSystemKey: String?
     let value: String?
 }
+
+struct StopPointArrival: Codable {
+    
+    let id: String?
+    let vehicleId: String?
+    let naptanId: String?
+    let lineId: String?
+    let lineName: String?
+    let platformName: String?
+    let direction: String?
+    let destinationName: String?
+    let timeToStation: Int?
+    let currentLocation: String?
+    let stationName: String?
+    let towards: String?
+    
+    var friendlyDueTime: String {
+        guard let timeToStation = timeToStation else { fatalError("No time to station") }
+        
+        let denominator = lineId == "london-overground" ? 1 : 60
+        switch timeToStation / denominator {
+        case 0:
+            return "Due"
+        default:
+            return String(timeToStation / denominator)
+        }
+    }
+}
+
+struct ArrivalGroup: Codable, Comparable {
+    static func < (lhs: ArrivalGroup, rhs: ArrivalGroup) -> Bool {
+        return lhs.lineName < rhs.lineName
+    }
+    
+    static func == (lhs: ArrivalGroup, rhs: ArrivalGroup) -> Bool {
+        return lhs.lineName == rhs.lineName
+    }
+    
+    
+    let lineName: String
+    
+    let arrivals: [StopPointArrival]
+    
+    init(lineName: String, arrivals: [StopPointArrival]) {
+        self.lineName = lineName
+        self.arrivals = arrivals
+    }
+    
+    func getPlatformArrivalGroups() -> [PlatformArrivalGroup] {
+        
+        let arrivals = self.arrivals.filter({ $0.destinationName != $0.stationName || ($0.destinationName == $0.stationName && $0.lineId != "london-overground") })
+        // Tube Lines:
+        let platforms = arrivals.filter({ GaryTubeConstants.TubeLineIds.contains($0.lineId ?? "")}).compactMap({ $0.platformName ?? ""}).removeDuplicates() // All Tube Arrival Platforms
+        var platformGroups: [PlatformArrivalGroup] = []
+        for platform in platforms {
+            let relevantArrivals = arrivals.filter({ $0.platformName == platform })
+            let platformComponents = platform.split(separator: "-")
+            
+            
+            var direction = String(platformComponents[0]).trim()
+            var platformName = String(platformComponents[1]).trim()
+            
+            let firstArrival = relevantArrivals.first
+
+            if direction == (firstArrival?.stationName ?? "") && firstArrival?.lineId == "jubilee" && platformComponents.count > 1 {
+                direction = String(platformComponents[0]).trim()
+            }
+            
+            platformName = platformName.replacingOccurrences(of: " Rail Station", with: "")
+            platformName = platformName.replacingOccurrences(of: " Underground Station", with: "")
+            platformName = platformName.replacingOccurrences(of: " DLR Station", with: "")
+            platformGroups.append(PlatformArrivalGroup(platformName: platformName, direction: direction, arrivals: relevantArrivals))
+        }
+        
+        //Other Lines:
+        let remaining = arrivals.filter({ GaryTubeConstants.TubeLineIds.contains($0.lineId ?? "") == false }).compactMap({ $0.destinationName ?? ""}).removeDuplicates()
+        for var destination in remaining {
+            let relevantArrivals = arrivals.filter({ $0.destinationName == destination })
+                        
+            let actualPlatform = (relevantArrivals.first?.platformName?.components(separatedBy: " ") ?? []).first(where: { $0.isRealNumber })
+            destination = destination.replacingOccurrences(of: " Rail Station", with: "")
+            destination = destination.replacingOccurrences(of: " Underground Station", with: "")
+            destination = destination.replacingOccurrences(of: " DLR Station", with: "")
+            
+            let platformName = actualPlatform != nil ? "Platform \(actualPlatform ?? "")" : "Awaiting Platform"
+            
+            platformGroups.append(PlatformArrivalGroup(platformName: platformName, direction: destination, arrivals: relevantArrivals))
+        }
+    
+        return platformGroups
+    }
+    
+    struct PlatformArrivalGroup: Codable {
+        let platformName: String
+        let direction: String
+        let arrivals: [StopPointArrival]
+    }
+}
+
