@@ -47,6 +47,8 @@
 		E25AAC82270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
 		E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
 		E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
+		E262BAEB2721805F0057C80C /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */; };
+		E262BAEC2721805F0057C80C /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */; };
 		E2C165D7270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
 		E2C165D8270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
 		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
@@ -127,6 +129,7 @@
 		E25AAC7C270B935400A0749B /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
 		E25AAC80270B94F200A0749B /* dogbark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogbark.wav; sourceTree = "<group>"; };
 		E25AAC83270BB1DB00A0749B /* TabViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewManager.swift; sourceTree = "<group>"; };
+		E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+GoLondon.swift"; sourceTree = "<group>"; };
 		E2C165D6270CF26600DC3B16 /* SearchingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchingGif.json; sourceTree = "<group>"; };
 		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
 		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 				E2F890EE2707583400277863 /* Color+GaryTube.swift */,
 				E2F890F127075E3300277863 /* View+GaryTube.swift */,
 				E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */,
+				E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -537,6 +541,7 @@
 				E208307B2714A2A900721A73 /* MapView.swift in Sources */,
 				E2510F9E270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
+				E262BAEB2721805F0057C80C /* Foundation+GoLondon.swift in Sources */,
 				E2F890E1270706AB00277863 /* LineService.swift in Sources */,
 				E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */,
 				E2F890DE2707059700277863 /* Disruption.swift in Sources */,
@@ -566,6 +571,7 @@
 				E208307C2714A2A900721A73 /* MapView.swift in Sources */,
 				E2510F9F270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890E5270706C500277863 /* LineService.swift in Sources */,
+				E262BAEC2721805F0057C80C /* Foundation+GoLondon.swift in Sources */,
 				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
 				E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */,
 				E2F890E4270706BE00277863 /* Constants.swift in Sources */,
