@@ -14,10 +14,18 @@ class ArrivalGroupObserver: ObservableObject {
     
     @Published var arrivalGroups: [ArrivalGroup] = []
     
+    @Published var isLoading = false
+    
     func updateArrivalGroups(for stopPoint: StopPoint) async {
+        
+        guard !isLoading else { return }
+        
         DispatchQueue.main.async {
-            Task {
-                self.arrivalGroups = await StopPointService.GetEstimatedArrivals(for: stopPoint)
+            self.isLoading = true
+
+            Task { [weak self] in
+                self?.arrivalGroups = await StopPointService.GetEstimatedArrivals(for: stopPoint)
+                self?.isLoading = false
             }
         }
     }
@@ -64,6 +72,10 @@ struct StopPointOverview: View {
                         
                         StopPointInfoCard(stopPointInfo: stopPoint.getStopPointInfo())
                         
+                        if self.arrivalGroupObserver.isLoading && self.arrivalGroupObserver.arrivalGroups.count == 0 {
+                            LottieView(name: "SearchingGif", loopMode: .loop)
+                                .frame(width: 250, height: 250, alignment: .center)
+                        }
                         ForEach(self.arrivalGroupObserver.arrivalGroups, id: \.lineName) { arrivalGroup in
                             StopPointArrivalsard(lineName: arrivalGroup.lineName, arrivals: arrivalGroup.getPlatformArrivalGroups())
                         }
