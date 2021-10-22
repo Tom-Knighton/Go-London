@@ -30,36 +30,8 @@ struct Line: Codable {
     
     var tubeColour: Color {
         guard let name = self.name else { return .primary }
-        switch name {
-        case "TfL Rail":
-            return Color(hex: 0x604099)
-        case "London Overground":
-            return Color(hex: 0xEF7C09)
-        case "Bakerloo":
-            return Color(hex: 0xB05F0F)
-        case "Central":
-            return Color(hex: 0xEE2E21)
-        case "Circle":
-            return Color(hex: 0xFED203)
-        case "District":
-            return Color(hex: 0x00853D)
-        case "Hammersmith & City":
-            return Color(hex: 0xF4879F)
-        case "Jubilee":
-            return Color(hex: 0x949CA0)
-        case "Metropolitan":
-            return Color(hex: 0x96005E)
-        case "Northern":
-            return Color(hex: 0x231F20)
-        case "Piccadilly":
-            return Color(hex: 0x1B3F94)
-        case "Victoria":
-            return Color(hex: 0x049EDC)
-        case "Waterloo & City":
-            return Color(hex: 0x84CDBC)
-        default:
-            return Color.primary
-        }
+        
+        return GaryTubeConstants.getLineColour(from: name)
     }
 }
 
