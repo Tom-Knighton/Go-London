@@ -29,8 +29,6 @@ final class GGMapLocationManager: NSObject, ObservableObject, CLLocationManagerD
             if let manager = manager {
                 manager.delegate = self
             }
-        } else {
-            print("alert")
         }
     }
     
