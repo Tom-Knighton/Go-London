@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "GoLondonAPI",
+        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonAPI",
+        "state": {
+          "branch": "master",
+          "revision": "2afa5bf318234333fdf04212f136eeddcbd607cd",
+          "version": null
+        }
+      },
+      {
+        "package": "GoLondonModels",
+        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonModels",
+        "state": {
+          "branch": "main",
+          "revision": "a13bd205b325830c40b4290ef063b61642ee03f6",
+          "version": null
+        }
+      },
+      {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {

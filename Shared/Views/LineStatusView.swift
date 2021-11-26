@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 import Introspect
+import GoLondonModels
+import GoLondonAPI
 
 struct LineStatusView: View {
     

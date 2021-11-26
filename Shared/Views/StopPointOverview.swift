@@ -9,6 +9,8 @@ import SwiftUI
 import MapKit
 import CoreLocation
 import CoreLocationUI
+import GoLondonModels
+import GoLondonAPI
 
 class ArrivalGroupObserver: ObservableObject {
     
@@ -70,6 +72,16 @@ struct StopPointOverview: View {
                             }
                         }
                         
+                        Button(action: {}) {
+                            Text("Get Directions Here")
+                                .frame(maxWidth: .infinity)
+                                .padding(8)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 16)
+                        
+                        
                         StopPointInfoCard(stopPointInfo: stopPoint.getStopPointInfo())
                         
                         if self.arrivalGroupObserver.isLoading && self.arrivalGroupObserver.arrivalGroups.count == 0 {
@@ -108,6 +120,10 @@ struct StopPointOverview: View {
     
     func loadArrivalsHere() async {
         await self.arrivalGroupObserver.updateArrivalGroups(for: self.stopPoint)
+    }
+    
+    func testGetDirections() async {
+        
     }
     
     @ViewBuilder
@@ -149,7 +165,6 @@ struct StopPointOverview: View {
                 Spacer().frame(width: 16)
             }
         }
-        
     }
 }
 
@@ -196,7 +211,7 @@ fileprivate struct StopPointArrivalsard: View {
                     .padding()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(GaryTubeConstants.getLineColour(from: lineName).overlay(Material.thin).shadow(radius: 5))
+            .background(Constants.getLineColour(from: lineName).overlay(Material.thin).shadow(radius: 5))
             
             ForEach(arrivals, id: \.platformName) { arrivalGroup in
                 HStack {

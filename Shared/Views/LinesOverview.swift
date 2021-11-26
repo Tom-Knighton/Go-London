@@ -7,6 +7,8 @@
 
 import Foundation
 import SwiftUI
+import GoLondonModels
+import GoLondonAPI
 
 struct LinesOverviewView: View {
     

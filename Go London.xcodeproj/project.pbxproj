@@ -19,10 +19,6 @@
 		E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
 		E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
 		E2510F9C270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
-		E2510F9E270BCCA800A7AEBE /* StopPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9D270BCCA800A7AEBE /* StopPoint.swift */; };
-		E2510F9F270BCCA800A7AEBE /* StopPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9D270BCCA800A7AEBE /* StopPoint.swift */; };
-		E2510FA1270BCCEB00A7AEBE /* StopPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */; };
-		E2510FA2270BCCEB00A7AEBE /* StopPointService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */; };
 		E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
 		E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
 		E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
@@ -49,6 +45,15 @@
 		E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
 		E262BAEB2721805F0057C80C /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */; };
 		E262BAEC2721805F0057C80C /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */; };
+		E2AF75902750435500CDD50E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AF758F2750435500CDD50E /* WidgetKit.framework */; platformFilter = maccatalyst; };
+		E2AF75922750435500CDD50E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AF75912750435500CDD50E /* SwiftUI.framework */; platformFilter = maccatalyst; };
+		E2AF75952750435500CDD50E /* GoLondonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75942750435500CDD50E /* GoLondonWidget.swift */; };
+		E2AF75982750435800CDD50E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2AF75972750435800CDD50E /* Assets.xcassets */; };
+		E2AF759A2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */; };
+		E2AF759B2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */; };
+		E2AF759E2750435800CDD50E /* GoLondonWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E2AF75AD27504BFD00CDD50E /* GoLondonModels in Frameworks */ = {isa = PBXBuildFile; productRef = E2AF75AC27504BFD00CDD50E /* GoLondonModels */; };
+		E2B5A0E92751482B00945E47 /* GoLondonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5A0E82751482B00945E47 /* GoLondonAPI */; };
 		E2C165D7270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
 		E2C165D8270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
 		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
@@ -61,16 +66,8 @@
 		E2F890CA270700B000277863 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890A0270700AF00277863 /* ContentView.swift */; };
 		E2F890CB270700B000277863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F890A1270700B000277863 /* Assets.xcassets */; };
 		E2F890CC270700B000277863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F890A1270700B000277863 /* Assets.xcassets */; };
-		E2F890DE2707059700277863 /* Disruption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890DD2707059700277863 /* Disruption.swift */; };
-		E2F890E1270706AB00277863 /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E0270706AB00277863 /* LineService.swift */; };
 		E2F890E3270706BE00277863 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E2270706BE00277863 /* Constants.swift */; };
 		E2F890E4270706BE00277863 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E2270706BE00277863 /* Constants.swift */; };
-		E2F890E5270706C500277863 /* LineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E0270706AB00277863 /* LineService.swift */; };
-		E2F890E6270706C500277863 /* Disruption.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890DD2707059700277863 /* Disruption.swift */; };
-		E2F890E82707079300277863 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E72707079300277863 /* ApiClient.swift */; };
-		E2F890E92707079300277863 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E72707079300277863 /* ApiClient.swift */; };
-		E2F890EB2707531300277863 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EA2707531300277863 /* Line.swift */; };
-		E2F890EC2707531300277863 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EA2707531300277863 /* Line.swift */; };
 		E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EE2707583400277863 /* Color+GaryTube.swift */; };
 		E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EE2707583400277863 /* Color+GaryTube.swift */; };
 		E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F127075E3300277863 /* View+GaryTube.swift */; };
@@ -92,6 +89,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E2AF759C2750435800CDD50E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2F8909A270700AF00277863 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2AF758C2750435500CDD50E;
+			remoteInfo = GoLondonWidgetExtension;
+		};
 		E2F890B4270700B000277863 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E2F8909A270700AF00277863 /* Project object */;
@@ -108,6 +112,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E2AF759F2750435800CDD50E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E2AF759E2750435800CDD50E /* GoLondonWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		E208307A2714A2A900721A73 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2111F71270F7F8600672C25 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
@@ -115,8 +133,6 @@
 		E2111F7727104A9000672C25 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GaryGo.swift"; sourceTree = "<group>"; };
 		E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
-		E2510F9D270BCCA800A7AEBE /* StopPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPoint.swift; sourceTree = "<group>"; };
-		E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointService.swift; sourceTree = "<group>"; };
 		E25AAC60270B8E3900A0749B /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
 		E25AAC61270B8E3900A0749B /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
 		E25AAC62270B8E3900A0749B /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
@@ -130,6 +146,13 @@
 		E25AAC80270B94F200A0749B /* dogbark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogbark.wav; sourceTree = "<group>"; };
 		E25AAC83270BB1DB00A0749B /* TabViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewManager.swift; sourceTree = "<group>"; };
 		E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+GoLondon.swift"; sourceTree = "<group>"; };
+		E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GoLondonWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2AF758F2750435500CDD50E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E2AF75912750435500CDD50E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		E2AF75942750435500CDD50E /* GoLondonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondonWidget.swift; sourceTree = "<group>"; };
+		E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = GoLondonWidget.intentdefinition; sourceTree = "<group>"; };
+		E2AF75972750435800CDD50E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2AF75992750435800CDD50E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2C165D6270CF26600DC3B16 /* SearchingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchingGif.json; sourceTree = "<group>"; };
 		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
 		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -143,11 +166,7 @@
 		E2F890BF270700B000277863 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2F890C3270700B000277863 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		E2F890DD2707059700277863 /* Disruption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disruption.swift; sourceTree = "<group>"; };
-		E2F890E0270706AB00277863 /* LineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineService.swift; sourceTree = "<group>"; };
 		E2F890E2270706BE00277863 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E2F890E72707079300277863 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
-		E2F890EA2707531300277863 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		E2F890EE2707583400277863 /* Color+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GaryTube.swift"; sourceTree = "<group>"; };
 		E2F890F127075E3300277863 /* View+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GaryTube.swift"; sourceTree = "<group>"; };
 		E2F890F52707639600277863 /* LineStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStatusView.swift; sourceTree = "<group>"; };
@@ -159,12 +178,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E2AF758A2750435500CDD50E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AF75922750435500CDD50E /* SwiftUI.framework in Frameworks */,
+				E2AF75902750435500CDD50E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E2F890A3270700B000277863 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				E2F890FD270908CE00277863 /* Introspect in Frameworks */,
+				E2B5A0E92751482B00945E47 /* GoLondonAPI in Frameworks */,
 				E2F89100270B87B500277863 /* Lottie in Frameworks */,
+				E2AF75AD27504BFD00CDD50E /* GoLondonModels in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +243,26 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		E2AF758E2750435500CDD50E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E2AF758F2750435500CDD50E /* WidgetKit.framework */,
+				E2AF75912750435500CDD50E /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2AF75932750435500CDD50E /* GoLondonWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E2AF75942750435500CDD50E /* GoLondonWidget.swift */,
+				E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */,
+				E2AF75972750435800CDD50E /* Assets.xcassets */,
+				E2AF75992750435800CDD50E /* Info.plist */,
+			);
+			path = GoLondonWidget;
+			sourceTree = "<group>";
+		};
 		E2F89099270700AF00277863 = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +270,8 @@
 				E2F890AD270700B000277863 /* macOS */,
 				E2F890B6270700B000277863 /* Tests iOS */,
 				E2F890C2270700B000277863 /* Tests macOS */,
+				E2AF75932750435500CDD50E /* GoLondonWidget */,
+				E2AF758E2750435500CDD50E /* Frameworks */,
 				E2F890A7270700B000277863 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -231,8 +283,6 @@
 				E2F89104270B890800277863 /* Lottie */,
 				E2F890F42707638400277863 /* Views */,
 				E2F890ED2707582600277863 /* Extensions */,
-				E2F890DC2707018500277863 /* Models */,
-				E2F890DB2707017C00277863 /* Network */,
 				E2F8909F270700AF00277863 /* GaryTubeApp.swift */,
 			);
 			path = Shared;
@@ -245,6 +295,7 @@
 				E2F890AC270700B000277863 /* Go London.app */,
 				E2F890B3270700B000277863 /* Tests iOS.xctest */,
 				E2F890BF270700B000277863 /* Tests macOS.xctest */,
+				E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,26 +324,6 @@
 				E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
-			sourceTree = "<group>";
-		};
-		E2F890DB2707017C00277863 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890E0270706AB00277863 /* LineService.swift */,
-				E2F890E72707079300277863 /* ApiClient.swift */,
-				E2510FA0270BCCEB00A7AEBE /* StopPointService.swift */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		E2F890DC2707018500277863 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890DD2707059700277863 /* Disruption.swift */,
-				E2F890EA2707531300277863 /* Line.swift */,
-				E2510F9D270BCCA800A7AEBE /* StopPoint.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		E2F890ED2707582600277863 /* Extensions */ = {
@@ -344,6 +375,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E2AF758C2750435500CDD50E /* GoLondonWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2AF75A22750435800CDD50E /* Build configuration list for PBXNativeTarget "GoLondonWidgetExtension" */;
+			buildPhases = (
+				E2AF75892750435500CDD50E /* Sources */,
+				E2AF758A2750435500CDD50E /* Frameworks */,
+				E2AF758B2750435500CDD50E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GoLondonWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = GoLondonWidgetExtension;
+			productReference = E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E2F890A5270700B000277863 /* Go London (iOS) */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E2F890CF270700B000277863 /* Build configuration list for PBXNativeTarget "Go London (iOS)" */;
@@ -351,15 +401,19 @@
 				E2F890A2270700B000277863 /* Sources */,
 				E2F890A3270700B000277863 /* Frameworks */,
 				E2F890A4270700B000277863 /* Resources */,
+				E2AF759F2750435800CDD50E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E2AF759D2750435800CDD50E /* PBXTargetDependency */,
 			);
 			name = "Go London (iOS)";
 			packageProductDependencies = (
 				E2F890FC270908CE00277863 /* Introspect */,
 				E2F890FF270B87B500277863 /* Lottie */,
+				E2AF75AC27504BFD00CDD50E /* GoLondonModels */,
+				E2B5A0E82751482B00945E47 /* GoLondonAPI */,
 			);
 			productName = "GaryTube (iOS)";
 			productReference = E2F890A6270700B000277863 /* Go London.app */;
@@ -428,6 +482,9 @@
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					E2AF758C2750435500CDD50E = {
+						CreatedOnToolsVersion = 13.0;
+					};
 					E2F890A5270700B000277863 = {
 						CreatedOnToolsVersion = 13.0;
 					};
@@ -456,6 +513,7 @@
 			packageReferences = (
 				E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				E2B5A0E72751482B00945E47 /* XCRemoteSwiftPackageReference "GoLondonAPI" */,
 			);
 			productRefGroup = E2F890A7270700B000277863 /* Products */;
 			projectDirPath = "";
@@ -465,11 +523,20 @@
 				E2F890AB270700B000277863 /* Go London (macOS) */,
 				E2F890B2270700B000277863 /* Tests iOS */,
 				E2F890BE270700B000277863 /* Tests macOS */,
+				E2AF758C2750435500CDD50E /* GoLondonWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E2AF758B2750435500CDD50E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AF75982750435800CDD50E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E2F890A4270700B000277863 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -531,6 +598,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E2AF75892750435500CDD50E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AF759A2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */,
+				E2AF75952750435500CDD50E /* GoLondonWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E2F890A2270700B000277863 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,21 +615,16 @@
 				E2111F7827104A9000672C25 /* CustomHeaderView.swift in Sources */,
 				E2F890E3270706BE00277863 /* Constants.swift in Sources */,
 				E208307B2714A2A900721A73 /* MapView.swift in Sources */,
-				E2510F9E270BCCA800A7AEBE /* StopPoint.swift in Sources */,
 				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
 				E262BAEB2721805F0057C80C /* Foundation+GoLondon.swift in Sources */,
-				E2F890E1270706AB00277863 /* LineService.swift in Sources */,
 				E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */,
-				E2F890DE2707059700277863 /* Disruption.swift in Sources */,
 				E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */,
 				E2F890C7270700B000277863 /* GaryTubeApp.swift in Sources */,
-				E2510FA1270BCCEB00A7AEBE /* StopPointService.swift in Sources */,
 				E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */,
+				E2AF759B2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */,
 				E2F890F62707639600277863 /* LineStatusView.swift in Sources */,
 				E25AAC7D270B935400A0749B /* SoundService.swift in Sources */,
-				E2F890EB2707531300277863 /* Line.swift in Sources */,
 				E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
-				E2F890E82707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
 				E2111F7527103FC600672C25 /* StopPointOverview.swift in Sources */,
 				E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */,
@@ -569,21 +640,15 @@
 				E2111F7927104A9000672C25 /* CustomHeaderView.swift in Sources */,
 				E2F890CA270700B000277863 /* ContentView.swift in Sources */,
 				E208307C2714A2A900721A73 /* MapView.swift in Sources */,
-				E2510F9F270BCCA800A7AEBE /* StopPoint.swift in Sources */,
-				E2F890E5270706C500277863 /* LineService.swift in Sources */,
 				E262BAEC2721805F0057C80C /* Foundation+GoLondon.swift in Sources */,
 				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
 				E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */,
 				E2F890E4270706BE00277863 /* Constants.swift in Sources */,
 				E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */,
-				E2F890E6270706C500277863 /* Disruption.swift in Sources */,
-				E2510FA2270BCCEB00A7AEBE /* StopPointService.swift in Sources */,
 				E2510F9C270BCA6A00A7AEBE /* DirectionsView.swift in Sources */,
 				E2F890F72707639600277863 /* LineStatusView.swift in Sources */,
 				E25AAC7E270B935400A0749B /* SoundService.swift in Sources */,
-				E2F890EC2707531300277863 /* Line.swift in Sources */,
 				E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
-				E2F890E92707079300277863 /* ApiClient.swift in Sources */,
 				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
 				E2111F7627103FC600672C25 /* StopPointOverview.swift in Sources */,
 				E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */,
@@ -612,6 +677,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E2AF759D2750435800CDD50E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2AF758C2750435500CDD50E /* GoLondonWidgetExtension */;
+			targetProxy = E2AF759C2750435800CDD50E /* PBXContainerItemProxy */;
+		};
 		E2F890B5270700B000277863 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E2F890A5270700B000277863 /* Go London (iOS) */;
@@ -625,6 +695,65 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		E2AF75A02750435800CDD50E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8H3J46CN24;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoLondonWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GoLondonWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon.GoLondonWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E2AF75A12750435800CDD50E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8H3J46CN24;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GoLondonWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = GoLondonWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon.GoLondonWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		E2F890CD270700B000277863 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -739,6 +868,7 @@
 		E2F890D0270700B000277863 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -746,6 +876,7 @@
 				DEVELOPMENT_TEAM = 8H3J46CN24;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Go-London--iOS--Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Location;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Location;
 				INFOPLIST_KEY_NSLocationUsageDescription = Location;
@@ -773,6 +904,7 @@
 		E2F890D1270700B000277863 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -780,6 +912,7 @@
 				DEVELOPMENT_TEAM = 8H3J46CN24;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Go-London--iOS--Info.plist";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Location;
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Location;
 				INFOPLIST_KEY_NSLocationUsageDescription = Location;
@@ -965,6 +1098,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E2AF75A22750435800CDD50E /* Build configuration list for PBXNativeTarget "GoLondonWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2AF75A02750435800CDD50E /* Debug */,
+				E2AF75A12750435800CDD50E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E2F8909D270700AF00277863 /* Build configuration list for PBXProject "Go London" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1013,6 +1155,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E2B5A0E72751482B00945E47 /* XCRemoteSwiftPackageReference "GoLondonAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Tom-Knighton/GoLondonAPI";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
@@ -1032,6 +1182,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E2AF75AC27504BFD00CDD50E /* GoLondonModels */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GoLondonModels;
+		};
+		E2B5A0E82751482B00945E47 /* GoLondonAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B5A0E72751482B00945E47 /* XCRemoteSwiftPackageReference "GoLondonAPI" */;
+			productName = GoLondonAPI;
+		};
 		E2F890FC270908CE00277863 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
