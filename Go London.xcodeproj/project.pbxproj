@@ -32,6 +32,7 @@
 		E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
 		E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
 		E2A36A6227F63BA400AD8ECD /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6127F63BA400AD8ECD /* MapButton.swift */; };
+		E2A36A6527F65DFC00AD8ECD /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6427F65DFC00AD8ECD /* MainMapViewModel.swift */; };
 		E2A36A6927F6627000AD8ECD /* LineMode+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6827F6627000AD8ECD /* LineMode+GoLondon.swift */; };
 		E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AE9B3627F608E90055299A /* Color+GoLondon.swift */; };
 		E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
@@ -57,6 +58,7 @@
 		E2680B4327EE715A004C37E9 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		E2680B4627EE717F004C37E9 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		E2A36A6127F63BA400AD8ECD /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
+		E2A36A6427F65DFC00AD8ECD /* MainMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewModel.swift; sourceTree = "<group>"; };
 		E2A36A6827F6627000AD8ECD /* LineMode+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineMode+GoLondon.swift"; sourceTree = "<group>"; };
 		E2AE9B3627F608E90055299A /* Color+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GoLondon.swift"; sourceTree = "<group>"; };
 		E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Go_LondonApp.swift; sourceTree = "<group>"; };
@@ -205,6 +207,14 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
+		E2A36A6327F65DEF00AD8ECD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E2A36A6427F65DFC00AD8ECD /* MainMapViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		E2FEF7D827E4AA85005132EF = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +230,7 @@
 		E2FEF7DD27E4AA85005132EF /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E2A36A6327F65DEF00AD8ECD /* ViewModels */,
 				E28A832227F114B600739B44 /* Extensions */,
 				E2FF049627F08EA6003A2ABB /* Models */,
 				E2680B3E27EBE492004C37E9 /* Services */,
@@ -395,6 +406,7 @@
 				E2680B3327EBE173004C37E9 /* LottieView.swift in Sources */,
 				E2FF049B27F0FD86003A2ABB /* StopPointMarker.swift in Sources */,
 				E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
+				E2A36A6527F65DFC00AD8ECD /* MainMapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
