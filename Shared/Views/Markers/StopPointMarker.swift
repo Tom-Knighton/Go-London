@@ -35,7 +35,7 @@ struct StopPointMarkerView: View {
         VStack(spacing: 0) {
             ZStack {
                 
-                let isBus = (stopPoint?.lineModeGroups?.count == 1 && stopPoint?.lineModeGroups?.first?.modeName == "bus")
+                let isBus = stopPoint?.isBusOnly == true || stopPoint?.isBusStand == true
                 
                 Circle()
                     .frame(width: 30, height: 30)
@@ -43,7 +43,7 @@ struct StopPointMarkerView: View {
                     .foregroundColor(isBus ? .red : .white)
                 
                 if isBus {
-                    if let letter = stopPoint?.stopLetter {
+                    if stopPoint?.isBusOnly == true, let letter = stopPoint?.stopLetter {
                         Text(letter)
                             .bold()
                             .minimumScaleFactor(0.2)
