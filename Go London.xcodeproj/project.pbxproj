@@ -31,7 +31,6 @@
 		E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4327EE715A004C37E9 /* LocationPermission.swift */; };
 		E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
 		E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
-		E28A832427F114C400739B44 /* UIView+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28A832327F114C400739B44 /* UIView+GoLondon.swift */; };
 		E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AE9B3627F608E90055299A /* Color+GoLondon.swift */; };
 		E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
 		E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
@@ -55,7 +54,6 @@
 		E2680B3F27EBE49E004C37E9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		E2680B4327EE715A004C37E9 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		E2680B4627EE717F004C37E9 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
-		E28A832327F114C400739B44 /* UIView+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GoLondon.swift"; sourceTree = "<group>"; };
 		E2AE9B3627F608E90055299A /* Color+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GoLondon.swift"; sourceTree = "<group>"; };
 		E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Go_LondonApp.swift; sourceTree = "<group>"; };
 		E2FEF7DF27E4AA85005132EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 		E28A832227F114B600739B44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				E28A832327F114C400739B44 /* UIView+GoLondon.swift */,
 				E2AE9B3627F608E90055299A /* Color+GoLondon.swift */,
 			);
 			path = Extensions;
@@ -379,7 +376,6 @@
 				E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */,
 				E2680B2627EBDA57004C37E9 /* GoLondon.swift in Sources */,
 				E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */,
-				E28A832427F114C400739B44 /* UIView+GoLondon.swift in Sources */,
 				E2680B3327EBE173004C37E9 /* LottieView.swift in Sources */,
 				E2FF049B27F0FD86003A2ABB /* StopPointMarker.swift in Sources */,
 				E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
