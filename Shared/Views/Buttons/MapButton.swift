@@ -1,0 +1,25 @@
+//
+//  MapButton.swift
+//  Go London (iOS)
+//
+//  Created by Tom Knighton on 31/03/2022.
+//
+
+import Foundation
+import SwiftUI
+
+struct MapButtonStyle: ButtonStyle {
+    
+    var backgroundColor: Color = .blue
+    var textColor: Color = .white
+    
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.vertical, 16)
+            .padding(.horizontal, 20)
+            .background(self.backgroundColor)
+            .shadow(radius: 3)
+            .foregroundColor(self.textColor)
+            .clipShape(Capsule())
+    }
+}
