@@ -39,7 +39,7 @@ public struct HomeView : View {
     
     func search() {
         Task {
-            let stopPoints = await GLSDK.Search.SearchAround(latitude: mapCenter.latitude, longitude: mapCenter.longitude)
+            let stopPoints = await GLSDK.Search.SearchAround(latitude: mapCenter.latitude, longitude: mapCenter.longitude, radius: 1000)
             self.nearStopPointMarkers.removeAll()
             for point in stopPoints {
                 if let point = point as? StopPoint {
