@@ -32,27 +32,44 @@ struct StopPointMarkerView: View {
     let stopPoint: StopPoint?
     
     var body: some View {
-        ZStack {
-            
-            let isBus = (stopPoint?.lineModeGroups?.count == 1 && stopPoint?.lineModeGroups?.first?.modeName == "bus")
-            
-            Circle()
-                .frame(width: 30, height: 30)
-                .shadow(radius: 3)
-                .foregroundColor(isBus ? .red : .white)
-            
-            if isBus {
-                Text(stopPoint?.name ?? "S")
-                    .foregroundColor(Color(uiColor: UIColor.label))
-                    .frame(width: 25, height: 25, alignment: .center)
-            } else {
-                Image("tfl")
-                    .resizable()
-                    .frame(width: 20, height: 20, alignment: .center)
-                    .foregroundColor(.blue)
-                    .shadow(radius: 2, x: 1, y: -1)
+        VStack(spacing: 0) {
+            ZStack {
+                
+                let isBus = (stopPoint?.lineModeGroups?.count == 1 && stopPoint?.lineModeGroups?.first?.modeName == "bus")
+                
+                Circle()
+                    .frame(width: 30, height: 30)
+                    .shadow(radius: 3)
+                    .foregroundColor(isBus ? .red : .white)
+                
+                if isBus {
+                    if let letter = stopPoint?.stopLetter {
+                        Text(letter)
+                            .bold()
+                            .minimumScaleFactor(0.2)
+                            .foregroundColor(Color(uiColor: UIColor.label))
+                            .frame(width: 30, height: 30, alignment: .center)
+                    } else {
+                        Image("tfl")
+                            .resizable()
+                            .frame(width: 25, height: 25, alignment: .center)
+                            .foregroundColor(.white)
+                            .shadow(radius: 2, x: 1, y: -1)
+                    }
+                    
+                } else {
+                    Image("tfl")
+                        .resizable()
+                        .frame(width: 25, height: 25, alignment: .center)
+                        .foregroundColor(.blue)
+                        .shadow(radius: 2, x: 1, y: -1)
+                }
             }
+            
+            Rectangle()
+                .frame(width: 1, height: 15)
         }
+        
     }
 }
 
