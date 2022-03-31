@@ -69,18 +69,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
             }
         }
         mapView.mapboxMap.onNext(.mapLoaded) { _ in
-            for marker in self.markers {
-                let options = ViewAnnotationOptions(
-                    geometry: Point(marker.coordinate),
-                    width: 1,
-                    height: 2,
-                    allowOverlap: false,
-                    anchor: .top
-                )
-                let vc = UIHostingController(rootView: StopPointMarkerView(stopPoint: marker.stopPoint))
-                vc.view.backgroundColor = .clear
-                try? mapView.viewAnnotations.add(vc.view, options: options)
-            }
+            resetMarkers(for: mapView)
         }
         
         mapView.mapboxMap.onEvery(.cameraChanged) { _ in
@@ -89,7 +78,6 @@ public struct MapViewRepresentable: UIViewRepresentable {
                     self.center = mapView.cameraState.center
                 }
             }
-            
         }
         
         return mapView
@@ -103,24 +91,28 @@ public struct MapViewRepresentable: UIViewRepresentable {
         
         DispatchQueue.main.async {
             if self.internalCachedMarkers != self.markers {
-                print("Cache != new")
                 self.internalCachedMarkers = self.markers
                 
-                uiView.viewAnnotations.removeAll()
-                print(self.markers.count)
-                for marker in self.markers {
-                    let options = ViewAnnotationOptions(
-                        geometry: Point(marker.coordinate),
-                        width: 1,
-                        height: 2,
-                        allowOverlap: false,
-                        anchor: .top
-                    )
-                    let vc = UIHostingController(rootView: StopPointMarkerView(stopPoint: marker.stopPoint))
-                    vc.view.backgroundColor = .clear
-                    try? uiView.viewAnnotations.add(vc.view, options: options)
-                }
+                resetMarkers(for: uiView)
             }
+        }
+    }
+    
+    func resetMarkers(for uiView: MapView) {
+        uiView.viewAnnotations.removeAll()
+        
+        for marker in self.markers {
+            let options = ViewAnnotationOptions(
+                geometry: Point(marker.coordinate),
+                width: 1,
+                height: 1,
+                allowOverlap: true,
+                offsetX: 0,
+                offsetY: 20
+            )
+            let vc = UIHostingController(rootView: StopPointMarkerView(stopPoint: marker.stopPoint))
+            vc.view.backgroundColor = .clear
+            try? uiView.viewAnnotations.add(vc.view, options: options)
         }
     }
     
