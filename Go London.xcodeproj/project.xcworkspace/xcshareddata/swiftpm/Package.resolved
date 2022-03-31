@@ -1,0 +1,70 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GoLondonSDK",
+        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonSDK-Swift",
+        "state": {
+          "branch": null,
+          "revision": "954e1e247e3bcb10374b5fe7c7c072dbbf1f41fa",
+          "version": "1.0.3"
+        }
+      },
+      {
+        "package": "Lottie",
+        "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
+        "state": {
+          "branch": "master",
+          "revision": "f99a37afd0269814477fd5c2dd7295d500f1fd83",
+          "version": null
+        }
+      },
+      {
+        "package": "MapboxCommon",
+        "repositoryURL": "https://github.com/mapbox/mapbox-common-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "3f9002c8140503b0c3c9d1e2a210a188bc2f5252",
+          "version": "21.2.0"
+        }
+      },
+      {
+        "package": "MapboxCoreMaps",
+        "repositoryURL": "https://github.com/mapbox/mapbox-core-maps-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "20763d81dd2f2dee611e81f17ce892b599aa069d",
+          "version": "10.4.1"
+        }
+      },
+      {
+        "package": "MapboxMobileEvents",
+        "repositoryURL": "https://github.com/mapbox/mapbox-events-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "1b6c2a34086de40c26f2f97a716ac419f46eb630",
+          "version": "1.0.7"
+        }
+      },
+      {
+        "package": "MapboxMaps",
+        "repositoryURL": "https://github.com/mapbox/mapbox-maps-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "635fdd15a402be76af390757f347149aaef5349a",
+          "version": "10.4.1"
+        }
+      },
+      {
+        "package": "Turf",
+        "repositoryURL": "https://github.com/mapbox/turf-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "a7db78a2281ffe79966443ebe5687766d6c024c7",
+          "version": "2.3.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
