@@ -32,17 +32,29 @@ public struct HomeView : View {
                     LazyHStack {
                         Button(action: {}) { Text("Test") }
                         .buttonStyle(MapButtonStyle())
+                        
                         ForEach(self.model.filters.filters, id: \.lineMode) { modeFilter in
-                            Button(action: { self.model.filters.toggleFilter(modeFilter.lineMode) }) {
-                                Text("\(modeFilter.lineMode.friendlyName): \(String(modeFilter.toggled))")
+                            withAnimation(.easeInOut) {
+                                Button(action: { self.model.toggleLineModeFilter(modeFilter.lineMode) }) {
+                                    HStack {
+                                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark")).bold()
+                                        Text(modeFilter.lineMode.friendlyName)
+                                    }
+                                }
+                                .buttonStyle(MapButtonStyle(backgroundColor: self.model.isFilterToggled(modeFilter.lineMode) ? .green : .red))
                             }
-                            .buttonStyle(MapButtonStyle())
                         }
                     }
                     .padding(.horizontal, 16)
                 }
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 Spacer()
+            }
+        }
+        .onChange(of: self.model.filters.filters) { _ in
+            Task {
+                print("hmmm")
+                await self.model.searchForMarkers()
             }
         }
     }

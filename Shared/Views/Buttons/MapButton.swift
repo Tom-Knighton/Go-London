@@ -14,12 +14,14 @@ struct MapButtonStyle: ButtonStyle {
     var textColor: Color = .white
     
     func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .padding(.vertical, 16)
-            .padding(.horizontal, 20)
-            .background(self.backgroundColor)
-            .shadow(radius: 3)
-            .foregroundColor(self.textColor)
-            .clipShape(Capsule())
+        withAnimation(.easeInOut) {
+            configuration.label
+                .padding(.vertical, 16)
+                .padding(.horizontal, 20)
+                .background(self.backgroundColor)
+                .shadow(radius: 3)
+                .foregroundColor(self.textColor)
+                .clipShape(Capsule())
+        }
     }
 }

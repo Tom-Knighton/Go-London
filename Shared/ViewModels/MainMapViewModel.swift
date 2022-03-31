@@ -17,12 +17,16 @@ class MainMapViewModel: ObservableObject {
     @Published var filters: LineModeFilters
     @Published var nearbyMarkers: [StopPointAnnotation]
     
-    class LineModeFilters: ObservableObject {
-        struct Filter: Identifiable {
+    class LineModeFilters: ObservableObject, Equatable {
+        static func == (lhs: MainMapViewModel.LineModeFilters, rhs: MainMapViewModel.LineModeFilters) -> Bool {
+            lhs.filters == rhs.filters
+        }
+        
+        struct Filter: Identifiable, Equatable {
             var lineMode: LineMode
             var toggled: Bool = true
             
-            var id: String { lineMode.rawValue }
+            var id: String { lineMode.rawValue + String(toggled) }
         }
         
         @Published var filters: [Filter] = []
@@ -39,6 +43,10 @@ class MainMapViewModel: ObservableObject {
         
         func isToggled(_ lineMode: LineMode) -> Bool {
             return self.filters.first(where: { $0.lineMode == lineMode})?.toggled ?? false
+        }
+        
+        func getAllToggled() -> [LineMode] {
+            return (self.filters.filter { $0.toggled }).compactMap { $0.lineMode}
         }
     }
     
@@ -67,7 +75,7 @@ class MainMapViewModel: ObservableObject {
     }
     
     func searchForMarkers() async {
-        let nearbyPoints = await GLSDK.Search.SearchAround(latitude: self.centerLocation.latitude, longitude: self.centerLocation.longitude)
+        let nearbyPoints = await GLSDK.Search.SearchAround(latitude: self.centerLocation.latitude, longitude: self.centerLocation.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
         DispatchQueue.main.async {
             self.nearbyMarkers.removeAll()
             for point in nearbyPoints {
