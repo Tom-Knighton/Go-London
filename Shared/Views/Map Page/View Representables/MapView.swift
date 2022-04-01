@@ -47,9 +47,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
 
         
         
-        print("center: \(self.center), enableCurrent: \(enableCurrentLocation)")
         mapView.mapboxMap.setCamera(to: CameraOptions(center: center, zoom: 15))
-        print("Set center to \(center)")
         
         if enableCurrentLocation {
             let cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
@@ -58,7 +56,6 @@ public struct MapViewRepresentable: UIViewRepresentable {
             
             if enableTracking {
                 mapView.mapboxMap.onNext(.mapLoaded, handler: { _ in
-                    print("loaded")
                     if let loc = LocationManager.shared.lastLocation?.coordinate {
                         mapView.mapboxMap.setCamera(to: CameraOptions(center: loc, zoom: 15))
                     }

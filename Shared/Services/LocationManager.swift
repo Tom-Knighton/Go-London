@@ -73,10 +73,7 @@ class TestModel: ObservableObject {
     
     func setCurrent() {
         if let last = LocationManager.shared.lastLocation {
-            print("setting current to \(last.coordinate)")
             self.coordinate = last.coordinate
-        } else {
-            print(":(")
         }
     }
 }

@@ -60,7 +60,6 @@ public struct HomeView : View {
         }
         .onChange(of: self.model.filters.filters) { _ in
             Task {
-                print("hmmm")
                 await self.model.searchForMarkers()
             }
         }

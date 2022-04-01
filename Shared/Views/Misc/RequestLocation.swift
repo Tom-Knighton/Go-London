@@ -39,7 +39,6 @@ struct RequestLocation: View {
     }
 
     func askForLocation() {
-        print(PermissionsManager.GetStatus(of: LocationWhenInUsePermission()))
         if PermissionsManager.GetStatus(of: LocationWhenInUsePermission()) == .denied {
             if let bundleId = Bundle.main.bundleIdentifier,
                let url = URL(string: "\(UIApplication.openSettingsURLString)&path=LOCATION/\(bundleId)")
