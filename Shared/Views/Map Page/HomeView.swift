@@ -18,6 +18,8 @@ public struct HomeView : View {
     
     var mapboxStyleURI: Binding<StyleURI> { Binding(get: { colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()}, set: { _ in })}
     
+    @State var searchText: String = ""
+    
     public var body: some View {
         ZStack {
             MapViewRepresentable(mapStyleURI: mapboxStyleURI, mapCenter: $model.centerLocation, markers: $model.nearbyMarkers, enableCurrentLocation: true)
@@ -49,6 +51,11 @@ public struct HomeView : View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 Spacer()
+                
+                withAnimation(.easeInOut) {
+                    MapSearchPanelView(searchText: $searchText)
+                        .transition(.slide)
+                }
             }
         }
         .onChange(of: self.model.filters.filters) { _ in
