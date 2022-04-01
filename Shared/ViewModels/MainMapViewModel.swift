@@ -78,7 +78,7 @@ class MainMapViewModel: ObservableObject {
         let nearbyPoints = await GLSDK.Search.SearchAround(latitude: self.centerLocation.latitude, longitude: self.centerLocation.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
         DispatchQueue.main.async {
             self.nearbyMarkers.removeAll()
-            for point in nearbyPoints {
+            for point in nearbyPoints.reversed() {
                 if let point = point as? StopPoint {
                     self.nearbyMarkers.append(StopPointAnnotation(stopPoint: point))
                 }
