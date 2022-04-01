@@ -85,9 +85,6 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     public func updateUIView(_ uiView: MapView, context: Context) {
         uiView.mapboxMap.loadStyleURI(styleURI, completion: nil)
-                
-        uiView.mapboxMap.setCamera(to: CameraOptions(center: self.center))
-        
         
         DispatchQueue.main.async {
             if self.internalCachedMarkers != self.markers {
@@ -104,8 +101,8 @@ public struct MapViewRepresentable: UIViewRepresentable {
         for marker in self.markers {
             let options = ViewAnnotationOptions(
                 geometry: Point(marker.coordinate),
-                width: 1,
-                height: 1,
+                width: 25,
+                height: 25,
                 allowOverlap: true,
                 offsetX: 0,
                 offsetY: 20
