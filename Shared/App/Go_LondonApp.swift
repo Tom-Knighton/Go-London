@@ -20,6 +20,7 @@ struct Go_LondonApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .hideKeyboardWhenTappedAround()
                 .sheet(isPresented: $showLocationPermission) {
                     RequestLocation()
                 }

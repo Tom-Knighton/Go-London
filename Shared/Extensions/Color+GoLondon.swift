@@ -35,4 +35,5 @@ extension Color {
     }
     
     static var darkRed: Color = Color(hex: "#F9413E")
+    static var layer1: Color = Color("Layer1")
 }
