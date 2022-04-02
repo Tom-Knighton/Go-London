@@ -47,7 +47,6 @@ struct StopPointMarkerView: View {
                         Text(letter)
                             .bold()
                             .minimumScaleFactor(0.2)
-                            .foregroundColor(Color(uiColor: UIColor.label))
                             .frame(width: 30, height: 30, alignment: .center)
                     } else {
                         Image("tfl")
@@ -69,6 +68,7 @@ struct StopPointMarkerView: View {
             Rectangle()
                 .frame(width: 1, height: 15)
         }
+        .foregroundColor(.white)
         
     }
 }
