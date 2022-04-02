@@ -13,6 +13,8 @@ import MapboxMaps
 public struct MapViewRepresentable: UIViewRepresentable {
     
     @Binding var styleURI: StyleURI
+    @State private var internalCacheStyle: StyleURI?
+    
     var enableCurrentLocation: Bool = false
     var enableTracking: Bool = false
     
@@ -20,6 +22,8 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     @Binding var markers: [StopPointAnnotation]
     @State private var setCenter: Bool = false
+    
+    @State var circleAnnotationManager: CircleAnnotationManager?
     
     init(mapStyleURI: Binding<StyleURI>, mapCenter: Binding<CLLocationCoordinate2D>, markers: Binding<[StopPointAnnotation]>, enableCurrentLocation: Bool = false, enableTracking: Bool = false) {
         
@@ -44,7 +48,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         mapView.ornaments.logoView.isHidden = true
         mapView.ornaments.attributionButton.isHidden = true
         mapView.ornaments.scaleBarView.isHidden = true
-
+        
         
         
         mapView.mapboxMap.setCamera(to: CameraOptions(center: center, zoom: 15))
@@ -65,8 +69,15 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 
             }
         }
+        
+        DispatchQueue.main.async {
+            self.circleAnnotationManager = mapView.annotations.makeCircleAnnotationManager()
+        }
+        
         mapView.mapboxMap.onNext(.mapLoaded) { _ in
             resetMarkers(for: mapView)
+            
+            self.addCircleLayer(for: mapView, radius: 1000)
         }
         
         mapView.mapboxMap.onEvery(.cameraChanged) { _ in
@@ -81,9 +92,15 @@ public struct MapViewRepresentable: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: MapView, context: Context) {
-        uiView.mapboxMap.loadStyleURI(styleURI, completion: nil)
+        
         
         DispatchQueue.main.async {
+            if self.internalCacheStyle != self.styleURI {
+                uiView.mapboxMap.loadStyleURI(styleURI, completion: nil)
+                self.internalCacheStyle = self.styleURI
+                self.addCircleLayer(for: uiView, radius: 1000)
+            }
+            
             if self.internalCachedMarkers != self.markers {
                 self.internalCachedMarkers = self.markers
                 
@@ -120,6 +137,71 @@ public struct MapViewRepresentable: UIViewRepresentable {
         public func locationUpdate(newLocation: Location) {
             mapView?.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 15))
         }
+    }
+}
+
+// MARK: - Circle Layer
+extension MapViewRepresentable {
+    
+    
+    /// Adds circle layer around center of map with specified radius
+    /// - Parameter mapView: The mapView to add the layer to
+    /// - Parameter radius: The radius of the circle to draw
+    func addCircleLayer(for mapView: MapView, radius: Int) {
+        let currentStyle = mapView.mapboxMap.style
+        let center = mapView.mapboxMap.cameraState.center
+        
+        try? currentStyle.removeSource(withId: "search-circle-source")
+        
+        var source = GeoJSONSource()
+        let point = Feature(geometry: Point(center))
+        source.data = .feature(point)
+        
+        var layer = CircleLayer(id: "search-circle-layer")
+        layer.source = "search-circle-source"
+        
+        let circleRadiusExp = Exp(.interpolate) {
+            Exp(.linear)
+            Exp(.zoom)
+            
+            self.zoomRadii(for: mapView, radius: radius + 250)
+        }
+        layer.circleRadius = .expression(circleRadiusExp)
+        layer.circleColor = .constant(StyleColor(UIColor.clear))
+        layer.circleStrokeColor = .constant(StyleColor(UIColor.systemBlue))
+        layer.circleStrokeWidth = .constant(2.0)
+        layer.circleStrokeOpacity = .constant(1.0)
+        
+        try? currentStyle.addSource(source, id: "search-circle-source")
+        try? currentStyle.addLayer(layer)
+        
+    }
+    
+    /// Gets  the dictionary containing the radii of the circles to draw at each map zoom level
+    /// - Parameter mapView: The map view to add the circle to
+    /// - Parameter radius: The radius of the circle to draw
+    /// - Returns: A dictionary of the radii of circles based on each zoom level of the map
+    func zoomRadii(for mapView: MapView, radius: Int = 1250) -> [Double: Double] {
+        
+        /// Returns the circle pixel radius to draw on the map, based on the zoom level and the desired meter radius
+        /// - Parameters:
+        ///   - zoom: The zoom level of the map
+        ///   - center: The center coordinate to draw the point from
+        ///   - radius: The radius of the desired circle in meters
+        /// - Returns: The pixel radius of the circle to draw
+        func circleRadius(for zoom: CGFloat, at center: CLLocationCoordinate2D, radius: Int = 1250) -> Double {
+            let metersPerPoint = Projection.metersPerPoint(for: center.latitude, zoom: zoom)
+
+            let radius = 1250 / metersPerPoint
+            return radius
+        }
+        
+        let center = mapView.mapboxMap.cameraState.center
+        var radii: [Double: Double] = [:]
+        for i in stride(from: 0, through: 22, by: 0.1) {
+            radii[i] = circleRadius(for: i, at: center, radius: 1250)
+        }
+        return radii
     }
     
 }
