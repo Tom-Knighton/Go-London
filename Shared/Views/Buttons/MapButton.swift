@@ -21,7 +21,7 @@ struct MapButtonStyle: ButtonStyle {
                 .background(self.backgroundColor)
                 .shadow(radius: 3)
                 .foregroundColor(self.textColor)
-                .clipShape(Capsule())
+                .clipShape(RoundedRectangle(cornerRadius: 15))
         }
     }
 }

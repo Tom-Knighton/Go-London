@@ -39,7 +39,8 @@ public struct HomeView : View {
                             withAnimation(.easeInOut) {
                                 Button(action: { self.model.toggleLineModeFilter(modeFilter.lineMode) }) {
                                     HStack {
-                                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark")).bold()
+                                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark"))
+                                            .bold()
                                         Text(modeFilter.lineMode.friendlyName)
                                     }
                                 }
