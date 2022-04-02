@@ -12,15 +12,22 @@ struct MapSearchPanelView: View {
     
     @Binding var searchText: String
     @FocusState var isFocused: Bool
+    @State var promptText = "nearby stations..."
     
     var body: some View {
         VStack {
-            GLTextField(text: $searchText, prompt: "Search...", leftSystemImage: "magnifyingglass.circle", isFocused: $isFocused)
-                .onTapGesture {
-                    if !self.isFocused {
-                        self.isFocused = true
+            withAnimation(.easeInOut) {
+                GLTextField(text: $searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: $isFocused)
+                    .onTapGesture {
+                        if !self.isFocused {
+                            self.isFocused = true
+                        }
                     }
-                }
+                    .onAppear {
+                        self.changeSearchText()
+                    }
+            }
+            
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -31,6 +38,14 @@ struct MapSearchPanelView: View {
         .padding(.horizontal)
         .padding(.bottom, isFocused ? 6 : 28)
         .shadow(radius: 3)
+    }
+    
+    func changeSearchText() {
+        let random = ["nearby stations", "nearby streets", "far away towns", "far away stations", "landmarks", "addresses", "places of interest", "restuarants", "hotels"]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            self.promptText = "\(random.randomElement() ?? "nearby stations")..."
+            self.changeSearchText()
+        }
     }
 }
 

@@ -21,11 +21,19 @@ struct GLTextField: View {
     @State private var characterSet: String?
     
     @Binding var text: String
-    @State private var prompt: String
+    @Binding private var prompt: String
+    private var promptPrefix: String?
+    
+    private var promptPublisher: AnyPublisher<[String.Element], Never> {
+        prompt
+            .publisher
+            .collect()
+            .eraseToAnyPublisher()
+    }
     
     private var isFocused: FocusState<Bool>.Binding
     
-    init(text: Binding<String>, prompt: String? = "", leftImage: String? = nil, isSecure: Bool = false, allowedCharacters: String = "", maxCharacters: Int = -1, isFocused: FocusState<Bool>.Binding) {
+    init(text: Binding<String>, prompt: Binding<String>? = nil, promptPrefix: String? = nil, leftImage: String? = nil, isSecure: Bool = false, allowedCharacters: String = "", maxCharacters: Int = -1, isFocused: FocusState<Bool>.Binding) {
         self._text = text
         self.leftImageName = leftImage
         self.hasLeftImage = true
@@ -33,10 +41,11 @@ struct GLTextField: View {
         self.characterSet = allowedCharacters
         self.maxCharacters = maxCharacters
         self.isFocused = isFocused
-        self.prompt = prompt ?? ""
+        self._prompt = prompt ?? .constant("")
+        self.promptPrefix = promptPrefix
     }
     
-    init(text: Binding<String>, prompt: String? = "", leftSystemImage: String? = nil, isSecure: Bool = false, allowedCharacters: String = "", maxCharacters: Int = -1, isFocused: FocusState<Bool>.Binding) {
+    init(text: Binding<String>, prompt: Binding<String>? = nil, promptPrefix: String? = nil, leftSystemImage: String? = nil, isSecure: Bool = false, allowedCharacters: String = "", maxCharacters: Int = -1, isFocused: FocusState<Bool>.Binding) {
         self._text = text
         self._leftSystemImageName = State(initialValue: leftSystemImage)
         self.hasLeftImage = true
@@ -44,13 +53,15 @@ struct GLTextField: View {
         self.characterSet = allowedCharacters
         self.maxCharacters = maxCharacters
         self.isFocused = isFocused
-        self.prompt = prompt ?? ""
+        self._prompt = prompt ?? .constant("")
+        self.promptPrefix = promptPrefix
     }
     
     var body: some View {
         HStack {
             if hasLeftImage {
                 imageToDisplay
+                    .foregroundColor(.primary)
             }
             
             textFieldToDisplay
@@ -82,11 +93,17 @@ struct GLTextField: View {
     
     @ViewBuilder
     var textFieldToDisplay: some View {
-        if isSecure == true {
-            SecureField(self.prompt, text: $text)
-        } else {
-            TextField(self.prompt, text: $text)
+        ZStack {
+            FadingTextView(text: $prompt, prefix: promptPrefix, transitionTime: 1)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.gray)
+            if isSecure == true {
+                SecureField("", text: $text)
+            } else {
+                TextField("", text: $text)
+            }
         }
+        
     }
     
     func filtered(range: String, text: String) -> Bool {
