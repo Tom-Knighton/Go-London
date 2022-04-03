@@ -25,13 +25,16 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     @State var circleAnnotationManager: CircleAnnotationManager?
     
-    init(mapStyleURI: Binding<StyleURI>, mapCenter: Binding<CLLocationCoordinate2D>, markers: Binding<[StopPointAnnotation]>, enableCurrentLocation: Bool = false, enableTracking: Bool = false) {
+    @Binding var forceUpdatePosition: Bool
+    
+    init(mapStyleURI: Binding<StyleURI>, mapCenter: Binding<CLLocationCoordinate2D>, markers: Binding<[StopPointAnnotation]>, enableCurrentLocation: Bool = false, enableTracking: Bool = false, forceUpdatePosition: Binding<Bool>? = nil) {
         
         self._styleURI = mapStyleURI
         self._center = mapCenter
         self._markers = markers
         self.enableCurrentLocation = enableCurrentLocation
         self.enableTracking = enableTracking
+        self._forceUpdatePosition = forceUpdatePosition ?? .constant(false)
     }
     
     @State internal var internalCachedMarkers: [StopPointAnnotation] = []
@@ -49,9 +52,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         mapView.ornaments.attributionButton.isHidden = true
         mapView.ornaments.scaleBarView.isHidden = true
         
-        
-        
-        mapView.mapboxMap.setCamera(to: CameraOptions(center: center, zoom: 15))
+        mapView.mapboxMap.setCamera(to: CameraOptions(center: center, zoom: 12.5))
         
         if enableCurrentLocation {
             let cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
@@ -61,7 +62,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
             if enableTracking {
                 mapView.mapboxMap.onNext(.mapLoaded, handler: { _ in
                     if let loc = LocationManager.shared.lastLocation?.coordinate {
-                        mapView.mapboxMap.setCamera(to: CameraOptions(center: loc, zoom: 15))
+                        mapView.mapboxMap.setCamera(to: CameraOptions(center: loc, zoom: 12.5))
                     }
                     
                     mapView.location.addLocationConsumer(newConsumer: cameraLocationConsumer)
@@ -92,8 +93,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: MapView, context: Context) {
-        
-        
+          
         DispatchQueue.main.async {
             if self.internalCacheStyle != self.styleURI {
                 uiView.mapboxMap.loadStyleURI(styleURI, completion: nil)
@@ -105,6 +105,11 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 self.internalCachedMarkers = self.markers
                 
                 resetMarkers(for: uiView)
+            }
+            
+            if self.forceUpdatePosition {
+                self.forceUpdatePosition = false
+                uiView.camera.fly(to: CameraOptions(center: self.center, zoom: 12.5))
             }
         }
     }
@@ -135,7 +140,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         }
         
         public func locationUpdate(newLocation: Location) {
-            mapView?.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 15))
+            mapView?.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 13))
         }
     }
 }
@@ -151,6 +156,7 @@ extension MapViewRepresentable {
         let currentStyle = mapView.mapboxMap.style
         let center = mapView.mapboxMap.cameraState.center
         
+        try? currentStyle.removeLayer(withId: "search-circle-layer")
         try? currentStyle.removeSource(withId: "search-circle-source")
         
         var source = GeoJSONSource()
@@ -164,7 +170,7 @@ extension MapViewRepresentable {
             Exp(.linear)
             Exp(.zoom)
             
-            self.zoomRadii(for: mapView, radius: radius + 250)
+            self.zoomRadii(for: mapView, radius: radius + 150)
         }
         layer.circleRadius = .expression(circleRadiusExp)
         layer.circleColor = .constant(StyleColor(UIColor.clear))
@@ -192,14 +198,14 @@ extension MapViewRepresentable {
         func circleRadius(for zoom: CGFloat, at center: CLLocationCoordinate2D, radius: Int = 1250) -> Double {
             let metersPerPoint = Projection.metersPerPoint(for: center.latitude, zoom: zoom)
 
-            let radius = 1250 / metersPerPoint
+            let radius = Double(radius) / metersPerPoint
             return radius
         }
         
         let center = mapView.mapboxMap.cameraState.center
         var radii: [Double: Double] = [:]
         for i in stride(from: 0, through: 22, by: 0.1) {
-            radii[i] = circleRadius(for: i, at: center, radius: 1250)
+            radii[i] = circleRadius(for: i, at: center, radius: radius)
         }
         return radii
     }

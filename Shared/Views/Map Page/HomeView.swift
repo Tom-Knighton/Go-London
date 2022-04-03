@@ -14,15 +14,18 @@ public struct HomeView : View {
     
     @Environment(\.colorScheme) var colourScheme
     
-    @ObservedObject var model: MainMapViewModel = MainMapViewModel(centerLocation: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    @ObservedObject private var model: MainMapViewModel = MainMapViewModel(centerLocation: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     
-    var mapboxStyleURI: Binding<StyleURI> { Binding(get: { colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()}, set: { _ in })}
+    private var mapboxStyleURI: Binding<StyleURI> { Binding(get: { colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()}, set: { _ in })}
     
-    @State var searchText: String = ""
+    @State private var searchText: String = ""
+    @State private var hasMovedFromCenter: Bool = false
+    @State var cachedCenter: CLLocationCoordinate2D?
+    @State private var shouldForceUpdateMap = false
     
     public var body: some View {
         ZStack {
-            MapViewRepresentable(mapStyleURI: mapboxStyleURI, mapCenter: $model.centerLocation, markers: $model.nearbyMarkers, enableCurrentLocation: true)
+            MapViewRepresentable(mapStyleURI: mapboxStyleURI, mapCenter: $model.centerLocation, markers: $model.nearbyMarkers, enableCurrentLocation: true, forceUpdatePosition: $shouldForceUpdateMap)
                 .onAppear {
                     search()
                 }
@@ -32,8 +35,18 @@ public struct HomeView : View {
                 Spacer().frame(height: 16)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        Button(action: {}) { Text("Test") }
-                        .buttonStyle(MapButtonStyle())
+                        
+                        if hasMovedFromCenter {
+                            Button(action: {}) { Text("Search Here") }
+                                .buttonStyle(MapButtonStyle())
+                                .transition(.move(edge: .leading))
+                        }
+                        
+                        if let _ = LocationManager.shared.lastLocation?.coordinate {
+                            Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
+                                .buttonStyle(MapButtonStyle())
+                                .transition(.move(edge: .leading))
+                        }
                         
                         ForEach(self.model.filters.filters, id: \.lineMode) { modeFilter in
                             withAnimation(.easeInOut) {
@@ -53,10 +66,8 @@ public struct HomeView : View {
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 Spacer()
                 
-                withAnimation(.easeInOut) {
-                    MapSearchPanelView(searchText: $searchText)
-                        .transition(.slide)
-                }
+                MapSearchPanelView(searchText: $searchText)
+                    .transition(.slide)
             }
         }
         .onChange(of: self.model.filters.filters) { _ in
@@ -64,11 +75,32 @@ public struct HomeView : View {
                 await self.model.searchForMarkers()
             }
         }
+        .onChange(of: self.model.centerLocation) { newValue in
+            if let cached = self.cachedCenter {
+                if newValue.distance(to: cached) > 300 {
+                    self.hasMovedFromCenter = true
+                    self.cachedCenter = newValue
+                }
+            } else {
+                self.cachedCenter = newValue
+            }
+        }
+    }
+    
+    func goToCurrentLocation() {
+        if let loc = LocationManager.shared.lastLocation?.coordinate {
+            self.model.centerLocation = loc
+            self.shouldForceUpdateMap = true
+            self.hasMovedFromCenter = false
+            self.cachedCenter = loc
+            self.search()
+        }
     }
     
     func search() {
         Task {
             await self.model.searchForMarkers()
+            self.hasMovedFromCenter = false
         }
     }
 }
