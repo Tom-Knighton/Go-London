@@ -27,6 +27,8 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     @Binding var forceUpdatePosition: Bool
     
+    @State private var searchedLocation: CLLocationCoordinate2D?
+    
     init(mapStyleURI: Binding<StyleURI>, mapCenter: Binding<CLLocationCoordinate2D>, markers: Binding<[StopPointAnnotation]>, enableCurrentLocation: Bool = false, enableTracking: Bool = false, forceUpdatePosition: Binding<Bool>? = nil) {
         
         self._styleURI = mapStyleURI
@@ -67,7 +69,6 @@ public struct MapViewRepresentable: UIViewRepresentable {
                     
                     mapView.location.addLocationConsumer(newConsumer: cameraLocationConsumer)
                 })
-                
             }
         }
         
@@ -76,6 +77,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         }
         
         mapView.mapboxMap.onNext(.mapLoaded) { _ in
+            self.searchedLocation = mapView.mapboxMap.cameraState.center
             resetMarkers(for: mapView)
             
             self.addCircleLayer(for: mapView, radius: 1000)
@@ -93,6 +95,8 @@ public struct MapViewRepresentable: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: MapView, context: Context) {
+        
+        self.addCircleLayer(for: uiView, radius: 1000)
           
         DispatchQueue.main.async {
             if self.internalCacheStyle != self.styleURI {
@@ -102,8 +106,9 @@ public struct MapViewRepresentable: UIViewRepresentable {
             }
             
             if self.internalCachedMarkers != self.markers {
+                self.searchedLocation = uiView.mapboxMap.cameraState.center
                 self.internalCachedMarkers = self.markers
-                
+                self.addCircleLayer(for: uiView, radius: 1000)
                 resetMarkers(for: uiView)
             }
             
@@ -154,7 +159,9 @@ extension MapViewRepresentable {
     /// - Parameter radius: The radius of the circle to draw
     func addCircleLayer(for mapView: MapView, radius: Int) {
         let currentStyle = mapView.mapboxMap.style
-        let center = mapView.mapboxMap.cameraState.center
+        let center = self.searchedLocation
+        
+        guard let center = center else { return }
         
         try? currentStyle.removeLayer(withId: "search-circle-layer")
         try? currentStyle.removeSource(withId: "search-circle-source")
