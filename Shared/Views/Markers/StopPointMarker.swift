@@ -67,6 +67,7 @@ struct StopPointMarkerView: View {
             
             Rectangle()
                 .frame(width: 1, height: 15)
+                .foregroundColor(.primary)
         }
         .foregroundColor(.white)
         
