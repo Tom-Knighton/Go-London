@@ -14,7 +14,7 @@ public struct HomeView : View {
     
     @Environment(\.colorScheme) var colourScheme
     
-    @ObservedObject private var model: MainMapViewModel = MainMapViewModel(centerLocation: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    @ObservedObject private var model: MainMapViewModel = MainMapViewModel(centerLocation: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord, radius: 850)
     
     private var mapboxStyleURI: Binding<StyleURI> { Binding(get: { colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()}, set: { _ in })}
     
@@ -37,9 +37,15 @@ public struct HomeView : View {
                     LazyHStack {
                         
                         if hasMovedFromCenter {
-                            Button(action: {}) { Text("Search Here") }
-                                .buttonStyle(MapButtonStyle())
-                                .transition(.move(edge: .leading))
+                            if self.model.isLoading {
+                                Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
+                                    .buttonStyle(MapButtonStyle())
+                                    .transition(.move(edge: .leading))
+                            } else {
+                                Button(action: { Task { await self.model.searchForMarkers() } }) { Text("Search Here") }
+                                    .buttonStyle(MapButtonStyle())
+                                    .transition(.move(edge: .leading))
+                            }
                         }
                         
                         if let _ = LocationManager.shared.lastLocation?.coordinate {

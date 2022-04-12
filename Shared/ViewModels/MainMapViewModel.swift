@@ -16,6 +16,7 @@ class MainMapViewModel: ObservableObject {
     @Published var radius: Float
     @Published var filters: LineModeFilters
     @Published var nearbyMarkers: [StopPointAnnotation]
+    @Published var isLoading: Bool
     
     class LineModeFilters: ObservableObject, Equatable {
         static func == (lhs: MainMapViewModel.LineModeFilters, rhs: MainMapViewModel.LineModeFilters) -> Bool {
@@ -59,6 +60,7 @@ class MainMapViewModel: ObservableObject {
         self.radius = radius
         self.filters = filters
         self.nearbyMarkers = []
+        self.isLoading = false
         
         anyCancellable = self.filters.objectWillChange.sink { [weak self] (_) in
             self?.objectWillChange.send()
@@ -75,14 +77,19 @@ class MainMapViewModel: ObservableObject {
     }
     
     func searchForMarkers() async {
+        guard !isLoading else { return }
+        
+        self.isLoading = true
         let nearbyPoints = await GLSDK.Search.SearchAround(latitude: self.centerLocation.latitude, longitude: self.centerLocation.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
         DispatchQueue.main.async {
             self.nearbyMarkers.removeAll()
             for point in nearbyPoints.reversed() {
-                if let point = point as? StopPoint {
+                if let point = point as? StopPoint,
+                   point.lineModeGroups?.isEmpty == false {
                     self.nearbyMarkers.append(StopPointAnnotation(stopPoint: point))
                 }
             }
+            self.isLoading = false
         }
     }
 }

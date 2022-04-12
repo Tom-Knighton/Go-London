@@ -80,7 +80,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
             self.searchedLocation = mapView.mapboxMap.cameraState.center
             resetMarkers(for: mapView)
             
-            self.addCircleLayer(for: mapView, radius: 1000)
+            self.addCircleLayer(for: mapView, radius: 850)
         }
         
         mapView.mapboxMap.onEvery(.cameraChanged) { _ in
@@ -96,19 +96,19 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     public func updateUIView(_ uiView: MapView, context: Context) {
         
-        self.addCircleLayer(for: uiView, radius: 1000)
+        self.addCircleLayer(for: uiView, radius: 850)
           
         DispatchQueue.main.async {
             if self.internalCacheStyle != self.styleURI {
                 uiView.mapboxMap.loadStyleURI(styleURI, completion: nil)
                 self.internalCacheStyle = self.styleURI
-                self.addCircleLayer(for: uiView, radius: 1000)
+                self.addCircleLayer(for: uiView, radius: 850)
             }
             
             if self.internalCachedMarkers != self.markers {
                 self.searchedLocation = uiView.mapboxMap.cameraState.center
                 self.internalCachedMarkers = self.markers
-                self.addCircleLayer(for: uiView, radius: 1000)
+                self.addCircleLayer(for: uiView, radius: 850)
                 resetMarkers(for: uiView)
             }
             
