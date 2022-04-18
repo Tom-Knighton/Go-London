@@ -18,7 +18,7 @@ struct MapButtonStyle: ButtonStyle {
             configuration.label
                 .padding(.vertical, 16)
                 .padding(.horizontal, 20)
-                .background(self.backgroundColor)
+                .background(configuration.isPressed ? self.backgroundColor.darker(by: 5) : self.backgroundColor)
                 .shadow(radius: 3)
                 .foregroundColor(self.textColor)
                 .clipShape(RoundedRectangle(cornerRadius: 15))
