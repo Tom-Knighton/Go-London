@@ -93,37 +93,7 @@ struct StopPointMarkerView: View {
         }
         
         if let mode = self.stopPoint.mostSignificantLineMode {
-            switch mode {
-            case .bus:
-                Image("tfl")
-                    .resizable()
-                    .foregroundColor(.red)
-            case .dlr:
-                Image("nationalrail")
-                    .resizable()
-                    .foregroundColor(.init(hex: "#00A4A7"))
-            case .nationalRail:
-                Image("nationalrail")
-                    .resizable()
-                    .foregroundColor(.red)
-            case .overground:
-                Image("tfl")
-                    .resizable()
-                    .foregroundColor(.orange)
-            case .tube:
-                Image("tube")
-                    .resizable()
-                    .foregroundColor(.red)
-            case .tflrail:
-                Image("tfl")
-                    .resizable()
-                    .foregroundColor(.blue)
-            default:
-                Image("tfl")
-                    .resizable()
-                    .foregroundColor(.red)
-                
-            }
+            mode.image
         }
     }
     

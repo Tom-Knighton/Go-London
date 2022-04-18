@@ -126,7 +126,6 @@ public struct MapViewRepresentable: UIViewRepresentable {
     func resetMarkers(for uiView: MapView) {
         uiView.viewAnnotations.removeAll()
         
-        print("Resetting markers")
         for marker in viewModel.stopPointMarkers {
             let options = ViewAnnotationOptions(
                 geometry: Point(marker.coordinate),
@@ -239,7 +238,7 @@ extension MapViewRepresentable {
             allowOverlap: false,
             anchor: .top,
             offsetX: 0,
-            offsetY: 19,
+            offsetY: 10,
             selected: true
         )
         

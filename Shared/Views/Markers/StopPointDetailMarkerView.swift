@@ -18,7 +18,43 @@ struct StopPointDetailMarkerView: View {
             Text(self.stopPoint.commonName ?? self.stopPoint.name ?? "AHHH")
                 .font(.title3)
                 .bold()
-            Text("Slimmy jimmies")
+            
+            
+            HStack(alignment: .center) {
+                ForEach(self.stopPoint.lineModeGroups ?? [], id: \.modeName) { lineMode in
+                    VStack {
+                        Group {
+                            if let image = lineMode.modeName?.image {
+                                image
+                            } else {
+                                Image("tfl").resizable().foregroundColor(.red)
+                            }
+                        }
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 25, height: 25)
+                    }
+                }
+            }
+            
+            VStack {
+                ForEach(self.stopPoint.lineModeGroups ?? [], id: \.modeName) { lineMode in
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(lineMode.lineIdentifier ?? [], id: \.self) { identifier in
+                                if lineMode.modeName == .bus {
+                                    Text(identifier)
+                                        .padding(.horizontal, 10)
+                                        .padding(.vertical, 6)
+                                        .background(Color.red)
+                                        .foregroundColor(.white)
+                                        .cornerRadius(10)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
         .padding()
         .background(Color.layer1)
