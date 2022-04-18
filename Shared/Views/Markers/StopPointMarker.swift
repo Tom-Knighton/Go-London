@@ -31,7 +31,7 @@ struct StopPointMarkerView: View {
     
     @State private var isDetailViewOpen: Bool = false
     @State private var shouldOpenDetailView: Bool = false
-    
+        
     let stopPoint: StopPoint
     
     var body: some View {
@@ -76,7 +76,6 @@ struct StopPointMarkerView: View {
             .foregroundColor(.white)
             .onTapGesture {
                 NotificationCenter.default.post(name: .GL_MAP_SHOW_DETAIL_VIEW, object: self.stopPoint)
-                print("sending")
             }
         }
 

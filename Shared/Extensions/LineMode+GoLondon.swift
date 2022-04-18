@@ -11,6 +11,70 @@ import SwiftUI
 
 extension LineMode {
     
+    /// Returns a 'friendly' name for a Tube Line Identifier
+    /// - Remark: I.e. 'Waterloo & City' instead of 'waterloo-city'
+    static func friendlyTubeLineName(for lineIdentifier: String) -> String {
+        switch lineIdentifier {
+        case "hammersmith-city":
+            return "Hammersmith & City"
+        case "waterloo-city":
+            return "Waterloo & City"
+        default:
+            return lineIdentifier.prefix(1).capitalized + lineIdentifier.dropFirst()
+        }
+    }
+    
+    
+    /// Returns the Color object for the specified lineMode value
+    /// - Parameter lineIdentifier: The line mode to get the main colour for
+    static func lineColour(for lineMode: LineMode) -> Color {
+        return lineColour(for: lineMode.rawValue)
+    }
+    
+    /// Returns the Color object for the specified lineIdentifier, where lineIdentifier is a lineMode raw value or a tube line identifier like 'bakerloo'
+    /// - Parameter lineIdentifier: The identifier to get the main colour for
+    static func lineColour(for lineIdentifier: String) -> Color {
+        switch lineIdentifier {
+        case "bakerloo":
+            return .init(hex: "#B36305")
+        case "central":
+            return .init(hex: "#E32017")
+        case "circle":
+            return .init(hex: "#FFD300")
+        case "district":
+            return .init(hex: "#00782A")
+        case "hammersmith-city":
+            return .init(hex: "#F3A9BB")
+        case "jubilee":
+            return .init(hex: "#A0A5A9")
+        case "metropolitan":
+            return .init(hex: "#9B0056")
+        case "northern":
+            return .init(hex: "#000000")
+        case "piccadilly":
+            return .init(hex: "#003688")
+        case "victoria":
+            return .init(hex: "#0098D4")
+        case "waterloo-city":
+            return .init(hex: "#95CDBA")
+            
+        case "tube":
+            return .init(hex: "#0009AB")
+        case "bus":
+            return .init(hex: "#EE2E24")
+        case "dlr":
+            return .init(hex: "#00A4A7")
+        case "national-rail":
+            return .red
+        case "overground":
+            return .init(hex: "#EE7C0E")
+        case "tfl-rail":
+            return .init(hex: "#7156A5")
+        
+        default:
+            return .init(hex: "#E21836")
+        }
+    }
     
     /// Returns a 'friendly' name for a LineMode, i.e 'TfL Rail' for LineMode.tflrail
     /// - Remark: Preferred over LineMode.rawValue as rawValue is used for the API and will return non-friendly values like 'tfl-rail'
