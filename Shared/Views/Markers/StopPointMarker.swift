@@ -29,54 +29,102 @@ struct DropPin: Shape {
 
 struct StopPointMarkerView: View {
     
-    let stopPoint: StopPoint?
+    @State private var isDetailViewOpen: Bool = false
+    @State private var shouldOpenDetailView: Bool = false
+    
+    let stopPoint: StopPoint
     
     var body: some View {
         VStack(spacing: 0) {
-            ZStack {
-                
-                let isBus = stopPoint?.isBusOnly == true || stopPoint?.isBusStand == true
-                
-                Circle()
-                    .frame(width: 30, height: 30)
-                    .shadow(radius: 3)
-                    .foregroundColor(isBus ? .red : .white)
-                
-                if isBus {
-                    if stopPoint?.isBusOnly == true, let letter = stopPoint?.stopLetter {
-                        Text(letter)
-                            .bold()
-                            .minimumScaleFactor(0.2)
-                            .frame(width: 30, height: 30, alignment: .center)
+            VStack(spacing: 0) {
+                ZStack {
+                    
+                    let isBus = stopPoint.isBusOnly == true || stopPoint.isBusStand == true
+                    
+                    Circle()
+                        .frame(width: 30, height: 30)
+                        .shadow(radius: 3)
+                        .foregroundColor(isBus ? .red : .white)
+                    
+                    if isBus {
+                        if stopPoint.isBusOnly == true, let letter = stopPoint.stopLetter {
+                            Text(letter)
+                                .bold()
+                                .minimumScaleFactor(0.2)
+                                .frame(width: 30, height: 30, alignment: .center)
+                        } else {
+                            Image("tfl")
+                                .resizable()
+                                .frame(width: 25, height: 25, alignment: .center)
+                                .foregroundColor(.white)
+                                .shadow(radius: 2, x: 1, y: -1)
+                        }
+                        
                     } else {
-                        Image("tfl")
-                            .resizable()
+                        
+                        logoImage()
+                            .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25, alignment: .center)
-                            .foregroundColor(.white)
                             .shadow(radius: 2, x: 1, y: -1)
                     }
-                    
-                } else {
-                    Image("tfl")
-                        .resizable()
-                        .frame(width: 25, height: 25, alignment: .center)
-                        .foregroundColor(.blue)
-                        .shadow(radius: 2, x: 1, y: -1)
                 }
+                
+                Rectangle()
+                    .frame(width: 1, height: 15)
+                    .foregroundColor(.primary)
             }
-            
-            Rectangle()
-                .frame(width: 1, height: 15)
-                .foregroundColor(.primary)
+            .foregroundColor(.white)
+            .onTapGesture {
+                NotificationCenter.default.post(name: .GL_MAP_SHOW_DETAIL_VIEW, object: self.stopPoint)
+                print("sending")
+            }
         }
-        .foregroundColor(.white)
-        
-    }
-}
 
-struct StopPointMarkerPreviews: PreviewProvider {
-    
-    static var previews: some View {
-        StopPointMarkerView(stopPoint: nil)
     }
+    
+    @ViewBuilder
+    func logoImage() -> some View {
+        let modes = self.stopPoint.lineModeGroups ?? []
+        
+        if modes.isEmpty {
+            Image("tfl")
+                .resizable()
+                .foregroundColor(.red)
+        }
+        
+        if let mode = self.stopPoint.mostSignificantLineMode {
+            switch mode {
+            case .bus:
+                Image("tfl")
+                    .resizable()
+                    .foregroundColor(.red)
+            case .dlr:
+                Image("nationalrail")
+                    .resizable()
+                    .foregroundColor(.init(hex: "#00A4A7"))
+            case .nationalRail:
+                Image("nationalrail")
+                    .resizable()
+                    .foregroundColor(.red)
+            case .overground:
+                Image("tfl")
+                    .resizable()
+                    .foregroundColor(.orange)
+            case .tube:
+                Image("tube")
+                    .resizable()
+                    .foregroundColor(.red)
+            case .tflrail:
+                Image("tfl")
+                    .resizable()
+                    .foregroundColor(.blue)
+            default:
+                Image("tfl")
+                    .resizable()
+                    .foregroundColor(.red)
+                
+            }
+        }
+    }
+    
 }

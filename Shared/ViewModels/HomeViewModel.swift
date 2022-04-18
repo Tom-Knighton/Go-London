@@ -10,16 +10,16 @@ import CoreLocation
 import GoLondonSDK
 import Combine
 
-class MainMapViewModel: ObservableObject {
+class HomeViewModel: ObservableObject {
     
-    @Published var centerLocation: CLLocationCoordinate2D
     @Published var radius: Float
     @Published var filters: LineModeFilters
-    @Published var nearbyMarkers: [StopPointAnnotation]
     @Published var isLoading: Bool
+    @Published var searchText: String = ""
+    @Published var hasMovedFromLastLocation: Bool = false
     
     class LineModeFilters: ObservableObject, Equatable {
-        static func == (lhs: MainMapViewModel.LineModeFilters, rhs: MainMapViewModel.LineModeFilters) -> Bool {
+        static func == (lhs: HomeViewModel.LineModeFilters, rhs: HomeViewModel.LineModeFilters) -> Bool {
             lhs.filters == rhs.filters
         }
         
@@ -55,11 +55,9 @@ class MainMapViewModel: ObservableObject {
     
     var anyCancellable: AnyCancellable? = nil
     
-    init(centerLocation: CLLocationCoordinate2D, radius: Float = 1000, filters: LineModeFilters = defaultFilters) {
-        self.centerLocation = centerLocation
+    init(radius: Float = 1000, filters: LineModeFilters = defaultFilters) {
         self.radius = radius
         self.filters = filters
-        self.nearbyMarkers = []
         self.isLoading = false
         
         anyCancellable = self.filters.objectWillChange.sink { [weak self] (_) in
@@ -76,20 +74,25 @@ class MainMapViewModel: ObservableObject {
         return self.filters.isToggled(lineMode)
     }
     
-    func searchForMarkers() async {
-        guard !isLoading else { return }
+    func searchForMarkers(at location: CLLocationCoordinate2D) async -> [StopPointAnnotation]? {
+        guard !isLoading else { return nil }
         
         self.isLoading = true
-        let nearbyPoints = await GLSDK.Search.SearchAround(latitude: self.centerLocation.latitude, longitude: self.centerLocation.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
-        DispatchQueue.main.async {
-            self.nearbyMarkers.removeAll()
-            for point in nearbyPoints.reversed() {
-                if let point = point as? StopPoint,
-                   point.lineModeGroups?.isEmpty == false {
-                    self.nearbyMarkers.append(StopPointAnnotation(stopPoint: point))
-                }
+        let nearbyPoints = await GLSDK.Search.SearchAround(latitude: location.latitude, longitude: location.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
+        
+        var markers: [StopPointAnnotation] = []
+
+        for point in nearbyPoints.reversed() {
+            if let point = point as? StopPoint,
+               point.lineModeGroups?.isEmpty == false {
+                markers.append(StopPointAnnotation(stopPoint: point))
             }
+        }
+        
+        DispatchQueue.main.async {
             self.isLoading = false
         }
+        
+        return markers
     }
 }

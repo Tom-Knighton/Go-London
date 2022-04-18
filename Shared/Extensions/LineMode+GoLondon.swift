@@ -31,4 +31,23 @@ extension LineMode {
             return "Tube"
         }
     }
+    
+    var weighting: Int {
+        switch self {
+        case .bus:
+            return 0
+        case .dlr:
+            return 1
+        case .nationalRail:
+            return 2
+        case .overground:
+            return 3
+        case .replacementBus:
+            return -1
+        case .tube:
+            return 4
+        case .tflrail:
+            return 5
+        }
+    }
 }

@@ -14,35 +14,33 @@ public struct HomeView : View {
     
     @Environment(\.colorScheme) var colourScheme
     
-    @ObservedObject private var model: MainMapViewModel = MainMapViewModel(centerLocation: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord, radius: 850)
-    
-    private var mapboxStyleURI: Binding<StyleURI> { Binding(get: { colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()}, set: { _ in })}
-    
-    @State private var searchText: String = ""
-    @State private var hasMovedFromCenter: Bool = false
-    @State var cachedCenter: CLLocationCoordinate2D?
-    @State private var shouldForceUpdateMap = false
-    
+    @ObservedObject private var model: HomeViewModel = HomeViewModel(radius: 850)
+
+    @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: GoLondon.GetDarkStyleURL(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+
     public var body: some View {
         ZStack {
-            MapViewRepresentable(mapStyleURI: mapboxStyleURI, mapCenter: $model.centerLocation, markers: $model.nearbyMarkers, enableCurrentLocation: true, forceUpdatePosition: $shouldForceUpdateMap)
+            MapViewRepresentable(viewModel: mapModel)
                 .onAppear {
+                    self.mapModel.styleURI = colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
                     search()
                 }
                 .edgesIgnoringSafeArea(.all)
+                .onChange(of: colourScheme) { newValue in
+                    self.mapModel.styleURI = newValue == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
+                }
             
             VStack {
                 Spacer().frame(height: 16)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        
-                        if hasMovedFromCenter {
+                        if self.model.hasMovedFromLastLocation {
                             if self.model.isLoading {
                                 Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
                                     .buttonStyle(MapButtonStyle())
                                     .transition(.move(edge: .leading))
                             } else {
-                                Button(action: { Task { await self.model.searchForMarkers() } }) { Text("Search Here") }
+                                Button(action: { Task { search() } }) { Text("Search Here") }
                                     .buttonStyle(MapButtonStyle())
                                     .transition(.move(edge: .leading))
                             }
@@ -72,41 +70,38 @@ public struct HomeView : View {
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 Spacer()
                 
-                MapSearchPanelView(searchText: $searchText)
+                MapSearchPanelView(searchText: $model.searchText)
                     .transition(.slide)
             }
         }
         .onChange(of: self.model.filters.filters) { _ in
             Task {
-                await self.model.searchForMarkers()
+                await self.model.searchForMarkers(at: mapModel.mapCenter)
             }
         }
-        .onChange(of: self.model.centerLocation) { newValue in
-            if let cached = self.cachedCenter {
-                if newValue.distance(to: cached) > 300 {
-                    self.hasMovedFromCenter = true
-                    self.cachedCenter = newValue
-                }
-            } else {
-                self.cachedCenter = newValue
-            }
+        .onChange(of: self.mapModel.mapCenter) { newValue in
+            self.model.hasMovedFromLastLocation = newValue.distance(to: self.mapModel.mapLastCachedLocation) > 300
         }
     }
     
     func goToCurrentLocation() {
         if let loc = LocationManager.shared.lastLocation?.coordinate {
-            self.model.centerLocation = loc
-            self.shouldForceUpdateMap = true
-            self.hasMovedFromCenter = false
-            self.cachedCenter = loc
+            self.mapModel.mapCenter = loc
+            self.mapModel.forceUpdatePosition = true
+            self.model.hasMovedFromLastLocation = false
+            self.mapModel.mapLastCachedLocation = loc
             self.search()
         }
     }
     
     func search() {
         Task {
-            await self.model.searchForMarkers()
-            self.hasMovedFromCenter = false
+            if let newMarkers = await self.model.searchForMarkers(at: self.mapModel.mapCenter) {
+                self.mapModel.stopPointMarkers = newMarkers
+            }
+            
+            self.mapModel.updateCenter(to: self.mapModel.mapCenter)
+            self.model.hasMovedFromLastLocation = false
         }
     }
 }
