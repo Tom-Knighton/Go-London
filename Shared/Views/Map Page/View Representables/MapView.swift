@@ -234,11 +234,11 @@ extension MapViewRepresentable {
         let option = ViewAnnotationOptions(
             geometry: Point(CLLocationCoordinate2D(latitude: CLLocationDegrees(stopPoint.lat ?? 0), longitude:  CLLocationDegrees(stopPoint.lon ?? 0))),
             width: 250,
-            height: 135,
+            height: 205,
             allowOverlap: false,
             anchor: .top,
             offsetX: 0,
-            offsetY: (stopPoint.lineModeGroups?.contains(where: { $0.modeName == .bus }) == true && stopPoint.lineModeGroups?.contains(where: { $0.modeName == .tube }) == true) ? -30 : 0,
+            offsetY: (stopPoint.lineModeGroups?.contains(where: { $0.modeName == .bus }) == true && stopPoint.lineModeGroups?.contains(where: { $0.modeName == .tube }) == true) ? -65 : -20,
             selected: true
         )
         
