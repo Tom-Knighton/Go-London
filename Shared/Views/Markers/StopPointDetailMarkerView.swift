@@ -32,6 +32,7 @@ struct StopPointDetailMarkerView: View {
                         }
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 25)
+                        .shadow(radius: 3)
                     }
                 }
             }

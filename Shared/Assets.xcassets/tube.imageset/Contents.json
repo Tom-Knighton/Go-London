@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "tube.png",
+      "filename" : "tflTube.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "tube-1.png",
+      "filename" : "tflTube-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "tube-2.png",
+      "filename" : "tflTube-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

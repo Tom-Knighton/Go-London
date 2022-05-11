@@ -13,10 +13,15 @@ import GoLondonSDK
 public struct HomeView : View {
     
     @Environment(\.colorScheme) var colourScheme
+    @Environment(\.safeAreaInsets) var edges
     
     @ObservedObject private var model: HomeViewModel = HomeViewModel(radius: 850)
 
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: GoLondon.GetDarkStyleURL(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    
+    @StateObject private var keyboard = KeyboardResponder()
+    
+    @FocusState var isSearchFocused: Bool
 
     public var body: some View {
         ZStack {
@@ -70,8 +75,9 @@ public struct HomeView : View {
                 .frame(maxWidth: .infinity, maxHeight: 60)
                 Spacer()
                 
-                MapSearchPanelView(searchText: $model.searchText)
+                MapSearchPanelView(isFocused: $isSearchFocused)
                     .transition(.slide)
+                    .padding(.bottom, isSearchFocused ?  keyboard.currentHeight + 6 : edges.bottom + 90)
             }
         }
         .onChange(of: self.model.filters.filters) { _ in

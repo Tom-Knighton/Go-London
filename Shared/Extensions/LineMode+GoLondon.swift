@@ -24,6 +24,10 @@ extension LineMode {
         }
     }
     
+    /// Returns the Color for the current lineMode
+    var lineColour: Color {
+        return LineMode.lineColour(for: self)
+    }
     
     /// Returns the Color object for the specified lineMode value
     /// - Parameter lineIdentifier: The line mode to get the main colour for
@@ -68,8 +72,9 @@ extension LineMode {
             return .red
         case "overground":
             return .init(hex: "#EE7C0E")
-        case "tfl-rail":
+        case "tfl-rail", "elizabeth-line":
             return .init(hex: "#7156A5")
+            
         
         default:
             return .init(hex: "#E21836")
@@ -94,6 +99,14 @@ extension LineMode {
             return "TfL Rail"
         case .tube:
             return "Tube"
+        case .elizabethLine:
+            return "Elizabeth Line"
+        case .cableCar:
+            return "Cable Car"
+        case .tram:
+            return "Tram"
+        case .unknown:
+            return ""
         }
     }
     
@@ -147,6 +160,14 @@ extension LineMode {
             return 4
         case .tflrail:
             return 5
+        case .elizabethLine:
+            return 5
+        case .cableCar:
+            return 3
+        case .tram:
+            return 2
+        case .unknown:
+            return -1
         }
     }
 }

@@ -24,6 +24,8 @@ struct GLTextField: View {
     @Binding private var prompt: String
     private var promptPrefix: String?
     
+    @State private var borderColor: Color = Color.layer1.darker(by: 3)
+    
     private var promptPublisher: AnyPublisher<[String.Element], Never> {
         prompt
             .publisher
@@ -34,6 +36,7 @@ struct GLTextField: View {
     private var isFocused: FocusState<Bool>.Binding
     
     init(text: Binding<String>, prompt: Binding<String>? = nil, promptPrefix: String? = nil, leftImage: String? = nil, isSecure: Bool = false, allowedCharacters: String = "", maxCharacters: Int = -1, isFocused: FocusState<Bool>.Binding) {
+        
         self._text = text
         self.leftImageName = leftImage
         self.hasLeftImage = true
@@ -65,7 +68,6 @@ struct GLTextField: View {
             }
             
             textFieldToDisplay
-                .foregroundColor(.white)
                 .focused(isFocused)
         }
         .foregroundColor(.white)
@@ -73,6 +75,10 @@ struct GLTextField: View {
         .background(
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(Color.layer1)
+        )
+        .overlay(
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(self.borderColor, lineWidth: 2)
         )
     }
     
@@ -94,9 +100,11 @@ struct GLTextField: View {
     @ViewBuilder
     var textFieldToDisplay: some View {
         ZStack {
-            FadingTextView(text: $prompt, prefix: promptPrefix, transitionTime: 1)
-                .frame(maxWidth: .infinity)
-                .foregroundColor(.gray)
+            if self.text.isEmpty {
+                FadingTextView(text: $prompt, prefix: promptPrefix, transitionTime: 1)
+                    .frame(maxWidth: .infinity)
+                    .foregroundColor(.gray)
+            }
             if isSecure == true {
                 SecureField("", text: $text)
             } else {
