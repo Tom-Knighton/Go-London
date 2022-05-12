@@ -54,8 +54,8 @@ struct StopPointDetailMarkerView: View {
     
     @ViewBuilder
     func lineIdentifierCapsules() -> some View {
-        VStack {
-            if let groups = self.stopPoint.lineModeGroups {
+        if let groups = self.stopPoint.lineModeGroups {
+            VStack {
                 ForEach(groups, id: \.modeName) { lineMode in
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {

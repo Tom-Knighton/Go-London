@@ -19,4 +19,6 @@ struct StopPointAnnotation: Identifiable, Equatable {
     let stopPoint: StopPoint
     
     var coordinate: CLLocationCoordinate2D { get { return CLLocationCoordinate2D(latitude: CLLocationDegrees(self.stopPoint.lat ?? 0), longitude: CLLocationDegrees(self.stopPoint.lon ?? 0))}}
+    
+    var isDetail: Bool = false
 }

@@ -129,14 +129,17 @@ public struct MapViewRepresentable: UIViewRepresentable {
         for marker in viewModel.stopPointMarkers {
             let options = ViewAnnotationOptions(
                 geometry: Point(marker.coordinate),
+                
                 width: 25,
                 height: 25,
                 allowOverlap: true,
+                anchor: .bottom,
                 offsetX: 0,
-                offsetY: 20
+                offsetY: 10
             )
-            let vc = UIHostingController(rootView: StopPointMarkerView(stopPoint: marker.stopPoint))
+            let vc = UIHostingController(rootView: StopPointMarkerView(marker: marker))
             vc.view.backgroundColor = .clear
+            vc.view.isHidden = true
             try? uiView.viewAnnotations.add(vc.view, options: options)
         }
     }
@@ -231,21 +234,26 @@ extension MapViewRepresentable {
         if let view = self.detailedView {
             uiView.viewAnnotations.remove(view)
         }
+        let lineModes = stopPoint.lineModes ?? []
+        let lines = Int((stopPoint.name ?? stopPoint.commonName ?? "").count / 23)
         let option = ViewAnnotationOptions(
             geometry: Point(CLLocationCoordinate2D(latitude: CLLocationDegrees(stopPoint.lat ?? 0), longitude:  CLLocationDegrees(stopPoint.lon ?? 0))),
-            width: 250,
+            width: 275,
             height: 205,
             allowOverlap: false,
             anchor: .top,
             offsetX: 0,
-            offsetY: (stopPoint.lineModeGroups?.contains(where: { $0.modeName == .bus }) == true && stopPoint.lineModeGroups?.contains(where: { $0.modeName == .tube }) == true) ? -65 : -20,
+            offsetY: (lineModes.contains(.tube) && lineModes.contains(.bus) ? -15 : lineModes.contains(.bus) ? 10 : lineModes.contains(.tube) ? -10 : lineModes.contains(.overground) ? 10 : 25) - (10 * CGFloat(lines)),
             selected: true
         )
         
         let vc = UIHostingController(rootView: StopPointDetailMarkerView(stopPoint: stopPoint))
         vc.view.backgroundColor = .clear
+        vc.view.isHidden = true
         try? uiView.viewAnnotations.add(vc.view, options: option)
         self.detailedView = vc.view
+        
+        
     }
     
     func closeDetailedMarker(for uiView: MapView) {

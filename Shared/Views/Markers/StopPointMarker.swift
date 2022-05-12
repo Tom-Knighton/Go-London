@@ -31,11 +31,14 @@ struct StopPointMarkerView: View {
     
     @State private var isDetailViewOpen: Bool = false
     @State private var shouldOpenDetailView: Bool = false
-        
-    let stopPoint: StopPoint
     
+        
+    @State var marker: StopPointAnnotation
+    var onTapped: ((String) -> Void)?
+
     var body: some View {
         VStack(spacing: 0) {
+            let stopPoint = marker.stopPoint
             VStack(spacing: 0) {
                 ZStack {
                     
@@ -75,7 +78,10 @@ struct StopPointMarkerView: View {
             }
             .foregroundColor(.white)
             .onTapGesture {
-                NotificationCenter.default.post(name: .GL_MAP_SHOW_DETAIL_VIEW, object: self.stopPoint)
+                NotificationCenter.default.post(name: .GL_MAP_SHOW_DETAIL_VIEW, object: self.marker.stopPoint)
+                if let f = self.onTapped {
+                    f(self.marker.id)
+                }
             }
         }
 
@@ -83,7 +89,7 @@ struct StopPointMarkerView: View {
     
     @ViewBuilder
     func logoImage() -> some View {
-        let modes = self.stopPoint.lineModeGroups ?? []
+        let modes = self.marker.stopPoint.lineModeGroups ?? []
         
         if modes.isEmpty {
             Image("tfl")
@@ -91,7 +97,7 @@ struct StopPointMarkerView: View {
                 .foregroundColor(.red)
         }
         
-        if let mode = self.stopPoint.mostSignificantLineMode {
+        if let mode = self.marker.stopPoint.mostSignificantLineMode {
             mode.image
         }
     }

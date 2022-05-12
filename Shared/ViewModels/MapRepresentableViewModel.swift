@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import MapboxMaps
+import MapKit
 
 class MapRepresentableViewModel: ObservableObject {
     
@@ -19,6 +20,7 @@ class MapRepresentableViewModel: ObservableObject {
     
     @Published var mapCenter: CLLocationCoordinate2D
     @Published var mapLastCachedLocation: CLLocationCoordinate2D
+    @Published var mapRegion: MKCoordinateRegion
     
     @Published var stopPointMarkers: [StopPointAnnotation]
     @Published var internalCachedStopPointMarkers: [StopPointAnnotation]
@@ -37,6 +39,7 @@ class MapRepresentableViewModel: ObservableObject {
         
         self.mapCenter = mapCenter
         self.mapLastCachedLocation = mapCenter
+        self.mapRegion = MKCoordinateRegion(center: mapCenter, span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))
         
         self.stopPointMarkers = stopPointMarkers
         self.internalCachedStopPointMarkers = stopPointMarkers
@@ -68,5 +71,19 @@ class MapRepresentableViewModel: ObservableObject {
     
     func updateStyleURI(to uri: StyleURI) {
         self.styleURI = uri
+    }
+    
+    func hideAllDetails(except markerId: String? = nil) {
+        for i in self.stopPointMarkers.indices {
+            if (markerId != nil) && self.stopPointMarkers[i].id == markerId {
+                continue
+            }
+            self.stopPointMarkers[i].isDetail = false
+        }
+        
+        if let index = self.stopPointMarkers.firstIndex(where: { $0.id == markerId }) {
+            self.stopPointMarkers[index].isDetail = true
+            print("found and true")
+        }
     }
 }
