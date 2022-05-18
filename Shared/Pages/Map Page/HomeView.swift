@@ -29,10 +29,6 @@ public struct HomeView : View {
             VStack {
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
-                        Button(action: {  }) { Text(String(describing: self.tabBarHeight)) }
-                            .buttonStyle(MapButtonStyle())
-                            .transition(.move(edge: .leading))
-                        
                         if self.model.hasMovedFromLastLocation {
                             self.searchHereButton()
                         }
