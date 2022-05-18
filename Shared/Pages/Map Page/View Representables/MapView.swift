@@ -53,6 +53,8 @@ public struct MapViewRepresentable: UIViewRepresentable {
         mapView.ornaments.attributionButton.isHidden = true
         mapView.ornaments.scaleBarView.isHidden = true
         
+        mapView.presentsWithTransaction = true
+        
         mapView.mapboxMap.setCamera(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
         
         if viewModel.enableCurrentLocation {

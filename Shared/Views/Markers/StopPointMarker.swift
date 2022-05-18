@@ -46,7 +46,6 @@ struct StopPointMarkerView: View {
                     
                     Circle()
                         .frame(width: 30, height: 30)
-                        .shadow(radius: 3)
                         .foregroundColor(isBus ? .red : .white)
                     
                     if isBus {
@@ -60,7 +59,6 @@ struct StopPointMarkerView: View {
                                 .resizable()
                                 .frame(width: 25, height: 25, alignment: .center)
                                 .foregroundColor(.white)
-                                .shadow(radius: 2, x: 1, y: -1)
                         }
                         
                     } else {
@@ -68,7 +66,6 @@ struct StopPointMarkerView: View {
                         logoImage()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 25, height: 25, alignment: .center)
-                            .shadow(radius: 2, x: 1, y: -1)
                     }
                 }
                 
@@ -83,6 +80,7 @@ struct StopPointMarkerView: View {
                     f(self.marker.id)
                 }
             }
+            .drawingGroup()
         }
 
     }
