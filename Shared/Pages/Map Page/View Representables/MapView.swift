@@ -125,11 +125,11 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     func resetMarkers(for uiView: MapView) {
         uiView.viewAnnotations.removeAll()
-        
+
         for marker in viewModel.stopPointMarkers {
             let options = ViewAnnotationOptions(
                 geometry: Point(marker.coordinate),
-                
+
                 width: 25,
                 height: 25,
                 allowOverlap: true,

@@ -19,36 +19,22 @@ public struct HomeView : View {
 
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: GoLondon.GetDarkStyleURL(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     
-    @StateObject private var keyboard = KeyboardResponder()
+    @ObservedObject private var keyboard: KeyboardResponder = KeyboardResponder()
     
-    @FocusState var isSearchFocused: Bool
-
+    @Binding var tabBarHeight: CGFloat
+    
     public var body: some View {
-        ZStack {
-            MapViewRepresentable(viewModel: mapModel)
-                .onAppear {
-                    self.mapModel.styleURI = colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
-                    search()
-                }
-                .edgesIgnoringSafeArea(.all)
-                .onChange(of: colourScheme) { newValue in
-                    self.mapModel.styleURI = newValue == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
-                }
-            
+        
+        GeometryReader { geo in
             VStack {
-                Spacer().frame(height: 16)
                 ScrollView(.horizontal, showsIndicators: false) {
                     LazyHStack {
+                        Button(action: {  }) { Text(String(describing: self.tabBarHeight)) }
+                            .buttonStyle(MapButtonStyle())
+                            .transition(.move(edge: .leading))
+                        
                         if self.model.hasMovedFromLastLocation {
-                            if self.model.isLoading {
-                                Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
-                                    .buttonStyle(MapButtonStyle())
-                                    .transition(.move(edge: .leading))
-                            } else {
-                                Button(action: { Task { search() } }) { Text("Search Here") }
-                                    .buttonStyle(MapButtonStyle())
-                                    .transition(.move(edge: .leading))
-                            }
+                            self.searchHereButton()
                         }
                         
                         if let _ = LocationManager.shared.lastLocation?.coordinate {
@@ -57,29 +43,20 @@ public struct HomeView : View {
                                 .transition(.move(edge: .leading))
                         }
                         
-                        ForEach(self.model.filters.filters, id: \.lineMode) { modeFilter in
-                            withAnimation(.easeInOut) {
-                                Button(action: { self.model.toggleLineModeFilter(modeFilter.lineMode) }) {
-                                    HStack {
-                                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark"))
-                                            .bold()
-                                        Text(modeFilter.lineMode.friendlyName)
-                                    }
-                                }
-                                .buttonStyle(MapButtonStyle(backgroundColor: self.model.isFilterToggled(modeFilter.lineMode) ? .green : .red))
-                            }
-                        }
+                        self.filterButtons()
+                        
                     }
                     .padding(.horizontal, 16)
                 }
-                .frame(maxWidth: .infinity, maxHeight: 60)
-                Spacer()
+                .frame(maxWidth: .infinity,  minHeight: 60, maxHeight: 60)
                 
-                MapSearchPanelView(isFocused: $isSearchFocused)
-                    .transition(.slide)
-                    .padding(.bottom, isSearchFocused ?  keyboard.currentHeight + 6 : edges.bottom + 90)
+                self.mapSearchPanel()
             }
+           
         }
+        .background(
+            self.mapBackground()
+        )
         .onChange(of: self.model.filters.filters) { _ in
             Task {
                 await self.model.searchForMarkers(at: mapModel.mapCenter)
@@ -90,6 +67,60 @@ public struct HomeView : View {
         }
     }
     
+    //MARK: - View Builders
+    
+    /// View at bottom of page holding map search bar and results
+    @ViewBuilder
+    func mapSearchPanel() -> some View {
+        Spacer()
+        MapSearchPanelView()
+        Spacer().frame(height: max(16, keyboard.currentHeight - self.tabBarHeight + 16))
+    }
+    
+    ///  A series of buttons containing filters for a TfL map search
+    @ViewBuilder
+    func filterButtons() -> some View {
+        ForEach(self.model.filters.filters, id: \.lineMode) { modeFilter in
+            withAnimation(.easeInOut) {
+                Button(action: { self.model.toggleLineModeFilter(modeFilter.lineMode) }) {
+                    HStack {
+                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark"))
+                            .bold()
+                        Text(modeFilter.lineMode.friendlyName)
+                    }
+                }
+                .buttonStyle(MapButtonStyle(backgroundColor: self.model.isFilterToggled(modeFilter.lineMode) ? .green : .red))
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func searchHereButton() -> some View {
+        if self.model.isLoading {
+            Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
+                .buttonStyle(MapButtonStyle())
+                .transition(.move(edge: .leading))
+        } else {
+            Button(action: { Task { search() } }) { Text("Search Here") }
+                .buttonStyle(MapButtonStyle())
+                .transition(.move(edge: .leading))
+        }
+    }
+    
+    @ViewBuilder
+    func mapBackground() -> some View {
+        MapViewRepresentable(viewModel: mapModel)
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                self.mapModel.styleURI = colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
+                search()
+            }
+            .onChange(of: colourScheme) { newValue in
+                self.mapModel.styleURI = newValue == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
+            }
+    }
+    
+    //MARK: - Functions
     func goToCurrentLocation() {
         if let loc = LocationManager.shared.lastLocation?.coordinate {
             self.mapModel.mapCenter = loc

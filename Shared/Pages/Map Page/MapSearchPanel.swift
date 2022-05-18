@@ -11,7 +11,7 @@ import GoLondonSDK
 
 struct MapSearchPanelView: View {
     
-    var isFocused: FocusState<Bool>.Binding
+    @FocusState var isFocused: Bool
     @State var promptText = "nearby stations..."
     
     @ObservedObject var model: MapSearchPanelViewModel = MapSearchPanelViewModel()
@@ -52,6 +52,8 @@ struct MapSearchPanelView: View {
                                 SearchResultView(point: point)
                                     .id(String(describing: point.lat ?? 0) + String(describing: point.lon ?? 0))
                                     .frame(maxWidth: .infinity)
+                                    .padding(.horizontal, 4)
+                                    .padding(.top, 4)
                             }
                         }
                     }
@@ -63,25 +65,24 @@ struct MapSearchPanelView: View {
                 }
             }
             withAnimation(.easeInOut) {
-                GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: isFocused)
-                    .onReceive(model.$searchText.debounce(for: 0.8, scheduler: RunLoop.main)) { text in
-                        Task {
-                            guard model.searchText.count >= 3 else { return }
-                            await model.makeSearch()
+                VStack {
+                    GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: $isFocused)
+                        .onReceive(model.$searchText.debounce(for: 0.8, scheduler: RunLoop.main)) { text in
+                            Task {
+                                guard model.searchText.count >= 3 else { return }
+                                await model.makeSearch()
+                            }
                         }
-                    }
-                    .onTapGesture {
-                        if !self.isFocused.wrappedValue {
-                            print("not focused")
-                            self.isFocused.wrappedValue = true
-                        } else {
-                            return
-                            
+                        .onTapGesture(perform: {
+                            if !self.isFocused {
+                                self.isFocused = true
+                            }
+                        })
+                        .onAppear {
+                            self.changeSearchText()
                         }
-                    }
-                    .onAppear {
-                        self.changeSearchText()
-                    }
+                }
+                
             }
             
         }
@@ -92,7 +93,6 @@ struct MapSearchPanelView: View {
                 .fill(Color.layer1)
         )
         .padding(.horizontal)
-//        .shadow(radius: 3)
     }
     
     func changeSearchText() {

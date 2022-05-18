@@ -68,6 +68,7 @@ struct GLTextField: View {
             }
             
             textFieldToDisplay
+                .foregroundColor(.primary)
                 .focused(isFocused)
         }
         .foregroundColor(.white)
@@ -111,7 +112,6 @@ struct GLTextField: View {
                 TextField("", text: $text)
             }
         }
-        
     }
     
     func filtered(range: String, text: String) -> Bool {
