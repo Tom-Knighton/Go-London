@@ -46,7 +46,7 @@ struct ContentView: View {
                 .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
                 
                 NavigationView {
-                    LineStatusPage()
+                    AllLinesStatusPage()
                         .navigationBarHidden(false)
                         .navigationTitle("TfL Status:")
                 }

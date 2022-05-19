@@ -8,9 +8,11 @@
 import Foundation
 import SwiftUI
 
-struct LineStatusPage: View {
+struct AllLinesStatusPage: View {
     
     @StateObject private var viewModel: LineOverviewViewModel = LineOverviewViewModel()
+    
+    @State var hasInit: Bool = false
     
     var body: some View {
         ScrollView {
@@ -30,7 +32,9 @@ struct LineStatusPage: View {
                     self.overviewTooltip()
                     LazyVStack {
                         ForEach(viewModel.lines, id: \.id) { line in
-                            LineOverviewRow(line: line)
+                            NavigationLink(destination: LinePage(viewModel: LineStatusViewModel(for: line))) {
+                                LineOverviewRow(line: line)
+                            }
                         }
                     }
                 }
@@ -42,7 +46,10 @@ struct LineStatusPage: View {
         .background(Color.layer1.edgesIgnoringSafeArea(.all))
         .onAppear {
             Task {
-                await self.viewModel.fetchLines()
+                if !hasInit {
+                    await self.viewModel.fetchLines()
+                    self.hasInit = true
+                }
             }
         }
     }
