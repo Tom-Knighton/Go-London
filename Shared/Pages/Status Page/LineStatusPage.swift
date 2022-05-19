@@ -14,24 +14,32 @@ struct LineStatusPage: View {
     
     var body: some View {
         ScrollView {
-            if viewModel.isLoading {
-                VStack {
-                    Spacer()
-                    LottieView(name: "Dog_PurpleWalking", loopMode: .loop)
-                        .frame(width: 200, height: 200, alignment: .center)
-                    Text("Loading...")
-                        .bold()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                    Spacer()
-                }
-            } else {
-                LazyVStack {
-                    ForEach(viewModel.lines, id: \.id) { line in
-                        LineOverviewRow(line: line)
+            VStack {
+                Spacer()
+                if viewModel.isLoading {
+                    VStack {
+                        Spacer()
+                        LottieView(name: "Dog_PurpleWalking", loopMode: .loop)
+                            .frame(width: 200, height: 200, alignment: .center)
+                        Text("Loading...")
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
                     }
+                } else {
+                    LazyVStack {
+                        ForEach(viewModel.lines, id: \.id) { line in
+                            LineOverviewRow(line: line)
+                        }
+                    }
+                    .padding(.horizontal, 16)
                 }
+                Spacer()
+                Spacer().frame(height: 16)
             }
+            
         }
+        .background(Color.layer1.edgesIgnoringSafeArea(.all))
         .onAppear {
             Task {
                 await self.viewModel.fetchLines()

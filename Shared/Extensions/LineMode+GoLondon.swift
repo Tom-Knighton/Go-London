@@ -70,10 +70,10 @@ extension LineMode {
             return .init(hex: "#00A4A7")
         case "national-rail":
             return .red
-        case "overground":
+        case "overground", "london-overground":
             return .init(hex: "#EE7C0E")
         case "tfl-rail", "elizabeth-line":
-            return .init(hex: "#7156A5")
+            return .init(hex: "#6950a1")
             
         
         default:
@@ -175,5 +175,5 @@ extension LineMode {
 extension Line: Equatable {
     public static func == (lhs: Line, rhs: Line) -> Bool {
         lhs.id == rhs.id
-    }    
+    }
 }
