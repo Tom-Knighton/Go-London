@@ -1,0 +1,61 @@
+//
+//  LineStatusPage.swift
+//  Go London
+//
+//  Created by Tom Knighton on 30/04/2022.
+//
+
+import Foundation
+import SwiftUI
+
+struct LineStatusPage: View {
+    
+    @StateObject private var viewModel: LineOverviewViewModel = LineOverviewViewModel()
+    
+    var body: some View {
+        ScrollView {
+            VStack {
+                Spacer()
+                if viewModel.isLoading {
+                    VStack {
+                        Spacer()
+                        LottieView(name: "Dog_PurpleWalking", loopMode: .loop)
+                            .frame(width: 200, height: 200, alignment: .center)
+                        Text("Loading...")
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
+                    }
+                } else {
+                    self.overviewTooltip()
+                    LazyVStack {
+                        ForEach(viewModel.lines, id: \.id) { line in
+                            LineOverviewRow(line: line)
+                        }
+                    }
+                }
+                Spacer()
+                Spacer().frame(height: 16)
+            }
+            .padding(.horizontal, 16)
+        }
+        .background(Color.layer1.edgesIgnoringSafeArea(.all))
+        .onAppear {
+            Task {
+                await self.viewModel.fetchLines()
+            }
+        }
+    }
+    
+    //MARK: - View Builders
+    
+    @ViewBuilder
+    func overviewTooltip() -> some View {
+        let overview = self.viewModel.overviewString
+        Text(overview == .unk ? "" : overview.rawValue)
+            .foregroundColor(self.viewModel.overviewString.textColour)
+            .bold()
+            .font(.title3)
+            .frame(maxWidth: .infinity, alignment: .leading)
+    }
+}

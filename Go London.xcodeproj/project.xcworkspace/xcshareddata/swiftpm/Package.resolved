@@ -2,39 +2,66 @@
   "object": {
     "pins": [
       {
-        "package": "GoLondonAPI",
-        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonAPI",
+        "package": "GoLondonSDK",
+        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonSDK-Swift",
         "state": {
-          "branch": "master",
-          "revision": "2afa5bf318234333fdf04212f136eeddcbd607cd",
-          "version": null
-        }
-      },
-      {
-        "package": "GoLondonModels",
-        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonModels",
-        "state": {
-          "branch": "main",
-          "revision": "a13bd205b325830c40b4290ef063b61642ee03f6",
-          "version": null
+          "branch": null,
+          "revision": "deb085b49476e2898c138b9959755a8e52ec30ce",
+          "version": "1.0.8"
         }
       },
       {
         "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
         "state": {
-          "branch": null,
-          "revision": "79a0b70547f7c40ea54c67487f935fa2f2eaaadc",
-          "version": "3.2.3"
+          "branch": "master",
+          "revision": "f99a37afd0269814477fd5c2dd7295d500f1fd83",
+          "version": null
         }
       },
       {
-        "package": "Introspect",
-        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
+        "package": "MapboxCommon",
+        "repositoryURL": "https://github.com/mapbox/mapbox-common-ios.git",
         "state": {
           "branch": null,
-          "revision": "2e09be8af614401bc9f87d40093ec19ce56ccaf2",
-          "version": "0.1.3"
+          "revision": "59b81d4f6316a661c322e8c47bc3310f8a1bdd4a",
+          "version": "21.3.0"
+        }
+      },
+      {
+        "package": "MapboxCoreMaps",
+        "repositoryURL": "https://github.com/mapbox/mapbox-core-maps-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "9984e5f6218ce3b5e5ad540218085e6743e133b2",
+          "version": "10.5.1"
+        }
+      },
+      {
+        "package": "MapboxMobileEvents",
+        "repositoryURL": "https://github.com/mapbox/mapbox-events-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "1b6c2a34086de40c26f2f97a716ac419f46eb630",
+          "version": "1.0.7"
+        }
+      },
+      {
+        "package": "MapboxMaps",
+        "repositoryURL": "https://github.com/mapbox/mapbox-maps-ios.git",
+        "state": {
+          "branch": null,
+          "revision": "592aa782e7ac2a51c8d8a54231eaa13b4778674d",
+          "version": "10.5.0"
+        }
+      },
+      {
+        "package": "Turf",
+        "repositoryURL": "https://github.com/mapbox/turf-swift.git",
+        "state": {
+          "branch": null,
+          "revision": "a7db78a2281ffe79966443ebe5687766d6c024c7",
+          "version": "2.3.0"
         }
       }
     ]

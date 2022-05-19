@@ -7,501 +7,512 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E208307B2714A2A900721A73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208307A2714A2A900721A73 /* MapView.swift */; };
-		E208307C2714A2A900721A73 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E208307A2714A2A900721A73 /* MapView.swift */; };
-		E2111F72270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
-		E2111F73270F7F8600672C25 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2111F71270F7F8600672C25 /* LoadingGif.json */; };
-		E2111F7527103FC600672C25 /* StopPointOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7427103FC600672C25 /* StopPointOverview.swift */; };
-		E2111F7627103FC600672C25 /* StopPointOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7427103FC600672C25 /* StopPointOverview.swift */; };
-		E2111F7827104A9000672C25 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7727104A9000672C25 /* CustomHeaderView.swift */; };
-		E2111F7927104A9000672C25 /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2111F7727104A9000672C25 /* CustomHeaderView.swift */; };
-		E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
-		E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */; };
-		E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
-		E2510F9C270BCA6A00A7AEBE /* DirectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */; };
-		E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
-		E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC60270B8E3900A0749B /* Dog_Polly.json */; };
-		E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
-		E25AAC6C270B8E3900A0749B /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC61270B8E3900A0749B /* Dog_Louie.json */; };
-		E25AAC6D270B8E3900A0749B /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC62270B8E3900A0749B /* Dog_Rambo.json */; };
-		E25AAC6E270B8E3900A0749B /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC62270B8E3900A0749B /* Dog_Rambo.json */; };
-		E25AAC6F270B8E3900A0749B /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */; };
-		E25AAC70270B8E3900A0749B /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */; };
-		E25AAC71270B8E3900A0749B /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC64270B8E3900A0749B /* Dog_Frankie.json */; };
-		E25AAC72270B8E3900A0749B /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC64270B8E3900A0749B /* Dog_Frankie.json */; };
-		E25AAC73270B8E3900A0749B /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC65270B8E3900A0749B /* Dog_Gromit.json */; };
-		E25AAC74270B8E3900A0749B /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC65270B8E3900A0749B /* Dog_Gromit.json */; };
-		E25AAC75270B8E3900A0749B /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC66270B8E3900A0749B /* Dog_Tom.json */; };
-		E25AAC76270B8E3900A0749B /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC66270B8E3900A0749B /* Dog_Tom.json */; };
-		E25AAC77270B8E3900A0749B /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC67270B8E3900A0749B /* Dog_Tutu.json */; };
-		E25AAC78270B8E3900A0749B /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC67270B8E3900A0749B /* Dog_Tutu.json */; };
-		E25AAC79270B8E3900A0749B /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC68270B8E3900A0749B /* Dog_Wally.json */; };
-		E25AAC7A270B8E3900A0749B /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC68270B8E3900A0749B /* Dog_Wally.json */; };
-		E25AAC7D270B935400A0749B /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC7C270B935400A0749B /* SoundService.swift */; };
-		E25AAC7E270B935400A0749B /* SoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC7C270B935400A0749B /* SoundService.swift */; };
-		E25AAC81270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
-		E25AAC82270B94F200A0749B /* dogbark.wav in Resources */ = {isa = PBXBuildFile; fileRef = E25AAC80270B94F200A0749B /* dogbark.wav */; };
-		E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
-		E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E25AAC83270BB1DB00A0749B /* TabViewManager.swift */; };
-		E262BAEB2721805F0057C80C /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */; };
-		E262BAEC2721805F0057C80C /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */; };
-		E2AF75902750435500CDD50E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AF758F2750435500CDD50E /* WidgetKit.framework */; platformFilter = maccatalyst; };
-		E2AF75922750435500CDD50E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2AF75912750435500CDD50E /* SwiftUI.framework */; platformFilter = maccatalyst; };
-		E2AF75952750435500CDD50E /* GoLondonWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75942750435500CDD50E /* GoLondonWidget.swift */; };
-		E2AF75982750435800CDD50E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2AF75972750435800CDD50E /* Assets.xcassets */; };
-		E2AF759A2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */; };
-		E2AF759B2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */; };
-		E2AF759E2750435800CDD50E /* GoLondonWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		E2AF75AD27504BFD00CDD50E /* GoLondonModels in Frameworks */ = {isa = PBXBuildFile; productRef = E2AF75AC27504BFD00CDD50E /* GoLondonModels */; };
-		E2B5A0E92751482B00945E47 /* GoLondonAPI in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5A0E82751482B00945E47 /* GoLondonAPI */; };
-		E2C165D7270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
-		E2C165D8270CF26600DC3B16 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2C165D6270CF26600DC3B16 /* SearchingGif.json */; };
-		E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B7270700B000277863 /* Tests_iOS.swift */; };
-		E2F890BA270700B000277863 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */; };
-		E2F890C4270700B000277863 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890C3270700B000277863 /* Tests_macOS.swift */; };
-		E2F890C6270700B000277863 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */; };
-		E2F890C7270700B000277863 /* GaryTubeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8909F270700AF00277863 /* GaryTubeApp.swift */; };
-		E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F8909F270700AF00277863 /* GaryTubeApp.swift */; };
-		E2F890C9270700B000277863 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890A0270700AF00277863 /* ContentView.swift */; };
-		E2F890CA270700B000277863 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890A0270700AF00277863 /* ContentView.swift */; };
-		E2F890CB270700B000277863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F890A1270700B000277863 /* Assets.xcassets */; };
-		E2F890CC270700B000277863 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2F890A1270700B000277863 /* Assets.xcassets */; };
-		E2F890E3270706BE00277863 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E2270706BE00277863 /* Constants.swift */; };
-		E2F890E4270706BE00277863 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890E2270706BE00277863 /* Constants.swift */; };
-		E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EE2707583400277863 /* Color+GaryTube.swift */; };
-		E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890EE2707583400277863 /* Color+GaryTube.swift */; };
-		E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F127075E3300277863 /* View+GaryTube.swift */; };
-		E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F127075E3300277863 /* View+GaryTube.swift */; };
-		E2F890F62707639600277863 /* LineStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F52707639600277863 /* LineStatusView.swift */; };
-		E2F890F72707639600277863 /* LineStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F52707639600277863 /* LineStatusView.swift */; };
-		E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F82707A6E000277863 /* LinesOverview.swift */; };
-		E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F890F82707A6E000277863 /* LinesOverview.swift */; };
-		E2F890FD270908CE00277863 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E2F890FC270908CE00277863 /* Introspect */; };
-		E2F89100270B87B500277863 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2F890FF270B87B500277863 /* Lottie */; };
-		E2F89102270B888600277863 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89101270B888600277863 /* LottieView.swift */; };
-		E2F89103270B888600277863 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89101270B888600277863 /* LottieView.swift */; };
-		E2F89106270B891200277863 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F89105270B891200277863 /* Dog_Peter.json */; };
-		E2F89107270B891200277863 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F89105270B891200277863 /* Dog_Peter.json */; };
-		E2F89109270B896900277863 /* DogGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89108270B896900277863 /* DogGif.swift */; };
-		E2F8910A270B896900277863 /* DogGif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F89108270B896900277863 /* DogGif.swift */; };
-		E2F8910C270B8BA300277863 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F8910B270B8BA300277863 /* Dog_Fabio.json */; };
-		E2F8910D270B8BA300277863 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2F8910B270B8BA300277863 /* Dog_Fabio.json */; };
+		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
+		E2680B1727EBCE4A004C37E9 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1627EBCE4A004C37E9 /* MapboxMaps */; };
+		E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1927EBCE7F004C37E9 /* GoLondonSDK */; };
+		E2680B1C27EBCE83004C37E9 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1B27EBCE83004C37E9 /* MapboxMaps */; };
+		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
+		E2680B2027EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
+		E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
+		E2680B2427EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
+		E2680B2627EBDA57004C37E9 /* GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2527EBDA57004C37E9 /* GoLondon.swift */; };
+		E2680B2727EBDA57004C37E9 /* GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2527EBDA57004C37E9 /* GoLondon.swift */; };
+		E2680B2E27EBE120004C37E9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B2D27EBE120004C37E9 /* Lottie */; };
+		E2680B3327EBE173004C37E9 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3227EBE173004C37E9 /* LottieView.swift */; };
+		E2680B3427EBE173004C37E9 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3227EBE173004C37E9 /* LottieView.swift */; };
+		E2680B3527EBE231004C37E9 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2927EBDF58004C37E9 /* RequestLocation.swift */; };
+		E2680B3627EBE231004C37E9 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2927EBDF58004C37E9 /* RequestLocation.swift */; };
+		E2680B3827EBE28A004C37E9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B3727EBE28A004C37E9 /* Lottie */; };
+		E2680B3C27EBE2D4004C37E9 /* LottieLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */; };
+		E2680B3D27EBE2D4004C37E9 /* LottieLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */; };
+		E2680B4027EBE49E004C37E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3F27EBE49E004C37E9 /* LocationManager.swift */; };
+		E2680B4127EBE49E004C37E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3F27EBE49E004C37E9 /* LocationManager.swift */; };
+		E2680B4427EE715A004C37E9 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4327EE715A004C37E9 /* LocationPermission.swift */; };
+		E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4327EE715A004C37E9 /* LocationPermission.swift */; };
+		E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
+		E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
+		E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
+		E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
+		E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
+		E29DBDD8281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
+		E29DBDDC281D462100CA047B /* LineStatusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDB281D462100CA047B /* LineStatusPage.swift */; };
+		E29DBDDD281D462100CA047B /* LineStatusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDB281D462100CA047B /* LineStatusPage.swift */; };
+		E29DBDE0281D466F00CA047B /* GLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDF281D466F00CA047B /* GLTabBar.swift */; };
+		E29DBDE1281D466F00CA047B /* GLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDF281D466F00CA047B /* GLTabBar.swift */; };
+		E29DBDE3281D467E00CA047B /* GLTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */; };
+		E29DBDE4281D467E00CA047B /* GLTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */; };
+		E29DBDE9281D4E3900CA047B /* Environment+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE8281D4E3900CA047B /* Environment+GoLondon.swift */; };
+		E29DBDEA281D4E3900CA047B /* Environment+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE8281D4E3900CA047B /* Environment+GoLondon.swift */; };
+		E2A36A6227F63BA400AD8ECD /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6127F63BA400AD8ECD /* MapButton.swift */; };
+		E2A36A6527F65DFC00AD8ECD /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6427F65DFC00AD8ECD /* HomeViewModel.swift */; };
+		E2A36A6927F6627000AD8ECD /* Line_Etc+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6827F6627000AD8ECD /* Line_Etc+GoLondon.swift */; };
+		E2A36A6B27F6723500AD8ECD /* StopPoint+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6A27F6723500AD8ECD /* StopPoint+GoLondon.swift */; };
+		E2A36A6D27F7706200AD8ECD /* MapSearchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6C27F7706200AD8ECD /* MapSearchPanel.swift */; };
+		E2A36A6E27F7706200AD8ECD /* MapSearchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6C27F7706200AD8ECD /* MapSearchPanel.swift */; };
+		E2A36A7127F772B100AD8ECD /* GLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7027F772B100AD8ECD /* GLTextField.swift */; };
+		E2A36A7227F772B100AD8ECD /* GLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7027F772B100AD8ECD /* GLTextField.swift */; };
+		E2A36A7427F7825900AD8ECD /* View+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */; };
+		E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */; };
+		E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AE9B3627F608E90055299A /* Color+GoLondon.swift */; };
+		E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */; };
+		E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */; };
+		E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */; };
+		E2B8F938283564C900AAAB10 /* LineOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */; };
+		E2B8F9482836699100AAAB10 /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */; };
+		E2B8F9492836699100AAAB10 /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */; };
+		E2B8F94A2836699100AAAB10 /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */; };
+		E2B8F94B2836699100AAAB10 /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */; };
+		E2B8F94C2836699100AAAB10 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93C2836699100AAAB10 /* SearchingGif.json */; };
+		E2B8F94D2836699100AAAB10 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93C2836699100AAAB10 /* SearchingGif.json */; };
+		E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
+		E2B8F94F2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
+		E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
+		E2B8F9512836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
+		E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
+		E2B8F9532836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
+		E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
+		E2B8F9552836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
+		E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
+		E2B8F9572836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
+		E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
+		E2B8F9592836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
+		E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
+		E2B8F95B2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
+		E2B8F95C2836699100AAAB10 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9442836699100AAAB10 /* Dog_Fabio.json */; };
+		E2B8F95D2836699100AAAB10 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9442836699100AAAB10 /* Dog_Fabio.json */; };
+		E2B8F95E2836699100AAAB10 /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9452836699100AAAB10 /* Dog_Tom.json */; };
+		E2B8F95F2836699100AAAB10 /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9452836699100AAAB10 /* Dog_Tom.json */; };
+		E2B8F9602836699100AAAB10 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9462836699100AAAB10 /* LoadingGif.json */; };
+		E2B8F9612836699100AAAB10 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9462836699100AAAB10 /* LoadingGif.json */; };
+		E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
+		E2B8F9632836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
+		E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
+		E2B9DFC7281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
+		E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
+		E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
+		E2C33D1B2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */; };
+		E2C33D1C2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */; };
+		E2DD5D6A280C813F00D0ECF5 /* MapRepresentableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MapRepresentableViewModel.swift */; };
+		E2DD5D6B280C813F00D0ECF5 /* MapRepresentableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MapRepresentableViewModel.swift */; };
+		E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7EB6E27F8D68800A5489B /* FadingText.swift */; };
+		E2F7EB7027F8D68800A5489B /* FadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7EB6E27F8D68800A5489B /* FadingText.swift */; };
+		E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
+		E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
+		E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DF27E4AA85005132EF /* ContentView.swift */; };
+		E2FEF7F127E4AA87005132EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DF27E4AA85005132EF /* ContentView.swift */; };
+		E2FEF7F227E4AA87005132EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF7E027E4AA87005132EF /* Assets.xcassets */; };
+		E2FEF7F327E4AA87005132EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF7E027E4AA87005132EF /* Assets.xcassets */; };
+		E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */; };
+		E2FF049B27F0FD86003A2ABB /* StopPointMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E2AF759C2750435800CDD50E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2F8909A270700AF00277863 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E2AF758C2750435500CDD50E;
-			remoteInfo = GoLondonWidgetExtension;
-		};
-		E2F890B4270700B000277863 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2F8909A270700AF00277863 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E2F890A5270700B000277863;
-			remoteInfo = "GaryTube (iOS)";
-		};
-		E2F890C0270700B000277863 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E2F8909A270700AF00277863 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E2F890AB270700B000277863;
-			remoteInfo = "GaryTube (macOS)";
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		E2AF759F2750435800CDD50E /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				E2AF759E2750435800CDD50E /* GoLondonWidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		E208307A2714A2A900721A73 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		E2111F71270F7F8600672C25 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
-		E2111F7427103FC600672C25 /* StopPointOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointOverview.swift; sourceTree = "<group>"; };
-		E2111F7727104A9000672C25 /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
-		E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+GaryGo.swift"; sourceTree = "<group>"; };
-		E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectionsView.swift; sourceTree = "<group>"; };
-		E25AAC60270B8E3900A0749B /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
-		E25AAC61270B8E3900A0749B /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
-		E25AAC62270B8E3900A0749B /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
-		E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Franchesca.json; sourceTree = "<group>"; };
-		E25AAC64270B8E3900A0749B /* Dog_Frankie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Frankie.json; sourceTree = "<group>"; };
-		E25AAC65270B8E3900A0749B /* Dog_Gromit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Gromit.json; sourceTree = "<group>"; };
-		E25AAC66270B8E3900A0749B /* Dog_Tom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tom.json; sourceTree = "<group>"; };
-		E25AAC67270B8E3900A0749B /* Dog_Tutu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tutu.json; sourceTree = "<group>"; };
-		E25AAC68270B8E3900A0749B /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
-		E25AAC7C270B935400A0749B /* SoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundService.swift; sourceTree = "<group>"; };
-		E25AAC80270B94F200A0749B /* dogbark.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dogbark.wav; sourceTree = "<group>"; };
-		E25AAC83270BB1DB00A0749B /* TabViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewManager.swift; sourceTree = "<group>"; };
-		E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Foundation+GoLondon.swift"; sourceTree = "<group>"; };
-		E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = GoLondonWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2AF758F2750435500CDD50E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		E2AF75912750435500CDD50E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		E2AF75942750435500CDD50E /* GoLondonWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondonWidget.swift; sourceTree = "<group>"; };
-		E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = GoLondonWidget.intentdefinition; sourceTree = "<group>"; };
-		E2AF75972750435800CDD50E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E2AF75992750435800CDD50E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2C165D6270CF26600DC3B16 /* SearchingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchingGif.json; sourceTree = "<group>"; };
-		E2F8909F270700AF00277863 /* GaryTubeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaryTubeApp.swift; sourceTree = "<group>"; };
-		E2F890A0270700AF00277863 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		E2F890A1270700B000277863 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E2F890A6270700B000277863 /* Go London.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go London.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2F890AC270700B000277863 /* Go London.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go London.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2F890AE270700B000277863 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		E2F890B3270700B000277863 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2F890B7270700B000277863 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
-		E2F890BF270700B000277863 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2F890C3270700B000277863 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		E2F890E2270706BE00277863 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		E2F890EE2707583400277863 /* Color+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GaryTube.swift"; sourceTree = "<group>"; };
-		E2F890F127075E3300277863 /* View+GaryTube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GaryTube.swift"; sourceTree = "<group>"; };
-		E2F890F52707639600277863 /* LineStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStatusView.swift; sourceTree = "<group>"; };
-		E2F890F82707A6E000277863 /* LinesOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinesOverview.swift; sourceTree = "<group>"; };
-		E2F89101270B888600277863 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
-		E2F89105270B891200277863 /* Dog_Peter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Peter.json; sourceTree = "<group>"; };
-		E2F89108270B896900277863 /* DogGif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGif.swift; sourceTree = "<group>"; };
-		E2F8910B270B8BA300277863 /* Dog_Fabio.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Fabio.json; sourceTree = "<group>"; };
+		E2680B1327EBCB4C004C37E9 /* Go-London--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Go-London--iOS--Info.plist"; sourceTree = "<group>"; };
+		E2680B1427EBCBAE004C37E9 /* Go-London--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Go-London--macOS--Info.plist"; sourceTree = "<group>"; };
+		E2680B1E27EBCFDB004C37E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E2680B2227EBD02B004C37E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		E2680B2527EBDA57004C37E9 /* GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondon.swift; sourceTree = "<group>"; };
+		E2680B2927EBDF58004C37E9 /* RequestLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocation.swift; sourceTree = "<group>"; };
+		E2680B3227EBE173004C37E9 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LottieLocation.json; sourceTree = "<group>"; };
+		E2680B3F27EBE49E004C37E9 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		E2680B4327EE715A004C37E9 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
+		E2680B4627EE717F004C37E9 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
+		E29DBDD328199E1200CA047B /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+GoLondon.swift"; sourceTree = "<group>"; };
+		E29DBDDB281D462100CA047B /* LineStatusPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStatusPage.swift; sourceTree = "<group>"; };
+		E29DBDDF281D466F00CA047B /* GLTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBar.swift; sourceTree = "<group>"; };
+		E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTabBarViewModel.swift; sourceTree = "<group>"; };
+		E29DBDE8281D4E3900CA047B /* Environment+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+GoLondon.swift"; sourceTree = "<group>"; };
+		E2A36A6127F63BA400AD8ECD /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
+		E2A36A6427F65DFC00AD8ECD /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		E2A36A6827F6627000AD8ECD /* Line_Etc+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Line_Etc+GoLondon.swift"; sourceTree = "<group>"; };
+		E2A36A6A27F6723500AD8ECD /* StopPoint+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StopPoint+GoLondon.swift"; sourceTree = "<group>"; };
+		E2A36A6C27F7706200AD8ECD /* MapSearchPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPanel.swift; sourceTree = "<group>"; };
+		E2A36A7027F772B100AD8ECD /* GLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTextField.swift; sourceTree = "<group>"; };
+		E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GoLondon.swift"; sourceTree = "<group>"; };
+		E2AE9B3627F608E90055299A /* Color+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GoLondon.swift"; sourceTree = "<group>"; };
+		E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineOverviewRow.swift; sourceTree = "<group>"; };
+		E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineOverviewViewModel.swift; sourceTree = "<group>"; };
+		E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Franchesca.json; sourceTree = "<group>"; };
+		E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Gromit.json; sourceTree = "<group>"; };
+		E2B8F93C2836699100AAAB10 /* SearchingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchingGif.json; sourceTree = "<group>"; };
+		E2B8F93D2836699100AAAB10 /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
+		E2B8F93E2836699100AAAB10 /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
+		E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tutu.json; sourceTree = "<group>"; };
+		E2B8F9402836699100AAAB10 /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
+		E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_PurpleWalking.json; sourceTree = "<group>"; };
+		E2B8F9422836699100AAAB10 /* Dog_Peter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Peter.json; sourceTree = "<group>"; };
+		E2B8F9432836699100AAAB10 /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
+		E2B8F9442836699100AAAB10 /* Dog_Fabio.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Fabio.json; sourceTree = "<group>"; };
+		E2B8F9452836699100AAAB10 /* Dog_Tom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tom.json; sourceTree = "<group>"; };
+		E2B8F9462836699100AAAB10 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
+		E2B8F9472836699100AAAB10 /* Dog_Frankie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Frankie.json; sourceTree = "<group>"; };
+		E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPanelViewModel.swift; sourceTree = "<group>"; };
+		E2C33D172808315200C2E373 /* Notification+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+GoLondon.swift"; sourceTree = "<group>"; };
+		E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointDetailMarkerView.swift; sourceTree = "<group>"; };
+		E2DD5D69280C813F00D0ECF5 /* MapRepresentableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRepresentableViewModel.swift; sourceTree = "<group>"; };
+		E2F7EB6E27F8D68800A5489B /* FadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadingText.swift; sourceTree = "<group>"; };
+		E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Go_LondonApp.swift; sourceTree = "<group>"; };
+		E2FEF7DF27E4AA85005132EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E2FEF7E027E4AA87005132EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2FEF7E527E4AA87005132EF /* Go London.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go London.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2FEF7EB27E4AA87005132EF /* Go London.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go London.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2FEF7ED27E4AA87005132EF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
+		E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointAnnotation.swift; sourceTree = "<group>"; };
+		E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointMarker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E2AF758A2750435500CDD50E /* Frameworks */ = {
+		E2FEF7E227E4AA87005132EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AF75922750435500CDD50E /* SwiftUI.framework in Frameworks */,
-				E2AF75902750435500CDD50E /* WidgetKit.framework in Frameworks */,
+				E2680B1727EBCE4A004C37E9 /* MapboxMaps in Frameworks */,
+				E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */,
+				E2680B2E27EBE120004C37E9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2F890A3270700B000277863 /* Frameworks */ = {
+		E2FEF7E827E4AA87005132EF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F890FD270908CE00277863 /* Introspect in Frameworks */,
-				E2B5A0E92751482B00945E47 /* GoLondonAPI in Frameworks */,
-				E2F89100270B87B500277863 /* Lottie in Frameworks */,
-				E2AF75AD27504BFD00CDD50E /* GoLondonModels in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890A9270700B000277863 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890B0270700B000277863 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890BC270700B000277863 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				E2680B1C27EBCE83004C37E9 /* MapboxMaps in Frameworks */,
+				E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */,
+				E2680B3827EBE28A004C37E9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E25AAC7B270B932200A0749B /* Assets */ = {
+		E2680B1827EBCE7F004C37E9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E25AAC7F270B947C00A0749B /* Sounds */,
-				E2F890A1270700B000277863 /* Assets.xcassets */,
-				E2F890E2270706BE00277863 /* Constants.swift */,
-				E2F89108270B896900277863 /* DogGif.swift */,
-				E25AAC7C270B935400A0749B /* SoundService.swift */,
-				E25AAC83270BB1DB00A0749B /* TabViewManager.swift */,
-			);
-			path = Assets;
-			sourceTree = "<group>";
-		};
-		E25AAC7F270B947C00A0749B /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				E25AAC80270B94F200A0749B /* dogbark.wav */,
-			);
-			path = Sounds;
-			sourceTree = "<group>";
-		};
-		E2AF758E2750435500CDD50E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E2AF758F2750435500CDD50E /* WidgetKit.framework */,
-				E2AF75912750435500CDD50E /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E2AF75932750435500CDD50E /* GoLondonWidget */ = {
+		E2680B1D27EBCFCD004C37E9 /* Map Page */ = {
 			isa = PBXGroup;
 			children = (
-				E2AF75942750435500CDD50E /* GoLondonWidget.swift */,
-				E2AF75962750435500CDD50E /* GoLondonWidget.intentdefinition */,
-				E2AF75972750435800CDD50E /* Assets.xcassets */,
-				E2AF75992750435800CDD50E /* Info.plist */,
+				E2680B2127EBD017004C37E9 /* View Representables */,
+				E2680B1E27EBCFDB004C37E9 /* HomeView.swift */,
+				E2A36A6C27F7706200AD8ECD /* MapSearchPanel.swift */,
 			);
-			path = GoLondonWidget;
+			path = "Map Page";
 			sourceTree = "<group>";
 		};
-		E2F89099270700AF00277863 = {
+		E2680B2127EBD017004C37E9 /* View Representables */ = {
 			isa = PBXGroup;
 			children = (
-				E2F8909E270700AF00277863 /* Shared */,
-				E2F890AD270700B000277863 /* macOS */,
-				E2F890B6270700B000277863 /* Tests iOS */,
-				E2F890C2270700B000277863 /* Tests macOS */,
-				E2AF75932750435500CDD50E /* GoLondonWidget */,
-				E2AF758E2750435500CDD50E /* Frameworks */,
-				E2F890A7270700B000277863 /* Products */,
+				E2680B2227EBD02B004C37E9 /* MapView.swift */,
 			);
+			path = "View Representables";
 			sourceTree = "<group>";
 		};
-		E2F8909E270700AF00277863 /* Shared */ = {
+		E2680B2827EBDEDD004C37E9 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				E25AAC7B270B932200A0749B /* Assets */,
-				E2F89104270B890800277863 /* Lottie */,
-				E2F890F42707638400277863 /* Views */,
-				E2F890ED2707582600277863 /* Extensions */,
-				E2F8909F270700AF00277863 /* GaryTubeApp.swift */,
+				E2A36A6F27F7729B00AD8ECD /* Controls */,
+				E2680B2927EBDF58004C37E9 /* RequestLocation.swift */,
+				E29DBDD328199E1200CA047B /* SearchResultView.swift */,
 			);
-			path = Shared;
+			path = Misc;
 			sourceTree = "<group>";
 		};
-		E2F890A7270700B000277863 /* Products */ = {
+		E2680B2F27EBE128004C37E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E2F890A6270700B000277863 /* Go London.app */,
-				E2F890AC270700B000277863 /* Go London.app */,
-				E2F890B3270700B000277863 /* Tests iOS.xctest */,
-				E2F890BF270700B000277863 /* Tests macOS.xctest */,
-				E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E2F890AD270700B000277863 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890AE270700B000277863 /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		E2F890B6270700B000277863 /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890B7270700B000277863 /* Tests_iOS.swift */,
-				E2F890B9270700B000277863 /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		E2F890C2270700B000277863 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890C3270700B000277863 /* Tests_macOS.swift */,
-				E2F890C5270700B000277863 /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
-			sourceTree = "<group>";
-		};
-		E2F890ED2707582600277863 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890EE2707583400277863 /* Color+GaryTube.swift */,
-				E2F890F127075E3300277863 /* View+GaryTube.swift */,
-				E2510F97270BBA6200A7AEBE /* UIApplication+GaryGo.swift */,
-				E262BAEA2721805F0057C80C /* Foundation+GoLondon.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E2F890F42707638400277863 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E2F890A0270700AF00277863 /* ContentView.swift */,
-				E2F890F52707639600277863 /* LineStatusView.swift */,
-				E2F890F82707A6E000277863 /* LinesOverview.swift */,
-				E2F89101270B888600277863 /* LottieView.swift */,
-				E2510F9A270BCA6A00A7AEBE /* DirectionsView.swift */,
-				E2111F7427103FC600672C25 /* StopPointOverview.swift */,
-				E2111F7727104A9000672C25 /* CustomHeaderView.swift */,
-				E208307A2714A2A900721A73 /* MapView.swift */,
+				E2B8F9322835638500AAAB10 /* Lines */,
+				E29DBDDE281D465B00CA047B /* Tab Bar */,
+				E2A36A6027F63B9A00AD8ECD /* Buttons */,
+				E2FF049927F0FD79003A2ABB /* Markers */,
+				E2680B2827EBDEDD004C37E9 /* Misc */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		E2F89104270B890800277863 /* Lottie */ = {
+		E2680B3027EBE132004C37E9 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				E2111F71270F7F8600672C25 /* LoadingGif.json */,
-				E2C165D6270CF26600DC3B16 /* SearchingGif.json */,
-				E25AAC63270B8E3900A0749B /* Dog_Franchesca.json */,
-				E25AAC64270B8E3900A0749B /* Dog_Frankie.json */,
-				E25AAC65270B8E3900A0749B /* Dog_Gromit.json */,
-				E25AAC61270B8E3900A0749B /* Dog_Louie.json */,
-				E25AAC60270B8E3900A0749B /* Dog_Polly.json */,
-				E25AAC62270B8E3900A0749B /* Dog_Rambo.json */,
-				E25AAC66270B8E3900A0749B /* Dog_Tom.json */,
-				E25AAC67270B8E3900A0749B /* Dog_Tutu.json */,
-				E25AAC68270B8E3900A0749B /* Dog_Wally.json */,
-				E2F8910B270B8BA300277863 /* Dog_Fabio.json */,
-				E2F89105270B891200277863 /* Dog_Peter.json */,
+				E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */,
+				E2FEF7DF27E4AA85005132EF /* ContentView.swift */,
+				E2680B2527EBDA57004C37E9 /* GoLondon.swift */,
 			);
-			path = Lottie;
+			path = App;
+			sourceTree = "<group>";
+		};
+		E2680B3127EBE13F004C37E9 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				E2680B3227EBE173004C37E9 /* LottieView.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		E2680B3927EBE2BC004C37E9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E2680B3A27EBE2C2004C37E9 /* Lottie Files */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		E2680B3A27EBE2C2004C37E9 /* Lottie Files */ = {
+			isa = PBXGroup;
+			children = (
+				E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */,
+				E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */,
+				E2B8F93C2836699100AAAB10 /* SearchingGif.json */,
+				E2B8F93D2836699100AAAB10 /* Dog_Polly.json */,
+				E2B8F93E2836699100AAAB10 /* Dog_Wally.json */,
+				E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */,
+				E2B8F9402836699100AAAB10 /* Dog_Louie.json */,
+				E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */,
+				E2B8F9422836699100AAAB10 /* Dog_Peter.json */,
+				E2B8F9432836699100AAAB10 /* Dog_Rambo.json */,
+				E2B8F9442836699100AAAB10 /* Dog_Fabio.json */,
+				E2B8F9452836699100AAAB10 /* Dog_Tom.json */,
+				E2B8F9462836699100AAAB10 /* LoadingGif.json */,
+				E2B8F9472836699100AAAB10 /* Dog_Frankie.json */,
+				E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */,
+			);
+			path = "Lottie Files";
+			sourceTree = "<group>";
+		};
+		E2680B3E27EBE492004C37E9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E2680B4227EE7146004C37E9 /* Permissions */,
+				E2680B3F27EBE49E004C37E9 /* LocationManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		E2680B4227EE7146004C37E9 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				E2680B4327EE715A004C37E9 /* LocationPermission.swift */,
+				E2680B4627EE717F004C37E9 /* PermissionManager.swift */,
+			);
+			path = Permissions;
+			sourceTree = "<group>";
+		};
+		E28A832227F114B600739B44 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E2AE9B3627F608E90055299A /* Color+GoLondon.swift */,
+				E2A36A6827F6627000AD8ECD /* Line_Etc+GoLondon.swift */,
+				E2A36A6A27F6723500AD8ECD /* StopPoint+GoLondon.swift */,
+				E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */,
+				E2C33D172808315200C2E373 /* Notification+GoLondon.swift */,
+				E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */,
+				E29DBDE8281D4E3900CA047B /* Environment+GoLondon.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		E29DBDD9281D45B200CA047B /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				E2B8F93128355F4600AAAB10 /* Stop Page */,
+				E29DBDDA281D45BD00CA047B /* Status Page */,
+				E2680B1D27EBCFCD004C37E9 /* Map Page */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		E29DBDDA281D45BD00CA047B /* Status Page */ = {
+			isa = PBXGroup;
+			children = (
+				E29DBDDB281D462100CA047B /* LineStatusPage.swift */,
+			);
+			path = "Status Page";
+			sourceTree = "<group>";
+		};
+		E29DBDDE281D465B00CA047B /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				E29DBDDF281D466F00CA047B /* GLTabBar.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		E2A36A6027F63B9A00AD8ECD /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				E2A36A6127F63BA400AD8ECD /* MapButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		E2A36A6327F65DEF00AD8ECD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E2A36A6427F65DFC00AD8ECD /* HomeViewModel.swift */,
+				E2DD5D69280C813F00D0ECF5 /* MapRepresentableViewModel.swift */,
+				E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */,
+				E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */,
+				E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E2A36A6F27F7729B00AD8ECD /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				E2A36A7027F772B100AD8ECD /* GLTextField.swift */,
+				E2F7EB6E27F8D68800A5489B /* FadingText.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		E2B8F93128355F4600AAAB10 /* Stop Page */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Stop Page";
+			sourceTree = "<group>";
+		};
+		E2B8F9322835638500AAAB10 /* Lines */ = {
+			isa = PBXGroup;
+			children = (
+				E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */,
+			);
+			path = Lines;
+			sourceTree = "<group>";
+		};
+		E2FEF7D827E4AA85005132EF = {
+			isa = PBXGroup;
+			children = (
+				E2680B1427EBCBAE004C37E9 /* Go-London--macOS--Info.plist */,
+				E2680B1327EBCB4C004C37E9 /* Go-London--iOS--Info.plist */,
+				E2FEF7DD27E4AA85005132EF /* Shared */,
+				E2FEF7EC27E4AA87005132EF /* macOS */,
+				E2FEF7E627E4AA87005132EF /* Products */,
+				E2680B1827EBCE7F004C37E9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E2FEF7DD27E4AA85005132EF /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E2680B3027EBE132004C37E9 /* App */,
+				E2A36A6327F65DEF00AD8ECD /* ViewModels */,
+				E28A832227F114B600739B44 /* Extensions */,
+				E2FF049627F08EA6003A2ABB /* Models */,
+				E2680B3E27EBE492004C37E9 /* Services */,
+				E2680B3927EBE2BC004C37E9 /* Assets */,
+				E2FEF7E027E4AA87005132EF /* Assets.xcassets */,
+				E29DBDD9281D45B200CA047B /* Pages */,
+				E2680B2F27EBE128004C37E9 /* Views */,
+				E2680B3127EBE13F004C37E9 /* Misc */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		E2FEF7E627E4AA87005132EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2FEF7E527E4AA87005132EF /* Go London.app */,
+				E2FEF7EB27E4AA87005132EF /* Go London.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E2FEF7EC27E4AA87005132EF /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				E2FEF7ED27E4AA87005132EF /* macOS.entitlements */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		E2FF049627F08EA6003A2ABB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E2FF049927F0FD79003A2ABB /* Markers */ = {
+			isa = PBXGroup;
+			children = (
+				E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */,
+				E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */,
+			);
+			path = Markers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2AF758C2750435500CDD50E /* GoLondonWidgetExtension */ = {
+		E2FEF7E427E4AA87005132EF /* Go London (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2AF75A22750435800CDD50E /* Build configuration list for PBXNativeTarget "GoLondonWidgetExtension" */;
+			buildConfigurationList = E2FEF7F627E4AA87005132EF /* Build configuration list for PBXNativeTarget "Go London (iOS)" */;
 			buildPhases = (
-				E2AF75892750435500CDD50E /* Sources */,
-				E2AF758A2750435500CDD50E /* Frameworks */,
-				E2AF758B2750435500CDD50E /* Resources */,
+				E2FEF7E127E4AA87005132EF /* Sources */,
+				E2FEF7E227E4AA87005132EF /* Frameworks */,
+				E2FEF7E327E4AA87005132EF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-			);
-			name = GoLondonWidgetExtension;
-			packageProductDependencies = (
-			);
-			productName = GoLondonWidgetExtension;
-			productReference = E2AF758D2750435500CDD50E /* GoLondonWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
-		E2F890A5270700B000277863 /* Go London (iOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E2F890CF270700B000277863 /* Build configuration list for PBXNativeTarget "Go London (iOS)" */;
-			buildPhases = (
-				E2F890A2270700B000277863 /* Sources */,
-				E2F890A3270700B000277863 /* Frameworks */,
-				E2F890A4270700B000277863 /* Resources */,
-				E2AF759F2750435800CDD50E /* Embed App Extensions */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E2AF759D2750435800CDD50E /* PBXTargetDependency */,
 			);
 			name = "Go London (iOS)";
 			packageProductDependencies = (
-				E2F890FC270908CE00277863 /* Introspect */,
-				E2F890FF270B87B500277863 /* Lottie */,
-				E2AF75AC27504BFD00CDD50E /* GoLondonModels */,
-				E2B5A0E82751482B00945E47 /* GoLondonAPI */,
+				E2680B1127EBCADC004C37E9 /* GoLondonSDK */,
+				E2680B1627EBCE4A004C37E9 /* MapboxMaps */,
+				E2680B2D27EBE120004C37E9 /* Lottie */,
 			);
-			productName = "GaryTube (iOS)";
-			productReference = E2F890A6270700B000277863 /* Go London.app */;
+			productName = "Go London (iOS)";
+			productReference = E2FEF7E527E4AA87005132EF /* Go London.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E2F890AB270700B000277863 /* Go London (macOS) */ = {
+		E2FEF7EA27E4AA87005132EF /* Go London (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2F890D2270700B000277863 /* Build configuration list for PBXNativeTarget "Go London (macOS)" */;
+			buildConfigurationList = E2FEF7F927E4AA87005132EF /* Build configuration list for PBXNativeTarget "Go London (macOS)" */;
 			buildPhases = (
-				E2F890A8270700B000277863 /* Sources */,
-				E2F890A9270700B000277863 /* Frameworks */,
-				E2F890AA270700B000277863 /* Resources */,
+				E2FEF7E727E4AA87005132EF /* Sources */,
+				E2FEF7E827E4AA87005132EF /* Frameworks */,
+				E2FEF7E927E4AA87005132EF /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Go London (macOS)";
-			productName = "GaryTube (macOS)";
-			productReference = E2F890AC270700B000277863 /* Go London.app */;
+			packageProductDependencies = (
+				E2680B1927EBCE7F004C37E9 /* GoLondonSDK */,
+				E2680B1B27EBCE83004C37E9 /* MapboxMaps */,
+				E2680B3727EBE28A004C37E9 /* Lottie */,
+			);
+			productName = "Go London (macOS)";
+			productReference = E2FEF7EB27E4AA87005132EF /* Go London.app */;
 			productType = "com.apple.product-type.application";
-		};
-		E2F890B2270700B000277863 /* Tests iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E2F890D5270700B000277863 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
-			buildPhases = (
-				E2F890AF270700B000277863 /* Sources */,
-				E2F890B0270700B000277863 /* Frameworks */,
-				E2F890B1270700B000277863 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E2F890B5270700B000277863 /* PBXTargetDependency */,
-			);
-			name = "Tests iOS";
-			productName = "Tests iOS";
-			productReference = E2F890B3270700B000277863 /* Tests iOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		E2F890BE270700B000277863 /* Tests macOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E2F890D8270700B000277863 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
-			buildPhases = (
-				E2F890BB270700B000277863 /* Sources */,
-				E2F890BC270700B000277863 /* Frameworks */,
-				E2F890BD270700B000277863 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E2F890C1270700B000277863 /* PBXTargetDependency */,
-			);
-			name = "Tests macOS";
-			productName = "Tests macOS";
-			productReference = E2F890BF270700B000277863 /* Tests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E2F8909A270700AF00277863 /* Project object */ = {
+		E2FEF7D927E4AA85005132EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1300;
-				LastUpgradeCheck = 1300;
+				LastSwiftUpdateCheck = 1320;
+				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					E2AF758C2750435500CDD50E = {
-						CreatedOnToolsVersion = 13.0;
+					E2FEF7E427E4AA87005132EF = {
+						CreatedOnToolsVersion = 13.2;
 					};
-					E2F890A5270700B000277863 = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					E2F890AB270700B000277863 = {
-						CreatedOnToolsVersion = 13.0;
-					};
-					E2F890B2270700B000277863 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = E2F890A5270700B000277863;
-					};
-					E2F890BE270700B000277863 = {
-						CreatedOnToolsVersion = 13.0;
-						TestTargetID = E2F890AB270700B000277863;
+					E2FEF7EA27E4AA87005132EF = {
+						CreatedOnToolsVersion = 13.2;
 					};
 				};
 			};
-			buildConfigurationList = E2F8909D270700AF00277863 /* Build configuration list for PBXProject "Go London" */;
+			buildConfigurationList = E2FEF7DC27E4AA85005132EF /* Build configuration list for PBXProject "Go London" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -509,252 +520,149 @@
 				en,
 				Base,
 			);
-			mainGroup = E2F89099270700AF00277863;
+			mainGroup = E2FEF7D827E4AA85005132EF;
 			packageReferences = (
-				E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				E2B5A0E72751482B00945E47 /* XCRemoteSwiftPackageReference "GoLondonAPI" */,
+				E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */,
+				E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
-			productRefGroup = E2F890A7270700B000277863 /* Products */;
+			productRefGroup = E2FEF7E627E4AA87005132EF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2F890A5270700B000277863 /* Go London (iOS) */,
-				E2F890AB270700B000277863 /* Go London (macOS) */,
-				E2F890B2270700B000277863 /* Tests iOS */,
-				E2F890BE270700B000277863 /* Tests macOS */,
-				E2AF758C2750435500CDD50E /* GoLondonWidgetExtension */,
+				E2FEF7E427E4AA87005132EF /* Go London (iOS) */,
+				E2FEF7EA27E4AA87005132EF /* Go London (macOS) */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E2AF758B2750435500CDD50E /* Resources */ = {
+		E2FEF7E327E4AA87005132EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AF75982750435800CDD50E /* Assets.xcassets in Resources */,
+				E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */,
+				E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */,
+				E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */,
+				E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */,
+				E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */,
+				E2B8F9482836699100AAAB10 /* Dog_Franchesca.json in Resources */,
+				E2B8F95E2836699100AAAB10 /* Dog_Tom.json in Resources */,
+				E2FEF7F227E4AA87005132EF /* Assets.xcassets in Resources */,
+				E2B8F9602836699100AAAB10 /* LoadingGif.json in Resources */,
+				E2B8F94C2836699100AAAB10 /* SearchingGif.json in Resources */,
+				E2B8F94A2836699100AAAB10 /* Dog_Gromit.json in Resources */,
+				E2B8F95C2836699100AAAB10 /* Dog_Fabio.json in Resources */,
+				E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */,
+				E2680B3C27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
+				E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */,
+				E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2F890A4270700B000277863 /* Resources */ = {
+		E2FEF7E927E4AA87005132EF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F890CB270700B000277863 /* Assets.xcassets in Resources */,
-				E2C165D7270CF26600DC3B16 /* SearchingGif.json in Resources */,
-				E25AAC71270B8E3900A0749B /* Dog_Frankie.json in Resources */,
-				E25AAC77270B8E3900A0749B /* Dog_Tutu.json in Resources */,
-				E25AAC6F270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
-				E25AAC79270B8E3900A0749B /* Dog_Wally.json in Resources */,
-				E2F8910C270B8BA300277863 /* Dog_Fabio.json in Resources */,
-				E25AAC81270B94F200A0749B /* dogbark.wav in Resources */,
-				E25AAC73270B8E3900A0749B /* Dog_Gromit.json in Resources */,
-				E25AAC75270B8E3900A0749B /* Dog_Tom.json in Resources */,
-				E25AAC6D270B8E3900A0749B /* Dog_Rambo.json in Resources */,
-				E2111F72270F7F8600672C25 /* LoadingGif.json in Resources */,
-				E2F89106270B891200277863 /* Dog_Peter.json in Resources */,
-				E25AAC6B270B8E3900A0749B /* Dog_Louie.json in Resources */,
-				E25AAC69270B8E3900A0749B /* Dog_Polly.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890AA270700B000277863 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2F890CC270700B000277863 /* Assets.xcassets in Resources */,
-				E2C165D8270CF26600DC3B16 /* SearchingGif.json in Resources */,
-				E25AAC72270B8E3900A0749B /* Dog_Frankie.json in Resources */,
-				E25AAC78270B8E3900A0749B /* Dog_Tutu.json in Resources */,
-				E25AAC70270B8E3900A0749B /* Dog_Franchesca.json in Resources */,
-				E25AAC7A270B8E3900A0749B /* Dog_Wally.json in Resources */,
-				E2F8910D270B8BA300277863 /* Dog_Fabio.json in Resources */,
-				E25AAC82270B94F200A0749B /* dogbark.wav in Resources */,
-				E25AAC74270B8E3900A0749B /* Dog_Gromit.json in Resources */,
-				E25AAC76270B8E3900A0749B /* Dog_Tom.json in Resources */,
-				E25AAC6E270B8E3900A0749B /* Dog_Rambo.json in Resources */,
-				E2111F73270F7F8600672C25 /* LoadingGif.json in Resources */,
-				E2F89107270B891200277863 /* Dog_Peter.json in Resources */,
-				E25AAC6C270B8E3900A0749B /* Dog_Louie.json in Resources */,
-				E25AAC6A270B8E3900A0749B /* Dog_Polly.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890B1270700B000277863 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890BD270700B000277863 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				E2B8F9572836699100AAAB10 /* Dog_PurpleWalking.json in Resources */,
+				E2B8F9632836699100AAAB10 /* Dog_Frankie.json in Resources */,
+				E2B8F9592836699100AAAB10 /* Dog_Peter.json in Resources */,
+				E2B8F9532836699100AAAB10 /* Dog_Tutu.json in Resources */,
+				E2B8F9552836699100AAAB10 /* Dog_Louie.json in Resources */,
+				E2B8F9492836699100AAAB10 /* Dog_Franchesca.json in Resources */,
+				E2B8F95F2836699100AAAB10 /* Dog_Tom.json in Resources */,
+				E2FEF7F327E4AA87005132EF /* Assets.xcassets in Resources */,
+				E2B8F9612836699100AAAB10 /* LoadingGif.json in Resources */,
+				E2B8F94D2836699100AAAB10 /* SearchingGif.json in Resources */,
+				E2B8F94B2836699100AAAB10 /* Dog_Gromit.json in Resources */,
+				E2B8F95D2836699100AAAB10 /* Dog_Fabio.json in Resources */,
+				E2B8F95B2836699100AAAB10 /* Dog_Rambo.json in Resources */,
+				E2680B3D27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
+				E2B8F9512836699100AAAB10 /* Dog_Wally.json in Resources */,
+				E2B8F94F2836699100AAAB10 /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E2AF75892750435500CDD50E /* Sources */ = {
+		E2FEF7E127E4AA87005132EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2AF759A2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */,
-				E2AF75952750435500CDD50E /* GoLondonWidget.swift in Sources */,
+				E2A36A6227F63BA400AD8ECD /* MapButton.swift in Sources */,
+				E2A36A6D27F7706200AD8ECD /* MapSearchPanel.swift in Sources */,
+				E29DBDE9281D4E3900CA047B /* Environment+GoLondon.swift in Sources */,
+				E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */,
+				E29DBDE3281D467E00CA047B /* GLTabBarViewModel.swift in Sources */,
+				E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */,
+				E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */,
+				E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */,
+				E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */,
+				E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */,
+				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
+				E2C33D1B2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */,
+				E2680B3627EBE231004C37E9 /* RequestLocation.swift in Sources */,
+				E2680B4027EBE49E004C37E9 /* LocationManager.swift in Sources */,
+				E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */,
+				E2680B4427EE715A004C37E9 /* LocationPermission.swift in Sources */,
+				E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */,
+				E29DBDE0281D466F00CA047B /* GLTabBar.swift in Sources */,
+				E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */,
+				E2680B2627EBDA57004C37E9 /* GoLondon.swift in Sources */,
+				E2A36A6B27F6723500AD8ECD /* StopPoint+GoLondon.swift in Sources */,
+				E2A36A6927F6627000AD8ECD /* Line_Etc+GoLondon.swift in Sources */,
+				E2DD5D6A280C813F00D0ECF5 /* MapRepresentableViewModel.swift in Sources */,
+				E2A36A7127F772B100AD8ECD /* GLTextField.swift in Sources */,
+				E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */,
+				E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */,
+				E2680B3327EBE173004C37E9 /* LottieView.swift in Sources */,
+				E2A36A7427F7825900AD8ECD /* View+GoLondon.swift in Sources */,
+				E2FF049B27F0FD86003A2ABB /* StopPointMarker.swift in Sources */,
+				E29DBDDC281D462100CA047B /* LineStatusPage.swift in Sources */,
+				E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
+				E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */,
+				E2A36A6527F65DFC00AD8ECD /* HomeViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2F890A2270700B000277863 /* Sources */ = {
+		E2FEF7E727E4AA87005132EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F89109270B896900277863 /* DogGif.swift in Sources */,
-				E2111F7827104A9000672C25 /* CustomHeaderView.swift in Sources */,
-				E2F890E3270706BE00277863 /* Constants.swift in Sources */,
-				E208307B2714A2A900721A73 /* MapView.swift in Sources */,
-				E2F890C9270700B000277863 /* ContentView.swift in Sources */,
-				E262BAEB2721805F0057C80C /* Foundation+GoLondon.swift in Sources */,
-				E2F890F92707A6E000277863 /* LinesOverview.swift in Sources */,
-				E2F890EF2707583400277863 /* Color+GaryTube.swift in Sources */,
-				E2F890C7270700B000277863 /* GaryTubeApp.swift in Sources */,
-				E2510F9B270BCA6A00A7AEBE /* DirectionsView.swift in Sources */,
-				E2AF759B2750435800CDD50E /* GoLondonWidget.intentdefinition in Sources */,
-				E2F890F62707639600277863 /* LineStatusView.swift in Sources */,
-				E25AAC7D270B935400A0749B /* SoundService.swift in Sources */,
-				E2510F98270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
-				E2F890F227075E3300277863 /* View+GaryTube.swift in Sources */,
-				E2111F7527103FC600672C25 /* StopPointOverview.swift in Sources */,
-				E25AAC84270BB1DB00A0749B /* TabViewManager.swift in Sources */,
-				E2F89102270B888600277863 /* LottieView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890A8270700B000277863 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2F8910A270B896900277863 /* DogGif.swift in Sources */,
-				E2111F7927104A9000672C25 /* CustomHeaderView.swift in Sources */,
-				E2F890CA270700B000277863 /* ContentView.swift in Sources */,
-				E208307C2714A2A900721A73 /* MapView.swift in Sources */,
-				E262BAEC2721805F0057C80C /* Foundation+GoLondon.swift in Sources */,
-				E2F890C8270700B000277863 /* GaryTubeApp.swift in Sources */,
-				E2F890FA2707A6E000277863 /* LinesOverview.swift in Sources */,
-				E2F890E4270706BE00277863 /* Constants.swift in Sources */,
-				E2F890F02707583400277863 /* Color+GaryTube.swift in Sources */,
-				E2510F9C270BCA6A00A7AEBE /* DirectionsView.swift in Sources */,
-				E2F890F72707639600277863 /* LineStatusView.swift in Sources */,
-				E25AAC7E270B935400A0749B /* SoundService.swift in Sources */,
-				E2510F99270BBA6200A7AEBE /* UIApplication+GaryGo.swift in Sources */,
-				E2F890F327075E3300277863 /* View+GaryTube.swift in Sources */,
-				E2111F7627103FC600672C25 /* StopPointOverview.swift in Sources */,
-				E25AAC85270BB1DB00A0749B /* TabViewManager.swift in Sources */,
-				E2F89103270B888600277863 /* LottieView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890AF270700B000277863 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2F890BA270700B000277863 /* Tests_iOSLaunchTests.swift in Sources */,
-				E2F890B8270700B000277863 /* Tests_iOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2F890BB270700B000277863 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2F890C6270700B000277863 /* Tests_macOSLaunchTests.swift in Sources */,
-				E2F890C4270700B000277863 /* Tests_macOS.swift in Sources */,
+				E2A36A7227F772B100AD8ECD /* GLTextField.swift in Sources */,
+				E2680B2027EBCFDB004C37E9 /* HomeView.swift in Sources */,
+				E29DBDE4281D467E00CA047B /* GLTabBarViewModel.swift in Sources */,
+				E2B9DFC7281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */,
+				E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */,
+				E2680B2427EBD02B004C37E9 /* MapView.swift in Sources */,
+				E2FEF7F127E4AA87005132EF /* ContentView.swift in Sources */,
+				E2680B3527EBE231004C37E9 /* RequestLocation.swift in Sources */,
+				E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */,
+				E29DBDD8281B53BE00CA047B /* Point+GoLondon.swift in Sources */,
+				E2680B4127EBE49E004C37E9 /* LocationManager.swift in Sources */,
+				E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */,
+				E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */,
+				E29DBDEA281D4E3900CA047B /* Environment+GoLondon.swift in Sources */,
+				E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */,
+				E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */,
+				E2C33D1C2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */,
+				E29DBDE1281D466F00CA047B /* GLTabBar.swift in Sources */,
+				E2680B2727EBDA57004C37E9 /* GoLondon.swift in Sources */,
+				E2B8F938283564C900AAAB10 /* LineOverviewViewModel.swift in Sources */,
+				E2680B3427EBE173004C37E9 /* LottieView.swift in Sources */,
+				E2DD5D6B280C813F00D0ECF5 /* MapRepresentableViewModel.swift in Sources */,
+				E29DBDDD281D462100CA047B /* LineStatusPage.swift in Sources */,
+				E2F7EB7027F8D68800A5489B /* FadingText.swift in Sources */,
+				E2A36A6E27F7706200AD8ECD /* MapSearchPanel.swift in Sources */,
+				E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		E2AF759D2750435800CDD50E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E2AF758C2750435500CDD50E /* GoLondonWidgetExtension */;
-			targetProxy = E2AF759C2750435800CDD50E /* PBXContainerItemProxy */;
-		};
-		E2F890B5270700B000277863 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E2F890A5270700B000277863 /* Go London (iOS) */;
-			targetProxy = E2F890B4270700B000277863 /* PBXContainerItemProxy */;
-		};
-		E2F890C1270700B000277863 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E2F890AB270700B000277863 /* Go London (macOS) */;
-			targetProxy = E2F890C0270700B000277863 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		E2AF75A02750435800CDD50E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GoLondonWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = GoLondonWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon.GoLondonWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E2AF75A12750435800CDD50E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GoLondonWidget/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = GoLondonWidget;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon.GoLondonWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E2F890CD270700B000277863 /* Debug */ = {
+		E2FEF7F427E4AA87005132EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -813,7 +721,7 @@
 			};
 			name = Debug;
 		};
-		E2F890CE270700B000277863 /* Release */ = {
+		E2FEF7F527E4AA87005132EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -865,10 +773,9 @@
 			};
 			name = Release;
 		};
-		E2F890D0270700B000277863 /* Debug */ = {
+		E2FEF7F727E4AA87005132EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -877,10 +784,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Go-London--iOS--Info.plist";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Location;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Location;
-				INFOPLIST_KEY_NSLocationUsageDescription = Location;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -892,7 +798,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon;
+				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London.dev";
 				PRODUCT_NAME = "Go London";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -901,10 +807,9 @@
 			};
 			name = Debug;
 		};
-		E2F890D1270700B000277863 /* Release */ = {
+		E2FEF7F827E4AA87005132EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -913,10 +818,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Go-London--iOS--Info.plist";
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = Location;
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = Location;
-				INFOPLIST_KEY_NSLocationUsageDescription = Location;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = Location;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -928,7 +832,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon;
+				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London.dev";
 				PRODUCT_NAME = "Go London";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -938,12 +842,13 @@
 			};
 			name = Release;
 		};
-		E2F890D3270700B000277863 /* Debug */ = {
+		E2FEF7FA27E4AA87005132EF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -951,14 +856,15 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Go-London--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon;
+				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London";
 				PRODUCT_NAME = "Go London";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -966,12 +872,13 @@
 			};
 			name = Debug;
 		};
-		E2F890D4270700B000277863 /* Release */ = {
+		E2FEF7FB27E4AA87005132EF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -979,175 +886,48 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Go-London--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = online.tomk.GoLondon;
+				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London";
 				PRODUCT_NAME = "Go London";
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		E2F890D6270700B000277863 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "GaryTube (iOS)";
-			};
-			name = Debug;
-		};
-		E2F890D7270700B000277863 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Tests-iOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "GaryTube (iOS)";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E2F890D9270700B000277863 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "GaryTube (macOS)";
-			};
-			name = Debug;
-		};
-		E2F890DA270700B000277863 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				GENERATE_INFOPLIST_FILE = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.3;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "GaryTube (macOS)";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2AF75A22750435800CDD50E /* Build configuration list for PBXNativeTarget "GoLondonWidgetExtension" */ = {
+		E2FEF7DC27E4AA85005132EF /* Build configuration list for PBXProject "Go London" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2AF75A02750435800CDD50E /* Debug */,
-				E2AF75A12750435800CDD50E /* Release */,
+				E2FEF7F427E4AA87005132EF /* Debug */,
+				E2FEF7F527E4AA87005132EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2F8909D270700AF00277863 /* Build configuration list for PBXProject "Go London" */ = {
+		E2FEF7F627E4AA87005132EF /* Build configuration list for PBXNativeTarget "Go London (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2F890CD270700B000277863 /* Debug */,
-				E2F890CE270700B000277863 /* Release */,
+				E2FEF7F727E4AA87005132EF /* Debug */,
+				E2FEF7F827E4AA87005132EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2F890CF270700B000277863 /* Build configuration list for PBXNativeTarget "Go London (iOS)" */ = {
+		E2FEF7F927E4AA87005132EF /* Build configuration list for PBXNativeTarget "Go London (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E2F890D0270700B000277863 /* Debug */,
-				E2F890D1270700B000277863 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E2F890D2270700B000277863 /* Build configuration list for PBXNativeTarget "Go London (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E2F890D3270700B000277863 /* Debug */,
-				E2F890D4270700B000277863 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E2F890D5270700B000277863 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E2F890D6270700B000277863 /* Debug */,
-				E2F890D7270700B000277863 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E2F890D8270700B000277863 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E2F890D9270700B000277863 /* Debug */,
-				E2F890DA270700B000277863 /* Release */,
+				E2FEF7FA27E4AA87005132EF /* Debug */,
+				E2FEF7FB27E4AA87005132EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1155,53 +935,64 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		E2B5A0E72751482B00945E47 /* XCRemoteSwiftPackageReference "GoLondonAPI" */ = {
+		E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Tom-Knighton/GoLondonAPI";
+			repositoryURL = "https://github.com/Tom-Knighton/GoLondonSDK-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.5.0;
+			};
+		};
+		E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				branch = master;
 				kind = branch;
 			};
 		};
-		E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
-		E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E2AF75AC27504BFD00CDD50E /* GoLondonModels */ = {
+		E2680B1127EBCADC004C37E9 /* GoLondonSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = GoLondonModels;
+			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
+			productName = GoLondonSDK;
 		};
-		E2B5A0E82751482B00945E47 /* GoLondonAPI */ = {
+		E2680B1627EBCE4A004C37E9 /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E2B5A0E72751482B00945E47 /* XCRemoteSwiftPackageReference "GoLondonAPI" */;
-			productName = GoLondonAPI;
+			package = E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
 		};
-		E2F890FC270908CE00277863 /* Introspect */ = {
+		E2680B1927EBCE7F004C37E9 /* GoLondonSDK */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E2F890FB270908CE00277863 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
+			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
+			productName = GoLondonSDK;
 		};
-		E2F890FF270B87B500277863 /* Lottie */ = {
+		E2680B1B27EBCE83004C37E9 /* MapboxMaps */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E2F890FE270B87B500277863 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			package = E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
+		};
+		E2680B2D27EBE120004C37E9 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		E2680B3727EBE28A004C37E9 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = E2F8909A270700AF00277863 /* Project object */;
+	rootObject = E2FEF7D927E4AA85005132EF /* Project object */;
 }
