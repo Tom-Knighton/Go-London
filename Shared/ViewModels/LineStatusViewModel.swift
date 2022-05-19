@@ -8,10 +8,18 @@
 import Foundation
 import GoLondonSDK
 
-struct DogGif {
+struct DogGif: WeightedElement {
     let dogName: String
     let dogGifName: String
-    let rarity: Int
+    var weighting: Int
+    var isFrog: Bool = false
+    
+    init(dogName: String, dogGifName: String, weighting: Int, isFrog: Bool = false) {
+        self.dogName = dogName
+        self.dogGifName = dogGifName
+        self.weighting = weighting
+        self.isFrog = isFrog
+    }
 }
 
 @MainActor
@@ -27,19 +35,20 @@ final class LineStatusViewModel: ObservableObject {
     
     func chooseDogGif() {
         let dogGifs: [DogGif] = [
-            DogGif(dogName: "Prissy Peter", dogGifName: "Dog_Peter", rarity: 1),
-            DogGif(dogName: "Funky Franchesca", dogGifName: "Dog_Franchesca", rarity: 1),
-            DogGif(dogName: "Fun Frankie", dogGifName: "Dog_Frankie", rarity: 1),
-            DogGif(dogName: "Grumpy Gromit", dogGifName: "Dog_Gromit", rarity: 1),
-            DogGif(dogName: "Licky Louie", dogGifName: "Dog_Louie", rarity: 1),
-            DogGif(dogName: "Posturing Polly", dogGifName: "Dog_Polly", rarity: 1),
-            DogGif(dogName: "Rabid Rambo", dogGifName: "Dog_Rambo", rarity: 1),
-            DogGif(dogName: "Troublesome Tom", dogGifName: "Dog_Tom", rarity: 1),
-            DogGif(dogName: "Timid Tutu", dogGifName: "Dog_Tutu", rarity: 1),
-            DogGif(dogName: "Silly Stephanie", dogGifName: "Dog_Wally", rarity: 1),
-            DogGif(dogName: "Farting Fabio", dogGifName: "Dog_Fabio", rarity: 1),
+            DogGif(dogName: "Prissy Peter", dogGifName: "Dog_Peter", weighting: 100),
+            DogGif(dogName: "Funky Franchesca", dogGifName: "Dog_Franchesca", weighting: 100),
+            DogGif(dogName: "Fun Frankie", dogGifName: "Dog_Frankie", weighting: 100),
+            DogGif(dogName: "Grumpy Gromit", dogGifName: "Dog_Gromit", weighting: 100),
+            DogGif(dogName: "Licky Louie", dogGifName: "Dog_Louie", weighting: 100),
+            DogGif(dogName: "Posturing Polly", dogGifName: "Dog_Polly", weighting: 100),
+            DogGif(dogName: "Rabid Rambo", dogGifName: "Dog_Rambo", weighting: 100),
+            DogGif(dogName: "Troublesome Tom", dogGifName: "Dog_Tom", weighting: 100),
+            DogGif(dogName: "Timid Tutu", dogGifName: "Dog_Tutu", weighting: 100),
+            DogGif(dogName: "Silly Stephanie", dogGifName: "Dog_Wally", weighting: 100),
+            DogGif(dogName: "Farting Fabio", dogGifName: "Dog_Fabio", weighting: 100),
+            DogGif(dogName: "Rare Raymond the Frog", dogGifName: "Frog_Raymond", weighting: 70, isFrog: true)
         ]
         
-        self.dogGif = dogGifs.randomElement() ?? dogGifs[0]
+        self.dogGif = dogGifs.weightedRandomElement() ?? dogGifs[0]
     }
 }
