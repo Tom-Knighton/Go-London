@@ -13,6 +13,7 @@ final class LineOverviewViewModel: ObservableObject {
     
     @Published var lines: [Line] = []
     @Published var isLoading: Bool = false
+    @Published var overviewString: LineModeGroupStatusType = .unk
     
     func fetchLines() async {
         Task {
@@ -25,7 +26,16 @@ final class LineOverviewViewModel: ObservableObject {
                     return (a.name ?? "") < (b.name ?? "")
                 }
             })
+            
+            await self.fetchOverview()
+            
             self.isLoading = false
+        }
+    }
+    
+    func fetchOverview() async {
+        Task {
+            self.overviewString = await GLSDK.Lines.Status(for: self.getLineModesToSearch())
         }
     }
     

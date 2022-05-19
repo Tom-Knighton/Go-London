@@ -177,3 +177,23 @@ extension Line: Equatable {
         lhs.id == rhs.id
     }
 }
+
+extension LineModeGroupStatusType {
+    
+    var textColour: Color {
+        switch self {
+        case .unk:
+            return .primary
+        case .allGood:
+            return .green
+        case .allProblems:
+            return .red
+        case .manyProblems:
+            return .red
+        case .mostGood:
+            return .green
+        case .someProblems:
+            return .yellow
+        }
+    }
+}
