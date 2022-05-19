@@ -12,10 +12,14 @@ import GoLondonSDK
 struct LineOverviewRow: View {
     
     @State var line: Line
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         ZStack {
             LineMode.lineColour(for: line.id ?? "")
+                .if(self.colorScheme == .dark) { view in
+                    view.overlay(Material.ultraThin)
+                }
                 .cornerRadius(15)
             
             VStack {
@@ -31,7 +35,6 @@ struct LineOverviewRow: View {
             .cornerRadius(15, antialiased: true)
             .shadow(radius: 15)
         }
-//        .foregroundColor(line.id == "northern" ? .white : .primary)
         .foregroundColor(.white)
     }
     
@@ -47,12 +50,14 @@ struct LineOverviewRow: View {
             HStack {
                 if !isGood {
                     Text(Image(systemName: "exclamationmark.triangle.fill"))
+                        .foregroundColor(Color.yellow)
                 }
                 Text("Status - \(status.statusSeverityDescription ?? "")")
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal, 8)
                 if !isGood {
                     Text(Image(systemName: "exclamationmark.triangle.fill"))
+                        .foregroundColor(Color.yellow)
                 }
             }
         }
