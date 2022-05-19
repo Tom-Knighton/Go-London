@@ -25,7 +25,7 @@ struct GeometryGetterMod: ViewModifier {
 
 struct ContentView: View {
     
-    @ObservedObject var tabManager: GLTabBarViewModel = GLTabBarViewModel(with: [
+    @StateObject var tabManager: GLTabBarViewModel = GLTabBarViewModel(with: [
         GLTabBarViewModel.GLTabPage(page: .home, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Map", iconName: "map", selectedIconName: "map.fill", fontSize: 30), isSelected: false),
         GLTabBarViewModel.GLTabPage(page: .lineStatus, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24), isSelected: false)
     ], currentPageIndex: 0)
@@ -37,12 +37,15 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: -8) {
-            switch self.tabManager.currentPage.page {
-            case .home:
+            
+            ZStack {
                 HomeView(tabBarHeight: $height)
-            case .lineStatus:
+                    .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
+                
                 LineStatusPage()
+                    .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
             }
+            
 
             GLTabBar()
                 .environmentObject(tabManager)

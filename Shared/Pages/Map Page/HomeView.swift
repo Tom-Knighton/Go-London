@@ -15,11 +15,11 @@ public struct HomeView : View {
     @Environment(\.colorScheme) var colourScheme
     @Environment(\.safeAreaInsets) var edges
     
-    @ObservedObject private var model: HomeViewModel = HomeViewModel(radius: 850)
+    @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
 
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: GoLondon.GetDarkStyleURL(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     
-    @ObservedObject private var keyboard: KeyboardResponder = KeyboardResponder()
+    @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     
     @Binding var tabBarHeight: CGFloat
     

@@ -22,6 +22,16 @@ extension View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
     }
     
+    /// Hides view conditionally
+    @ViewBuilder
+    func hiddenIf(_ condition: Bool) -> some View {
+        if condition {
+            self.hidden()
+        } else {
+            self
+        }
+    }
+    
 }
 
 
