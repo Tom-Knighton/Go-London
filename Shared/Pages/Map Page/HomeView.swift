@@ -70,7 +70,7 @@ public struct HomeView : View {
     func mapSearchPanel() -> some View {
         Spacer()
         MapSearchPanelView()
-        Spacer().frame(height: max(16, keyboard.currentHeight - self.tabBarHeight + 16))
+        Spacer().frame(height: 16)
     }
     
     ///  A series of buttons containing filters for a TfL map search

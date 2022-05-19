@@ -39,13 +39,19 @@ struct ContentView: View {
         VStack(spacing: -8) {
             
             ZStack {
-                HomeView(tabBarHeight: $height)
-                    .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
+                NavigationView {
+                    HomeView(tabBarHeight: $height)
+                        .navigationBarHidden(true)
+                }
+                .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
                 
-                LineStatusPage()
-                    .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
+                NavigationView {
+                    LineStatusPage()
+                        .navigationBarHidden(false)
+                        .navigationTitle("TfL Status:")
+                }
+                .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
             }
-            
 
             GLTabBar()
                 .environmentObject(tabManager)
