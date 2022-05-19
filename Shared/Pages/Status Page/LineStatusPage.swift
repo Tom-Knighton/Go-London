@@ -10,9 +10,32 @@ import SwiftUI
 
 struct LineStatusPage: View {
     
+    @StateObject private var viewModel: LineOverviewViewModel = LineOverviewViewModel()
+    
     var body: some View {
-        VStack {
-            Text("Smelly")
+        ScrollView {
+            if viewModel.isLoading {
+                VStack {
+                    Spacer()
+                    LottieView(name: "Dog_PurpleWalking", loopMode: .loop)
+                        .frame(width: 200, height: 200, alignment: .center)
+                    Text("Loading...")
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                    Spacer()
+                }
+            } else {
+                LazyVStack {
+                    ForEach(viewModel.lines, id: \.id) { line in
+                        LineOverviewRow(line: line)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            Task {
+                await self.viewModel.fetchLines()
+            }
         }
     }
 }

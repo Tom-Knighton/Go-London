@@ -171,3 +171,9 @@ extension LineMode {
         }
     }
 }
+
+extension Line: Equatable {
+    public static func == (lhs: Line, rhs: Line) -> Bool {
+        lhs.id == rhs.id
+    }    
+}

@@ -54,6 +54,38 @@
 		E2A36A7427F7825900AD8ECD /* View+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */; };
 		E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */; };
 		E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AE9B3627F608E90055299A /* Color+GoLondon.swift */; };
+		E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */; };
+		E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */; };
+		E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */; };
+		E2B8F938283564C900AAAB10 /* LineOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */; };
+		E2B8F9482836699100AAAB10 /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */; };
+		E2B8F9492836699100AAAB10 /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */; };
+		E2B8F94A2836699100AAAB10 /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */; };
+		E2B8F94B2836699100AAAB10 /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */; };
+		E2B8F94C2836699100AAAB10 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93C2836699100AAAB10 /* SearchingGif.json */; };
+		E2B8F94D2836699100AAAB10 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93C2836699100AAAB10 /* SearchingGif.json */; };
+		E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
+		E2B8F94F2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
+		E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
+		E2B8F9512836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
+		E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
+		E2B8F9532836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
+		E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
+		E2B8F9552836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
+		E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
+		E2B8F9572836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
+		E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
+		E2B8F9592836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
+		E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
+		E2B8F95B2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
+		E2B8F95C2836699100AAAB10 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9442836699100AAAB10 /* Dog_Fabio.json */; };
+		E2B8F95D2836699100AAAB10 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9442836699100AAAB10 /* Dog_Fabio.json */; };
+		E2B8F95E2836699100AAAB10 /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9452836699100AAAB10 /* Dog_Tom.json */; };
+		E2B8F95F2836699100AAAB10 /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9452836699100AAAB10 /* Dog_Tom.json */; };
+		E2B8F9602836699100AAAB10 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9462836699100AAAB10 /* LoadingGif.json */; };
+		E2B8F9612836699100AAAB10 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9462836699100AAAB10 /* LoadingGif.json */; };
+		E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
+		E2B8F9632836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
 		E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
 		E2B9DFC7281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
 		E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
@@ -100,6 +132,22 @@
 		E2A36A7027F772B100AD8ECD /* GLTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GLTextField.swift; sourceTree = "<group>"; };
 		E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+GoLondon.swift"; sourceTree = "<group>"; };
 		E2AE9B3627F608E90055299A /* Color+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+GoLondon.swift"; sourceTree = "<group>"; };
+		E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineOverviewRow.swift; sourceTree = "<group>"; };
+		E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineOverviewViewModel.swift; sourceTree = "<group>"; };
+		E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Franchesca.json; sourceTree = "<group>"; };
+		E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Gromit.json; sourceTree = "<group>"; };
+		E2B8F93C2836699100AAAB10 /* SearchingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchingGif.json; sourceTree = "<group>"; };
+		E2B8F93D2836699100AAAB10 /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
+		E2B8F93E2836699100AAAB10 /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
+		E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tutu.json; sourceTree = "<group>"; };
+		E2B8F9402836699100AAAB10 /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
+		E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_PurpleWalking.json; sourceTree = "<group>"; };
+		E2B8F9422836699100AAAB10 /* Dog_Peter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Peter.json; sourceTree = "<group>"; };
+		E2B8F9432836699100AAAB10 /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
+		E2B8F9442836699100AAAB10 /* Dog_Fabio.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Fabio.json; sourceTree = "<group>"; };
+		E2B8F9452836699100AAAB10 /* Dog_Tom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tom.json; sourceTree = "<group>"; };
+		E2B8F9462836699100AAAB10 /* LoadingGif.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoadingGif.json; sourceTree = "<group>"; };
+		E2B8F9472836699100AAAB10 /* Dog_Frankie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Frankie.json; sourceTree = "<group>"; };
 		E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPanelViewModel.swift; sourceTree = "<group>"; };
 		E2C33D172808315200C2E373 /* Notification+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+GoLondon.swift"; sourceTree = "<group>"; };
 		E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointDetailMarkerView.swift; sourceTree = "<group>"; };
@@ -177,6 +225,7 @@
 		E2680B2F27EBE128004C37E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E2B8F9322835638500AAAB10 /* Lines */,
 				E29DBDDE281D465B00CA047B /* Tab Bar */,
 				E2A36A6027F63B9A00AD8ECD /* Buttons */,
 				E2FF049927F0FD79003A2ABB /* Markers */,
@@ -214,6 +263,20 @@
 		E2680B3A27EBE2C2004C37E9 /* Lottie Files */ = {
 			isa = PBXGroup;
 			children = (
+				E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */,
+				E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */,
+				E2B8F93C2836699100AAAB10 /* SearchingGif.json */,
+				E2B8F93D2836699100AAAB10 /* Dog_Polly.json */,
+				E2B8F93E2836699100AAAB10 /* Dog_Wally.json */,
+				E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */,
+				E2B8F9402836699100AAAB10 /* Dog_Louie.json */,
+				E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */,
+				E2B8F9422836699100AAAB10 /* Dog_Peter.json */,
+				E2B8F9432836699100AAAB10 /* Dog_Rambo.json */,
+				E2B8F9442836699100AAAB10 /* Dog_Fabio.json */,
+				E2B8F9452836699100AAAB10 /* Dog_Tom.json */,
+				E2B8F9462836699100AAAB10 /* LoadingGif.json */,
+				E2B8F9472836699100AAAB10 /* Dog_Frankie.json */,
 				E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */,
 			);
 			path = "Lottie Files";
@@ -254,6 +317,7 @@
 		E29DBDD9281D45B200CA047B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				E2B8F93128355F4600AAAB10 /* Stop Page */,
 				E29DBDDA281D45BD00CA047B /* Status Page */,
 				E2680B1D27EBCFCD004C37E9 /* Map Page */,
 			);
@@ -291,6 +355,7 @@
 				E2DD5D69280C813F00D0ECF5 /* MapRepresentableViewModel.swift */,
 				E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */,
 				E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */,
+				E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,6 +367,21 @@
 				E2F7EB6E27F8D68800A5489B /* FadingText.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		E2B8F93128355F4600AAAB10 /* Stop Page */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Stop Page";
+			sourceTree = "<group>";
+		};
+		E2B8F9322835638500AAAB10 /* Lines */ = {
+			isa = PBXGroup;
+			children = (
+				E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */,
+			);
+			path = Lines;
 			sourceTree = "<group>";
 		};
 		E2FEF7D827E4AA85005132EF = {
@@ -461,8 +541,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */,
+				E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */,
+				E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */,
+				E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */,
+				E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */,
+				E2B8F9482836699100AAAB10 /* Dog_Franchesca.json in Resources */,
+				E2B8F95E2836699100AAAB10 /* Dog_Tom.json in Resources */,
 				E2FEF7F227E4AA87005132EF /* Assets.xcassets in Resources */,
+				E2B8F9602836699100AAAB10 /* LoadingGif.json in Resources */,
+				E2B8F94C2836699100AAAB10 /* SearchingGif.json in Resources */,
+				E2B8F94A2836699100AAAB10 /* Dog_Gromit.json in Resources */,
+				E2B8F95C2836699100AAAB10 /* Dog_Fabio.json in Resources */,
+				E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */,
 				E2680B3C27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
+				E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */,
+				E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,8 +564,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2B8F9572836699100AAAB10 /* Dog_PurpleWalking.json in Resources */,
+				E2B8F9632836699100AAAB10 /* Dog_Frankie.json in Resources */,
+				E2B8F9592836699100AAAB10 /* Dog_Peter.json in Resources */,
+				E2B8F9532836699100AAAB10 /* Dog_Tutu.json in Resources */,
+				E2B8F9552836699100AAAB10 /* Dog_Louie.json in Resources */,
+				E2B8F9492836699100AAAB10 /* Dog_Franchesca.json in Resources */,
+				E2B8F95F2836699100AAAB10 /* Dog_Tom.json in Resources */,
 				E2FEF7F327E4AA87005132EF /* Assets.xcassets in Resources */,
+				E2B8F9612836699100AAAB10 /* LoadingGif.json in Resources */,
+				E2B8F94D2836699100AAAB10 /* SearchingGif.json in Resources */,
+				E2B8F94B2836699100AAAB10 /* Dog_Gromit.json in Resources */,
+				E2B8F95D2836699100AAAB10 /* Dog_Fabio.json in Resources */,
+				E2B8F95B2836699100AAAB10 /* Dog_Rambo.json in Resources */,
 				E2680B3D27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
+				E2B8F9512836699100AAAB10 /* Dog_Wally.json in Resources */,
+				E2B8F94F2836699100AAAB10 /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +597,7 @@
 				E29DBDE3281D467E00CA047B /* GLTabBarViewModel.swift in Sources */,
 				E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */,
 				E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */,
+				E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */,
 				E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */,
 				E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */,
 				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
@@ -505,6 +614,7 @@
 				E2A36A6927F6627000AD8ECD /* LineMode+GoLondon.swift in Sources */,
 				E2DD5D6A280C813F00D0ECF5 /* MapRepresentableViewModel.swift in Sources */,
 				E2A36A7127F772B100AD8ECD /* GLTextField.swift in Sources */,
+				E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */,
 				E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */,
 				E2680B3327EBE173004C37E9 /* LottieView.swift in Sources */,
 				E2A36A7427F7825900AD8ECD /* View+GoLondon.swift in Sources */,
@@ -535,9 +645,11 @@
 				E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */,
 				E29DBDEA281D4E3900CA047B /* Environment+GoLondon.swift in Sources */,
 				E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */,
+				E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */,
 				E2C33D1C2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */,
 				E29DBDE1281D466F00CA047B /* GLTabBar.swift in Sources */,
 				E2680B2727EBDA57004C37E9 /* GoLondon.swift in Sources */,
+				E2B8F938283564C900AAAB10 /* LineOverviewViewModel.swift in Sources */,
 				E2680B3427EBE173004C37E9 /* LottieView.swift in Sources */,
 				E2DD5D6B280C813F00D0ECF5 /* MapRepresentableViewModel.swift in Sources */,
 				E29DBDDD281D462100CA047B /* LineStatusPage.swift in Sources */,
