@@ -32,7 +32,7 @@ struct AllLinesStatusPage: View {
                     self.overviewTooltip()
                     LazyVStack {
                         ForEach(viewModel.lines, id: \.id) { line in
-                            NavigationLink(destination: LinePage(viewModel: LineStatusViewModel(for: line))) {
+                            NavigationLink(destination: NavigationLazyView(LinePage(viewModel: LineStatusViewModel(for: line)))) {
                                 LineOverviewRow(line: line)
                             }
                         }

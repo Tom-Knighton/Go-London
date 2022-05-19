@@ -18,7 +18,7 @@ final class LineOverviewViewModel: ObservableObject {
     func fetchLines() async {
         Task {
             self.isLoading = true
-            let lines = await GLSDK.Lines.Lines(for: self.getLineModesToSearch())
+            let lines = await GLSDK.Lines.Lines(for: self.getLineModesToSearch(), includeDetails: true)
             self.lines = lines.sorted(by: { a, b in
                 if a.currentStatus?.statusSeverity != b.currentStatus?.statusSeverity {
                     return a.currentStatus?.statusSeverity != 10

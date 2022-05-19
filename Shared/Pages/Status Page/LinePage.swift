@@ -36,7 +36,17 @@ struct LinePage: View {
                     }
                 }
                 
+                if let disruption = status?.disruption,
+                   let routes = disruption.affectedRoutes,
+                   !routes.isEmpty {
+                    self.affectedRoutes(for: disruption)
+                }
                 
+                if status?.statusSeverity == 10 {
+                    self.doggyView()
+                }
+                
+                Spacer().frame(height: 16)
             }
         }
         .background(Color.layer1)
@@ -49,6 +59,71 @@ struct LinePage: View {
         }
     }
     
+    //MARK: - View Builders
+    
+    /// A view showing an animated dog, when tapped produces a bark sound
+    @ViewBuilder
+    func doggyView() -> some View {
+        VStack {
+            if let dog = self.viewModel.dogGif {
+                LottieView(name: dog.dogGifName, loopMode: .loop)
+                    .frame(width: 250, height: 250)
+                    .onTapGesture {
+                        //                    SoundService.shared.playSound(soundfile: "dogbark.wav")
+                    }
+                Group {
+                    Text("Yay! This line has good service and ") +
+                    Text(dog.dogName)
+                        .bold() +
+                    Text(" is happy :) Turn up your volume and tap them for a \(dog.isFrog ? "hippity-hoppity" : "barking-mad") surprise!")
+                }
+                .font(.title3)
+                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.horizontal)
+            }
+        }
+    }
+    
+    /// An expandable section of affected routes from a disruption
+    @ViewBuilder
+    func affectedRoutes(for disruption: Disruption) -> some View {
+        
+        DisclosureGroup {
+            LazyVStack {
+                Spacer().frame(height: 4)
+                ForEach(disruption.affectedRoutes ?? [], id: \.id) { route in
+                    LineStatusCard(textAlignment: .leading, verticalPadding: 4) {
+                        VStack(alignment: .leading) {
+                            Text(route.originationName ?? "")
+                                .bold()
+                                .font(.title3)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text("towards")
+                                .font(.body)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(route.destinationName ?? "")
+                                .bold()
+                                .font(.title3)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+                    }
+                }
+            }
+            .padding(.trailing, -9)
+            
+        } label: {
+            LineStatusCard {
+                Text("Affected Routes:")
+                    .bold()
+                    .font(.title)
+                    .foregroundColor(.primary)
+            }
+        }
+        .padding(.trailing, 16)
+    }
+    
+    /// A custom back button since default does not seem to work?
     @ViewBuilder
     func backButton() -> some View {
         Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
@@ -85,5 +160,16 @@ extension UINavigationController: UIGestureRecognizerDelegate {
     
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return viewControllers.count > 1
+    }
+}
+
+
+struct NavigationLazyView<Content: View>: View {
+    let build: () -> Content
+    init(_ build: @autoclosure @escaping () -> Content) {
+        self.build = build
+    }
+    var body: Content {
+        build()
     }
 }
