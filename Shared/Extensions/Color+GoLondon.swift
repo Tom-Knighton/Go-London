@@ -24,7 +24,7 @@ extension Color {
         default:
             (a, r, g, b) = (1, 1, 1, 0)
         }
-
+        
         self.init(
             .sRGB,
             red: Double(r) / 255,
@@ -43,8 +43,8 @@ extension Color {
         let uiC = UIColor(self)
         if uiC.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
             return Color(red: min(red + percentage/100, 1.0),
-                           green: min(green + percentage/100, 1.0),
-                           blue: min(blue + percentage/100, 1.0))
+                         green: min(green + percentage/100, 1.0),
+                         blue: min(blue + percentage/100, 1.0))
         } else {
             return self
         }
@@ -52,4 +52,5 @@ extension Color {
     
     static var darkRed: Color = Color(hex: "#F9413E")
     static var layer1: Color = Color("Layer1")
+    static var layer2: Color = Color("Layer2")
 }
