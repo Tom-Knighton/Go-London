@@ -51,7 +51,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private static var defaultFilters: LineModeFilters =  LineModeFilters([LineMode.bus, LineMode.tflrail, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
+    private static var defaultFilters: LineModeFilters =  LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
     
     var anyCancellable: AnyCancellable? = nil
     

@@ -72,7 +72,7 @@ extension LineMode {
             return .red
         case "overground", "london-overground":
             return .init(hex: "#EE7C0E")
-        case "tfl-rail", "elizabeth-line":
+        case "tfl-rail", "elizabeth-line", "elizabeth":
             return .init(hex: "#6950a1")
             
         
@@ -116,27 +116,27 @@ extension LineMode {
         case .bus:
             Image("tfl")
                 .resizable()
-                .foregroundColor(.red)
+                .foregroundColor(lineColour)
         case .dlr:
             Image("nationalrail")
                 .resizable()
-                .foregroundColor(.init(hex: "#00A4A7"))
+                .foregroundColor(lineColour)
         case .nationalRail:
             Image("nationalrail")
                 .resizable()
-                .foregroundColor(.red)
+                .foregroundColor(lineColour)
         case .overground:
             Image("tfl")
                 .resizable()
-                .foregroundColor(.orange)
+                .foregroundColor(lineColour)
         case .tube:
             Image("tube")
                 .resizable()
-                .foregroundColor(.red)
-        case .tflrail:
+                .foregroundColor(lineColour)
+        case .tflrail, .elizabethLine:
             Image("tfl")
                 .resizable()
-                .foregroundColor(.blue)
+                .foregroundColor(lineColour)
         default:
             Image("tfl")
                 .resizable()

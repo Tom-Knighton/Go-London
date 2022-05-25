@@ -40,18 +40,7 @@ final class LineOverviewViewModel: ObservableObject {
     }
     
     private func getLineModesToSearch() -> [LineMode] {
-        var modes: [LineMode] = [.tube, .overground, .dlr]
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        dateFormatter.timeZone = TimeZone.current
-        if let elizabethLineDate = dateFormatter.date(from: "2022-05-24T07:00:00"),
-            Date() > elizabethLineDate {
-            modes.append(.elizabethLine)
-        } else {
-            modes.append(.tflrail)
-        }
-        
+        let modes: [LineMode] = [.tube, .overground, .dlr, .elizabethLine]
         return modes
     }
 }
