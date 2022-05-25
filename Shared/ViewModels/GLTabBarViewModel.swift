@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+@MainActor
 class GLTabBarViewModel: ObservableObject {
     
     struct GLTabPage: Hashable {
@@ -19,6 +20,7 @@ class GLTabBarViewModel: ObservableObject {
             hasher.combine(page)
         }
         
+        var uuid: UUID
         let page: Page
         let icon: TabIcon
         var isSelected: Bool
@@ -46,7 +48,7 @@ class GLTabBarViewModel: ObservableObject {
     
     @Published var allPages: [GLTabPage] = []
     @Published var currentPage: GLTabPage
-    
+        
     init(with pages: [GLTabPage], currentPageIndex: Int = 0) {
         self.allPages = pages
         self.currentPage = pages[currentPageIndex]
@@ -57,19 +59,33 @@ class GLTabBarViewModel: ObservableObject {
         for (index, _) in self.allPages.enumerated() {
             self.allPages[index].isSelected = false
         }
+        
+        var shouldPopAfterSet: Bool = false
+        
+        self.allPages[index].isSelected = true
+        shouldPopAfterSet = self.allPages[index].page == self.currentPage.page
+        self.currentPage = self.allPages[index]
+        
+        if shouldPopAfterSet {
+            self.resetUUID(for: self.currentPage.page)
+        }
+        
+    }
+    
+    func selectPage(_ pageName: String) {
+        for (index, _) in self.allPages.enumerated() {
+            self.allPages[index].isSelected = false
+        }
+        
+        let index = self.allPages.firstIndex { $0.icon.pageName == pageName } ?? 0
+        
+        self.selectPage(index: index)
         self.allPages[index].isSelected = true
         self.currentPage = self.allPages[index]
     }
     
-    func selectPage(_ pageName: String) {
-        DispatchQueue.main.async {
-            for (index, _) in self.allPages.enumerated() {
-                self.allPages[index].isSelected = false
-            }
-            
-            let index = self.allPages.firstIndex { $0.icon.pageName == pageName } ?? 0
-            self.allPages[index].isSelected = true
-            self.currentPage = self.allPages[index]
-        }
+    func resetUUID(for pageType: Page) {
+        let index = self.allPages.firstIndex { $0.page == pageType } ?? 0
+        self.allPages[index].uuid = UUID()
     }
 }

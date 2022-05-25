@@ -26,8 +26,8 @@ struct GeometryGetterMod: ViewModifier {
 struct ContentView: View {
     
     @StateObject var tabManager: GLTabBarViewModel = GLTabBarViewModel(with: [
-        GLTabBarViewModel.GLTabPage(page: .home, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Map", iconName: "map", selectedIconName: "map.fill", fontSize: 30), isSelected: false),
-        GLTabBarViewModel.GLTabPage(page: .lineStatus, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24), isSelected: false)
+        GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .home, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Map", iconName: "map", selectedIconName: "map.fill", fontSize: 30), isSelected: false),
+        GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .lineStatus, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24), isSelected: false)
     ], currentPageIndex: 0)
     
     @FocusState var focused: Bool
@@ -37,22 +37,28 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: -8) {
-            
             ZStack {
-                NavigationView {
-                    HomeView(tabBarHeight: $height)
-                        .navigationBarHidden(true)
+                ForEach(self.tabManager.allPages, id: \.uuid) { page in
+                    switch page.page {
+                    case .home:
+                        NavigationView {
+                            HomeView(tabBarHeight: $height)
+                                .navigationBarHidden(true)
+                        }
+                        .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
+                        .id(page.uuid)
+                    case .lineStatus:
+                        NavigationView {
+                            AllLinesStatusPage()
+                                .navigationBarHidden(false)
+                                .navigationTitle("TfL Status:")
+                        }
+                        .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
+                        .id(page.uuid)
+                    }
                 }
-                .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
-                
-                NavigationView {
-                    AllLinesStatusPage()
-                        .navigationBarHidden(false)
-                        .navigationTitle("TfL Status:")
-                }
-                .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
             }
-
+            
             GLTabBar()
                 .environmentObject(tabManager)
                 .overlay(Color.clear.modifier(GeometryGetterMod(rect: $rect1)))
@@ -61,5 +67,9 @@ struct ContentView: View {
                 }
         }
         .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    func onSamePageTapped(page: GLTabBarViewModel.GLTabPage) {
+        self.tabManager.resetUUID(for: page.page)
     }
 }
