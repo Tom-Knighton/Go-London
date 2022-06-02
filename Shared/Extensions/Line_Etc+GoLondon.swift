@@ -197,3 +197,9 @@ extension LineModeGroupStatusType {
         }
     }
 }
+
+extension LineRoutes: Equatable {
+    public static func == (lhs: LineRoutes, rhs: LineRoutes) -> Bool {
+        lhs.lineId == rhs.lineId
+    } 
+}
