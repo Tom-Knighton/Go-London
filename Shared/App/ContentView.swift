@@ -25,6 +25,8 @@ struct GeometryGetterMod: ViewModifier {
 
 struct ContentView: View {
     
+    @Environment(\.colorScheme) private var colourScheme
+    
     @StateObject var tabManager: GLTabBarViewModel = GLTabBarViewModel(with: [
         GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .home, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Map", iconName: "map", selectedIconName: "map.fill", fontSize: 30), isSelected: false),
         GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .lineStatus, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24), isSelected: false)
@@ -66,6 +68,9 @@ struct ContentView: View {
         }
         .environmentObject(tabManager)
         .edgesIgnoringSafeArea(.bottom)
+        .onChange(of: colourScheme) { newVal in
+            NotificationCenter.default.post(name: .OS_COLOUR_SCHEME_CHANGE, object: nil, userInfo: ["scheme": newVal])
+        }
     }
     
     func onSamePageTapped(page: GLTabBarViewModel.GLTabPage) {

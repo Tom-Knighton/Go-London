@@ -11,4 +11,5 @@ extension Notification.Name {
     static let GL_MAP_CLOSE_DETAIL_VIEWS = Notification.Name("GL_MAP_CLOSE_DETAIL_ANNOTATIONS")
     static let GL_MAP_SHOW_DETAIL_VIEW = Notification.Name("GL_MAP_SHOW_DETAIL_VIEW")
 
+    static let OS_COLOUR_SCHEME_CHANGE = Notification.Name("OS_COLOUR_SCHEME_CHANGE")
 }
