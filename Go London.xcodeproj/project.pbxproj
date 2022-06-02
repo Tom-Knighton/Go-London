@@ -15,6 +15,7 @@
 		E22B29A02836D48D004009BA /* Frog_Raymond.json in Resources */ = {isa = PBXBuildFile; fileRef = E22B299E2836D48D004009BA /* Frog_Raymond.json */; };
 		E22B29A22836D5B7004009BA /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B29A12836D5B7004009BA /* Foundation+GoLondon.swift */; };
 		E22B29A32836D5B7004009BA /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B29A12836D5B7004009BA /* Foundation+GoLondon.swift */; };
+		E243A99B2847E6F100A99988 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E243A99A2847E6F100A99988 /* Introspect */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
 		E2680B1727EBCE4A004C37E9 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1627EBCE4A004C37E9 /* MapboxMaps */; };
 		E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1927EBCE7F004C37E9 /* GoLondonSDK */; };
@@ -181,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2680B1727EBCE4A004C37E9 /* MapboxMaps in Frameworks */,
+				E243A99B2847E6F100A99988 /* Introspect in Frameworks */,
 				E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */,
 				E2680B2E27EBE120004C37E9 /* Lottie in Frameworks */,
 			);
@@ -483,6 +485,7 @@
 				E2680B1127EBCADC004C37E9 /* GoLondonSDK */,
 				E2680B1627EBCE4A004C37E9 /* MapboxMaps */,
 				E2680B2D27EBE120004C37E9 /* Lottie */,
+				E243A99A2847E6F100A99988 /* Introspect */,
 			);
 			productName = "Go London (iOS)";
 			productReference = E2FEF7E527E4AA87005132EF /* Go London.app */;
@@ -541,6 +544,7 @@
 				E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */,
 				E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				E243A9992847E6F100A99988 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = E2FEF7E627E4AA87005132EF /* Products */;
 			projectDirPath = "";
@@ -959,6 +963,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		E243A9992847E6F100A99988 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 		E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Tom-Knighton/GoLondonSDK-Swift";
@@ -986,6 +998,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E243A99A2847E6F100A99988 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E243A9992847E6F100A99988 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
+		};
 		E2680B1127EBCADC004C37E9 /* GoLondonSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
