@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Go_LondonApp: App {
     
-    @Environment(\.scenePhase) var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
     @State var showLocationPermission = false
     
     init() {

@@ -48,6 +48,7 @@ class GLTabBarViewModel: ObservableObject {
     
     @Published var allPages: [GLTabPage] = []
     @Published var currentPage: GLTabPage
+    @Published var showTabBar: Bool = true
         
     init(with pages: [GLTabPage], currentPageIndex: Int = 0) {
         self.allPages = pages
