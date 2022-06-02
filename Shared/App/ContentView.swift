@@ -47,6 +47,7 @@ struct ContentView: View {
                             HomeView(tabBarHeight: $height)
                                 .navigationBarHidden(true)
                         }
+                        .navigationViewStyle(.stack)
                         .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
                         .id(page.uuid)
                     case .lineStatus:
@@ -55,6 +56,7 @@ struct ContentView: View {
                                 .navigationBarHidden(false)
                                 .navigationTitle("TfL Status:")
                         }
+                        .navigationViewStyle(.stack)
                         .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
                         .id(page.uuid)
                     }
