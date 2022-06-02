@@ -83,7 +83,6 @@ class MapRepresentableViewModel: ObservableObject {
         
         if let index = self.stopPointMarkers.firstIndex(where: { $0.id == markerId }) {
             self.stopPointMarkers[index].isDetail = true
-            print("found and true")
         }
     }
 }

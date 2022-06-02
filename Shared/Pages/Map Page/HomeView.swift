@@ -17,7 +17,7 @@ public struct HomeView : View {
     
     @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
 
-    @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: GoLondon.GetDarkStyleURL(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: MapStyle.DefaultDark.loadStyle(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     
@@ -48,7 +48,6 @@ public struct HomeView : View {
                 
                 self.mapSearchPanel()
             }
-           
         }
         .background(
             self.mapBackground()
@@ -108,11 +107,11 @@ public struct HomeView : View {
         MapViewRepresentable(viewModel: mapModel)
             .edgesIgnoringSafeArea(.all)
             .onAppear {
-                self.mapModel.styleURI = colourScheme == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
+                self.mapModel.styleURI = colourScheme == .dark ? MapStyle.DefaultDark.loadStyle() : MapStyle.DefaultLight.loadStyle()
                 search()
             }
             .onChange(of: colourScheme) { newValue in
-                self.mapModel.styleURI = newValue == .dark ? GoLondon.GetDarkStyleURL() : GoLondon.GetLightStyleURL()
+                self.mapModel.styleURI = newValue == .dark ? MapStyle.DefaultDark.loadStyle() : MapStyle.DefaultLight.loadStyle()
             }
     }
     
