@@ -13,7 +13,7 @@ import SwiftUI
 @MainActor
 final class LineMapViewModel: ObservableObject {
     
-    @Published var lineId: String = ""
+    @Published var lineIds: [String] = []
     
     @Published var lineRoutes: [LineRoutes] = []
     @Published var cachedLineRoutes: [LineRoutes] = []
@@ -25,8 +25,8 @@ final class LineMapViewModel: ObservableObject {
     
     private var cancelSet: Set<AnyCancellable> = []
         
-    func setup(for lineId: String) {
-        self.lineId = lineId
+    func setup(for lineIds: [String]) {
+        self.lineIds = lineIds
         
         self.mapStyle = UITraitCollection.current.userInterfaceStyle == .dark ? .LinesDark : .LinesLight
         
@@ -43,9 +43,7 @@ final class LineMapViewModel: ObservableObject {
     
     func fetchStopPoints() async {
         Task {
-            if let routes = await GLSDK.Lines.Routes(for: self.lineId) {
-                self.lineRoutes = [routes]
-            }
+            self.lineRoutes = await GLSDK.Lines.Routes(for: self.lineIds)
         }
     }
     

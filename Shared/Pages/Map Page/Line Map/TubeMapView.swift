@@ -21,7 +21,7 @@ struct LineMapView: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 Task {
-                    self.viewModel.setup(for: self.lineId)
+                    self.viewModel.setup(for: [self.lineId])
                     await self.viewModel.fetchStopPoints()
                 }
             }
@@ -32,6 +32,8 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     
     @ObservedObject private var viewModel: LineMapViewModel
     @State private var interchangeIconLayers: [String] = []
+    @EnvironmentObject private var globalViewModel: GlobalViewModel
+    
     private var filterAccessibility: Bool
     
     init(viewModel: LineMapViewModel, filterAccessibility: Bool = false) {
@@ -65,11 +67,15 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         if let image = UIImage(named: "interchange"),
            let freeToTrain = UIImage(named: "freeToTrain"),
            let freeToPlatform = UIImage(named: "freeToPlatform"),
-           let accessibilityIssues = UIImage(named: "accessibilityIssues") {
+           let accessibilityIssues = UIImage(named: "accessibilityIssues"),
+           let partialToPlatform = UIImage(named: "partialToPlatform"),
+           let interchangeOnly = UIImage(named: "interchangeOnly") {
             try? mapView.mapboxMap.style.addImage(image, id: "interchange")
             try? mapView.mapboxMap.style.addImage(freeToTrain, id: "freeToTrain")
             try? mapView.mapboxMap.style.addImage(freeToPlatform, id: "freeToPlatform")
             try? mapView.mapboxMap.style.addImage(accessibilityIssues, id: "accessibilityIssues")
+            try? mapView.mapboxMap.style.addImage(partialToPlatform, id: "partialToPlatform")
+            try? mapView.mapboxMap.style.addImage(interchangeOnly, id: "interchangeOnly")
         }
         
         return mapView
@@ -117,11 +123,17 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         if let image = UIImage(named: "interchange"),
            let freeToTrain = UIImage(named: "freeToTrain"),
            let freeToPlatform = UIImage(named: "freeToPlatform"),
-           let accessibilityIssues = UIImage(named: "accessibilityDisruption") {
+           let accessibilityIssues = UIImage(named: "accessibilityDisruption"),
+           let partialToPlatform = UIImage(named: "partialToPlatform"),
+           let interchangeOnly = UIImage(named: "interchangeOnly") {
             try? mapView.mapboxMap.style.addImage(image, id: "interchange")
             try? mapView.mapboxMap.style.addImage(freeToTrain, id: "freeToTrain")
             try? mapView.mapboxMap.style.addImage(freeToPlatform, id: "freeToPlatform")
-            try? mapView.mapboxMap.style.addImage(accessibilityIssues, id: "accessibilityDisruption")
+            try? mapView.mapboxMap.style.addImage(accessibilityIssues, id: "accessibilityIssues")
+            try? mapView.mapboxMap.style.addImage(partialToPlatform, id: "partialToPlatform")
+            try? mapView.mapboxMap.style.addImage(interchangeOnly, id: "interchangeOnly")
+        } else {
+            print("Error getting assets")
         }
         
         self.viewModel.lineRoutes.forEach { route in
@@ -147,13 +159,13 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     
     func drawInterchangeIcons(on mapView: MapView, for branch: Branch, index: Int, filterStepFree: Bool = false) {
         let lowZoomSize = 0
-        let highZoomSize = filterStepFree ? 1.5 : 0.8
+        let highZoomSize = filterStepFree ? 1.8 : 0.8
         let interchangeIconSize = Exp(.interpolate) {
             Exp(.linear)
             Exp(.zoom)
             8
             lowZoomSize
-            18
+            filterStepFree ? 14 : 18
             highZoomSize
         }
         
@@ -162,16 +174,68 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         pointSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {
             
             var feat = Feature(geometry: Point($0.coordinate))
-            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue($0.commonName ?? $0.name ?? "")))
+            let stopName = ($0.commonName ?? $0.name ?? "").replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            
+            // Gets relevant accessible data
+            let isViewingSingleLine = self.viewModel.lineIds.count == 1
+            var accessibleView: StationAccessibilityType? = .None
+            if let accessibleData = globalViewModel.iradData.first(where: { spa in // If we have data for this stop
+                spa.stationName == stopName
+            }) {
+                if !isViewingSingleLine, // If we are viewing a single line only
+                   let lineData = accessibleData.lineAccessibility?.first(where: { spla in // And we have data for this line at this top
+                       self.viewModel.lineIds.contains { $0.contains(spla.lineName ?? "UNK__" )}
+                   }) {
+                    accessibleView = lineData.accessibility // Set the data for that line
+                } else {
+                    accessibleView = accessibleData.overviewAccessibility // Otherwise set the general overview for the station
+                }
+            }
+            
+            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(stopName)), ("accessibility", JSONValue(accessibleView?.rawValue ?? "None")))
             return feat
             
         } ?? []))
 
         var symbolLayer = SymbolLayer(id: pointId)
         symbolLayer.source = pointId
-        let random = Int.random(in: 1...3)
-        let imageName = random == 1 ? "freeToTrain" : random == 2 ? "freeToPlatform" : "accessibilityDisruption"
-        symbolLayer.iconImage = .constant(.name(filterStepFree ? imageName : "interchange"))
+        
+        let interchangeIcon = Exp(.switchCase) {
+            Exp(.eq) {
+                Exp(.get) { "accessibility" }
+                StationAccessibilityType.None.rawValue
+            }
+            ""
+            
+            Exp(.eq) {
+                Exp(.get) { "accessibility" }
+                StationAccessibilityType.StepFreeToTrain.rawValue
+            }
+            "freeToTrain"
+            
+            Exp(.eq) {
+                Exp(.get) { "accessibility" }
+                StationAccessibilityType.StepFreeToPlatform.rawValue
+            }
+            "freeToPlatform"
+            
+            Exp(.eq) {
+                Exp(.get) { "accessibility" }
+                StationAccessibilityType.PartialToPlatform.rawValue
+            }
+            "partialToPlatform"
+            
+            Exp(.eq) {
+                Exp(.get) { "accessibility" }
+                StationAccessibilityType.InterchangeOnly.rawValue
+            }
+            "interchangeOnly"
+            
+            "interchange"
+        }
+        
+        
+        symbolLayer.iconImage = filterStepFree ? .expression(interchangeIcon) : .constant(.name("interchange"))
         symbolLayer.iconSize = .expression(interchangeIconSize)
         symbolLayer.iconAllowOverlap = .constant(true)
         
@@ -214,6 +278,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         stopNamesLayer.textHaloColor = .constant(StyleColor(UIColor.black))
         stopNamesLayer.textColor = .constant(StyleColor(UIColor.white))
         stopNamesLayer.textHaloWidth = .constant(1)
+        stopNamesLayer.textAllowOverlap = .constant(true)
         
         try? mapView.mapboxMap.style.addSource(nameSource, id: nameId)
         try? mapView.mapboxMap.style.addPersistentLayer(stopNamesLayer)
