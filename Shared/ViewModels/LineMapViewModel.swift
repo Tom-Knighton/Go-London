@@ -21,6 +21,8 @@ final class LineMapViewModel: ObservableObject {
     @Published var mapStyle: MapStyle = .LinesDark
     @Published var cachedMapStyle: MapStyle = .LinesDark
     
+    @Published var cachedFilterAccessibility: Bool = false
+    
     private var cancelSet: Set<AnyCancellable> = []
         
     func setup(for lineId: String) {
@@ -54,5 +56,9 @@ final class LineMapViewModel: ObservableObject {
     
     func updateCachedStyle() {
         self.cachedMapStyle = self.mapStyle
+    }
+    
+    func updateCachedAccessibility(to val: Bool) {
+        self.cachedFilterAccessibility = val
     }
 }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "freeToPlatform@1x.png",
+      "filename" : "accessibilityDisruption@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "freeToPlatform@2x.png",
+      "filename" : "accessibilityDisruption@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "freeToPlatform@3x.png",
+      "filename" : "accessibilityDisruption@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

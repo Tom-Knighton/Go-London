@@ -13,10 +13,11 @@ import GoLondonSDK
 struct LineMapView: View {
     
     @State var lineId: String = ""
+    @Binding var filterDisability: Bool
     @StateObject private var viewModel: LineMapViewModel = LineMapViewModel()
     
     var body: some View {
-        LineMapViewRepresntable(viewModel: viewModel)
+        LineMapViewRepresntable(viewModel: viewModel, filterAccessibility: filterDisability)
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 Task {
@@ -29,7 +30,15 @@ struct LineMapView: View {
 
 struct LineMapViewRepresntable: UIViewRepresentable {
     
-    @ObservedObject var viewModel: LineMapViewModel
+    @ObservedObject private var viewModel: LineMapViewModel
+    @State private var interchangeIconLayers: [String] = []
+    private var filterAccessibility: Bool
+    
+    init(viewModel: LineMapViewModel, filterAccessibility: Bool = false) {
+        self.viewModel = viewModel
+        self.filterAccessibility = filterAccessibility
+    }
+    
     
     func makeUIView(context: Context) -> MapView {
         let myResourceOptions = ResourceOptions(accessToken: "sk.eyJ1IjoidG9ta25pZ2h0b24iLCJhIjoiY2wzeDkxMDg1MDF2eTNqcXc1MnhsdHAwaiJ9.SFzxQzwL-3PRISNLHb0qpg")
@@ -53,13 +62,25 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         
         try? mapView.mapboxMap.setCameraBounds(with: CameraBoundsOptions(bounds: GoLondon.UKBounds))
         
+        if let image = UIImage(named: "interchange"),
+           let freeToTrain = UIImage(named: "freeToTrain"),
+           let freeToPlatform = UIImage(named: "freeToPlatform"),
+           let accessibilityIssues = UIImage(named: "accessibilityIssues") {
+            try? mapView.mapboxMap.style.addImage(image, id: "interchange")
+            try? mapView.mapboxMap.style.addImage(freeToTrain, id: "freeToTrain")
+            try? mapView.mapboxMap.style.addImage(freeToPlatform, id: "freeToPlatform")
+            try? mapView.mapboxMap.style.addImage(accessibilityIssues, id: "accessibilityIssues")
+        }
+        
         return mapView
     }
     
     func updateUIView(_ uiView: MapView, context: Context) {
         if self.viewModel.lineRoutes != self.viewModel.cachedLineRoutes {
-            self.viewModel.updateCachedRoutes()
-            self.drawMapDetails(on: uiView)
+            DispatchQueue.main.async {
+                self.viewModel.updateCachedRoutes()
+                self.drawMapDetails(on: uiView)
+            }
         }
         
         if self.viewModel.mapStyle != self.viewModel.cachedMapStyle {
@@ -67,18 +88,40 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             
             uiView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
         }
+        
+        if self.viewModel.cachedFilterAccessibility != self.filterAccessibility {
+            DispatchQueue.main.async {
+                self.interchangeIconLayers.forEach { layer in
+                    try? uiView.mapboxMap.style.removeLayer(withId: layer)
+                }
+                self.interchangeIconLayers = []
+                
+                var index = 0
+                self.viewModel.lineRoutes.forEach { route in
+                    route.stopPointSequences?.forEach({ branch in
+                        self.drawInterchangeIcons(on: uiView, for: branch, index: index, filterStepFree: filterAccessibility)
+                        index += 1
+                    })
+                }
+                self.viewModel.updateCachedAccessibility(to: filterAccessibility)
+            }
+        }
     }
     
     func drawMapDetails(on mapView: MapView) {
-        
-        let currentStyle = mapView.mapboxMap.style
-        
+                
         mapView.viewAnnotations.removeAll()
         
         var index = 0
         
-        if let image = UIImage(named: "interchange") {
-            try? currentStyle.addImage(image, id: "interchange")
+        if let image = UIImage(named: "interchange"),
+           let freeToTrain = UIImage(named: "freeToTrain"),
+           let freeToPlatform = UIImage(named: "freeToPlatform"),
+           let accessibilityIssues = UIImage(named: "accessibilityDisruption") {
+            try? mapView.mapboxMap.style.addImage(image, id: "interchange")
+            try? mapView.mapboxMap.style.addImage(freeToTrain, id: "freeToTrain")
+            try? mapView.mapboxMap.style.addImage(freeToPlatform, id: "freeToPlatform")
+            try? mapView.mapboxMap.style.addImage(accessibilityIssues, id: "accessibilityDisruption")
         }
         
         self.viewModel.lineRoutes.forEach { route in
@@ -102,9 +145,9 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         mapView.mapboxMap.setCamera(to: camOpts)
     }
     
-    func drawInterchangeIcons(on mapView: MapView, for branch: Branch, index: Int) {
+    func drawInterchangeIcons(on mapView: MapView, for branch: Branch, index: Int, filterStepFree: Bool = false) {
         let lowZoomSize = 0
-        let highZoomSize = 0.8
+        let highZoomSize = filterStepFree ? 1.5 : 0.8
         let interchangeIconSize = Exp(.interpolate) {
             Exp(.linear)
             Exp(.zoom)
@@ -126,15 +169,18 @@ struct LineMapViewRepresntable: UIViewRepresentable {
 
         var symbolLayer = SymbolLayer(id: pointId)
         symbolLayer.source = pointId
-        symbolLayer.iconImage = .constant(.name("interchange"))
+        let random = Int.random(in: 1...3)
+        let imageName = random == 1 ? "freeToTrain" : random == 2 ? "freeToPlatform" : "accessibilityDisruption"
+        symbolLayer.iconImage = .constant(.name(filterStepFree ? imageName : "interchange"))
         symbolLayer.iconSize = .expression(interchangeIconSize)
         symbolLayer.iconAllowOverlap = .constant(true)
         
         try? mapView.mapboxMap.style.addSource(pointSource, id: pointId)
         try? mapView.mapboxMap.style.addPersistentLayer(symbolLayer)
+        self.interchangeIconLayers.append(pointId)
     }
     
-    func drawStopNames(on mapView: MapView, for branch: Branch, index: Int) {
+    func drawStopNames(on mapView: MapView, for branch: Branch, index: Int, filterStepFree: Bool = false) {
         let nameId = "names-" + String(describing: branch.lineId ?? "") + String(describing: index)
         var nameSource = GeoJSONSource()
         nameSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {

@@ -18,6 +18,7 @@ struct LinePage: View {
     @Namespace private var mapNamespace
     
     @State private var isFullScreenMapShowing: Bool = false
+    @State private var filterMapDisability: Bool = false
     
     var body: some View {
         let status = self.viewModel.line.currentStatus
@@ -48,7 +49,7 @@ struct LinePage: View {
 
                     if !self.isFullScreenMapShowing {
                         ZStack {
-                            LineMapView(lineId: self.viewModel.line.id ?? "")
+                            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: .constant(false))
                                 .matchedGeometryEffect(id: "map", in: mapNamespace)
                             
                             VStack {
@@ -89,28 +90,7 @@ struct LinePage: View {
             }
             
             if self.isFullScreenMapShowing {
-                ZStack {
-                    LineMapView(lineId: self.viewModel.line.id ?? "")
-                        .edgesIgnoringSafeArea(.all)
-                        .matchedGeometryEffect(id: "map", in: mapNamespace)
-                    
-                    VStack {
-                        Spacer().frame(height: 16)
-                        HStack {
-                            Spacer()
-                            
-                            Button(action: { self.toggleMapOverlay(to: false) }) {
-                                Image(systemName: "arrow.down.forward.and.arrow.up.backward")
-                            }
-                            .buttonStyle(MapButtonStyle(backgroundColor: .black))
-                            .matchedGeometryEffect(id: "mapExp", in: mapNamespace)
-                            
-                            Spacer().frame(width: 16)
-                        }
-                        Spacer()
-                    }
-                    
-                }
+                self.fullscreenMapView()
             }
         }
         .background(Color.layer1)
@@ -138,6 +118,46 @@ struct LinePage: View {
     }
     
     //MARK: - View Builders
+    
+    
+    @ViewBuilder
+    /// A view that should overlay the current screen containing the line map + options
+    func fullscreenMapView() -> some View {
+        ZStack {
+            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: self.$filterMapDisability)
+                .edgesIgnoringSafeArea(.all)
+                .matchedGeometryEffect(id: "map", in: mapNamespace)
+            
+            HStack {
+                Spacer()
+                VStack(spacing: 16) {
+                    Spacer().frame(height: 16)
+                    
+                    Button(action: { self.toggleMapOverlay(to: false) }) {
+                        Image(systemName: "arrow.down.forward.and.arrow.up.backward")
+                    }
+                    .buttonStyle(MapButtonStyle(backgroundColor: .black))
+                    .matchedGeometryEffect(id: "mapExp", in: mapNamespace)
+                    
+                    Button(action: { self.filterMapDisability.toggle() }) {
+                        ZStack {
+                            Circle()
+                                .frame(width: 75, height: 75)
+                                .foregroundColor(self.filterMapDisability ? Color.blue : Color.gray)
+                                .shadow(radius: 3)
+                            Image(systemName: "figure.roll")
+                                .frame(width: 75, height: 75)
+                                .shadow(radius: 3)
+                                .foregroundColor(self.filterMapDisability ? Color.white : Color.black)
+                        }
+                    }
+                    
+                    Spacer().frame(width: 16)
+                }
+                Spacer().frame(width: 16)
+            }
+        }
+    }
     
     /// A view showing an animated dog, when tapped produces a bark sound
     @ViewBuilder
