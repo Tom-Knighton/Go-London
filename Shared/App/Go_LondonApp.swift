@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+import GoLondonSDK
 
 @main
 struct Go_LondonApp: App {
     
     @Environment(\.scenePhase) private var scenePhase
     @State var showLocationPermission = false
+    @ObservedObject var globalViewModel: GlobalViewModel = GlobalViewModel()
     
     init() {
         LocationManager.shared.start()
@@ -24,6 +26,7 @@ struct Go_LondonApp: App {
                 .sheet(isPresented: $showLocationPermission) {
                     RequestLocation()
                 }
+                .environmentObject(globalViewModel)
         }
         .onChange(of: scenePhase) { newPhase in
             let locStatus = PermissionsManager.GetStatus(of: LocationWhenInUsePermission())

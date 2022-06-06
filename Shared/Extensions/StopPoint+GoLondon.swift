@@ -7,6 +7,14 @@
 
 import Foundation
 import GoLondonSDK
+import CoreLocation
+
+extension Point {
+    
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: CLLocationDegrees(self.lat ?? 0), longitude: CLLocationDegrees(self.lon ?? 0))
+    }
+}
 
 extension StopPoint {
     

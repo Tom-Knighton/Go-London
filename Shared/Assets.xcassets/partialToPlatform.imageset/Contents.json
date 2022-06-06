@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "freeToPlatform@1x.png",
+      "filename" : "partialToPlatform.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "freeToPlatform@2x.png",
+      "filename" : "partialToPlatform@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "freeToPlatform@3x.png",
+      "filename" : "partialToPlatform@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

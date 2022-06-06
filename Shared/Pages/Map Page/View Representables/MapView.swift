@@ -146,16 +146,18 @@ public struct MapViewRepresentable: UIViewRepresentable {
         }
     }
     
-    public class CameraLocationConsumer: LocationConsumer {
-        weak var mapView: MapView?
-        
-        init(mapView: MapView) {
-            self.mapView = mapView
-        }
-        
-        public func locationUpdate(newLocation: Location) {
-            mapView?.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 13))
-        }
+    
+}
+
+public class CameraLocationConsumer: LocationConsumer {
+    weak var mapView: MapView?
+    
+    init(mapView: MapView) {
+        self.mapView = mapView
+    }
+    
+    public func locationUpdate(newLocation: Location) {
+        mapView?.mapboxMap.setCamera(to: CameraOptions(center: newLocation.coordinate, zoom: 13))
     }
 }
 

@@ -8,58 +8,156 @@
 import Foundation
 import SwiftUI
 import GoLondonSDK
+import Introspect
 
 struct LinePage: View {
     
     @ObservedObject var viewModel: LineStatusViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @EnvironmentObject private var tabManager: GLTabBarViewModel
+    @Namespace private var mapNamespace
+    
+    @State private var isFullScreenMapShowing: Bool = false
+    @State private var filterMapDisability: Bool = false
     
     var body: some View {
         let status = self.viewModel.line.currentStatus
-        ScrollView {
-            VStack(spacing: 0) {
-                LineStatusCard {
-                    VStack {
-                        Text("\(self.viewModel.line.name ?? "") is reporting:")
-                            .bold()
-                            .font(.title2)
-                        Text(status?.statusSeverityDescription ?? "")
-                            .foregroundColor(.green) // TODO: replace
-                            .bold()
-                            .font(.title2)
-                    }
-                }
-                
-                if let reason = status?.reason {
+        ZStack {
+            ScrollView {
+                VStack(spacing: 0) {
                     LineStatusCard {
-                        Text(reason)
+                        VStack {
+                            Text("\(self.viewModel.line.name ?? "") is reporting:")
+                                .bold()
+                                .font(.title2)
+                            Text(status?.statusSeverityDescription ?? "")
+                                .foregroundColor(.green) // TODO: replace
+                                .bold()
+                                .font(.title2)
+                        }
                     }
+
+                    if let reason = status?.reason {
+                        LineStatusCard {
+                            Text(reason)
+                        }
+                    }
+
+                    if status?.statusSeverity == 10 {
+                        self.doggyView()
+                    }
+
+                    if !self.isFullScreenMapShowing {
+                        ZStack {
+                            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: .constant(false))
+                                .matchedGeometryEffect(id: "map", in: mapNamespace)
+                            
+                            VStack {
+                                Spacer().frame(height: 8)
+                                HStack {
+                                    Spacer()
+                                    
+                                    Button(action: { self.toggleMapOverlay(to: true) }) {
+                                        Image(systemName: "arrow.down.forward.and.arrow.up.backward")
+                                    }
+                                    .buttonStyle(MapButtonStyle(backgroundColor: .black))
+                                    .matchedGeometryEffect(id: "mapExp", in: mapNamespace)
+                                    .opacity(0.6)
+                                    
+                                    Spacer().frame(width: 8)
+                                }
+                                Spacer()
+                            }
+                        }
+                        .cornerRadius(15)
+                        .frame(maxWidth: .infinity, minHeight: 200, maxHeight: 200)
+                        .padding(.horizontal)
+                        .padding(.top)
+                        .shadow(radius: 3)
+                        .onTapGesture {
+                            self.toggleMapOverlay(to: true)
+                        }
+                    }
+                    
+                    if let disruption = status?.disruption,
+                       let routes = disruption.affectedRoutes,
+                       !routes.isEmpty {
+                        self.affectedRoutes(for: disruption)
+                    }
+                    
+                    Spacer().frame(height: 24)
                 }
-                
-                if let disruption = status?.disruption,
-                   let routes = disruption.affectedRoutes,
-                   !routes.isEmpty {
-                    self.affectedRoutes(for: disruption)
-                }
-                
-                if status?.statusSeverity == 10 {
-                    self.doggyView()
-                }
-                
-                Spacer().frame(height: 16)
+            }
+            
+            if self.isFullScreenMapShowing {
+                self.fullscreenMapView()
             }
         }
         .background(Color.layer1)
-        .navigationTitle(self.viewModel.line.name ?? "")
         .navigationBarBackButtonHidden(true)
+        .navigationTitle(self.viewModel.line.name ?? "")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 self.backButton()
             }
         }
+        .introspectNavigationController { navController in
+            navController.isNavigationBarHidden = self.isFullScreenMapShowing
+        }
+    }
+    
+    
+    func toggleMapOverlay(to val: Bool) {
+        withAnimation {
+            self.isFullScreenMapShowing = val
+        }
+        
+        DispatchQueue.main.async {
+            self.tabManager.showTabBar = !val
+        }
     }
     
     //MARK: - View Builders
+    
+    
+    @ViewBuilder
+    /// A view that should overlay the current screen containing the line map + options
+    func fullscreenMapView() -> some View {
+        ZStack {
+            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: self.$filterMapDisability)
+                .edgesIgnoringSafeArea(.all)
+                .matchedGeometryEffect(id: "map", in: mapNamespace)
+            
+            HStack {
+                Spacer()
+                VStack(spacing: 16) {
+                    Spacer().frame(height: 16)
+                    
+                    Button(action: { self.toggleMapOverlay(to: false) }) {
+                        Image(systemName: "arrow.down.forward.and.arrow.up.backward")
+                    }
+                    .buttonStyle(MapButtonStyle(backgroundColor: .black))
+                    .matchedGeometryEffect(id: "mapExp", in: mapNamespace)
+                    
+                    Button(action: { self.filterMapDisability.toggle() }) {
+                        ZStack {
+                            Circle()
+                                .frame(width: 75, height: 75)
+                                .foregroundColor(self.filterMapDisability ? Color.blue : Color.gray)
+                                .shadow(radius: 3)
+                            Image(systemName: "figure.roll")
+                                .frame(width: 75, height: 75)
+                                .shadow(radius: 3)
+                                .foregroundColor(self.filterMapDisability ? Color.white : Color.black)
+                        }
+                    }
+                    
+                    Spacer().frame(width: 16)
+                }
+                Spacer().frame(width: 16)
+            }
+        }
+    }
     
     /// A view showing an animated dog, when tapped produces a bark sound
     @ViewBuilder
@@ -129,6 +227,7 @@ struct LinePage: View {
         Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
             Text(Image(systemName: "chevron.backward")) + Text("Go back")
         }
+        .hiddenIf(self.isFullScreenMapShowing)
     }
 }
 

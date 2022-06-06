@@ -12,21 +12,10 @@ import GoLondonSDK
 
 public class GoLondon {
     
-    public static func GetLightStyleURL() -> StyleURI {
-        guard let lightStyle = StyleURI(rawValue: "mapbox://styles/tomknighton/cl145dxdf000914m7r7ykij8s") else {
-            return .light
-        }
-        return lightStyle
-    }
-    
-    public static func GetDarkStyleURL() -> StyleURI {
-        guard let darkStyle = StyleURI(rawValue: "mapbox://styles/tomknighton/cl145juvf002h14rkofjuct4r") else {
-            return .dark
-        }
-        return darkStyle
-    }
-    
     public static let LiverpoolStreetCoord: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 51.518752, longitude: -0.081437)
+    
+    public static let UKBounds: CoordinateBounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: 49.84612, longitude: -11.84651), northeast: CLLocationCoordinate2D(latitude: 59.03151, longitude: 1.04011))
+    
     
     #if DEBUG
     public static var defaultStopPoint: StopPoint {
@@ -38,4 +27,33 @@ public class GoLondon {
     }
     
     #endif
+}
+
+public enum MapStyle {
+    case DefaultLight, DefaultDark, LinesLight, LinesDark
+    
+    func loadStyle() -> StyleURI {
+        switch self {
+        case .DefaultDark:
+            guard let darkStyle = StyleURI(rawValue: "mapbox://styles/tomknighton/cl145juvf002h14rkofjuct4r") else {
+                return .dark
+            }
+            return darkStyle
+        case .DefaultLight:
+            guard let lightStyle = StyleURI(rawValue: "mapbox://styles/tomknighton/cl145dxdf000914m7r7ykij8s") else {
+                return .light
+            }
+            return lightStyle
+        case .LinesDark:
+            guard let lightStyle = StyleURI(rawValue: "mapbox://styles/tomknighton/cl3um447o001m14l9wc1nss1o") else {
+                return MapStyle.DefaultDark.loadStyle()
+            }
+            return lightStyle
+        case .LinesLight:
+            guard let lightStyle = StyleURI(rawValue: "mapbox://styles/tomknighton/cl3ulo56o000515nv90e8gl41") else {
+                return MapStyle.DefaultLight.loadStyle()
+            }
+            return lightStyle
+        }
+    }
 }
