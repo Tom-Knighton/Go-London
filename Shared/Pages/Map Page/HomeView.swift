@@ -27,8 +27,9 @@ public struct HomeView : View {
         
         GeometryReader { geo in
             VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
+                HStack {
+                    Spacer()
+                    VStack {
                         if self.model.hasMovedFromLastLocation {
                             self.searchHereButton()
                         }
@@ -39,12 +40,19 @@ public struct HomeView : View {
                                 .transition(.move(edge: .leading))
                         }
                         
-                        self.filterButtons()
+                        Button(action: { }) {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                        }
+                        .buttonStyle(MapButtonStyle())
                         
+                        Button(action: { }) {
+                            Image(systemName: "tram.circle")
+                        }
+                        .buttonStyle(MapButtonStyle())
+
                     }
-                    .padding(.horizontal, 16)
+                    Spacer().frame(width: 16)
                 }
-                .frame(maxWidth: .infinity,  minHeight: 60, maxHeight: 60)
                 
                 self.mapSearchPanel()
             }
@@ -96,7 +104,7 @@ public struct HomeView : View {
                 .buttonStyle(MapButtonStyle())
                 .transition(.move(edge: .leading))
         } else {
-            Button(action: { Task { search() } }) { Text("Search Here") }
+            Button(action: { Task { search() } }) { Image(systemName: "location.magnifyingglass") }
                 .buttonStyle(MapButtonStyle())
                 .transition(.move(edge: .leading))
         }
