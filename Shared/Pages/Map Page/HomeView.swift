@@ -23,6 +23,8 @@ public struct HomeView : View {
     
     @Binding var tabBarHeight: CGFloat
     
+    @State private var isShowingFilterSheet: Bool = false
+    
     public var body: some View {
         
         GeometryReader { geo in
@@ -40,7 +42,7 @@ public struct HomeView : View {
                                 .transition(.move(edge: .leading))
                         }
                         
-                        Button(action: { }) {
+                        Button(action: { self.isShowingFilterSheet.toggle() }) {
                             Image(systemName: "line.3.horizontal.decrease.circle")
                         }
                         .buttonStyle(MapButtonStyle())
@@ -56,6 +58,9 @@ public struct HomeView : View {
                 
                 self.mapSearchPanel()
             }
+        }
+        .sheet(isPresented: $isShowingFilterSheet) {
+            HomeMapFilterView(viewModel: self.model)
         }
         .background(
             self.mapBackground()

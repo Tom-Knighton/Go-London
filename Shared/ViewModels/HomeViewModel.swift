@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 import GoLondonSDK
 import Combine
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
     
@@ -23,7 +24,7 @@ class HomeViewModel: ObservableObject {
             lhs.filters == rhs.filters
         }
         
-        struct Filter: Identifiable, Equatable {
+        struct Filter: Identifiable, Equatable, Hashable {
             var lineMode: LineMode
             var toggled: Bool = true
             
@@ -48,6 +49,11 @@ class HomeViewModel: ObservableObject {
         
         func getAllToggled() -> [LineMode] {
             return (self.filters.filter { $0.toggled }).compactMap { $0.lineMode}
+        }
+        
+        func makeTempStructs() -> [HomeMapFilterToggle] {
+            let temps = self.filters.compactMap { HomeMapFilterToggle(from: $0, as: $0.toggled)}
+            return temps
         }
     }
     
@@ -95,4 +101,18 @@ class HomeViewModel: ObservableObject {
         
         return markers
     }
+}
+
+class HomeMapFilterToggle: ObservableObject {
+    
+    @Published var filter: HomeViewModel.LineModeFilters.Filter
+    
+    @Published var tempStatus: Bool
+    
+    init(from filter: HomeViewModel.LineModeFilters.Filter, as val: Bool) {
+        
+        self.filter = filter
+        self.tempStatus = val
+    }
+    
 }
