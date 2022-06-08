@@ -11,7 +11,7 @@ import GoLondonSDK
 
 struct StopPointAnnotation: Identifiable, Equatable {
     static func == (lhs: StopPointAnnotation, rhs: StopPointAnnotation) -> Bool {
-        lhs.id == rhs.id
+        lhs.id == rhs.id && lhs.stopPoint.lineModes?.count == rhs.stopPoint.lineModes?.count
     }
     
     var id: String { "\(String(describing: stopPoint.lat)),\(String(describing: stopPoint.lon))"}
