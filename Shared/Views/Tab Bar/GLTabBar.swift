@@ -10,6 +10,7 @@ import SwiftUI
 struct GLTabBar: View {
     
     @EnvironmentObject var tabManager: GLTabBarViewModel
+    @State private var bottomPaddingFix: CGFloat = 0
     @Environment(\.safeAreaInsets) var edges
 
     var body: some View {
@@ -37,7 +38,7 @@ struct GLTabBar: View {
                         Spacer()
                     }
                 }
-                .padding(.bottom, edges.bottom)
+                .padding(.bottom, self.bottomPaddingFix)
             }
             .frame(minHeight: 25)
             .padding(.vertical, 15)
@@ -45,9 +46,12 @@ struct GLTabBar: View {
             .cornerRadius(10, corners: [.topLeft, .topRight])
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
-            .edgesIgnoringSafeArea(.bottom)
+            .onChange(of: self.edges.bottom) { newVal in
+                if newVal > self.bottomPaddingFix {
+                    self.bottomPaddingFix = newVal
+                }
+            }
         }
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

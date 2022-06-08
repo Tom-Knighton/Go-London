@@ -38,7 +38,7 @@ struct ContentView: View {
     @State private var height: CGFloat = 0
     
     var body: some View {
-        VStack(spacing: self.tabManager.showTabBar ? -8 : 0) {
+        VStack {
             ZStack {
                 ForEach(self.tabManager.allPages, id: \.uuid) { page in
                     switch page.page {
@@ -61,12 +61,11 @@ struct ContentView: View {
                         .id(page.uuid)
                     }
                 }
-            }
-            
-            if self.tabManager.showTabBar {
-                GLTabBar()
-                    .opacity(self.tabManager.showTabBar ? 1 : 0)
-            }        
+            }       
+        }
+        .safeAreaInset(edge: .bottom) {
+            GLTabBar()
+                .opacity(self.tabManager.showTabBar ? 1 : 0)
         }
         .environmentObject(tabManager)
         .edgesIgnoringSafeArea(.bottom)

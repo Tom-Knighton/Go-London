@@ -16,14 +16,16 @@ public struct HomeView : View {
     @Environment(\.safeAreaInsets) var edges
     
     @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
-
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: MapStyle.DefaultDark.loadStyle(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
-    
     @Binding var tabBarHeight: CGFloat
     
     @State private var isShowingFilterSheet: Bool = false
+    @State private var bottomPaddingFix: CGFloat = 0
+    
+    @FocusState private var mapPanelFocused: Bool
+    @Namespace private var mapSpace
     
     public var body: some View {
         
@@ -60,6 +62,14 @@ public struct HomeView : View {
                 VStack {
                     Spacer()
                     self.mapSearchPanel()
+                    
+                    if self.keyboard.currentHeight != 0 {
+                        Spacer().frame(height: 0)
+                            .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
+                    } else {
+                        Spacer().frame(height: self.bottomPaddingFix + self.tabBarHeight + 32)
+                            .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
+                    }
                 }
             }
         }
@@ -79,6 +89,11 @@ public struct HomeView : View {
         .onChange(of: self.mapModel.mapCenter) { newValue in
             self.model.hasMovedFromLastLocation = newValue.distance(to: self.mapModel.mapLastCachedLocation) > 300
         }
+        .onChange(of: self.edges.bottom) { newValue in
+            if newValue > self.bottomPaddingFix {
+                self.bottomPaddingFix = newValue
+            }
+        }
     }
     
     //MARK: - View Builders
@@ -87,7 +102,7 @@ public struct HomeView : View {
     @ViewBuilder
     func mapSearchPanel() -> some View {
         Spacer()
-        MapSearchPanelView()
+        MapSearchPanelView(isFocused: $mapPanelFocused)
         Spacer().frame(height: 16)
     }
     

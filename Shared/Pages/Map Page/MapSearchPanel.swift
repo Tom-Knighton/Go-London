@@ -11,10 +11,14 @@ import GoLondonSDK
 
 struct MapSearchPanelView: View {
     
-    @FocusState var isFocused: Bool
+    private var isFocused: FocusState<Bool>.Binding
     @State var promptText = "nearby stations..."
     
     @ObservedObject var model: MapSearchPanelViewModel = MapSearchPanelViewModel()
+    
+    init(isFocused: FocusState<Bool>.Binding) {
+        self.isFocused = isFocused
+    }
     
     var body: some View {
         VStack {
@@ -66,7 +70,7 @@ struct MapSearchPanelView: View {
             }
             withAnimation(.easeInOut) {
                 VStack {
-                    GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: $isFocused)
+                    GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: isFocused)
                         .onReceive(model.$searchText.debounce(for: 0.8, scheduler: RunLoop.main)) { text in
                             Task {
                                 guard model.searchText.count >= 3 else { return }
@@ -74,8 +78,10 @@ struct MapSearchPanelView: View {
                             }
                         }
                         .onTapGesture(perform: {
-                            if !self.isFocused {
-                                self.isFocused = true
+                            withAnimation(.easeInOut) {
+                                if !self.isFocused.wrappedValue {
+                                    self.isFocused.wrappedValue = true
+                                }
                             }
                         })
                         .onAppear {
