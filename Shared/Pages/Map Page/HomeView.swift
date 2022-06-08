@@ -28,7 +28,7 @@ public struct HomeView : View {
     public var body: some View {
         
         GeometryReader { geo in
-            VStack {
+            ZStack {
                 HStack {
                     Spacer()
                     VStack {
@@ -52,11 +52,15 @@ public struct HomeView : View {
                         }
                         .buttonStyle(MapButtonStyle())
 
+                        Spacer()
                     }
                     Spacer().frame(width: 16)
                 }
                 
-                self.mapSearchPanel()
+                VStack {
+                    Spacer()
+                    self.mapSearchPanel()
+                }
             }
         }
         .sheet(isPresented: $isShowingFilterSheet) {
