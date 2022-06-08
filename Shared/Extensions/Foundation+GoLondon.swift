@@ -35,6 +35,20 @@ extension Collection where Element: WeightedElement {
     }
 }
 
+extension Collection where Element: Codable {
+    
+    func deepCopy() -> [Element] {
+        let json = try? JSONEncoder().encode(self.map { $0 })
+        
+        guard let json = json else {
+            return self.map { $0 }
+        }
+        
+        let toReturn = try? JSONDecoder().decode([Element].self, from: json)
+        return toReturn ?? self.map { $0 }
+    }
+}
+
 extension UIApplication {
     
     var keyWindow: UIWindow? {

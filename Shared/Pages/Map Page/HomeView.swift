@@ -32,7 +32,7 @@ public struct HomeView : View {
                 HStack {
                     Spacer()
                     VStack {
-                        if self.model.hasMovedFromLastLocation {
+                        if self.model.hasMovedFromLastLocation || self.model.isLoading {
                             self.searchHereButton()
                         }
                         
@@ -69,9 +69,11 @@ public struct HomeView : View {
         .background(
             self.mapBackground()
         )
-        .onChange(of: self.model.filters.filters) { _ in
+        .onChange(of: self.model.filters) { _ in
             Task {
-                await self.model.searchForMarkers(at: mapModel.mapCenter)
+                if let newMarkers = await self.model.searchForMarkers(at: self.mapModel.mapCenter) {
+                    self.mapModel.stopPointMarkers = newMarkers
+                }
             }
         }
         .onChange(of: self.mapModel.mapCenter) { newValue in

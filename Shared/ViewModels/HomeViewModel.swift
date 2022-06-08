@@ -20,11 +20,12 @@ class HomeViewModel: ObservableObject {
     @Published var hasMovedFromLastLocation: Bool = false
     
     class LineModeFilters: ObservableObject, Equatable {
+        
         static func == (lhs: HomeViewModel.LineModeFilters, rhs: HomeViewModel.LineModeFilters) -> Bool {
             lhs.filters == rhs.filters
         }
         
-        struct Filter: Identifiable, Equatable, Hashable {
+        struct Filter: Identifiable, Equatable, Codable {
             var lineMode: LineMode
             var toggled: Bool = true
             
@@ -57,7 +58,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    private static var defaultFilters: LineModeFilters =  LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
+    static var defaultFilters: LineModeFilters =  LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
     
     var anyCancellable: AnyCancellable? = nil
     
