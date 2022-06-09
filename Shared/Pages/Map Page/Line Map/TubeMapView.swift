@@ -43,7 +43,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     
     
     func makeUIView(context: Context) -> MapView {
-        let myResourceOptions = ResourceOptions(accessToken: "sk.eyJ1IjoidG9ta25pZ2h0b24iLCJhIjoiY2wzeDkxMDg1MDF2eTNqcXc1MnhsdHAwaiJ9.SFzxQzwL-3PRISNLHb0qpg")
+        let myResourceOptions = ResourceOptions(accessToken: GoLondon.MapboxKey)
         let mapInitOptions: MapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: self.viewModel.mapStyle.loadStyle())
         let mapView: MapView = MapView(frame: .zero, mapInitOptions: mapInitOptions)
         

@@ -41,7 +41,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
     }
     
     public func makeUIView(context: Context) -> MapView {
-        let myResourceOptions = ResourceOptions(accessToken: "pk.eyJ1IjoidG9ta25pZ2h0b24iLCJhIjoiY2p0ZWhyb2s2MTR1NzN5bzdtZm9udmJueSJ9.c4dShyMCfZ6JhsnFRf72Rg")
+        let myResourceOptions = ResourceOptions(accessToken: GoLondon.MapboxKey)
         let mapInitOptions: MapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: viewModel.mapStyle.loadStyle())
         let mapView: MapView = MapView(frame: .zero, mapInitOptions: mapInitOptions)
         

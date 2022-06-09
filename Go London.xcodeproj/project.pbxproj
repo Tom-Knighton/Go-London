@@ -135,8 +135,6 @@
 		E22B69BB284BD4D50026D42E /* GlobalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewModel.swift; sourceTree = "<group>"; };
 		E244CE82283AC85A007A4A9A /* TubeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TubeMapView.swift; sourceTree = "<group>"; };
 		E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapViewModel.swift; sourceTree = "<group>"; };
-		E2680B1327EBCB4C004C37E9 /* Go-London--iOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Go-London--iOS--Info.plist"; sourceTree = "<group>"; };
-		E2680B1427EBCBAE004C37E9 /* Go-London--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Go-London--macOS--Info.plist"; sourceTree = "<group>"; };
 		E2680B1E27EBCFDB004C37E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2680B2227EBD02B004C37E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2680B2527EBDA57004C37E9 /* GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondon.swift; sourceTree = "<group>"; };
@@ -444,8 +442,6 @@
 		E2FEF7D827E4AA85005132EF = {
 			isa = PBXGroup;
 			children = (
-				E2680B1427EBCBAE004C37E9 /* Go-London--macOS--Info.plist */,
-				E2680B1327EBCB4C004C37E9 /* Go-London--iOS--Info.plist */,
 				E2FEF7DD27E4AA85005132EF /* Shared */,
 				E2FEF7EC27E4AA87005132EF /* macOS */,
 				E2FEF7E627E4AA87005132EF /* Products */,
@@ -515,6 +511,7 @@
 				E2FEF7E127E4AA87005132EF /* Sources */,
 				E2FEF7E227E4AA87005132EF /* Frameworks */,
 				E2FEF7E327E4AA87005132EF /* Resources */,
+				E2DDF0D22852100200651217 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -538,6 +535,7 @@
 				E2FEF7E727E4AA87005132EF /* Sources */,
 				E2FEF7E827E4AA87005132EF /* Frameworks */,
 				E2FEF7E927E4AA87005132EF /* Resources */,
+				E2DDF0D32852103700651217 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -646,6 +644,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E2DDF0D22852100200651217 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+				"$(SRCROOT)/.mapbox",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Look for a global file named 'mapbox' or '.mapbox' within the home directory\ntoken_file=.mapbox\ntoken_file2=mapbox\ntoken=\"$(cat $token_file 2>/dev/null || cat $token_file2 2>/dev/null)\"\nif [ \"$token\" ]; then\n  plutil -replace MBXAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\n  echo 'Built token '\n  echo $token\nelse\n  echo 'warning: Missing Mapbox access token'\n  open 'https://account.mapbox.com/access-tokens/'\n  echo \"warning: Get an access token from <https://account.mapbox.com/access-tokens/>, then create a new file at $token_file or $token_file2 that contains the access token.\"\nfi\n";
+		};
+		E2DDF0D32852103700651217 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
+				"$(SRCROOT)/.mapbox",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Look for a global file named 'mapbox' or '.mapbox' within the home directory\ntoken_file=.mapbox\ntoken_file2=mapbox\ntoken=\"$(cat $token_file 2>/dev/null || cat $token_file2 2>/dev/null)\"\nif [ \"$token\" ]; then\n  plutil -replace MBXAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\nelse\n  echo 'warning: Missing Mapbox access token'\n  open 'https://account.mapbox.com/access-tokens/'\n  echo \"warning: Get an access token from <https://account.mapbox.com/access-tokens/>, then create a new file at $token_file or $token_file2 that contains the access token.\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E2FEF7E127E4AA87005132EF /* Sources */ = {

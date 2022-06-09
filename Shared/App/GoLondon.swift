@@ -16,8 +16,23 @@ public class GoLondon {
     
     public static let UKBounds: CoordinateBounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: 49.84612, longitude: -11.84651), northeast: CLLocationCoordinate2D(latitude: 59.03151, longitude: 1.04011))
     
+    public static var MapboxKey: String {
+        if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
+            do {
+                let infoPlistData = try Data(contentsOf: infoPlistPath)
+                
+                if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
+                    return dict["MBXAccessToken"] as! String
+                }
+            } catch {
+                fatalError("No MBXAccessToken found")
+            }
+        }
+        
+        fatalError("No valid Info.plist found")
+    }
     
-    #if DEBUG
+#if DEBUG
     public static var defaultStopPoint: StopPoint {
         let decoder = JSONDecoder()
         let stopPoint: StopPoint = try! decoder.decode(StopPoint.self, from: Data("""
@@ -26,7 +41,7 @@ public class GoLondon {
         return stopPoint
     }
     
-    #endif
+#endif
 }
 
 public enum MapStyle {
