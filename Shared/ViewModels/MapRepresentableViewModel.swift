@@ -48,10 +48,9 @@ class MapRepresentableViewModel: ObservableObject {
         
         self.searchedLocation = searchedLocation
         
+        self.internalCacheStyle = .DefaultDark
         self.mapStyle = UITraitCollection.current.userInterfaceStyle == .dark ? .DefaultDark : .DefaultLight
         
-        self.mapStyle = .DefaultDark
-        self.internalCacheStyle = .DefaultDark
         NotificationCenter.default.publisher(for: .OS_COLOUR_SCHEME_CHANGE)
             .compactMap { $0.userInfo }
             .sink { userInfo in
