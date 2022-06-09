@@ -14,7 +14,7 @@ struct MapSearchPanelView: View {
     private var isFocused: FocusState<Bool>.Binding
     @State var promptText = "nearby stations..."
     
-    @ObservedObject var model: MapSearchPanelViewModel = MapSearchPanelViewModel()
+    @StateObject var model: MapSearchPanelViewModel = MapSearchPanelViewModel()
     
     init(isFocused: FocusState<Bool>.Binding) {
         self.isFocused = isFocused
