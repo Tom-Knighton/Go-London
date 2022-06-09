@@ -89,9 +89,18 @@ class HomeViewModel: ObservableObject {
         
         var markers: [StopPointAnnotation] = []
 
-        for point in nearbyPoints.reversed() {
-            if let point = point as? StopPoint,
-               point.lineModeGroups?.isEmpty == false {
+        
+        var nearbyStopPoints: [StopPoint] = nearbyPoints.filter { $0 is StopPoint }.compactMap { $0 as? StopPoint}
+        
+        nearbyStopPoints = nearbyStopPoints.sorted(by: { pointA, pointB in
+            let totalA = pointA.lineModes?.compactMap { $0.weighting }.reduce(0, +) ?? -1
+            let totalB = pointB.lineModes?.compactMap { $0.weighting }.reduce(0, +) ?? -1
+            
+            return totalA < totalB
+        })
+        
+        for point in nearbyStopPoints {
+            if point.lineModeGroups?.isEmpty == false {
                 markers.append(StopPointAnnotation(stopPoint: point))
             }
         }
