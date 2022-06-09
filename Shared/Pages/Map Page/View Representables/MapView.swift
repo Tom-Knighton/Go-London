@@ -101,14 +101,11 @@ public struct MapViewRepresentable: UIViewRepresentable {
     }
     
     public func updateUIView(_ uiView: MapView, context: Context) {
-        
-        self.addCircleLayer(for: uiView, radius: 850)
-        
+                
         DispatchQueue.main.async {
             if viewModel.internalCacheStyle != viewModel.mapStyle {
                 uiView.mapboxMap.loadStyleURI(viewModel.mapStyle.loadStyle(), completion: nil)
                 viewModel.updateCacheStyle()
-                self.addCircleLayer(for: uiView, radius: 850)
             }
             
             if viewModel.stopPointMarkers != viewModel.internalCachedStopPointMarkers {
@@ -197,7 +194,7 @@ extension MapViewRepresentable {
         layer.circleStrokeOpacity = .constant(1.0)
         
         try? currentStyle.addSource(source, id: "search-circle-source")
-        try? currentStyle.addLayer(layer)
+        try? currentStyle.addPersistentLayer(layer)
         
     }
     
