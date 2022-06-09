@@ -66,6 +66,10 @@ struct ContentView: View {
         .safeAreaInset(edge: .bottom) {
             GLTabBar()
                 .opacity(self.tabManager.showTabBar ? 1 : 0)
+                .onChange(of: self.tabManager.showTabBar) { newVal in
+                   //Hack to ensure tab bar properly hides :)
+                }
+            
         }
         .environmentObject(tabManager)
         .edgesIgnoringSafeArea(.bottom)
