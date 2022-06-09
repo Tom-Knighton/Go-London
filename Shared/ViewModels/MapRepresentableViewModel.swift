@@ -9,11 +9,12 @@ import Foundation
 import SwiftUI
 import MapboxMaps
 import MapKit
+import Combine
 
 class MapRepresentableViewModel: ObservableObject {
     
-    @Published var styleURI: StyleURI
-    @Published var internalCacheStyle: StyleURI
+    @Published var mapStyle: MapStyle
+    @Published var internalCacheStyle: MapStyle
     
     @Published var enableCurrentLocation: Bool
     @Published var enableTrackingLocation: Bool
@@ -28,12 +29,11 @@ class MapRepresentableViewModel: ObservableObject {
     @Published var forceUpdatePosition: Bool
     
     @Published var searchedLocation: CLLocationCoordinate2D?
+    
+    private var cancelSet: Set<AnyCancellable> = []
         
-    init(styleURI: StyleURI, enableCurrentLocation: Bool, enableTrackingLocation: Bool, mapCenter: CLLocationCoordinate2D, stopPointMarkers: [StopPointAnnotation] = [], forceUpdatePosition: Bool = false, searchedLocation: CLLocationCoordinate2D? = nil) {
-        
-        self.styleURI = styleURI
-        self.internalCacheStyle = styleURI
-        
+    init(enableCurrentLocation: Bool, enableTrackingLocation: Bool, mapCenter: CLLocationCoordinate2D, stopPointMarkers: [StopPointAnnotation] = [], forceUpdatePosition: Bool = false, searchedLocation: CLLocationCoordinate2D? = nil) {
+                
         self.enableCurrentLocation = enableCurrentLocation
         self.enableTrackingLocation = enableTrackingLocation
         
@@ -47,6 +47,20 @@ class MapRepresentableViewModel: ObservableObject {
         self.forceUpdatePosition = forceUpdatePosition
         
         self.searchedLocation = searchedLocation
+        
+        self.mapStyle = UITraitCollection.current.userInterfaceStyle == .dark ? .DefaultDark : .DefaultLight
+        
+        self.mapStyle = .DefaultDark
+        self.internalCacheStyle = .DefaultDark
+        NotificationCenter.default.publisher(for: .OS_COLOUR_SCHEME_CHANGE)
+            .compactMap { $0.userInfo }
+            .sink { userInfo in
+                guard let scheme = userInfo["scheme"] as? ColorScheme else {
+                    return
+                }
+                self.mapStyle = scheme == .dark ? .DefaultDark : .DefaultLight
+            }
+            .store(in: &cancelSet)
     }
     
     var markersOutOfSync: Bool {
@@ -58,7 +72,7 @@ class MapRepresentableViewModel: ObservableObject {
     }
     
     func updateCacheStyle() {
-        self.internalCacheStyle = self.styleURI
+        self.internalCacheStyle = self.mapStyle
     }
     
     func setSearchedLocation(to location: CLLocationCoordinate2D) {
@@ -67,10 +81,6 @@ class MapRepresentableViewModel: ObservableObject {
     
     func updateCacheMarkers() {
         self.internalCachedStopPointMarkers = self.stopPointMarkers
-    }
-    
-    func updateStyleURI(to uri: StyleURI) {
-        self.styleURI = uri
     }
     
     func hideAllDetails(except markerId: String? = nil) {
