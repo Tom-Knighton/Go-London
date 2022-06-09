@@ -35,35 +35,33 @@ struct SearchResultView: View {
         .shadow(radius: 1)
     }
     
+    func findTubeModeGroup() -> LineModeGroup? {
+        guard let point = point as? StopPoint else {
+            return nil
+        }
+        
+        return point.lineModeGroups?.first(where: { $0.modeName == .tube })
+    }
+    
     @ViewBuilder
     func modesToDisplay() -> some View {
         if let point = point as? StopPoint {
             HStack {
-                if let _ = point.lineModeGroups {
-                    ForEach(point.sortedLineModeGroups, id: \.modeName) { mode in
-                        Group {
-                            if (mode.modeName != LineMode.tube) {
-                                mode.modeName?.image
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 20, height: 20)
-                            } else {
-                                ForEach(mode.lineIdentifier ?? [], id: \.self) { id in
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(LineMode.lineColour(for: id))
-                                        .frame(width: 20, height: 20)
-                                }
-                            }
-                        }
-                        .shadow(radius: 3)
-                    }
-                } else if let _ = point.lineModes {
+                if let _ = point.lineModes {
                     ForEach(point.sortedLineModes, id: \.self) { mode in
-                        Group {
+                        if mode == .tube, let tubeGroup = self.findTubeModeGroup() {
+                            ForEach(tubeGroup.lineIdentifier ?? [], id: \.self) { id in
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(LineMode.lineColour(for: id))
+                                    .frame(width: 20, height: 20)
+                                    .shadow(radius: 3)
+                            }
+                        } else {
                             mode.image
                                 .frame(width: 20, height: 20)
                                 .aspectRatio(contentMode: .fit)
+                                .shadow(radius: 3)
                         }
-                        .shadow(radius: 3)
                     }
                 }
             }
