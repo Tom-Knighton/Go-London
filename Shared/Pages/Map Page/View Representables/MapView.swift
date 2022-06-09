@@ -54,6 +54,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         mapView.ornaments.scaleBarView.isHidden = true
         
         mapView.presentsWithTransaction = true
+        mapView.viewAnnotations.validatesViews = false
         
         mapView.mapboxMap.setCamera(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
         
@@ -235,6 +236,7 @@ extension MapViewRepresentable {
         if let view = self.detailedView {
             uiView.viewAnnotations.remove(view)
         }
+        
         let lineModes = stopPoint.lineModes ?? []
         let lines = Int((stopPoint.name ?? stopPoint.commonName ?? "").count / 23)
         let option = ViewAnnotationOptions(
@@ -247,6 +249,9 @@ extension MapViewRepresentable {
             offsetY: (lineModes.contains(.tube) && lineModes.contains(.bus) ? -15 : lineModes.contains(.bus) ? 10 : lineModes.contains(.tube) ? -10 : lineModes.contains(.overground) ? 10 : 25) - (10 * CGFloat(lines)),
             selected: true
         )
+        
+        
+        
         
         let vc = UIHostingController(rootView: StopPointDetailMarkerView(stopPoint: stopPoint))
         vc.view.backgroundColor = .clear
