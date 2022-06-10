@@ -34,26 +34,26 @@ public struct HomeView : View {
                 HStack {
                     Spacer()
                     VStack {
-                        if self.model.hasMovedFromLastLocation || self.model.isLoading {
-                            self.searchHereButton()
-                        }
                         
-                        if let _ = LocationManager.shared.lastLocation?.coordinate {
-                            Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
-                                .buttonStyle(MapButtonStyle())
-                                .transition(.move(edge: .leading))
+                        Button(action: {  }) {
+                            Image(systemName: "tram.circle")
                         }
+                        .buttonStyle(MapButtonStyle())
                         
                         Button(action: { self.isShowingFilterSheet.toggle() }) {
                             Image(systemName: "line.3.horizontal.decrease.circle")
                         }
                         .buttonStyle(MapButtonStyle())
                         
-                        Button(action: { }) {
-                            Image(systemName: "tram.circle")
+                        if let _ = LocationManager.shared.lastLocation?.coordinate {
+                            Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
+                                .buttonStyle(MapButtonStyle())
+                                .transition(.move(edge: .trailing))
                         }
-                        .buttonStyle(MapButtonStyle())
-
+                        
+                        if self.model.hasMovedFromLastLocation || self.model.isLoading {
+                            self.searchHereButton()
+                        }
                         Spacer()
                     }
                     Spacer().frame(width: 16)
@@ -128,11 +128,11 @@ public struct HomeView : View {
         if self.model.isLoading {
             Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
                 .buttonStyle(MapButtonStyle())
-                .transition(.move(edge: .leading))
+                .transition(.move(edge: .trailing))
         } else {
             Button(action: { Task { search() } }) { Image(systemName: "location.magnifyingglass") }
                 .buttonStyle(MapButtonStyle())
-                .transition(.move(edge: .leading))
+                .transition(.move(edge: .trailing))
         }
     }
     
