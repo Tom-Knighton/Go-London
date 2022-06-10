@@ -73,6 +73,9 @@ public struct HomeView : View {
                 }
             }
         }
+        .onAppear {
+            self.bottomPaddingFix = self.edges.bottom
+        }
         .sheet(isPresented: $isShowingFilterSheet) {
             HomeMapFilterView(viewModel: self.model)
         }
@@ -101,7 +104,7 @@ public struct HomeView : View {
     /// View at bottom of page holding map search bar and results
     @ViewBuilder
     func mapSearchPanel() -> some View {
-        Spacer()
+        
         MapSearchPanelView(isFocused: $mapPanelFocused)
         Spacer().frame(height: 16)
     }
