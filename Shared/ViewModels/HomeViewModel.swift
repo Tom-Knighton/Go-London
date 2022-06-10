@@ -18,6 +18,7 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading: Bool
     @Published var searchText: String = ""
     @Published var hasMovedFromLastLocation: Bool = false
+    @Published var isShowingLineMap: Bool = false
     
     class LineModeFilters: ObservableObject, Equatable {
         

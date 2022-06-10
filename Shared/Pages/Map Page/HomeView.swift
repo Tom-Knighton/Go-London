@@ -35,7 +35,7 @@ public struct HomeView : View {
                     Spacer()
                     VStack {
                         
-                        Button(action: {  }) {
+                        Button(action: {  withAnimation { self.model.isShowingLineMap.toggle() }}) {
                             Image(systemName: "tram.circle")
                         }
                         .buttonStyle(MapButtonStyle())
@@ -61,7 +61,11 @@ public struct HomeView : View {
                 
                 VStack {
                     Spacer()
-                    self.mapSearchPanel()
+                    
+                    if !self.model.isShowingLineMap {
+                        self.mapSearchPanel()
+                            .transition(.move(edge: .bottom))
+                    }
                     
                     if self.keyboard.currentHeight != 0 {
                         Spacer().frame(height: 0)
@@ -105,7 +109,11 @@ public struct HomeView : View {
     @ViewBuilder
     func mapSearchPanel() -> some View {
         
-        MapSearchPanelView(isFocused: $mapPanelFocused)
+        if !self.model.isShowingLineMap {
+            MapSearchPanelView(isFocused: $mapPanelFocused)
+                .transition(.move(edge: .bottom))
+        }
+        
         Spacer().frame(height: 16)
     }
     
@@ -141,11 +149,19 @@ public struct HomeView : View {
     
     @ViewBuilder
     func mapBackground() -> some View {
-        MapViewRepresentable(viewModel: mapModel)
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                self.search()
-            }
+        
+        if self.model.isShowingLineMap {
+            LineMapView(lineIds: ["elizabeth", "dlr", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"], filterDisability: .constant(false))
+                .edgesIgnoringSafeArea(.all)
+                .transition(.opacity)
+        } else {
+            MapViewRepresentable(viewModel: mapModel)
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    self.search()
+                }
+                .transition(.opacity)
+        }
     }
     
     //MARK: - Functions
