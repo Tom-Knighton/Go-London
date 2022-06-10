@@ -1,79 +1,77 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "GoLondonSDK",
-        "repositoryURL": "https://github.com/Tom-Knighton/GoLondonSDK-Swift",
-        "state": {
-          "branch": null,
-          "revision": "0995717c9e1d02e30c70c0d114c26f1dae9356be",
-          "version": "1.0.11"
-        }
-      },
-      {
-        "package": "Lottie",
-        "repositoryURL": "https://github.com/airbnb/lottie-ios.git",
-        "state": {
-          "branch": "master",
-          "revision": "f99a37afd0269814477fd5c2dd7295d500f1fd83",
-          "version": null
-        }
-      },
-      {
-        "package": "MapboxCommon",
-        "repositoryURL": "https://github.com/mapbox/mapbox-common-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "59b81d4f6316a661c322e8c47bc3310f8a1bdd4a",
-          "version": "21.3.0"
-        }
-      },
-      {
-        "package": "MapboxCoreMaps",
-        "repositoryURL": "https://github.com/mapbox/mapbox-core-maps-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "9984e5f6218ce3b5e5ad540218085e6743e133b2",
-          "version": "10.5.1"
-        }
-      },
-      {
-        "package": "MapboxMobileEvents",
-        "repositoryURL": "https://github.com/mapbox/mapbox-events-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "1b6c2a34086de40c26f2f97a716ac419f46eb630",
-          "version": "1.0.7"
-        }
-      },
-      {
-        "package": "MapboxMaps",
-        "repositoryURL": "https://github.com/mapbox/mapbox-maps-ios.git",
-        "state": {
-          "branch": null,
-          "revision": "592aa782e7ac2a51c8d8a54231eaa13b4778674d",
-          "version": "10.5.0"
-        }
-      },
-      {
-        "package": "Introspect",
-        "repositoryURL": "https://github.com/siteline/SwiftUI-Introspect.git",
-        "state": {
-          "branch": null,
-          "revision": "f2616860a41f9d9932da412a8978fec79c06fe24",
-          "version": "0.1.4"
-        }
-      },
-      {
-        "package": "Turf",
-        "repositoryURL": "https://github.com/mapbox/turf-swift.git",
-        "state": {
-          "branch": null,
-          "revision": "a7db78a2281ffe79966443ebe5687766d6c024c7",
-          "version": "2.3.0"
-        }
+  "pins" : [
+    {
+      "identity" : "golondonsdk-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tom-Knighton/GoLondonSDK-Swift",
+      "state" : {
+        "revision" : "015fd3e3e4f872e2c34e2de37961eae4bea64cf4",
+        "version" : "1.0.12"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "f99a37afd0269814477fd5c2dd7295d500f1fd83"
+      }
+    },
+    {
+      "identity" : "mapbox-common-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-common-ios.git",
+      "state" : {
+        "revision" : "59b81d4f6316a661c322e8c47bc3310f8a1bdd4a",
+        "version" : "21.3.0"
+      }
+    },
+    {
+      "identity" : "mapbox-core-maps-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-core-maps-ios.git",
+      "state" : {
+        "revision" : "9984e5f6218ce3b5e5ad540218085e6743e133b2",
+        "version" : "10.5.1"
+      }
+    },
+    {
+      "identity" : "mapbox-events-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-events-ios.git",
+      "state" : {
+        "revision" : "1b6c2a34086de40c26f2f97a716ac419f46eb630",
+        "version" : "1.0.7"
+      }
+    },
+    {
+      "identity" : "mapbox-maps-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/mapbox-maps-ios.git",
+      "state" : {
+        "revision" : "592aa782e7ac2a51c8d8a54231eaa13b4778674d",
+        "version" : "10.5.0"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
+      "state" : {
+        "revision" : "f2616860a41f9d9932da412a8978fec79c06fe24",
+        "version" : "0.1.4"
+      }
+    },
+    {
+      "identity" : "turf-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mapbox/turf-swift.git",
+      "state" : {
+        "revision" : "a7db78a2281ffe79966443ebe5687766d6c024c7",
+        "version" : "2.3.0"
+      }
+    }
+  ],
+  "version" : 2
 }

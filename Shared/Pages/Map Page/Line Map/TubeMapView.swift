@@ -12,7 +12,7 @@ import GoLondonSDK
 
 struct LineMapView: View {
     
-    @State var lineId: String = ""
+    @State var lineIds: [String] = []
     @Binding var filterDisability: Bool
     @StateObject private var viewModel: LineMapViewModel = LineMapViewModel()
     
@@ -21,10 +21,11 @@ struct LineMapView: View {
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 Task {
-                    self.viewModel.setup(for: [self.lineId])
+                    self.viewModel.setup(for: self.lineIds)
                     await self.viewModel.fetchStopPoints()
                 }
             }
+            .rotationEffect(.degrees(0.1))
     }
 }
 
@@ -33,12 +34,14 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     @ObservedObject private var viewModel: LineMapViewModel
     @State private var interchangeIconLayers: [String] = []
     @EnvironmentObject private var globalViewModel: GlobalViewModel
+    @State private var coordinateNames: [String: String]
     
     private var filterAccessibility: Bool
     
     init(viewModel: LineMapViewModel, filterAccessibility: Bool = false) {
         self.viewModel = viewModel
         self.filterAccessibility = filterAccessibility
+        self.coordinateNames = [:]
     }
     
     
@@ -136,15 +139,30 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             print("Error getting assets")
         }
         
-        self.viewModel.lineRoutes.forEach { route in
-            route.stopPointSequences?.forEach({ branch in
+        self.viewModel.lineRoutes.mutateEach { route in
+            route.stopPointSequences?.mutateEach { branch in
+                
+                branch.stopPoint?.mutateEach{ stopPoint in
+                    if let coord = self.coordinateNames[stopPoint.icsId ?? ""] {
+                        if (stopPoint.name ?? stopPoint.commonName ?? "").count < coord.count {
+                            self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
+                        } else {
+                            print("Clearing names for \(stopPoint.commonName ?? stopPoint.name ?? "")")
+                            stopPoint.name = ""
+                            stopPoint.commonName = ""
+                        }
+                    } else {
+                        self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
+                    }
+                }
+                
                 
                 self.drawInterchangeIcons(on: mapView, for: branch, index: index)
                 self.drawStopNames(on: mapView, for: branch, index: index)
                 self.drawLines(on: mapView, for: branch, index: index)
                 
                 index += 1
-            })
+            }
         }
         
         let coords = self.viewModel.lineRoutes.compactMap { $0.stopPointSequences?.compactMap { $0.stopPoint?.compactMap { $0.coordinate} } }.flatMap { $0 }.flatMap { $0 }
@@ -250,7 +268,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         nameSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {
             
             var feat = Feature(geometry: Point($0.coordinate.coordinate(at: LocationDistance(1), facing: LocationDirection(180))))
-            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue($0.commonName ?? $0.name ?? "")))
+            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(self.coordinateNames[$0.commonName ?? $0.name ?? ""] ?? $0.commonName ?? $0.name ?? "")))
             return feat
             
         } ?? []))
@@ -284,6 +302,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         try? mapView.mapboxMap.style.addPersistentLayer(stopNamesLayer)
     }
     
+    
     func drawLines(on mapView: MapView, for branch: Branch, index: Int) {
         let superLowZoomWidth = 1
         let lowZoomWidth = 3
@@ -308,12 +327,18 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         lineLayer.lineWidth = .expression(lineWidth)
         lineLayer.lineCap = .constant(.round)
         lineLayer.lineJoin = .constant(.round)
+        lineLayer.lineOpacity = .constant(0.7)
+        
+        if branch.lineId == "circle" {
+            lineLayer.lineOffset = .constant(-2.5)
+        }
+        
+        if branch.lineId == "district" {
+            lineLayer.lineOffset = .constant(2.5)
+        }
         
         try? mapView.mapboxMap.style.addSource(source, id: "line-id-\(String(describing: index))")
         try? mapView.mapboxMap.style.addPersistentLayer(lineLayer, layerPosition: .below("poi-label"))
     }
     
 }
-
-
-

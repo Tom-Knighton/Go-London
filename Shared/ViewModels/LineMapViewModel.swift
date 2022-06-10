@@ -43,7 +43,7 @@ final class LineMapViewModel: ObservableObject {
     
     func fetchStopPoints() async {
         Task {
-            self.lineRoutes = await GLSDK.Lines.Routes(for: self.lineIds)
+            self.lineRoutes = await GLSDK.Lines.Routes(for: self.lineIds, fixCoordinates: false)
         }
     }
     

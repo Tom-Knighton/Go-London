@@ -49,7 +49,7 @@ struct LinePage: View {
 
                     if !self.isFullScreenMapShowing {
                         ZStack {
-                            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: .constant(false))
+                            LineMapView(lineIds: [self.viewModel.line.id ?? ""], filterDisability: .constant(false))
                                 .matchedGeometryEffect(id: "map", in: mapNamespace)
                             
                             VStack {
@@ -124,7 +124,7 @@ struct LinePage: View {
     /// A view that should overlay the current screen containing the line map + options
     func fullscreenMapView() -> some View {
         ZStack {
-            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: self.$filterMapDisability)
+            LineMapView(lineIds: [self.viewModel.line.id ?? ""], filterDisability: self.$filterMapDisability)
                 .edgesIgnoringSafeArea(.all)
                 .matchedGeometryEffect(id: "map", in: mapNamespace)
             
