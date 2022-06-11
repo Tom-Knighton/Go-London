@@ -17,7 +17,7 @@ public struct HomeView : View {
     
     @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
-    @StateObject private var lineModel: LineMapViewModel = LineMapViewModel(for: ["elizabeth", "dlr", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"])
+    @StateObject private var lineModel: LineMapViewModel = LineMapViewModel(for: ["elizabeth", "dlr", "london-overground", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"])
     
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     @Binding var tabBarHeight: CGFloat
