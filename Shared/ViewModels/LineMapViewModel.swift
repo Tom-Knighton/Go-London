@@ -10,7 +10,7 @@ import GoLondonSDK
 import Combine
 import SwiftUI
 
-struct LineMapFilter {
+struct LineMapFilter: Codable {
     
     let lineId: String
     var toggled: Bool

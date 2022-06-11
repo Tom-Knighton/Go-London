@@ -86,7 +86,11 @@ public struct HomeView : View {
             self.bottomPaddingFix = self.edges.bottom
         }
         .sheet(isPresented: $isShowingFilterSheet) {
-            HomeMapFilterView(viewModel: self.model)
+            if self.model.isShowingLineMap {
+                LineMapFilterView(viewModel: self.lineModel)
+            } else {
+                HomeMapFilterView(viewModel: self.model)
+            }
         }
         .background(
             self.mapBackground()
