@@ -14,11 +14,19 @@ extension LineMode {
     /// Returns a 'friendly' name for a Tube Line Identifier
     /// - Remark: I.e. 'Waterloo & City' instead of 'waterloo-city'
     static func friendlyTubeLineName(for lineIdentifier: String) -> String {
+        
+        let lineIdentifier = lineIdentifier.lowercased()
         switch lineIdentifier {
         case "hammersmith-city":
             return "Hammersmith & City"
         case "waterloo-city":
             return "Waterloo & City"
+        case "london-overground":
+            return "London Overground"
+        case "dlr":
+            return "DLR"
+        case "elizabeth":
+            return "Elizabeth Line"
         default:
             return lineIdentifier.prefix(1).capitalized + lineIdentifier.dropFirst()
         }
@@ -141,6 +149,20 @@ extension LineMode {
             Image("tfl")
                 .resizable()
                 .foregroundColor(.red)
+        }
+    }
+    
+    @ViewBuilder
+    static func image(for lineId: String) -> some View {
+        switch lineId {
+        case "london-overground":
+            LineMode.overground.image
+        case "dlr":
+            LineMode.dlr.image
+        case "elizabeth":
+            LineMode.elizabethLine.image
+        default:
+            LineMode.tube.image
         }
     }
     

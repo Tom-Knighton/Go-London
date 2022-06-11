@@ -39,12 +39,13 @@ struct LineMapFilterView: View {
                                 Button(action: { self.toggle(filter.lineId) } ) {
                                     VStack {
                                         Spacer().frame(height: 8)
-                                        Text(filter.lineId)
+                                        Text(LineMode.friendlyTubeLineName(for: filter.lineId))
                                             .bold()
                                             .multilineTextAlignment(.center)
                                             .foregroundColor(filter.toggled ? .white : .primary)
                                         Spacer()
-                                        LineMode.tube.image
+                                        
+                                        LineMode.image(for: filter.lineId)
                                             .frame(width: 50, height: 50)
                                         
                                         Spacer().frame(height: 24)
