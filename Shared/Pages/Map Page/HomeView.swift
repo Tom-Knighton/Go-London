@@ -17,6 +17,7 @@ public struct HomeView : View {
     
     @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    @StateObject private var lineModel: LineMapViewModel = LineMapViewModel(for: ["elizabeth", "dlr", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"])
     
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     @Binding var tabBarHeight: CGFloat
@@ -45,15 +46,19 @@ public struct HomeView : View {
                         }
                         .buttonStyle(MapButtonStyle())
                         
-                        if let _ = LocationManager.shared.lastLocation?.coordinate {
-                            Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
-                                .buttonStyle(MapButtonStyle())
-                                .transition(.move(edge: .trailing))
+                        if !self.model.isShowingLineMap {
+                            if let _ = LocationManager.shared.lastLocation?.coordinate {
+                                Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
+                                    .buttonStyle(MapButtonStyle())
+                                    .transition(.move(edge: .trailing))
+                            }
+                            
+                            if self.model.hasMovedFromLastLocation || self.model.isLoading {
+                                self.searchHereButton()
+                                    .transition(.move(edge: .trailing))
+                            }
                         }
                         
-                        if self.model.hasMovedFromLastLocation || self.model.isLoading {
-                            self.searchHereButton()
-                        }
                         Spacer()
                     }
                     Spacer().frame(width: 16)
@@ -151,7 +156,7 @@ public struct HomeView : View {
     func mapBackground() -> some View {
         
         if self.model.isShowingLineMap {
-            LineMapView(lineIds: ["elizabeth", "dlr", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"], filterDisability: .constant(false))
+            LineMapView(viewModel: self.lineModel)
                 .edgesIgnoringSafeArea(.all)
                 .transition(.opacity)
         } else {

@@ -20,6 +20,14 @@ struct LinePage: View {
     @State private var isFullScreenMapShowing: Bool = false
     @State private var filterMapDisability: Bool = false
     
+    @ObservedObject private var lineModel: LineMapViewModel
+    
+    init(viewModel: LineStatusViewModel) {
+        self.viewModel = viewModel
+        
+        self.lineModel = LineMapViewModel(for: [viewModel.line.id ?? ""])
+    }
+    
     var body: some View {
         let status = self.viewModel.line.currentStatus
         ZStack {
@@ -49,7 +57,7 @@ struct LinePage: View {
 
                     if !self.isFullScreenMapShowing {
                         ZStack {
-                            LineMapView(lineIds: [self.viewModel.line.id ?? ""], filterDisability: .constant(false))
+                            LineMapView(viewModel: self.lineModel)
                                 .matchedGeometryEffect(id: "map", in: mapNamespace)
                             
                             VStack {
@@ -78,6 +86,7 @@ struct LinePage: View {
                             self.toggleMapOverlay(to: true)
                         }
                     }
+                   
                     
                     if let disruption = status?.disruption,
                        let routes = disruption.affectedRoutes,
@@ -124,9 +133,15 @@ struct LinePage: View {
     /// A view that should overlay the current screen containing the line map + options
     func fullscreenMapView() -> some View {
         ZStack {
-            LineMapView(lineIds: [self.viewModel.line.id ?? ""], filterDisability: self.$filterMapDisability)
+            LineMapView(viewModel: self.lineModel)
                 .edgesIgnoringSafeArea(.all)
                 .matchedGeometryEffect(id: "map", in: mapNamespace)
+                .onAppear {
+                    self.lineModel.cachedLineRoutes = []
+                }
+                .onDisappear {
+                    self.lineModel.cachedLineRoutes = []
+                }
             
             HStack {
                 Spacer()

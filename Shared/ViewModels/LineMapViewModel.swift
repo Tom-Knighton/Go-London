@@ -10,10 +10,17 @@ import GoLondonSDK
 import Combine
 import SwiftUI
 
+struct LineMapFilter {
+    
+    let lineId: String
+    var toggled: Bool
+}
+
 @MainActor
 final class LineMapViewModel: ObservableObject {
     
     @Published var lineIds: [String] = []
+    @Published var lineFilters: [LineMapFilter]
     
     @Published var lineRoutes: [LineRoutes] = []
     @Published var cachedLineRoutes: [LineRoutes] = []
@@ -21,12 +28,17 @@ final class LineMapViewModel: ObservableObject {
     @Published var mapStyle: MapStyle = .LinesDark
     @Published var cachedMapStyle: MapStyle = .LinesDark
     
+    @Published var filterAccessibility: Bool = false
     @Published var cachedFilterAccessibility: Bool = false
     
     private var cancelSet: Set<AnyCancellable> = []
-        
-    func setup(for lineIds: [String]) {
+    
+    
+    public init(for lineIds: [String], filterAccessibility: Bool = false) {
         self.lineIds = lineIds
+        self.lineFilters = lineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+        
+        self.filterAccessibility = filterAccessibility
         
         self.mapStyle = UITraitCollection.current.userInterfaceStyle == .dark ? .LinesDark : .LinesLight
         
@@ -40,10 +52,18 @@ final class LineMapViewModel: ObservableObject {
             }
             .store(in: &cancelSet)
     }
+        
+    func toggleLine(lineId: String, to val: Bool) {
+        if let index = self.lineFilters.firstIndex(where: { $0.lineId == lineId }) {
+            withAnimation {
+                self.lineFilters[index].toggled = val
+            }
+        }
+    }
     
-    func fetchStopPoints() async {
+    func fetchToggledRoutes() async {
         Task {
-            self.lineRoutes = await GLSDK.Lines.Routes(for: self.lineIds, fixCoordinates: false)
+            self.lineRoutes = await GLSDK.Lines.Routes(for: self.lineFilters.filter { $0.toggled }.compactMap { $0.lineId }, fixCoordinates: false)
         }
     }
     

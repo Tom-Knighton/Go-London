@@ -12,17 +12,14 @@ import GoLondonSDK
 
 struct LineMapView: View {
     
-    @State var lineIds: [String] = []
-    @Binding var filterDisability: Bool
-    @StateObject private var viewModel: LineMapViewModel = LineMapViewModel()
+    @ObservedObject var viewModel: LineMapViewModel
     
     var body: some View {
-        LineMapViewRepresntable(viewModel: viewModel, filterAccessibility: filterDisability)
+        LineMapViewRepresntable(viewModel: viewModel)
             .edgesIgnoringSafeArea(.all)
             .onAppear {
                 Task {
-                    self.viewModel.setup(for: self.lineIds)
-                    await self.viewModel.fetchStopPoints()
+                    await self.viewModel.fetchToggledRoutes()
                 }
             }
             .rotationEffect(.degrees(0.1))
@@ -35,12 +32,9 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     @State private var interchangeIconLayers: [String] = []
     @EnvironmentObject private var globalViewModel: GlobalViewModel
     @State private var coordinateNames: [String: String]
-    
-    private var filterAccessibility: Bool
-    
-    init(viewModel: LineMapViewModel, filterAccessibility: Bool = false) {
+        
+    init(viewModel: LineMapViewModel) {
         self.viewModel = viewModel
-        self.filterAccessibility = filterAccessibility
         self.coordinateNames = [:]
     }
     
@@ -98,7 +92,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             uiView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
         }
         
-        if self.viewModel.cachedFilterAccessibility != self.filterAccessibility {
+        if self.viewModel.cachedFilterAccessibility != self.viewModel.filterAccessibility {
             DispatchQueue.main.async {
                 self.interchangeIconLayers.forEach { layer in
                     try? uiView.mapboxMap.style.removeLayer(withId: layer)
@@ -108,11 +102,11 @@ struct LineMapViewRepresntable: UIViewRepresentable {
                 var index = 0
                 self.viewModel.lineRoutes.forEach { route in
                     route.stopPointSequences?.forEach({ branch in
-                        self.drawInterchangeIcons(on: uiView, for: branch, index: index, filterStepFree: filterAccessibility)
+                        self.drawInterchangeIcons(on: uiView, for: branch, index: index, filterStepFree: self.viewModel.filterAccessibility)
                         index += 1
                     })
                 }
-                self.viewModel.updateCachedAccessibility(to: filterAccessibility)
+                self.viewModel.updateCachedAccessibility(to: self.viewModel.filterAccessibility)
             }
         }
     }
