@@ -32,7 +32,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     @State private var interchangeIconLayers: [String] = []
     @EnvironmentObject private var globalViewModel: GlobalViewModel
     @State private var coordinateNames: [String: String]
-        
+    
     init(viewModel: LineMapViewModel) {
         self.viewModel = viewModel
         self.coordinateNames = [:]
@@ -92,6 +92,13 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             uiView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
         }
         
+        if self.viewModel.lineFilters != self.viewModel.cachedLineFilters {
+            uiView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle()) { _ in
+                self.drawMapDetails(on: uiView)
+            }
+            self.viewModel.cachedLineFilters = self.viewModel.lineFilters
+        }
+        
         if self.viewModel.cachedFilterAccessibility != self.viewModel.filterAccessibility {
             DispatchQueue.main.async {
                 self.interchangeIconLayers.forEach { layer in
@@ -112,7 +119,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     }
     
     func drawMapDetails(on mapView: MapView) {
-                
+        
         mapView.viewAnnotations.removeAll()
         
         var index = 0
@@ -133,17 +140,20 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             print("Error getting assets")
         }
         
-        self.viewModel.lineRoutes.mutateEach { route in
+        var lineRoutes = self.viewModel.lineRoutes.filter({ route in
+            self.viewModel.lineFilters.contains(where: { $0.lineId == route.lineId ?? "" && $0.toggled })
+        })
+        
+        lineRoutes.mutateEach { route in
             route.stopPointSequences?.mutateEach { branch in
-                
                 branch.stopPoint?.mutateEach{ stopPoint in
-                    if let coord = self.coordinateNames[stopPoint.icsId ?? ""] {
-                        if (stopPoint.name ?? stopPoint.commonName ?? "").count < coord.count {
-                            self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
+                    if let coord = self.coordinateNames[stopPoint.icsId ?? ""],
+                       let name = stopPoint.name ?? stopPoint.commonName {
+                        if name.count < coord.count {
+                            self.coordinateNames[stopPoint.icsId ?? ""] = name
                         } else {
-                            print("Clearing names for \(stopPoint.commonName ?? stopPoint.name ?? "")")
-                            stopPoint.name = ""
-                            stopPoint.commonName = ""
+                            stopPoint.name = nil
+                            stopPoint.commonName = nil
                         }
                     } else {
                         self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
@@ -208,7 +218,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             return feat
             
         } ?? []))
-
+        
         var symbolLayer = SymbolLayer(id: pointId)
         symbolLayer.source = pointId
         
@@ -252,7 +262,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         symbolLayer.iconAllowOverlap = .constant(true)
         
         try? mapView.mapboxMap.style.addSource(pointSource, id: pointId)
-        try? mapView.mapboxMap.style.addPersistentLayer(symbolLayer)
+        try? mapView.mapboxMap.style.addLayer(symbolLayer)
         self.interchangeIconLayers.append(pointId)
     }
     
@@ -280,7 +290,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             20
             highTextSize
         }
-
+        
         var stopNamesLayer = SymbolLayer(id: "names-\(String(describing: index))")
         stopNamesLayer.source = nameId
         stopNamesLayer.textField = .expression(Exp(.get) { "stopName" })
@@ -293,7 +303,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         stopNamesLayer.textAllowOverlap = .constant(true)
         
         try? mapView.mapboxMap.style.addSource(nameSource, id: nameId)
-        try? mapView.mapboxMap.style.addPersistentLayer(stopNamesLayer)
+        try? mapView.mapboxMap.style.addLayer(stopNamesLayer)
     }
     
     
@@ -332,7 +342,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         }
         
         try? mapView.mapboxMap.style.addSource(source, id: "line-id-\(String(describing: index))")
-        try? mapView.mapboxMap.style.addPersistentLayer(lineLayer, layerPosition: .below("poi-label"))
+        try? mapView.mapboxMap.style.addLayer(lineLayer, layerPosition: .below("poi-label"))
     }
     
 }

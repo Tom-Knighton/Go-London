@@ -57,7 +57,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         mapView.viewAnnotations.validatesViews = false
         
         mapView.mapboxMap.setCamera(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
-        
+                
         if viewModel.enableCurrentLocation {
             let cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
             mapView.location.options.puckType = .puck2D(.makeDefault(showBearing: true))

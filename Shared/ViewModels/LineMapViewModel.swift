@@ -10,7 +10,7 @@ import GoLondonSDK
 import Combine
 import SwiftUI
 
-struct LineMapFilter: Codable {
+struct LineMapFilter: Codable, Equatable {
     
     let lineId: String
     var toggled: Bool
@@ -21,6 +21,7 @@ final class LineMapViewModel: ObservableObject {
     
     @Published var lineIds: [String] = []
     @Published var lineFilters: [LineMapFilter]
+    @Published var cachedLineFilters: [LineMapFilter]
     
     @Published var lineRoutes: [LineRoutes] = []
     @Published var cachedLineRoutes: [LineRoutes] = []
@@ -37,6 +38,7 @@ final class LineMapViewModel: ObservableObject {
     public init(for lineIds: [String], filterAccessibility: Bool = false) {
         self.lineIds = lineIds
         self.lineFilters = lineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+        self.cachedLineFilters = lineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
         
         self.filterAccessibility = filterAccessibility
         
