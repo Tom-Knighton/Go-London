@@ -55,6 +55,7 @@ public struct HomeView : View {
                             
                             if self.model.hasMovedFromLastLocation || self.model.isLoading {
                                 self.searchHereButton()
+                                    .animation(.easeInOut, value: self.model.hasMovedFromLastLocation || self.model.isLoading)
                                     .transition(.move(edge: .trailing))
                             }
                         }
@@ -103,7 +104,9 @@ public struct HomeView : View {
             }
         }
         .onChange(of: self.mapModel.mapCenter) { newValue in
-            self.model.hasMovedFromLastLocation = newValue.distance(to: self.mapModel.mapLastCachedLocation) > 300
+            withAnimation {
+                self.model.hasMovedFromLastLocation = newValue.distance(to: self.mapModel.mapLastCachedLocation) > 300
+            }
         }
         .onChange(of: self.edges.bottom) { newValue in
             if newValue > self.bottomPaddingFix {
@@ -176,11 +179,13 @@ public struct HomeView : View {
     //MARK: - Functions
     func goToCurrentLocation() {
         if let loc = LocationManager.shared.lastLocation?.coordinate {
-            self.mapModel.mapCenter = loc
-            self.mapModel.forceUpdatePosition = true
-            self.model.hasMovedFromLastLocation = false
-            self.mapModel.mapLastCachedLocation = loc
-            self.search()
+            withAnimation {
+                self.mapModel.mapCenter = loc
+                self.mapModel.forceUpdatePosition = true
+                self.model.hasMovedFromLastLocation = false
+                self.mapModel.mapLastCachedLocation = loc
+                self.search()
+            }
         }
     }
     
@@ -190,8 +195,10 @@ public struct HomeView : View {
                 self.mapModel.stopPointMarkers = newMarkers
             }
             
-            self.mapModel.updateCenter(to: self.mapModel.mapCenter)
-            self.model.hasMovedFromLastLocation = false
+            withAnimation {
+                self.mapModel.updateCenter(to: self.mapModel.mapCenter)
+                self.model.hasMovedFromLastLocation = false
+            }
         }
     }
 }

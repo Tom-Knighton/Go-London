@@ -11,6 +11,7 @@ import GoLondonSDK
 import Combine
 import SwiftUI
 
+@MainActor
 class HomeViewModel: ObservableObject {
     
     @Published var radius: Float
@@ -58,12 +59,10 @@ class HomeViewModel: ObservableObject {
             return temps
         }
     }
-    
-    static var defaultFilters: LineModeFilters =  LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
-    
+        
     var anyCancellable: AnyCancellable? = nil
     
-    init(radius: Float = 1000, filters: LineModeFilters = defaultFilters) {
+    init(radius: Float = 1000, filters: LineModeFilters = LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])) {
         self.radius = radius
         self.filters = filters
         self.isLoading = false
@@ -85,7 +84,8 @@ class HomeViewModel: ObservableObject {
     func searchForMarkers(at location: CLLocationCoordinate2D) async -> [StopPointAnnotation]? {
         guard !isLoading else { return nil }
         
-        self.isLoading = true
+        self.toggleIsLoading(to: true)
+        
         let nearbyPoints = await GLSDK.Search.SearchAround(latitude: location.latitude, longitude: location.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
         
         var markers: [StopPointAnnotation] = []
@@ -106,11 +106,15 @@ class HomeViewModel: ObservableObject {
             }
         }
         
-        DispatchQueue.main.async {
-            self.isLoading = false
-        }
+        self.toggleIsLoading(to: false)
         
         return markers
+    }
+    
+    private func toggleIsLoading(to val: Bool) {
+        withAnimation {
+            self.isLoading = val
+        }
     }
 }
 

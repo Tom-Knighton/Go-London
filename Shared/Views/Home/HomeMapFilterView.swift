@@ -14,7 +14,7 @@ struct HomeMapFilterView: View {
     @ObservedObject var viewModel: HomeViewModel
     @Environment(\.dismiss) private var dismiss
     
-    @ObservedObject var toggleVals: HomeViewModel.LineModeFilters = HomeViewModel.LineModeFilters(HomeViewModel.defaultFilters.filters.compactMap { $0.lineMode })
+    @ObservedObject var toggleVals: HomeViewModel.LineModeFilters = HomeViewModel.LineModeFilters([])
     
     @State private var isShowingAlert: Bool = false
     @State private var alertDetails: AlertDetails?
