@@ -46,7 +46,14 @@ public struct HomeView : View {
                         }
                         .buttonStyle(MapButtonStyle())
                         
-                        if !self.model.isShowingLineMap {
+                        if self.model.isShowingLineMap {
+                            Button(action: { withAnimation { self.lineModel.filterAccessibility.toggle() }}) {
+                                Text(Image(systemName: self.lineModel.filterAccessibility ? "figure.walk.circle" : "figure.roll"))
+                                    .padding(self.lineModel.filterAccessibility ? 0 : 1)
+                            }
+                            .buttonStyle(MapButtonStyle())
+                            .transition(.move(edge: .trailing))
+                        } else {
                             if let _ = LocationManager.shared.lastLocation?.coordinate {
                                 Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
                                     .buttonStyle(MapButtonStyle())
