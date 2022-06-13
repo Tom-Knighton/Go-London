@@ -27,6 +27,9 @@ struct Go_LondonApp: App {
                     RequestLocation()
                 }
                 .environmentObject(globalViewModel)
+                .task {
+                    await self.globalViewModel.setup()
+                }
         }
         .onChange(of: scenePhase) { newPhase in
             let locStatus = PermissionsManager.GetStatus(of: LocationWhenInUsePermission())

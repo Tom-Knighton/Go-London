@@ -12,17 +12,35 @@ import SwiftUI
 @MainActor
 public class GlobalViewModel: ObservableObject {
     
-    @Published var iradData: [StopPointAccessibility]
+    @Published var iradData: [StopPointAccessibility] = []
     
-    init() {
+    func setup() async {
+        let lastCachedAccessibility = await GLSDK.Meta.GetLastAccessibilityCacheTime()
+        let lastCachedLocalInt = UserDefaults.standard.double(forKey: "lastCachedLradTime")
+        let lastCachedLocal = Date(timeIntervalSince1970: lastCachedLocalInt)
+        
+        
+        if lastCachedLocalInt == 0 {
+            
+            await getIradData()
+            return
+        }
+        
+        if lastCachedLocalInt != 0,
+            let lastCachedAccessibility = lastCachedAccessibility,
+            lastCachedAccessibility > lastCachedLocal {
+        
+            await getIradData()
+            return
+        }
+        
         if let data = UserDefaults.standard.data(forKey: "iradData"),
            let decompiled = try? JSONDecoder().decode([StopPointAccessibility].self, from: data) {
+
             self.iradData = decompiled
         } else {
-            self.iradData = []
-            Task {
-                await getIradData()
-            }
+            
+            await getIradData()
         }
     }
     
@@ -32,5 +50,6 @@ public class GlobalViewModel: ObservableObject {
         
         let dataRepresentation = data.jsonEncode() ?? Data()
         UserDefaults.standard.set(dataRepresentation, forKey: "iradData")
+        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "lastCachedLradTime")
     }
 }

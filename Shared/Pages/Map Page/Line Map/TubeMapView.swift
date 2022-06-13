@@ -171,9 +171,9 @@ struct LineMapViewRepresntable: UIViewRepresentable {
                 }
                 
                 
-                self.drawInterchangeIcons(on: mapView, for: branch, index: index)
                 self.drawStopNames(on: mapView, for: branch, index: index)
                 self.drawLines(on: mapView, for: branch, index: index)
+                self.drawInterchangeIcons(on: mapView, for: branch, index: index)
                 
                 index += 1
             }
