@@ -12,7 +12,7 @@ import Combine
 import SwiftUI
 
 @MainActor
-class HomeViewModel: ObservableObject {
+public class HomeViewModel: ObservableObject {
     
     @Published var radius: Float
     @Published var filters: LineModeFilters
@@ -21,9 +21,9 @@ class HomeViewModel: ObservableObject {
     @Published var hasMovedFromLastLocation: Bool = false
     @Published var isShowingLineMap: Bool = false
     
-    class LineModeFilters: ObservableObject, Equatable {
+    public class LineModeFilters: ObservableObject, Equatable {
         
-        static func == (lhs: HomeViewModel.LineModeFilters, rhs: HomeViewModel.LineModeFilters) -> Bool {
+        public static func == (lhs: HomeViewModel.LineModeFilters, rhs: HomeViewModel.LineModeFilters) -> Bool {
             lhs.filters == rhs.filters
         }
         
@@ -38,6 +38,10 @@ class HomeViewModel: ObservableObject {
         
         init(_ lineModes: [LineMode]) {
             self.filters = lineModes.map { Filter(lineMode: $0) }
+        }
+        
+        init (filters: [Filter]) {
+            self.filters = filters
         }
         
         func toggleFilter(_ lineMode: LineMode) {
@@ -62,9 +66,9 @@ class HomeViewModel: ObservableObject {
         
     var anyCancellable: AnyCancellable? = nil
     
-    init(radius: Float = 1000, filters: LineModeFilters = LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])) {
+    init(radius: Float = 1000) {
         self.radius = radius
-        self.filters = filters
+        self.filters = GoLondon.homeFilterCache
         self.isLoading = false
         
         anyCancellable = self.filters.objectWillChange.sink { [weak self] (_) in

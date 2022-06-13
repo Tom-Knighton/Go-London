@@ -78,7 +78,7 @@ struct HomeMapFilterView: View {
         .padding(.vertical, 12)
         .interactiveDismissDisabled()
         .onAppear {
-            self.toggleVals.filters = self.viewModel.filters.filters.deepCopy()
+            self.toggleVals.filters = GoLondon.homeFilterCache.filters.deepCopy()
         }
         .alert(self.alertDetails?.title ?? "", isPresented: $isShowingAlert, presenting: self.alertDetails, actions: { details in
             ForEach(details.buttons ?? [], id: \.text) { button in
@@ -112,6 +112,7 @@ struct HomeMapFilterView: View {
         }
         
         self.viewModel.filters = self.toggleVals
+        GoLondon.homeFilterCache = self.toggleVals
         
         self.dismiss()
     }

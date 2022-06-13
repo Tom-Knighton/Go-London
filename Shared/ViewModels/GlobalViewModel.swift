@@ -7,6 +7,7 @@
 
 import Foundation
 import GoLondonSDK
+import SwiftUI
 
 @MainActor
 public class GlobalViewModel: ObservableObject {

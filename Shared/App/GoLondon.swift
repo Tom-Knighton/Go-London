@@ -32,6 +32,52 @@ public class GoLondon {
         fatalError("No valid Info.plist found")
     }
     
+    private static var defaultHomeViewFilters: HomeViewModel.LineModeFilters = HomeViewModel.LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
+
+    
+    /// Returns the cached homeMapFilters (HomeViewModel.LineModeFilters), or a new object if none was set
+    public static var homeFilterCache: HomeViewModel.LineModeFilters {
+        get {
+            if let data = UserDefaults.standard.data(forKey: "homeFilterCache") {
+                do {
+                    let filters = try JSONDecoder().decode([HomeViewModel.LineModeFilters.Filter].self, from: data)
+                    return HomeViewModel.LineModeFilters(filters: filters)
+                } catch {
+                    try? UserDefaults.standard.set(JSONEncoder().encode(self.defaultHomeViewFilters.filters), forKey: "homeFilterCache")
+                    return self.defaultHomeViewFilters
+                }
+            } else {
+                try? UserDefaults.standard.set(JSONEncoder().encode(self.defaultHomeViewFilters.filters), forKey: "homeFilterCache")
+                return self.defaultHomeViewFilters
+            }
+        }
+        
+        set {
+            try? UserDefaults.standard.set(JSONEncoder().encode(newValue.filters), forKey: "homeFilterCache")
+        }
+    }
+    
+    
+    /// Returns the cached lineMapFilters, or an empty array if none have been set
+    public static var lineMapFilterCache: [LineMapFilter] {
+        get {
+            if let data = UserDefaults.standard.data(forKey: "lineMapFilterCache") {
+                do {
+                    let filters = try JSONDecoder().decode([LineMapFilter].self, from: data)
+                    return filters
+                } catch {
+                    return []
+                }
+            } else {
+                return []
+            }
+        }
+        
+        set {
+            try? UserDefaults.standard.set(JSONEncoder().encode(newValue), forKey: "lineMapFilterCache")
+        }
+    }
+    
 #if DEBUG
     public static var defaultStopPoint: StopPoint {
         let decoder = JSONDecoder()

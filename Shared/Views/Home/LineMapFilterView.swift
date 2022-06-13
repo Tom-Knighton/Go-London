@@ -79,7 +79,10 @@ struct LineMapFilterView: View {
         .padding(.vertical, 12)
         .interactiveDismissDisabled()
         .onAppear {
-            self.toggleVals = self.viewModel.lineFilters.deepCopy()
+            if GoLondon.lineMapFilterCache.isEmpty {
+                GoLondon.lineMapFilterCache = self.viewModel.lineFilters.deepCopy()
+            }
+            self.toggleVals = GoLondon.lineMapFilterCache.deepCopy()
         }
         .alert(self.alertDetails?.title ?? "", isPresented: $isShowingAlert, presenting: self.alertDetails, actions: { details in
             ForEach(details.buttons ?? [], id: \.text) { button in
@@ -117,7 +120,8 @@ struct LineMapFilterView: View {
         }
 
         self.viewModel.lineFilters = self.toggleVals
-
+        GoLondon.lineMapFilterCache = self.toggleVals
+        
         self.dismiss()
     }
 }
