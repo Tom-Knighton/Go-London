@@ -156,20 +156,22 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         
         lineRoutes.mutateEach { route in
             route.stopPointSequences?.mutateEach { branch in
-                branch.stopPoint?.mutateEach{ stopPoint in
-                    if let coord = self.coordinateNames[stopPoint.icsId ?? ""],
-                       let name = stopPoint.name ?? stopPoint.commonName {
-                        if name.count < coord.count {
-                            self.coordinateNames[stopPoint.icsId ?? ""] = name
+                
+                if self.viewModel.lineIds.count != 1 {
+                    branch.stopPoint?.mutateEach{ stopPoint in
+                        if let coord = self.coordinateNames[stopPoint.icsId ?? ""],
+                           let name = stopPoint.name ?? stopPoint.commonName {
+                            if name.count < coord.count {
+                                self.coordinateNames[stopPoint.icsId ?? ""] = name
+                            } else {
+                                stopPoint.name = nil
+                                stopPoint.commonName = nil
+                            }
                         } else {
-                            stopPoint.name = nil
-                            stopPoint.commonName = nil
+                            self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
                         }
-                    } else {
-                        self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
                     }
                 }
-                
                 
                 self.drawStopNames(on: mapView, for: branch, index: index)
                 self.drawLines(on: mapView, for: branch, index: index)
@@ -202,6 +204,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         }
         
         let pointId = String(describing: branch.lineId ?? "") + String(describing: index)
+        try? mapView.mapboxMap.style.removeLayer(withId: pointId)
         try? mapView.mapboxMap.style.removeSource(withId: pointId)
         
         var pointSource = GeoJSONSource()
@@ -293,7 +296,8 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         nameSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {
             
             var feat = Feature(geometry: Point($0.coordinate.coordinate(at: LocationDistance(1), facing: LocationDirection(180))))
-            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(self.coordinateNames[$0.commonName ?? $0.name ?? ""] ?? $0.commonName ?? $0.name ?? "")))
+            let name = $0.commonName ?? $0.name ?? ""
+            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(name)))
             return feat
             
         } ?? []))
@@ -354,12 +358,14 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         lineLayer.lineJoin = .constant(.round)
         lineLayer.lineOpacity = .constant(0.7)
         
-        if branch.lineId == "circle" {
-            lineLayer.lineOffset = .constant(-2.5)
-        }
-        
-        if branch.lineId == "district" {
-            lineLayer.lineOffset = .constant(2.5)
+        if self.viewModel.lineIds.count != 1 {
+            if branch.lineId == "circle" {
+                lineLayer.lineOffset = .constant(-2.5)
+            }
+            
+            if branch.lineId == "district" {
+                lineLayer.lineOffset = .constant(2.5)
+            }
         }
         
         try? mapView.mapboxMap.style.addSource(source, id: "line-id-\(String(describing: index))")
