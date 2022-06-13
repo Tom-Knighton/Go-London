@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Tom-Knighton/GoLondonSDK-Swift",
       "state" : {
-        "revision" : "015fd3e3e4f872e2c34e2de37961eae4bea64cf4",
-        "version" : "1.0.12"
+        "revision" : "4401490ef23ef295455d28d95cce4e0e20619eff",
+        "version" : "1.0.13"
       }
     },
     {
