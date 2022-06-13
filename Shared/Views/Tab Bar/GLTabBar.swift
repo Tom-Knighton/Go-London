@@ -46,6 +46,9 @@ struct GLTabBar: View {
             .cornerRadius(10, corners: [.topLeft, .topRight])
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
+            .onAppear {
+                self.bottomPaddingFix = self.edges.bottom
+            }
             .onChange(of: self.edges.bottom) { newVal in
                 if newVal > self.bottomPaddingFix {
                     self.bottomPaddingFix = newVal

@@ -56,6 +56,13 @@ class GLTabBarViewModel: ObservableObject {
         self.selectPage(index: currentPageIndex)
     }
     
+    func setTabBarVisibility(to val: Bool) {
+        withAnimation {
+            NotificationCenter.default.post(name: val ? .GL_TAB_BAR_SHOW : .GL_TAB_BAR_HIDE, object: nil)
+            self.showTabBar = val
+        }
+    }
+    
     func selectPage(index: Int) {
         for (index, _) in self.allPages.enumerated() {
             self.allPages[index].isSelected = false

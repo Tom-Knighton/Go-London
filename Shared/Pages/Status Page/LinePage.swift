@@ -116,12 +116,10 @@ struct LinePage: View {
     
     
     func toggleMapOverlay(to val: Bool) {
+        
+        self.tabManager.setTabBarVisibility(to: !val)
         withAnimation {
             self.isFullScreenMapShowing = val
-        }
-        
-        DispatchQueue.main.async {
-            self.tabManager.showTabBar = !val
         }
     }
     

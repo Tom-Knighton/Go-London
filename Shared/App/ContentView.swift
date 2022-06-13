@@ -26,15 +26,10 @@ struct GeometryGetterMod: ViewModifier {
 struct ContentView: View {
     
     @Environment(\.colorScheme) private var colourScheme
-    
-    @StateObject var tabManager: GLTabBarViewModel = GLTabBarViewModel(with: [
-        GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .home, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Map", iconName: "map", selectedIconName: "map.fill", fontSize: 30), isSelected: false),
-        GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .lineStatus, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24), isSelected: false)
-    ], currentPageIndex: 0)
-    
+    @EnvironmentObject private var tabManager: GLTabBarViewModel
     @FocusState var focused: Bool
     
-    @State private var rect1 = CGRect()
+    @State private var showTabBar: Bool = true
     @State private var height: CGFloat = 0
     
     var body: some View {
@@ -64,17 +59,24 @@ struct ContentView: View {
             }       
         }
         .safeAreaInset(edge: .bottom) {
-            GLTabBar()
-                .opacity(self.tabManager.showTabBar ? 1 : 0)
-                .onChange(of: self.tabManager.showTabBar) { newVal in
-                   //Hack to ensure tab bar properly hides :)
-                }
-            
+            if self.showTabBar {
+                GLTabBar()
+                    .transition(.move(edge: .bottom))
+            }
         }
-        .environmentObject(tabManager)
         .edgesIgnoringSafeArea(.bottom)
         .onChange(of: colourScheme) { newVal in
             NotificationCenter.default.post(name: .OS_COLOUR_SCHEME_CHANGE, object: nil, userInfo: ["scheme": newVal])
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .GL_TAB_BAR_SHOW)) { _ in
+            withAnimation {
+                self.showTabBar = true
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .GL_TAB_BAR_HIDE)) { _ in
+            withAnimation {
+                self.showTabBar = false
+            }
         }
     }
     
