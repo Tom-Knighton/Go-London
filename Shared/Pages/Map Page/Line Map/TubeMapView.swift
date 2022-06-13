@@ -283,7 +283,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         symbolLayer.iconAllowOverlap = .constant(true)
         
         try? mapView.mapboxMap.style.addSource(pointSource, id: pointId)
-        try? mapView.mapboxMap.style.addLayer(symbolLayer)
+        try? mapView.mapboxMap.style.addLayer(symbolLayer, layerPosition: .below("poi-label"))
         self.interchangeIconLayers.append(pointId)
     }
     

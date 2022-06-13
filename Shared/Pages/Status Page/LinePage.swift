@@ -18,7 +18,6 @@ struct LinePage: View {
     @Namespace private var mapNamespace
     
     @State private var isFullScreenMapShowing: Bool = false
-    @State private var filterMapDisability: Bool = false
     
     @ObservedObject private var lineModel: LineMapViewModel
     
@@ -154,18 +153,14 @@ struct LinePage: View {
                     .buttonStyle(MapButtonStyle(backgroundColor: .black))
                     .matchedGeometryEffect(id: "mapExp", in: mapNamespace)
                     
-                    Button(action: { self.filterMapDisability.toggle() }) {
+                    Button(action: { withAnimation { self.lineModel.filterAccessibility.toggle() } }) {
                         ZStack {
-                            Circle()
-                                .frame(width: 75, height: 75)
-                                .foregroundColor(self.filterMapDisability ? Color.blue : Color.gray)
-                                .shadow(radius: 3)
                             Image(systemName: "figure.roll")
-                                .frame(width: 75, height: 75)
                                 .shadow(radius: 3)
-                                .foregroundColor(self.filterMapDisability ? Color.white : Color.black)
+                                .foregroundColor(self.lineModel.filterAccessibility ? Color.white : Color.primary)
                         }
                     }
+                    .buttonStyle(MapButtonStyle(backgroundColor: self.lineModel.filterAccessibility ? Color.blue : Color.layer1))
                     
                     Spacer().frame(width: 16)
                 }
