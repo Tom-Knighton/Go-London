@@ -107,11 +107,21 @@ struct LineMapViewRepresntable: UIViewRepresentable {
                 self.interchangeIconLayers = []
                 
                 var index = 0
-                self.viewModel.lineRoutes.forEach { route in
-                    route.stopPointSequences?.forEach({ branch in
+                
+                var lineRoutes: [LineRoutes]
+                if self.viewModel.lineRoutes.count == 1 {
+                    lineRoutes = self.viewModel.lineRoutes
+                } else {
+                    lineRoutes = self.viewModel.lineRoutes.filter({ route in
+                        self.viewModel.lineFilters.contains(where: { $0.lineId == route.lineId ?? "" && $0.toggled })
+                    })
+                }
+                                
+                lineRoutes.forEach { route in
+                    route.stopPointSequences?.forEach { branch in
                         self.drawInterchangeIcons(on: uiView, for: branch, index: index, filterStepFree: self.viewModel.filterAccessibility)
                         index += 1
-                    })
+                    }
                 }
                 self.viewModel.updateCachedAccessibility(to: self.viewModel.filterAccessibility)
             }
@@ -192,6 +202,8 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         }
         
         let pointId = String(describing: branch.lineId ?? "") + String(describing: index)
+        try? mapView.mapboxMap.style.removeSource(withId: pointId)
+        
         var pointSource = GeoJSONSource()
         pointSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {
             
@@ -199,22 +211,31 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             let stopName = ($0.commonName ?? $0.name ?? "").replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             
             // Gets relevant accessible data
-            let isViewingSingleLine = self.viewModel.lineIds.count == 1
-            var accessibleView: StationAccessibilityType? = .None
-            if let accessibleData = globalViewModel.iradData.first(where: { spa in // If we have data for this stop
-                spa.stationName == stopName
-            }) {
-                if !isViewingSingleLine, // If we are viewing a single line only
-                   let lineData = accessibleData.lineAccessibility?.first(where: { spla in // And we have data for this line at this top
-                       self.viewModel.lineIds.contains { $0.contains(spla.lineName ?? "UNK__" )}
-                   }) {
-                    accessibleView = lineData.accessibility // Set the data for that line
-                } else {
-                    accessibleView = accessibleData.overviewAccessibility // Otherwise set the general overview for the station
+            if self.viewModel.filterAccessibility {
+                var accessibleView: StationAccessibilityType = .None
+                
+                let isViewingSingleLine = self.viewModel.lineIds.count == 1
+                if let accessibleData = globalViewModel.iradData.first(where: { spa in // If we have data for this stop
+                    return spa.stationName == stopName
+                }) {
+
+                    if isViewingSingleLine, // If we are viewing a single line only
+                       let lineId = self.viewModel.lineIds.first,
+                       let lineData = accessibleData.lineAccessibility?.first(where: { spla in // And we have data for this line at this stop
+                           LineMode.friendlyTubeLineName(for: lineId) == spla.lineName ?? "UNK__"
+                       }) {
+                        accessibleView = lineData.accessibility ?? .None // Set the data for that line
+                    } else {
+                        accessibleView = accessibleData.overviewAccessibility ?? .None // Otherwise set the general overview for the station
+                    }
                 }
+                
+                feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(stopName)), ("accessibility", JSONValue(accessibleView.rawValue)))
+            } else {
+                feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(stopName)), ("accessibility", JSONValue("None")))
             }
             
-            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(stopName)), ("accessibility", JSONValue(accessibleView?.rawValue ?? "None")))
+            
             return feat
             
         } ?? []))
