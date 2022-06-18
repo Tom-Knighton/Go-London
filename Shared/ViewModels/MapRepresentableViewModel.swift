@@ -30,7 +30,7 @@ class MapRepresentableViewModel: ObservableObject {
     
     @Published var searchedLocation: CLLocationCoordinate2D?
     
-    private var cancelSet: Set<AnyCancellable> = []
+    private var cancellable: AnyCancellable?
         
     init(enableCurrentLocation: Bool, enableTrackingLocation: Bool, mapCenter: CLLocationCoordinate2D, stopPointMarkers: [StopPointAnnotation] = [], forceUpdatePosition: Bool = false, searchedLocation: CLLocationCoordinate2D? = nil) {
                 
@@ -51,15 +51,18 @@ class MapRepresentableViewModel: ObservableObject {
         self.internalCacheStyle = .DefaultDark
         self.mapStyle = UITraitCollection.current.userInterfaceStyle == .dark ? .DefaultDark : .DefaultLight
         
-        NotificationCenter.default.publisher(for: .OS_COLOUR_SCHEME_CHANGE)
+        cancellable = NotificationCenter.default.publisher(for: .OS_COLOUR_SCHEME_CHANGE)
             .compactMap { $0.userInfo }
-            .sink { userInfo in
+            .sink { [weak self] userInfo in
                 guard let scheme = userInfo["scheme"] as? ColorScheme else {
                     return
                 }
-                self.mapStyle = scheme == .dark ? .DefaultDark : .DefaultLight
+                self?.mapStyle = scheme == .dark ? .DefaultDark : .DefaultLight
             }
-            .store(in: &cancelSet)
+    }
+    
+    deinit {
+        print("****DEINIT: MapRepresentable")
     }
     
     var markersOutOfSync: Bool {

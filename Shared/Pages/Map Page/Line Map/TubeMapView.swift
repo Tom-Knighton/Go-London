@@ -17,11 +17,11 @@ struct LineMapView: View {
     var body: some View {
         LineMapViewRepresntable(viewModel: viewModel)
             .edgesIgnoringSafeArea(.all)
-            .onAppear {
+            .task {
                 Task {
-                    await self.viewModel.fetchToggledRoutes()
-                }
+                await self.viewModel.fetchToggledRoutes()
             }
+//            .rotationEffect(.degrees(0.1))
             .rotationEffect(.degrees(0.1))
     }
 }
@@ -73,6 +73,15 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             try? mapView.mapboxMap.style.addImage(accessibilityIssues, id: "accessibilityIssues")
             try? mapView.mapboxMap.style.addImage(partialToPlatform, id: "partialToPlatform")
             try? mapView.mapboxMap.style.addImage(interchangeOnly, id: "interchangeOnly")
+        }
+        
+        mapView.mapboxMap.onNext(.mapLoaded) { [weak viewModel, weak mapView] _ in
+            if let mapView = mapView,
+               viewModel?.lineRoutes.isEmpty == false {
+                DispatchQueue.main.async {
+                    self.drawMapDetails(on: mapView)
+                }
+            }
         }
         
         return mapView

@@ -15,6 +15,10 @@ final class LineOverviewViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var overviewString: LineModeGroupStatusType = .unk
     
+    deinit {
+        print("****DEINIT overview")
+    }
+    
     func fetchLines() async {
         Task {
             self.isLoading = true

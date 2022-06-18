@@ -12,29 +12,27 @@ import Introspect
 
 struct LinePage: View {
     
-    @ObservedObject var viewModel: LineStatusViewModel
+    
+    @State public var line: Line
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject private var tabManager: GLTabBarViewModel
     @Namespace private var mapNamespace
     
     @State private var isFullScreenMapShowing: Bool = false
     
-    @ObservedObject private var lineModel: LineMapViewModel
-    
-    init(viewModel: LineStatusViewModel) {
-        self.viewModel = viewModel
-        
-        self.lineModel = LineMapViewModel(for: [viewModel.line.id ?? ""])
-    }
+    @StateObject private var viewModel: LineStatusViewModel = LineStatusViewModel()
+    @StateObject private var lineModel: LineMapViewModel = LineMapViewModel()
+
     
     var body: some View {
-        let status = self.viewModel.line.currentStatus
+        let status = self.viewModel.line?.currentStatus ?? .none
         ZStack {
             ScrollView {
                 VStack(spacing: 0) {
                     LineStatusCard {
                         VStack {
-                            Text("\(self.viewModel.line.name ?? "") is reporting:")
+                            Text("\(self.viewModel.line?.name ?? "") is reporting:")
                                 .bold()
                                 .font(.title2)
                             Text(status?.statusSeverityDescription ?? "")
@@ -101,14 +99,12 @@ struct LinePage: View {
                 self.fullscreenMapView()
             }
         }
-        .background(Color.layer1)
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle(self.viewModel.line.name ?? "")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                self.backButton()
-            }
+        .onAppear {
+            self.viewModel.setup(for: self.line)
+            self.lineModel.setup(for: [self.line.id ?? ""])
         }
+        .background(Color.layer1)
+        .navigationTitle(self.viewModel.line?.name ?? "")
         .introspectNavigationController { navController in
             navController.isNavigationBarHidden = self.isFullScreenMapShowing
         }
@@ -228,15 +224,6 @@ struct LinePage: View {
         }
         .padding(.trailing, 16)
     }
-    
-    /// A custom back button since default does not seem to work?
-    @ViewBuilder
-    func backButton() -> some View {
-        Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
-            Text(Image(systemName: "chevron.backward")) + Text("Go back")
-        }
-        .hiddenIf(self.isFullScreenMapShowing)
-    }
 }
 
 
@@ -255,28 +242,5 @@ struct LineStatusCard<Content>: View where Content: View {
         .background(Color.layer2.cornerRadius(15).shadow(radius: 5))
         .padding(.vertical, verticalPadding)
         .padding(.horizontal, 16)
-    }
-}
-
-extension UINavigationController: UIGestureRecognizerDelegate {
-    
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        interactivePopGestureRecognizer?.delegate = self
-    }
-    
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return viewControllers.count > 1
-    }
-}
-
-
-struct NavigationLazyView<Content: View>: View {
-    let build: () -> Content
-    init(_ build: @autoclosure @escaping () -> Content) {
-        self.build = build
-    }
-    var body: Content {
-        build()
     }
 }

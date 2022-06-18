@@ -44,7 +44,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         let myResourceOptions = ResourceOptions(accessToken: GoLondon.MapboxKey)
         let mapInitOptions: MapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: viewModel.mapStyle.loadStyle())
         let mapView: MapView = MapView(frame: .zero, mapInitOptions: mapInitOptions)
-        
+//
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.pinchRotateEnabled = false
         mapView.gestures.options.panDecelerationFactor = 0.99
@@ -88,10 +88,11 @@ public struct MapViewRepresentable: UIViewRepresentable {
             
         }
         
-        mapView.mapboxMap.onEvery(.cameraChanged) { _ in
+        mapView.mapboxMap.onEvery(.cameraChanged) { [weak viewModel, weak mapView] _ in
             DispatchQueue.main.async {
-                if viewModel.mapCenter != mapView.cameraState.center {
-                    viewModel.updateCenter(to: mapView.cameraState.center)
+                if let center = mapView?.cameraState.center,
+                    viewModel?.mapCenter != center {
+                    viewModel?.updateCenter(to: center)
                 }
             }
         }
@@ -108,14 +109,14 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 uiView.mapboxMap.loadStyleURI(viewModel.mapStyle.loadStyle(), completion: nil)
                 viewModel.updateCacheStyle()
             }
-            
+
             if viewModel.stopPointMarkers != viewModel.internalCachedStopPointMarkers {
                 viewModel.setSearchedLocation(to: uiView.mapboxMap.cameraState.center)
                 viewModel.updateCacheMarkers()
                 self.addCircleLayer(for: uiView, radius: 850)
                 resetMarkers(for: uiView)
             }
-            
+
             if viewModel.forceUpdatePosition {
                 viewModel.forceUpdatePosition = false
                 uiView.camera.fly(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
@@ -280,10 +281,10 @@ extension MapViewRepresentable {
             .compactMap { $0.object as? StopPoint }
         onShowDetailPublisher
             .sink { stopPoint in
-                self.addDetailMarker(on: mapView, for: stopPoint)
+                addDetailMarker(on: mapView, for: stopPoint)
             }
             .store(in: &cancelSet)
-        
+
         let onHideDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS)
         onHideDetailPublisher
             .sink { _ in

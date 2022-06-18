@@ -25,12 +25,16 @@ struct DogGif: WeightedElement {
 @MainActor
 final class LineStatusViewModel: ObservableObject {
     
-    @Published var line: Line
+    @Published var line: Line?
     @Published var dogGif: DogGif?
     
-    init(for line: Line) {
+    func setup(for line: Line) {
         self.line = line
         self.chooseDogGif()
+    }
+    
+    deinit {
+        print("****DEINIT Status")
     }
     
     func chooseDogGif() {

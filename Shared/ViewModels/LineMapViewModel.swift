@@ -17,11 +17,11 @@ public struct LineMapFilter: Codable, Equatable {
 }
 
 @MainActor
-final class LineMapViewModel: ObservableObject {
+public class LineMapViewModel: ObservableObject {
     
     @Published var lineIds: [String] = []
-    @Published var lineFilters: [LineMapFilter]
-    @Published var cachedLineFilters: [LineMapFilter]
+    @Published var lineFilters: [LineMapFilter] = []
+    @Published var cachedLineFilters: [LineMapFilter] = []
     
     @Published var lineRoutes: [LineRoutes] = []
     @Published var cachedLineRoutes: [LineRoutes] = []
@@ -35,9 +35,14 @@ final class LineMapViewModel: ObservableObject {
     private var cancelSet: Set<AnyCancellable> = []
     
     
-    public init(for lineIds: [String], filterAccessibility: Bool = false) {
+    init() {
+        print("INIT Line")
+        self.mapStyle = .LinesDark
+    }
+    
+    public func setup(for lineIds: [String], filterAccessibility: Bool = false) {
         self.lineIds = lineIds
-        
+
         if lineIds.count > 2 {
             self.lineFilters = GoLondon.lineMapFilterCache
             self.cachedLineFilters = GoLondon.lineMapFilterCache
@@ -45,22 +50,27 @@ final class LineMapViewModel: ObservableObject {
             self.lineFilters = lineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
             self.cachedLineFilters = lineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
         }
-        
-        
+
+
         self.filterAccessibility = filterAccessibility
-        
+
         self.mapStyle = UITraitCollection.current.userInterfaceStyle == .dark ? .LinesDark : .LinesLight
         
         NotificationCenter.default.publisher(for: .OS_COLOUR_SCHEME_CHANGE)
             .compactMap { $0.userInfo }
-            .sink { userInfo in
+            .sink { [weak self] userInfo in
                 guard let scheme = userInfo["scheme"] as? ColorScheme else {
                     return
                 }
-                self.mapStyle = scheme == .dark ? .LinesDark : .LinesLight
+                self?.mapStyle = scheme == .dark ? .LinesDark : .LinesLight
             }
             .store(in: &cancelSet)
     }
+    
+    deinit {
+        print("****DEINIT Line")
+    }
+    
         
     func toggleLine(lineId: String, to val: Bool) {
         if let index = self.lineFilters.firstIndex(where: { $0.lineId == lineId }) {

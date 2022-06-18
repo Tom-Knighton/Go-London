@@ -77,6 +77,10 @@ public class HomeViewModel: ObservableObject {
         
     }
     
+    deinit {
+        print("****DEINIT: HomeViewModel")
+    }
+    
     func toggleLineModeFilter(_ lineMode: LineMode) {
         self.filters.toggleFilter(lineMode)
     }
