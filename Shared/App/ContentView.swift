@@ -37,17 +37,22 @@ struct ContentView: View {
             ForEach(self.tabManager.allPages, id: \.uuid) { page in
                 switch page.page {
                 case .home:
-                    HomeView(tabBarHeight: $height)
-                        .navigationBarHidden(true)
-                        .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
-                        .id(page.uuid)
-                        .hideKeyboardWhenTappedAround()
+                    NavigationStack {
+                        HomeView(tabBarHeight: $height)
+                            .toolbar(.hidden)
+                    }
+                    .hideKeyboardWhenTappedAround()
+                    .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
+                    .id(page.uuid)
+                    
                 case .lineStatus:
-                    AllLinesStatusPage()
-                        .navigationBarHidden(false)
-                        .navigationTitle("TfL Status:")
-                        .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
-                        .id(page.uuid)
+                    NavigationStack {
+                        AllLinesStatusPage()
+                    }
+                    .navigationTitle("TfL Status:")
+                    .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
+                    .id(page.uuid)
+                        
                 }
             }
         }

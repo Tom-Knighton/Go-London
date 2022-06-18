@@ -26,9 +26,7 @@ struct Go_LondonApp: App {
     
     var body: some Scene {
         WindowGroup {            
-            NavigationStack {
-                ContentView()
-            }
+            ContentView()
             .sheet(isPresented: $showLocationPermission) {
                 RequestLocation()
             }
