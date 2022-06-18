@@ -33,31 +33,25 @@ struct ContentView: View {
     @State private var height: CGFloat = 0
     
     var body: some View {
-        VStack {
-            ZStack {
-                ForEach(self.tabManager.allPages, id: \.uuid) { page in
-                    switch page.page {
-                    case .home:
-                        NavigationView {
-                            HomeView(tabBarHeight: $height)
-                                .navigationBarHidden(true)
-                        }
-                        .navigationViewStyle(.stack)
+        ZStack {
+            ForEach(self.tabManager.allPages, id: \.uuid) { page in
+                switch page.page {
+                case .home:
+                    HomeView(tabBarHeight: $height)
+                        .navigationBarHidden(true)
                         .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
                         .id(page.uuid)
-                    case .lineStatus:
-                        NavigationView {
-                            AllLinesStatusPage()
-                                .navigationBarHidden(false)
-                                .navigationTitle("TfL Status:")
-                        }
-                        .navigationViewStyle(.stack)
+                        .hideKeyboardWhenTappedAround()
+                case .lineStatus:
+                    AllLinesStatusPage()
+                        .navigationBarHidden(false)
+                        .navigationTitle("TfL Status:")
                         .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
                         .id(page.uuid)
-                    }
                 }
-            }       
+            }
         }
+        .toolbar(self.tabManager.currentPage.page == .home ? .hidden : .automatic)
         .safeAreaInset(edge: .bottom) {
             if self.showTabBar {
                 GLTabBar()

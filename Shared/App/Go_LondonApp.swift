@@ -25,17 +25,18 @@ struct Go_LondonApp: App {
     }
     
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-                .hideKeyboardWhenTappedAround()
-                .sheet(isPresented: $showLocationPermission) {
-                    RequestLocation()
-                }
-                .environmentObject(globalViewModel)
-                .task {
-                    await self.globalViewModel.setup()
-                }
-                .environmentObject(tabManager)
+        WindowGroup {            
+            NavigationStack {
+                ContentView()
+            }
+            .sheet(isPresented: $showLocationPermission) {
+                RequestLocation()
+            }
+            .environmentObject(globalViewModel)
+            .task {
+                await self.globalViewModel.setup()
+            }
+            .environmentObject(tabManager)
         }
         .onChange(of: scenePhase) { newPhase in
             let locStatus = PermissionsManager.GetStatus(of: LocationWhenInUsePermission())
