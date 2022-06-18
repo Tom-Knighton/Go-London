@@ -14,38 +14,40 @@ struct AllLinesStatusPage: View {
     @StateObject private var viewModel: LineOverviewViewModel = LineOverviewViewModel()
     
     @State var hasInit: Bool = false
+    @State private var selectedLine: Line?
     
     var body: some View {
-        VStack {
-            ScrollView {
-                VStack {
-                    Spacer()
-                    if viewModel.isLoading {
-                        VStack {
-                            Spacer()
-                            LottieView(name: "Dog_PurpleWalking", loopMode: .loop)
-                                .frame(width: 200, height: 200, alignment: .center)
-                            Text("Loading...")
-                                .bold()
-                                .frame(maxWidth: .infinity, alignment: .center)
-                            Spacer()
-                        }
-                    } else {
-                        self.overviewTooltip()
-                        LazyVStack {
-                            ForEach(viewModel.lines, id: \.id) { line in
-                                NavigationLink(destination: NavigationLazyView(LinePage(viewModel: LineStatusViewModel(for: line)))) {
-                                    LineOverviewRow(line: line)
-                                }
+        ScrollView {
+            VStack {
+                Spacer()
+                if viewModel.isLoading {
+                    VStack {
+                        Spacer()
+                        LottieView(name: "Dog_PurpleWalking", loopMode: .loop)
+                            .frame(width: 200, height: 200, alignment: .center)
+                        Text("Loading...")
+                            .bold()
+                            .frame(maxWidth: .infinity, alignment: .center)
+                        Spacer()
+                    }
+                } else {
+                    self.overviewTooltip()
+                    LazyVStack {
+                        ForEach(viewModel.lines, id: \.id) { line in
+                            NavigationLink(value: line) {
+                                LineOverviewRow(line: line)
                             }
                         }
                     }
-                    Spacer()
-                    Spacer().frame(height: 16)
                 }
-                .padding(.horizontal, 16)
+                Spacer()
+                Spacer().frame(height: 16)
             }
+            .padding(.horizontal, 16)
         }
+        .navigationDestination(for: Line.self, destination: { line in
+            LinePage(line: line)
+        })
         .navigationTitle("TfL Status:")
         .background(Color.layer1.edgesIgnoringSafeArea(.all))
         .onAppear {
