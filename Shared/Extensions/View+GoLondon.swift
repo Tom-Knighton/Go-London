@@ -67,6 +67,7 @@ class KeyboardResponder: ObservableObject {
     }
     
     deinit {
+        print("****DEINIT keyboard")
         _center.removeObserver(self)
     }
     

@@ -194,11 +194,16 @@ extension LineMode {
     }
 }
 
-extension Line: Equatable {
+extension Line: Equatable, Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+    
     public static func == (lhs: Line, rhs: Line) -> Bool {
         lhs.id == rhs.id
     }
 }
+
 
 extension LineModeGroupStatusType {
     

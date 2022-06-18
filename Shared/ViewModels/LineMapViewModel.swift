@@ -34,6 +34,9 @@ public class LineMapViewModel: ObservableObject {
     
     private var cancelSet: Set<AnyCancellable> = []
     
+    var isViewingSingleLine: Bool {
+        lineRoutes.count == 1
+    }
     
     init() {
         print("INIT Line")
@@ -71,6 +74,29 @@ public class LineMapViewModel: ObservableObject {
         print("****DEINIT Line")
     }
     
+    
+    /// Returns the accessibility type for the station
+    /// - Parameter stopName: The complete name of the stop point
+    /// - Remark: Will return none if there is no accessibility data
+    /// - Remark: Will return the overview if more than one line is being rendered
+    func getAccessibilityType(for stopName: String, with data: GlobalViewModel) -> StationAccessibilityType {
+        let stopName = stopName.replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        
+        guard let accessibleData = data.iradData.first(where: { $0.stationName == stopName }) else {
+            return .None
+        }
+        
+        var accessibility: StationAccessibilityType = .None
+        if self.isViewingSingleLine, let lineId = self.lineRoutes.first?.lineId {
+            let lineData = accessibleData.lineAccessibility?.first(where: { LineMode.friendlyTubeLineName(for: lineId ) == $0.lineName ?? "" })
+            
+            accessibility = lineData?.accessibility ?? .None
+        } else {
+            accessibility = accessibleData.overviewAccessibility ?? .None
+        }
+        
+        return accessibility
+    }
         
     func toggleLine(lineId: String, to val: Bool) {
         if let index = self.lineFilters.firstIndex(where: { $0.lineId == lineId }) {
