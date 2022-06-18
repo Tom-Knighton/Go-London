@@ -273,7 +273,14 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         
         var feature = Feature(geometry: MultiLineString(line.stopPointSequences?.compactMap({ $0.stopPoint?.compactMap { $0.coordinate } }) ?? []))
         
-        let offset = line.lineId == "circle" ? -2.5 : line.lineId == "hammersmith-city" ? 2.5 : 0
+        var offset: Double = 0
+        if !self.viewModel.isViewingSingleLine {
+            if line.lineId == "circle" {
+                offset = -2.5
+            } else if line.lineId == "hammersmith-city" {
+                offset = 2.5
+            }
+        }
         
         feature.properties = JSONObject(dictionaryLiteral: ("lineColour", JSONValue(LineMode.lineColour(for: line.lineId ?? "").hexValue)), ("lineId", JSONValue(line.lineId ?? "")), ("lineOffset", JSONValue(rawValue: offset)))
         
