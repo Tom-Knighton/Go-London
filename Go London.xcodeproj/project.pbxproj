@@ -23,9 +23,7 @@
 		E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
-		E2680B1727EBCE4A004C37E9 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1627EBCE4A004C37E9 /* MapboxMaps */; };
 		E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1927EBCE7F004C37E9 /* GoLondonSDK */; };
-		E2680B1C27EBCE83004C37E9 /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1B27EBCE83004C37E9 /* MapboxMaps */; };
 		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
 		E2680B2027EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
 		E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
@@ -48,6 +46,7 @@
 		E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
 		E277B7E52854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
 		E277B7E62854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
+		E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A40285E85BC007D23DF /* MapboxMaps */; };
 		E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
@@ -200,9 +199,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2680B1727EBCE4A004C37E9 /* MapboxMaps in Frameworks */,
 				E243A99B2847E6F100A99988 /* Introspect in Frameworks */,
 				E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */,
+				E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */,
 				E2680B2E27EBE120004C37E9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,7 +210,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2680B1C27EBCE83004C37E9 /* MapboxMaps in Frameworks */,
 				E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */,
 				E2680B3827EBE28A004C37E9 /* Lottie in Frameworks */,
 			);
@@ -524,9 +522,9 @@
 			name = "Go London (iOS)";
 			packageProductDependencies = (
 				E2680B1127EBCADC004C37E9 /* GoLondonSDK */,
-				E2680B1627EBCE4A004C37E9 /* MapboxMaps */,
 				E2680B2D27EBE120004C37E9 /* Lottie */,
 				E243A99A2847E6F100A99988 /* Introspect */,
+				E2910A40285E85BC007D23DF /* MapboxMaps */,
 			);
 			productName = "Go London (iOS)";
 			productReference = E2FEF7E527E4AA87005132EF /* Go London.app */;
@@ -548,7 +546,6 @@
 			name = "Go London (macOS)";
 			packageProductDependencies = (
 				E2680B1927EBCE7F004C37E9 /* GoLondonSDK */,
-				E2680B1B27EBCE83004C37E9 /* MapboxMaps */,
 				E2680B3727EBE28A004C37E9 /* Lottie */,
 			);
 			productName = "Go London (macOS)";
@@ -584,9 +581,9 @@
 			mainGroup = E2FEF7D827E4AA85005132EF;
 			packageReferences = (
 				E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */,
-				E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 				E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				E243A9992847E6F100A99988 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
 			);
 			productRefGroup = E2FEF7E627E4AA87005132EF /* Products */;
 			projectDirPath = "";
@@ -1076,20 +1073,20 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.6.0;
-			};
-		};
 		E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
 			requirement = {
 				branch = master;
 				kind = branch;
+			};
+		};
+		E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.5.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1105,20 +1102,10 @@
 			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
 			productName = GoLondonSDK;
 		};
-		E2680B1627EBCE4A004C37E9 /* MapboxMaps */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
-			productName = MapboxMaps;
-		};
 		E2680B1927EBCE7F004C37E9 /* GoLondonSDK */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
 			productName = GoLondonSDK;
-		};
-		E2680B1B27EBCE83004C37E9 /* MapboxMaps */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2680B1527EBCE4A004C37E9 /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
-			productName = MapboxMaps;
 		};
 		E2680B2D27EBE120004C37E9 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1129,6 +1116,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		E2910A40285E85BC007D23DF /* MapboxMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
+			productName = MapboxMaps;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
