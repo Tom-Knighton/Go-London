@@ -84,7 +84,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
             
             self.addCircleLayer(for: mapView, radius: 850)
             
-            self.addPublishers(for: mapView)
+//            self.addPublishers(for: mapView)
             
         }
         
@@ -276,21 +276,21 @@ extension MapViewRepresentable {
 // MARK: - Publishers
 
 extension MapViewRepresentable {
-    func addPublishers(for mapView: MapView) {
-        let onShowDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)
-            .compactMap { $0.object as? StopPoint }
-        onShowDetailPublisher
-            .sink { stopPoint in
-                addDetailMarker(on: mapView, for: stopPoint)
-            }
-            .store(in: &cancelSet)
-
-        let onHideDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS)
-        onHideDetailPublisher
-            .sink { _ in
-                self.closeDetailedMarker(for: mapView)
-            }
-            .store(in: &cancelSet)
-    }
+//    func addPublishers(for mapView: MapView) {
+//        let onShowDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)
+//            .compactMap { $0.object as? StopPoint }
+//        onShowDetailPublisher
+//            .sink { stopPoint in
+//                addDetailMarker(on: mapView, for: stopPoint)
+//            }
+//            .store(in: &cancelSet)
+//
+//        let onHideDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS)
+//        onHideDetailPublisher
+//            .sink { _ in
+//                self.closeDetailedMarker(for: mapView)
+//            }
+//            .store(in: &cancelSet)
+//    }
 }
 
