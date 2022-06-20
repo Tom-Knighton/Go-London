@@ -47,6 +47,7 @@
 		E277B7E52854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
 		E277B7E62854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
 		E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A40285E85BC007D23DF /* MapboxMaps */; };
+		E2910A5228607E60007D23DF /* SwiftUISnappingScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A5128607E60007D23DF /* SwiftUISnappingScrollView */; };
 		E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
@@ -199,6 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2910A5228607E60007D23DF /* SwiftUISnappingScrollView in Frameworks */,
 				E243A99B2847E6F100A99988 /* Introspect in Frameworks */,
 				E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */,
 				E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */,
@@ -525,6 +527,7 @@
 				E2680B2D27EBE120004C37E9 /* Lottie */,
 				E243A99A2847E6F100A99988 /* Introspect */,
 				E2910A40285E85BC007D23DF /* MapboxMaps */,
+				E2910A5128607E60007D23DF /* SwiftUISnappingScrollView */,
 			);
 			productName = "Go London (iOS)";
 			productReference = E2FEF7E527E4AA87005132EF /* Go London.app */;
@@ -584,6 +587,7 @@
 				E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				E243A9992847E6F100A99988 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
+				E2910A5028607E60007D23DF /* XCRemoteSwiftPackageReference "SwiftUISnappingScrollView" */,
 			);
 			productRefGroup = E2FEF7E627E4AA87005132EF /* Products */;
 			projectDirPath = "";
@@ -1089,6 +1093,14 @@
 				version = 10.5.1;
 			};
 		};
+		E2910A5028607E60007D23DF /* XCRemoteSwiftPackageReference "SwiftUISnappingScrollView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Tom-Knighton/SwiftUISnappingScrollView";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1121,6 +1133,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
+		};
+		E2910A5128607E60007D23DF /* SwiftUISnappingScrollView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2910A5028607E60007D23DF /* XCRemoteSwiftPackageReference "SwiftUISnappingScrollView" */;
+			productName = SwiftUISnappingScrollView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
