@@ -18,6 +18,7 @@ public struct HomeView : View {
     @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     @StateObject private var lineModel: LineMapViewModel = LineMapViewModel()
+    @StateObject private var mapSearchModel: MapSearchPanelViewModel = MapSearchPanelViewModel()
     
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     @Binding var tabBarHeight: CGFloat
@@ -130,7 +131,7 @@ public struct HomeView : View {
     func mapSearchPanel() -> some View {
         
         if !self.model.isShowingLineMap {
-            MapSearchPanelView(isFocused: $mapPanelFocused)
+            MapSearchPanelView(isFocused: $mapPanelFocused, model: mapSearchModel)
                 .transition(.move(edge: .bottom))
         }
         
