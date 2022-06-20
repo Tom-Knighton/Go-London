@@ -64,6 +64,15 @@
       }
     },
     {
+      "identity" : "swiftuisnappingscrollview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Tom-Knighton/SwiftUISnappingScrollView",
+      "state" : {
+        "branch" : "main",
+        "revision" : "4f2e32969887b23326b4c3b2bc753c92697f01db"
+      }
+    },
+    {
       "identity" : "turf-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/mapbox/turf-swift.git",
