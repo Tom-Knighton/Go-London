@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import MapboxMaps
 import GoLondonSDK
+import SwiftUISnappingScrollView
 
 public struct HomeView : View {
     
@@ -28,6 +29,8 @@ public struct HomeView : View {
     
     @FocusState private var mapPanelFocused: Bool
     @Namespace private var mapSpace
+    
+    @State private var selectedStopId: String? = nil
     
     public var body: some View {
         
@@ -75,7 +78,21 @@ public struct HomeView : View {
                 
                 VStack {
                     Spacer()
-                    
+                   
+                    let showScroll = self.selectedStopId != nil && self.mapSearchModel.searchText.isEmpty && self.mapSearchModel.searchResults.isEmpty
+                    if showScroll {
+                        SnappingScrollView(.horizontal, decelerationRate: .fast, showsIndicators: false, selectedId: $selectedStopId) {
+                            ForEach(self.mapModel.stopPointMarkers) { spm in
+                                StopPointDetailView(stopPoint: spm.stopPoint)
+                                    .padding()
+                                    .shadow(radius: 3)
+                                    .scrollSnappingAnchor(.bounds)
+                                    .id(spm.stopPoint.id)
+                            }
+                        }
+                    }
+                                    
+                    Spacer().frame(height: 8)
                     if !self.model.isShowingLineMap {
                         self.mapSearchPanel()
                             .transition(.move(edge: .bottom))
@@ -120,6 +137,19 @@ public struct HomeView : View {
         .onChange(of: self.edges.bottom) { newValue in
             if newValue > self.bottomPaddingFix {
                 self.bottomPaddingFix = newValue
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS), perform: { _ in
+            withAnimation(.easeInOut) {
+                self.selectedStopId = nil
+
+            }
+        })
+        .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)) { output in
+            if let s = output.object as? StopPoint {
+                withAnimation(.easeInOut) {
+                    self.selectedStopId = s.id
+                }
             }
         }
     }
