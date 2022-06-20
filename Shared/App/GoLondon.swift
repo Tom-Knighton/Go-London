@@ -82,7 +82,121 @@ public class GoLondon {
     public static var defaultStopPoint: StopPoint {
         let decoder = JSONDecoder()
         let stopPoint: StopPoint = try! decoder.decode(StopPoint.self, from: Data("""
-{"pointType":"Stop","icsId":null,"zone":null,"id":"940GZZLUMED","naptanId":"940GZZLUMED","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[{"modeName":"bus","lineIdentifier":["205","25","277","323","425","d6","d7","n205","n25","n277"]},{"modeName":"tube","lineIdentifier":["central","district","hammersmith-city"]}],"children":[{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED1","naptanId":"9400ZZLUMED1","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0},{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED2","naptanId":"9400ZZLUMED2","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0},{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED3","naptanId":"9400ZZLUMED3","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0},{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED4","naptanId":"9400ZZLUMED4","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0}],"properties":[{"name":"WiFi","value":"yes"},{"name":"Zone","value":"2"},{"name":"Waiting Room","value":"yes"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"0"},{"name":"Toilets","value":"no"}],"childStationIds":["9400ZZLUMED1","9400ZZLUMED2","9400ZZLUMED3","9400ZZLUMED4"],"lat":51.525124,"lon":-0.03364}
+{
+    "pointType": "Stop",
+    "icsId": null,
+    "zone": null,
+    "id": "910GLIVST",
+    "naptanId": "910GLIVST",
+    "name": null,
+    "commonName": "London Liverpool Street Rail Station",
+    "indicator": null,
+    "stopLetter": null,
+    "hubNaptanCode": "HUBLST",
+    "lineModes": [
+      "overground",
+      "national-rail",
+      "elizabeth-line"
+    ],
+    "lineModeGroups": [
+      {
+        "modeName": "national-rail",
+        "lineIdentifier": [
+          "c2c",
+          "greater-anglia"
+        ]
+      },
+      {
+        "modeName": "elizabeth-line",
+        "lineIdentifier": [
+          "elizabeth"
+        ]
+      },
+      {
+        "modeName": "overground",
+        "lineIdentifier": [
+          "london-overground"
+        ]
+      }
+    ],
+    "children": [
+      {
+        "pointType": "Stop",
+        "icsId": null,
+        "zone": null,
+        "id": "9100LIVST0",
+        "naptanId": "9100LIVST0",
+        "name": null,
+        "commonName": "Liverpool Street Station",
+        "indicator": null,
+        "stopLetter": null,
+        "hubNaptanCode": "HUBLST",
+        "lineModes": [],
+        "lineModeGroups": [],
+        "children": [],
+        "properties": [
+          {
+            "name": "WiFi",
+            "value": "No"
+          },
+          {
+            "name": "Zone",
+            "value": "No Information"
+          },
+          {
+            "name": "Waiting Room",
+            "value": "No Information"
+          },
+          {
+            "name": "Car Park",
+            "value": "No Information"
+          },
+          {
+            "name": "Lifts",
+            "value": "No Information"
+          },
+          {
+            "name": "Toilets",
+            "value": "No Information"
+          }
+        ],
+        "childStationIds": [],
+        "lat": 0,
+        "lon": 0
+      }
+    ],
+    "properties": [
+      {
+        "name": "WiFi",
+        "value": "yes"
+      },
+      {
+        "name": "Zone",
+        "value": "1"
+      },
+      {
+        "name": "Waiting Room",
+        "value": "yes"
+      },
+      {
+        "name": "Car Park",
+        "value": "No Information"
+      },
+      {
+        "name": "Lifts",
+        "value": "1"
+      },
+      {
+        "name": "Toilets",
+        "value": "no"
+      }
+    ],
+    "childStationIds": [
+      "9100LIVST0"
+    ],
+    "lat": 51.51799,
+    "lon": -0.081426
+  }
 """.utf8))
         return stopPoint
     }
