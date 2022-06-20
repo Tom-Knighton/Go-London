@@ -40,9 +40,18 @@ struct StopPointDetailMarkerView: View {
             lineIdentifierCapsules()
             
             Button(action: { print("TAPPED") }) {
-                Text("View \(self.stopPoint.mostSignificantLineMode == .bus ? "Stop" : "Station")")
+                HStack {
+                    Spacer()
+                    Text("View \(self.stopPoint.mostSignificantLineMode == .bus ? "Stop" : "Station")")
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(15)
+                .shadow(radius: 3)
+                    
             }
-            .buttonStyle(MapButtonStyle())
             .onTapGesture {} // Needed to have action{} work within Map
            
         }
