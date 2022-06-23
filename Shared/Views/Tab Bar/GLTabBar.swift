@@ -17,7 +17,7 @@ struct GLTabBar: View {
         VStack {
             HStack {
                 ForEach(self.tabManager.allPages, id: \.self) { page in
-                    Button(action: { self.tabManager.selectPage(page.icon.pageName)}) {
+                    Button(action: { withAnimation { self.tabManager.selectPage(page.icon.pageName) }}) {
                         Spacer()
                         VStack {
                             Group {
@@ -29,6 +29,7 @@ struct GLTabBar: View {
                             }
                             .font(.system(size: page.isSelected ? page.icon.fontSize - 1 : page.icon.fontSize, weight: page.isSelected ? .bold : .regular))
                             .foregroundColor(Color(UIColor.label))
+                            .shadow(radius: 3)
                             
                             Text(page.icon.pageName)
                                 .foregroundColor(Color(UIColor.label))
@@ -42,7 +43,7 @@ struct GLTabBar: View {
             }
             .frame(minHeight: 25)
             .padding(.vertical, 15)
-            .background(Color.layer1)
+            .background(Material.regular)
             .cornerRadius(10, corners: [.topLeft, .topRight])
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
