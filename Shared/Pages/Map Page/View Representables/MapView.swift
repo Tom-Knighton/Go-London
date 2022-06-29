@@ -48,27 +48,27 @@ public struct MapViewRepresentable: UIViewRepresentable {
         func mapTapped(_ sender: UITapGestureRecognizer) {
             let point = sender.location(in: self.parent.mapView)
             
-//            let options = RenderedQueryOptions(layerIds: ["stopMarkers"], filter: nil)
-//            self.parent.mapView.mapboxMap.queryRenderedFeatures(at: point, options: options) { [weak self] result in
-//                guard let self = self else { return }
-//                
-//                switch result {
-//                case .success(let features):
-//                    if !features.isEmpty,
-//                       let first = features.first,
-//                       let id = first.feature.identifier?.rawValue as? Double {
-//                    
-//                        withAnimation {
-//                            self.parent.selectedIndex = Int(id)
-//                        }
-//                    } else {
-//                        self.parent.selectedIndex = nil
-//                    }
-//                    
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }
+            let options = RenderedQueryOptions(layerIds: ["stopMarkers"], filter: nil)
+            self.parent.mapView.mapboxMap.queryRenderedFeatures(at: point, options: options) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let features):
+                    if !features.isEmpty,
+                       let first = features.first,
+                       let id = first.feature.identifier?.rawValue as? Double {
+                    
+                        withAnimation {
+                            self.parent.selectedIndex = Int(id)
+                        }
+                    } else {
+                        self.parent.selectedIndex = nil
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
     
