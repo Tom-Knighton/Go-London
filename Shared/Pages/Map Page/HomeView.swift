@@ -10,6 +10,7 @@ import SwiftUI
 import MapboxMaps
 import GoLondonSDK
 import SwiftUISnappingScrollView
+import Introspect
 
 public struct HomeView : View {
     
@@ -31,6 +32,7 @@ public struct HomeView : View {
     @Namespace private var mapSpace
     
     @State private var selectedStopId: String? = nil
+    @State private var selectedIndex: Int?
     
     public var body: some View {
         
@@ -76,23 +78,20 @@ public struct HomeView : View {
                     Spacer().frame(width: 16)
                 }
                 
-                VStack {
+                VStack(spacing: 0) {
                     Spacer()
                    
-                    let showScroll = self.selectedStopId != nil && self.mapSearchModel.searchText.isEmpty && self.mapSearchModel.searchResults.isEmpty
-                    if showScroll {
-                        SnappingScrollView(.horizontal, decelerationRate: .fast, showsIndicators: false, selectedId: $selectedStopId) {
-                            ForEach(self.mapModel.stopPointMarkers) { spm in
-                                StopPointDetailView(stopPoint: spm.stopPoint)
-                                    .padding()
-                                    .shadow(radius: 3)
-                                    .scrollSnappingAnchor(.bounds)
-                                    .id(spm.stopPoint.id)
-                            }
-                        }
+                    let hideScroll = self.selectedIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
+                    if !hideScroll {
+                        SnapCarousel(spacing: 4, selectedIndex: self.$selectedIndex, items: self.mapModel.stopPointMarkers, content: { spm in
+                            StopPointDetailView(stopPoint: spm.stopPoint)
+                                .shadow(radius: 3)
+                                .tag(spm.stopPoint.id)
+                                .frame(maxWidth: .infinity)
+                        })
+                        .transition(.opacity)
                     }
-                                    
-                    Spacer().frame(height: 8)
+                    
                     if !self.model.isShowingLineMap {
                         self.mapSearchPanel()
                             .transition(.move(edge: .bottom))
@@ -149,6 +148,7 @@ public struct HomeView : View {
             if let s = output.object as? StopPoint {
                 withAnimation(.easeInOut) {
                     self.selectedStopId = s.id
+                    self.selectedIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
                 }
             }
         }
@@ -206,12 +206,15 @@ public struct HomeView : View {
                 .edgesIgnoringSafeArea(.all)
                 .transition(.opacity)
         } else {
-            MapViewRepresentable(viewModel: mapModel)
+            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$selectedIndex)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     self.search()
                 }
                 .transition(.opacity)
+                .onChange(of: self.selectedIndex) { newValue in
+                    print("Changing@")
+                }
         }
     }
     
