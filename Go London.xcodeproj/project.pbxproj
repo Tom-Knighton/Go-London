@@ -22,6 +22,8 @@
 		E244CE84283AC85B007A4A9A /* TubeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE82283AC85A007A4A9A /* TubeMapView.swift */; };
 		E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
+		E253FDFA287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
+		E253FDFB287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
 		E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1927EBCE7F004C37E9 /* GoLondonSDK */; };
 		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
@@ -49,9 +51,6 @@
 		E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A40285E85BC007D23DF /* MapboxMaps */; };
 		E2910A43285E8938007D23DF /* StopPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A42285E8937007D23DF /* StopPointDetailView.swift */; };
 		E2910A44285E8938007D23DF /* StopPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A42285E8937007D23DF /* StopPointDetailView.swift */; };
-		E2910A5228607E60007D23DF /* SwiftUISnappingScrollView in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A5128607E60007D23DF /* SwiftUISnappingScrollView */; };
-		E2910A542861B4B9007D23DF /* SnapScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A532861B4B9007D23DF /* SnapScrollView.swift */; };
-		E2910A552861B4B9007D23DF /* SnapScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A532861B4B9007D23DF /* SnapScrollView.swift */; };
 		E2910A5828620BB7007D23DF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A5728620BB7007D23DF /* FlowLayout.swift */; };
 		E2910A5928620BB7007D23DF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A5728620BB7007D23DF /* FlowLayout.swift */; };
 		E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
@@ -143,6 +142,7 @@
 		E22B69BB284BD4D50026D42E /* GlobalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewModel.swift; sourceTree = "<group>"; };
 		E244CE82283AC85A007A4A9A /* TubeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TubeMapView.swift; sourceTree = "<group>"; };
 		E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapViewModel.swift; sourceTree = "<group>"; };
+		E253FDF9287370BA008275BE /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		E2680B1E27EBCFDB004C37E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2680B2227EBD02B004C37E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2680B2527EBDA57004C37E9 /* GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondon.swift; sourceTree = "<group>"; };
@@ -154,7 +154,6 @@
 		E2680B4627EE717F004C37E9 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		E277B7E42854022A009A06F6 /* LineMapFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapFilterView.swift; sourceTree = "<group>"; };
 		E2910A42285E8937007D23DF /* StopPointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointDetailView.swift; sourceTree = "<group>"; };
-		E2910A532861B4B9007D23DF /* SnapScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapScrollView.swift; sourceTree = "<group>"; };
 		E2910A5728620BB7007D23DF /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		E29DBDD328199E1200CA047B /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+GoLondon.swift"; sourceTree = "<group>"; };
@@ -209,7 +208,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2910A5228607E60007D23DF /* SwiftUISnappingScrollView in Frameworks */,
 				E243A99B2847E6F100A99988 /* Introspect in Frameworks */,
 				E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */,
 				E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */,
@@ -433,7 +431,7 @@
 			children = (
 				E2A36A7027F772B100AD8ECD /* GLTextField.swift */,
 				E2F7EB6E27F8D68800A5489B /* FadingText.swift */,
-				E2910A532861B4B9007D23DF /* SnapScrollView.swift */,
+				E253FDF9287370BA008275BE /* Carousel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -511,6 +509,7 @@
 			children = (
 				E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */,
 				E2A469A72850CEC400DA6136 /* AlertDetails.swift */,
+				E202D4A328721FC3006055D6 /* MapTapGesture.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -547,7 +546,6 @@
 				E2680B2D27EBE120004C37E9 /* Lottie */,
 				E243A99A2847E6F100A99988 /* Introspect */,
 				E2910A40285E85BC007D23DF /* MapboxMaps */,
-				E2910A5128607E60007D23DF /* SwiftUISnappingScrollView */,
 			);
 			productName = "Go London (iOS)";
 			productReference = E2FEF7E527E4AA87005132EF /* Go London.app */;
@@ -607,7 +605,6 @@
 				E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				E243A9992847E6F100A99988 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */,
-				E2910A5028607E60007D23DF /* XCRemoteSwiftPackageReference "SwiftUISnappingScrollView" */,
 			);
 			productRefGroup = E2FEF7E627E4AA87005132EF /* Products */;
 			projectDirPath = "";
@@ -727,6 +724,7 @@
 				E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */,
 				E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */,
 				E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */,
+				E202D4A428721FC3006055D6 /* MapTapGesture.swift in Sources */,
 				E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */,
 				E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */,
 				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
@@ -740,6 +738,7 @@
 				E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */,
 				E29DBDE0281D466F00CA047B /* GLTabBar.swift in Sources */,
 				E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */,
+				E253FDFA287370BA008275BE /* Carousel.swift in Sources */,
 				E2680B2627EBDA57004C37E9 /* GoLondon.swift in Sources */,
 				E2A36A6B27F6723500AD8ECD /* StopPoint+GoLondon.swift in Sources */,
 				E2A36A6927F6627000AD8ECD /* Line_Etc+GoLondon.swift in Sources */,
@@ -748,7 +747,6 @@
 				E2A36A7127F772B100AD8ECD /* GLTextField.swift in Sources */,
 				E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */,
 				E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */,
-				E2910A542861B4B9007D23DF /* SnapScrollView.swift in Sources */,
 				E2910A5828620BB7007D23DF /* FlowLayout.swift in Sources */,
 				E2A469A5284FFAA400DA6136 /* MapFilterButton.swift in Sources */,
 				E277B7E52854022A009A06F6 /* LineMapFilterView.swift in Sources */,
@@ -783,10 +781,10 @@
 				E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */,
 				E29DBDD8281B53BE00CA047B /* Point+GoLondon.swift in Sources */,
 				E2680B4127EBE49E004C37E9 /* LocationManager.swift in Sources */,
+				E202D4A528721FC3006055D6 /* MapTapGesture.swift in Sources */,
 				E244CE84283AC85B007A4A9A /* TubeMapView.swift in Sources */,
 				E2A469A6284FFAA400DA6136 /* MapFilterButton.swift in Sources */,
 				E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */,
-				E2910A552861B4B9007D23DF /* SnapScrollView.swift in Sources */,
 				E22B69BD284BD4D50026D42E /* GlobalViewModel.swift in Sources */,
 				E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */,
 				E29DBDEA281D4E3900CA047B /* Environment+GoLondon.swift in Sources */,
@@ -808,6 +806,7 @@
 				E2910A5928620BB7007D23DF /* FlowLayout.swift in Sources */,
 				E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */,
 				E2F7EB7027F8D68800A5489B /* FadingText.swift in Sources */,
+				E253FDFB287370BA008275BE /* Carousel.swift in Sources */,
 				E2A36A6E27F7706200AD8ECD /* MapSearchPanel.swift in Sources */,
 				E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
 			);
@@ -1122,15 +1121,7 @@
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.5.1;
-			};
-		};
-		E2910A5028607E60007D23DF /* XCRemoteSwiftPackageReference "SwiftUISnappingScrollView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Tom-Knighton/SwiftUISnappingScrollView";
-			requirement = {
-				branch = main;
-				kind = branch;
+				version = 10.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1165,11 +1156,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E2910A3F285E85BC007D23DF /* XCRemoteSwiftPackageReference "mapbox-maps-ios" */;
 			productName = MapboxMaps;
-		};
-		E2910A5128607E60007D23DF /* SwiftUISnappingScrollView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2910A5028607E60007D23DF /* XCRemoteSwiftPackageReference "SwiftUISnappingScrollView" */;
-			productName = SwiftUISnappingScrollView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
