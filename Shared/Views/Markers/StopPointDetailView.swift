@@ -11,14 +11,33 @@ import GoLondonSDK
 
 struct StopPointDetailView: View {
     
-    @State var stopPoint: StopPoint
     
+    @State var stopPoint: StopPoint
+        
     var body: some View {
         VStack {
-            Text(stopPoint.name ?? stopPoint.commonName ?? "")
+            NavigationLink(value: stopPoint) {
+                Spacer()
+                Text(stopPoint.name ?? stopPoint.commonName ?? "")
+                Spacer()
+                Image(systemName: "chevron.forward")
+                    .font(Font.system(.caption).weight(.bold))
+                    .foregroundColor(Color(UIColor.tertiaryLabel))
+                Spacer().frame(width: 8)
+            }
+            .foregroundColor(.primary)
+            .padding(6)
+            .shadow(radius: 3)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.gray.gradient, lineWidth: 1)
+            )
+            
+            Spacer()
             HStack(alignment: .center) {
-                ForEach(self.stopPoint.lineModeGroups ?? [], id: \.modeName) { lineMode in
+                ForEach(stopPoint.lineModeGroups ?? [], id: \.modeName) { lineMode in
                     VStack {
+                        
                         Group {
                             if let image = lineMode.modeName?.image {
                                 image
@@ -29,26 +48,13 @@ struct StopPointDetailView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 25, height: 25)
                         .shadow(radius: 3)
+                        
                     }
                 }
             }
             
             lineIdentifierCapsules()
-            
-            Button(action: { print("TAPPED") }) {
-                HStack {
-                    Spacer()
-                    Text("View \(self.stopPoint.mostSignificantLineMode == .bus ? "Stop" : "Station")")
-                        .foregroundColor(.white)
-                    Spacer()
-                }
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(15)
-                .shadow(radius: 3)
-            }
-            .onTapGesture {} // Needed to have action{} work within Map
-            
+            Spacer()
         }
         .frame(maxWidth: .infinity)
         .padding()
@@ -58,7 +64,7 @@ struct StopPointDetailView: View {
     
     @ViewBuilder
     func lineIdentifierCapsules() -> some View {
-        if let groups = self.stopPoint.lineModeGroups {
+        if let groups = stopPoint.lineModeGroups {
             VStack {
                 ForEach(groups, id: \.modeName) { lineMode in
                     ViewThatFits {
@@ -68,17 +74,14 @@ struct StopPointDetailView: View {
                             }
                         }
                         
-//                        ScrollView(.vertical) {
-//                            AnyLayout(FlowLayout(alignment: Alignment(horizontal: .center, vertical: .center))) {
-//                                ForEach(lineMode.lineIdentifier ?? [], id: \.self) { identifier in
-//                                    lineIdentifierCapsuleText(for: lineMode, lineIdentifier: identifier)
-//                                }
-//                            }
-//                        }
+                        ScrollView(.horizontal) {
+                            LazyHStack {
+                                ForEach(lineMode.lineIdentifier ?? [], id: \.self) { identifier in
+                                    lineIdentifierCapsuleText(for: lineMode, lineIdentifier: identifier)
+                                }
+                            }
+                        }
                     }
-                    
-                    
-                    
                 }
             }
         }
@@ -104,10 +107,3 @@ struct StopPointDetailView: View {
     }
 }
 
-struct previewstoppointdrtail: PreviewProvider {
-    
-    static var previews: some View {
-        StopPointDetailView(stopPoint: GoLondon.defaultStopPoint)
-            .previewLayout(.sizeThatFits)
-    }
-}

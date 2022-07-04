@@ -108,7 +108,6 @@ public struct HomeView : View {
                             .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
                     }
                 }
-                .environmentObject(self.tabStore)
             }
         }
         .onAppear {
