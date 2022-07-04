@@ -59,3 +59,9 @@ extension StopPoint {
         }.filter { $0 != LineMode.unknown }
     }
 }
+
+extension StopPoint: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+}

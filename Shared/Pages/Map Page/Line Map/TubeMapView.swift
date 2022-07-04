@@ -20,7 +20,6 @@ struct LineMapView: View {
             .task {
                 await self.viewModel.fetchToggledRoutes()
             }
-//            .rotationEffect(.degrees(0.1))
     }
 }
 
@@ -333,19 +332,15 @@ struct LineMapViewRepresntable: UIViewRepresentable {
                     
                         feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))
                     } else {
-                        print("returning nil as no name")
                         return nil
                     }
                 } else {
-                    print("returning nil as no accessible")
                     return nil
                 }
             } else {
                 if let name = self.coordinateNames[stopPoint.icsId ?? ""] {
-                    print("returning good")
                     feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))
                 } else {
-                    print("returning nil as no name")
                     return nil
                 }
             }

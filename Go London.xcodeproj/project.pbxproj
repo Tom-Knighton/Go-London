@@ -22,6 +22,8 @@
 		E244CE84283AC85B007A4A9A /* TubeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE82283AC85A007A4A9A /* TubeMapView.swift */; };
 		E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
+		E253FDFA287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
+		E253FDFB287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
 		E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1927EBCE7F004C37E9 /* GoLondonSDK */; };
 		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
@@ -47,6 +49,10 @@
 		E277B7E52854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
 		E277B7E62854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
 		E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A40285E85BC007D23DF /* MapboxMaps */; };
+		E2910A43285E8938007D23DF /* StopPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A42285E8937007D23DF /* StopPointDetailView.swift */; };
+		E2910A44285E8938007D23DF /* StopPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A42285E8937007D23DF /* StopPointDetailView.swift */; };
+		E2910A5828620BB7007D23DF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A5728620BB7007D23DF /* FlowLayout.swift */; };
+		E2910A5928620BB7007D23DF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A5728620BB7007D23DF /* FlowLayout.swift */; };
 		E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
@@ -136,6 +142,7 @@
 		E22B69BB284BD4D50026D42E /* GlobalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalViewModel.swift; sourceTree = "<group>"; };
 		E244CE82283AC85A007A4A9A /* TubeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TubeMapView.swift; sourceTree = "<group>"; };
 		E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapViewModel.swift; sourceTree = "<group>"; };
+		E253FDF9287370BA008275BE /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		E2680B1E27EBCFDB004C37E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2680B2227EBD02B004C37E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2680B2527EBDA57004C37E9 /* GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondon.swift; sourceTree = "<group>"; };
@@ -146,6 +153,8 @@
 		E2680B4327EE715A004C37E9 /* LocationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermission.swift; sourceTree = "<group>"; };
 		E2680B4627EE717F004C37E9 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		E277B7E42854022A009A06F6 /* LineMapFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapFilterView.swift; sourceTree = "<group>"; };
+		E2910A42285E8937007D23DF /* StopPointDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointDetailView.swift; sourceTree = "<group>"; };
+		E2910A5728620BB7007D23DF /* FlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowLayout.swift; sourceTree = "<group>"; };
 		E29DBDD328199E1200CA047B /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
 		E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Point+GoLondon.swift"; sourceTree = "<group>"; };
 		E29DBDDB281D462100CA047B /* AllLinesStatusPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllLinesStatusPage.swift; sourceTree = "<group>"; };
@@ -265,6 +274,7 @@
 		E2680B2F27EBE128004C37E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E2910A5628620BAE007D23DF /* Layouts */,
 				E2A469A0284FE02F00DA6136 /* Home */,
 				E2B8F9322835638500AAAB10 /* Lines */,
 				E29DBDDE281D465B00CA047B /* Tab Bar */,
@@ -357,6 +367,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		E2910A5628620BAE007D23DF /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				E2910A5728620BB7007D23DF /* FlowLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
 		E29DBDD9281D45B200CA047B /* Pages */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +431,7 @@
 			children = (
 				E2A36A7027F772B100AD8ECD /* GLTextField.swift */,
 				E2F7EB6E27F8D68800A5489B /* FadingText.swift */,
+				E253FDF9287370BA008275BE /* Carousel.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -490,6 +509,7 @@
 			children = (
 				E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */,
 				E2A469A72850CEC400DA6136 /* AlertDetails.swift */,
+				E202D4A328721FC3006055D6 /* MapTapGesture.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -499,6 +519,7 @@
 			children = (
 				E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */,
 				E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */,
+				E2910A42285E8937007D23DF /* StopPointDetailView.swift */,
 			);
 			path = Markers;
 			sourceTree = "<group>";
@@ -560,7 +581,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
-				LastUpgradeCheck = 1320;
+				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					E2FEF7E427E4AA87005132EF = {
 						CreatedOnToolsVersion = 13.2;
@@ -649,6 +670,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		E2DDF0D22852100200651217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -668,6 +690,7 @@
 		};
 		E2DDF0D32852103700651217 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -701,6 +724,7 @@
 				E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */,
 				E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */,
 				E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */,
+				E202D4A428721FC3006055D6 /* MapTapGesture.swift in Sources */,
 				E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */,
 				E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */,
 				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
@@ -714,6 +738,7 @@
 				E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */,
 				E29DBDE0281D466F00CA047B /* GLTabBar.swift in Sources */,
 				E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */,
+				E253FDFA287370BA008275BE /* Carousel.swift in Sources */,
 				E2680B2627EBDA57004C37E9 /* GoLondon.swift in Sources */,
 				E2A36A6B27F6723500AD8ECD /* StopPoint+GoLondon.swift in Sources */,
 				E2A36A6927F6627000AD8ECD /* Line_Etc+GoLondon.swift in Sources */,
@@ -722,6 +747,7 @@
 				E2A36A7127F772B100AD8ECD /* GLTextField.swift in Sources */,
 				E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */,
 				E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */,
+				E2910A5828620BB7007D23DF /* FlowLayout.swift in Sources */,
 				E2A469A5284FFAA400DA6136 /* MapFilterButton.swift in Sources */,
 				E277B7E52854022A009A06F6 /* LineMapFilterView.swift in Sources */,
 				E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */,
@@ -730,6 +756,7 @@
 				E22B29A22836D5B7004009BA /* Foundation+GoLondon.swift in Sources */,
 				E2FF049B27F0FD86003A2ABB /* StopPointMarker.swift in Sources */,
 				E29DBDDC281D462100CA047B /* AllLinesStatusPage.swift in Sources */,
+				E2910A43285E8938007D23DF /* StopPointDetailView.swift in Sources */,
 				E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
 				E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */,
 				E2A469A82850CEC400DA6136 /* AlertDetails.swift in Sources */,
@@ -749,10 +776,12 @@
 				E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */,
 				E2680B2427EBD02B004C37E9 /* MapView.swift in Sources */,
 				E2FEF7F127E4AA87005132EF /* ContentView.swift in Sources */,
+				E2910A44285E8938007D23DF /* StopPointDetailView.swift in Sources */,
 				E2680B3527EBE231004C37E9 /* RequestLocation.swift in Sources */,
 				E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */,
 				E29DBDD8281B53BE00CA047B /* Point+GoLondon.swift in Sources */,
 				E2680B4127EBE49E004C37E9 /* LocationManager.swift in Sources */,
+				E202D4A528721FC3006055D6 /* MapTapGesture.swift in Sources */,
 				E244CE84283AC85B007A4A9A /* TubeMapView.swift in Sources */,
 				E2A469A6284FFAA400DA6136 /* MapFilterButton.swift in Sources */,
 				E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */,
@@ -774,8 +803,10 @@
 				E29DBDDD281D462100CA047B /* AllLinesStatusPage.swift in Sources */,
 				E22B29A32836D5B7004009BA /* Foundation+GoLondon.swift in Sources */,
 				E22B299D28368BEC004009BA /* LineStatusViewModel.swift in Sources */,
+				E2910A5928620BB7007D23DF /* FlowLayout.swift in Sources */,
 				E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */,
 				E2F7EB7027F8D68800A5489B /* FadingText.swift in Sources */,
+				E253FDFB287370BA008275BE /* Carousel.swift in Sources */,
 				E2A36A6E27F7706200AD8ECD /* MapSearchPanel.swift in Sources */,
 				E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
 			);
@@ -818,6 +849,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -877,6 +909,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -974,6 +1007,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8H3J46CN24;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1004,6 +1038,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 8H3J46CN24;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -1086,7 +1121,7 @@
 			repositoryURL = "https://github.com/mapbox/mapbox-maps-ios.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.5.1;
+				version = 10.6.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

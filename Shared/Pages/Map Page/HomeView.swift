@@ -9,6 +9,12 @@ import Foundation
 import SwiftUI
 import MapboxMaps
 import GoLondonSDK
+//import SwiftUISnappingScrollView
+import Introspect
+
+class Store: ObservableObject {
+    @Published var selectedIndex: Int?
+}
 
 public struct HomeView : View {
     
@@ -18,6 +24,7 @@ public struct HomeView : View {
     @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
     @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     @StateObject private var lineModel: LineMapViewModel = LineMapViewModel()
+    @StateObject private var mapSearchModel: MapSearchPanelViewModel = MapSearchPanelViewModel()
     
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     @Binding var tabBarHeight: CGFloat
@@ -28,6 +35,9 @@ public struct HomeView : View {
     @FocusState private var mapPanelFocused: Bool
     @Namespace private var mapSpace
     
+    @State private var selectedStopId: String? = nil
+    
+    @StateObject private var tabStore = Store()
     public var body: some View {
         
         GeometryReader { geo in
@@ -72,8 +82,18 @@ public struct HomeView : View {
                     Spacer().frame(width: 16)
                 }
                 
-                VStack {
+                
+                
+                VStack(spacing: 0) {
                     Spacer()
+                   
+                    let hideScroll = self.tabStore.selectedIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
+                    if !hideScroll {
+                        GeometryReader { geo in
+                            SnapCarouselView(items: self.mapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$tabStore.selectedIndex)
+                        }
+                        .frame(height: 200)
+                    }
                     
                     if !self.model.isShowingLineMap {
                         self.mapSearchPanel()
@@ -121,6 +141,20 @@ public struct HomeView : View {
                 self.bottomPaddingFix = newValue
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS), perform: { _ in
+            withAnimation(.easeInOut) {
+                self.selectedStopId = nil
+
+            }
+        })
+        .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)) { output in
+            if let s = output.object as? StopPoint {
+                withAnimation(.easeInOut) {
+                    self.selectedStopId = s.id
+                    self.tabStore.selectedIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
+                }
+            }
+        }
     }
     
     //MARK: - View Builders
@@ -130,7 +164,7 @@ public struct HomeView : View {
     func mapSearchPanel() -> some View {
         
         if !self.model.isShowingLineMap {
-            MapSearchPanelView(isFocused: $mapPanelFocused)
+            MapSearchPanelView(isFocused: $mapPanelFocused, model: mapSearchModel)
                 .transition(.move(edge: .bottom))
         }
         
@@ -175,7 +209,7 @@ public struct HomeView : View {
                 .edgesIgnoringSafeArea(.all)
                 .transition(.opacity)
         } else {
-            MapViewRepresentable(viewModel: mapModel)
+            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$tabStore.selectedIndex)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     self.search()
