@@ -9,8 +9,12 @@ import Foundation
 import SwiftUI
 import MapboxMaps
 import GoLondonSDK
-import SwiftUISnappingScrollView
+//import SwiftUISnappingScrollView
 import Introspect
+
+class Store: ObservableObject {
+    @Published var selectedIndex: Int?
+}
 
 public struct HomeView : View {
     
@@ -32,8 +36,8 @@ public struct HomeView : View {
     @Namespace private var mapSpace
     
     @State private var selectedStopId: String? = nil
-    @State private var selectedIndex: Int?
     
+    @StateObject private var tabStore = Store()
     public var body: some View {
         
         GeometryReader { geo in
@@ -78,18 +82,17 @@ public struct HomeView : View {
                     Spacer().frame(width: 16)
                 }
                 
+                
+                
                 VStack(spacing: 0) {
                     Spacer()
                    
-                    let hideScroll = self.selectedIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
+                    let hideScroll = self.tabStore.selectedIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
                     if !hideScroll {
-                        SnapCarousel(spacing: 4, selectedIndex: self.$selectedIndex, items: self.mapModel.stopPointMarkers, content: { spm in
-                            StopPointDetailView(stopPoint: spm.stopPoint)
-                                .shadow(radius: 3)
-                                .tag(spm.stopPoint.id)
-                                .frame(maxWidth: .infinity)
-                        })
-                        .transition(.opacity)
+                        GeometryReader { geo in
+                            SnapCarouselView(items: self.mapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$tabStore.selectedIndex)
+                        }
+                        .frame(height: 200)
                     }
                     
                     if !self.model.isShowingLineMap {
@@ -105,6 +108,7 @@ public struct HomeView : View {
                             .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
                     }
                 }
+                .environmentObject(self.tabStore)
             }
         }
         .onAppear {
@@ -148,7 +152,7 @@ public struct HomeView : View {
             if let s = output.object as? StopPoint {
                 withAnimation(.easeInOut) {
                     self.selectedStopId = s.id
-                    self.selectedIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
+                    self.tabStore.selectedIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
                 }
             }
         }
@@ -206,15 +210,12 @@ public struct HomeView : View {
                 .edgesIgnoringSafeArea(.all)
                 .transition(.opacity)
         } else {
-            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$selectedIndex)
+            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$tabStore.selectedIndex)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     self.search()
                 }
                 .transition(.opacity)
-                .onChange(of: self.selectedIndex) { newValue in
-                    print("Changing@")
-                }
         }
     }
     
