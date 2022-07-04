@@ -15,16 +15,14 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     @ObservedObject var viewModel: MapRepresentableViewModel
     @Binding var selectedIndex: Int?
-
+    
+    @State private var cachedSelectedIndex: Int? = -1
     @State private var circleAnnotationManager: CircleAnnotationManager?
     
     @State private var cancelSet: Set<AnyCancellable> = []
     
     @State private var detailedView: UIView? = nil
     
-    
-    private let mapView: MapView = MapView(frame: .zero, mapInitOptions: MapInitOptions(resourceOptions: ResourceOptions(accessToken: GoLondon.MapboxKey)))
-        
     public class Coordinator: GestureManagerDelegate {
         
         private var parent: MapViewRepresentable
@@ -45,11 +43,15 @@ public struct MapViewRepresentable: UIViewRepresentable {
         public func gestureManager(_ gestureManager: GestureManager, didEndAnimatingFor gestureType: GestureType) {}
         
         @objc
-        func mapTapped(_ sender: UITapGestureRecognizer) {
-            let point = sender.location(in: self.parent.mapView)
+        func mapTapped(_ sender: MapTapGesture) {
+            guard let mapView = sender.mapView else {
+                return
+            }
+
+            let point = sender.location(in: mapView)
             
             let options = RenderedQueryOptions(layerIds: ["stopMarkers"], filter: nil)
-            self.parent.mapView.mapboxMap.queryRenderedFeatures(at: point, options: options) { [weak self] result in
+            mapView.mapboxMap.queryRenderedFeatures(at: point, options: options) { [weak self] result in
                 guard let self = self else { return }
                 
                 switch result {
@@ -57,7 +59,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
                     if !features.isEmpty,
                        let first = features.first,
                        let id = first.feature.identifier?.rawValue as? Double {
-                    
+                        
                         withAnimation {
                             self.parent.selectedIndex = Int(id)
                         }
@@ -70,6 +72,30 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 }
             }
         }
+        
+        func showOnlyPin(of selectedIndex: Int?, for mapView: MapView) {
+            
+            if let selectedIndex = selectedIndex {
+                let stopPoint = self.parent.viewModel.stopPointMarkers[selectedIndex]
+                try? mapView.mapboxMap.style.updateLayer(withId: "stopMarkers", type: SymbolLayer.self, update: { (layer: inout SymbolLayer) throws in
+                    let opacity = Exp(.switchCase) {
+                        Exp(.eq) {
+                            Exp(.get) { "id" }
+                            stopPoint.id
+                        }
+                        1
+                        
+                        0.1
+                    }
+                    
+                    layer.iconOpacity = .expression(opacity)
+                })
+            } else {
+                try? mapView.mapboxMap.style.updateLayer(withId: "stopMarkers", type: SymbolLayer.self, update: { (layer: inout SymbolLayer) throws in
+                    layer.iconOpacity = .constant(1)
+                })
+            }
+        }
     }
     
     public func makeCoordinator() -> Coordinator {
@@ -78,6 +104,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
     
     public func makeUIView(context: Context) -> MapView {
         
+        let mapView = MapView(frame: .zero)
         mapView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
 
         mapView.gestures.options.pitchEnabled = false
@@ -111,14 +138,20 @@ public struct MapViewRepresentable: UIViewRepresentable {
         
         DispatchQueue.main.async {
             self.circleAnnotationManager = mapView.annotations.makeCircleAnnotationManager()
+            self.cachedSelectedIndex = self.selectedIndex
         }
         
-        mapView.mapboxMap.onNext(.mapLoaded) { _ in
+        mapView.mapboxMap.onNext(.mapLoaded) {  _ in
             viewModel.searchedLocation = mapView.mapboxMap.cameraState.center
             resetMarkers(for: mapView)
             
             self.addCircleLayer(for: mapView, radius: 850)
-            mapView.addGestureRecognizer(UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.mapTapped(_:))))
+            
+            
+            let tapGesture = MapTapGesture(target: context.coordinator, action: #selector(context.coordinator.mapTapped(_:)))
+            tapGesture.mapView = mapView
+            mapView.addGestureRecognizer(tapGesture)
+            
         }
         
         mapView.mapboxMap.onEvery(.cameraChanged) { [weak viewModel, weak mapView] _ in
@@ -153,6 +186,11 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 viewModel.forceUpdatePosition = false
                 uiView.camera.fly(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
             }
+            
+            if self.cachedSelectedIndex != self.selectedIndex {
+                context.coordinator.showOnlyPin(of: selectedIndex, for: uiView)
+                self.cachedSelectedIndex = self.selectedIndex
+            }
         }
     }
     
@@ -170,7 +208,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 
                 var feature = Feature(geometry: Point(marker.coordinate))
                 feature.identifier = FeatureIdentifier(rawValue: self.viewModel.stopPointMarkers.firstIndex(of: marker) ?? 0)
-                feature.properties = JSONObject(dictionaryLiteral: ("img", JSONValue(marker.id)))
+                feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(marker.id)))
                 features.append(feature)
             }
         }
@@ -181,10 +219,11 @@ public struct MapViewRepresentable: UIViewRepresentable {
         
         var pointLayer = SymbolLayer(id: "stopMarkers")
         pointLayer.source = "stopMarkersSource"
-        pointLayer.iconImage = .expression(Exp(.get) { "img" })
+        pointLayer.iconImage = .expression(Exp(.get) { "id" })
         pointLayer.iconAllowOverlap = .constant(true)
         pointLayer.iconAnchor = .constant(.bottom)
         pointLayer.symbolZOrder = .constant(.source)
+        pointLayer.iconOpacityTransition = StyleTransition(duration: 0.7, delay: 0.3)
         try? uiView.mapboxMap.style.addSource(source, id: "stopMarkersSource")
         try? uiView.mapboxMap.style.addPersistentLayer(pointLayer)
     }

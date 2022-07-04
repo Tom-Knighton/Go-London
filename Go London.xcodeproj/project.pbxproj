@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E202D4A428721FC3006055D6 /* MapTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202D4A328721FC3006055D6 /* MapTapGesture.swift */; };
+		E202D4A528721FC3006055D6 /* MapTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202D4A328721FC3006055D6 /* MapTapGesture.swift */; };
 		E22B299928368B4C004009BA /* LinePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299828368B4C004009BA /* LinePage.swift */; };
 		E22B299A28368B4C004009BA /* LinePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299828368B4C004009BA /* LinePage.swift */; };
 		E22B299C28368BEC004009BA /* LineStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299B28368BEC004009BA /* LineStatusViewModel.swift */; };
@@ -135,6 +137,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E202D4A328721FC3006055D6 /* MapTapGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTapGesture.swift; sourceTree = "<group>"; };
 		E22B299828368B4C004009BA /* LinePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinePage.swift; sourceTree = "<group>"; };
 		E22B299B28368BEC004009BA /* LineStatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineStatusViewModel.swift; sourceTree = "<group>"; };
 		E22B299E2836D48D004009BA /* Frog_Raymond.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Frog_Raymond.json; sourceTree = "<group>"; };

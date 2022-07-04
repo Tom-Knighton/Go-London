@@ -87,3 +87,10 @@ extension Array {
         }
     }
 }
+
+extension UIView {
+    public func addTapAction(_ selector: Selector, target: AnyObject) {
+        let gesture = UITapGestureRecognizer(target: target, action: selector)
+        self.addGestureRecognizer(gesture)
+    }
+}

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import GoLondonSDK
+import MapboxMaps
 
 @main
 struct Go_LondonApp: App {
@@ -22,6 +23,7 @@ struct Go_LondonApp: App {
     
     init() {
         LocationManager.shared.start()
+        ResourceOptionsManager.default.resourceOptions.accessToken = GoLondon.MapboxKey
     }
     
     var body: some Scene {
