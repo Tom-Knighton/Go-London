@@ -92,6 +92,8 @@ public class HomeViewModel: ObservableObject {
     func searchForMarkers(at location: CLLocationCoordinate2D) async -> [StopPointAnnotation]? {
         guard !isLoading else { return nil }
         
+        
+        
         self.toggleIsLoading(to: true)
         
         let nearbyPoints = await GLSDK.Search.SearchAround(latitude: location.latitude, longitude: location.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))
@@ -101,13 +103,23 @@ public class HomeViewModel: ObservableObject {
         
         var nearbyStopPoints: [StopPoint] = nearbyPoints.filter { $0 is StopPoint }.compactMap { $0 as? StopPoint}
         
-        nearbyStopPoints = nearbyStopPoints.sorted(by: { pointA, pointB in
-            let totalA = pointA.lineModes?.compactMap { $0.weighting }.reduce(0, +) ?? -1
-            let totalB = pointB.lineModes?.compactMap { $0.weighting }.reduce(0, +) ?? -1
-            
-            return totalA < totalB
-        })
         
+        // First remove all stop points that are not only bus stops
+        var weightedElements = nearbyStopPoints.filter { ($0.lineModes?.compactMap { $0.weighting }.reduce(0, +) ?? -1) > 0 }
+        nearbyStopPoints = Array(Set(nearbyStopPoints).subtracting(weightedElements))
+        
+        
+        // If we have access to location, then sort all points by distance to user
+        let locationManager = LocationManager.shared
+        if let location = locationManager.lastLocation {
+            nearbyStopPoints = nearbyStopPoints.sorted(by: { $0.coordinate.distance(to: location.coordinate) < $1.coordinate.distance(to: location.coordinate)})
+            
+            weightedElements = weightedElements.sorted(by: { $0.coordinate.distance(to: location.coordinate) < $1.coordinate.distance(to: location.coordinate)})
+        }
+        
+        // Add back in other (now sorted) stops at end of array
+        nearbyStopPoints.append(contentsOf: weightedElements)
+
         for point in nearbyStopPoints {
             if point.lineModeGroups?.isEmpty == false {
                 markers.append(StopPointAnnotation(stopPoint: point))
