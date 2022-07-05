@@ -47,6 +47,7 @@ public struct SnapCarouselView: UIViewRepresentable {
             }
             cell.contentConfiguration = UIHostingConfiguration {
                 StopPointDetailView(stopPoint: item.stopPoint)
+                    .shadow(radius: 3)
             }
             
             if let selectedIndex = self.parent.selectedIndex, self.parent.hasScrolledToFirstIndex == false {
