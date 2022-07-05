@@ -32,28 +32,26 @@ public class GoLondon {
         fatalError("No valid Info.plist found")
     }
     
-    private static var defaultHomeViewFilters: HomeViewModel.LineModeFilters = HomeViewModel.LineModeFilters([LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr])
+    private static var defaultLineModes = [LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr]
 
     
-    /// Returns the cached homeMapFilters (HomeViewModel.LineModeFilters), or a new object if none was set
-    public static var homeFilterCache: HomeViewModel.LineModeFilters {
+    /// Returns the cached homeMapFilters MainMapFilters, or a fresh all-toggled array if no cache was found
+    public static var homeFilterCache: [MainMapFilter] {
         get {
-            if let data = UserDefaults.standard.data(forKey: "homeFilterCache") {
+            if let data = UserDefaults.standard.data(forKey: "mainMapFilterCache") {
                 do {
-                    let filters = try JSONDecoder().decode([HomeViewModel.LineModeFilters.Filter].self, from: data)
-                    return HomeViewModel.LineModeFilters(filters: filters)
+                    let filters = try JSONDecoder().decode([MainMapFilter].self, from: data)
+                    return filters
                 } catch {
-                    try? UserDefaults.standard.set(JSONEncoder().encode(self.defaultHomeViewFilters.filters), forKey: "homeFilterCache")
-                    return self.defaultHomeViewFilters
+                    return defaultLineModes.compactMap { MainMapFilter(lineMode: $0) }
                 }
             } else {
-                try? UserDefaults.standard.set(JSONEncoder().encode(self.defaultHomeViewFilters.filters), forKey: "homeFilterCache")
-                return self.defaultHomeViewFilters
+                return defaultLineModes.compactMap { MainMapFilter(lineMode: $0) }
             }
         }
         
         set {
-            try? UserDefaults.standard.set(JSONEncoder().encode(newValue.filters), forKey: "homeFilterCache")
+            try? UserDefaults.standard.set(JSONEncoder().encode(newValue), forKey: "mainMapFilterCache")
         }
     }
     

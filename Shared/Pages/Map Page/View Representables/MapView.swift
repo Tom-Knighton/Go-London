@@ -13,8 +13,7 @@ import MapboxMaps
 
 public struct MapViewRepresentable: UIViewRepresentable {
     
-    @ObservedObject var viewModel: MapRepresentableViewModel
-    @Binding var selectedIndex: Int?
+    @ObservedObject var viewModel: MainMapViewModel
     
     @State private var cachedSelectedIndex: Int? = -1
     @State private var circleAnnotationManager: CircleAnnotationManager?
@@ -42,6 +41,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
         
         public func gestureManager(_ gestureManager: GestureManager, didEndAnimatingFor gestureType: GestureType) {}
         
+        @MainActor
         @objc
         func mapTapped(_ sender: MapTapGesture) {
             guard let mapView = sender.mapView else {
@@ -61,10 +61,10 @@ public struct MapViewRepresentable: UIViewRepresentable {
                        let id = first.feature.identifier?.rawValue as? Double {
                         
                         withAnimation {
-                            self.parent.selectedIndex = Int(id)
+                            self.parent.viewModel.selectedPointIndex = Int(id)
                         }
                     } else {
-                        self.parent.selectedIndex = nil
+                        self.parent.viewModel.selectedPointIndex = nil
                     }
                     
                 case .failure(let error):
@@ -73,6 +73,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
             }
         }
         
+        @MainActor
         func showOnlyPin(of selectedIndex: Int?, for mapView: MapView, zoomTo: Bool = true) {
             
             if let selectedIndex = selectedIndex {
@@ -144,15 +145,14 @@ public struct MapViewRepresentable: UIViewRepresentable {
         
         DispatchQueue.main.async {
             self.circleAnnotationManager = mapView.annotations.makeCircleAnnotationManager()
-            self.cachedSelectedIndex = self.selectedIndex
+            self.cachedSelectedIndex = self.viewModel.selectedPointIndex
         }
         
         mapView.mapboxMap.onNext(.mapLoaded) {  _ in
             viewModel.searchedLocation = mapView.mapboxMap.cameraState.center
-            resetMarkers(for: mapView)
             
             self.addCircleLayer(for: mapView, radius: 850)
-            
+            resetMarkers(for: mapView)
             
             let tapGesture = MapTapGesture(target: context.coordinator, action: #selector(context.coordinator.mapTapped(_:)))
             tapGesture.mapView = mapView
@@ -192,9 +192,9 @@ public struct MapViewRepresentable: UIViewRepresentable {
                 uiView.camera.fly(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
             }
             
-            if self.cachedSelectedIndex != self.selectedIndex {
-                context.coordinator.showOnlyPin(of: selectedIndex, for: uiView)
-                self.cachedSelectedIndex = self.selectedIndex
+            if self.cachedSelectedIndex != self.viewModel.selectedPointIndex {
+                context.coordinator.showOnlyPin(of: self.viewModel.selectedPointIndex, for: uiView)
+                self.cachedSelectedIndex = self.viewModel.selectedPointIndex
             }
         }
     }
@@ -317,69 +317,4 @@ extension MapViewRepresentable {
         return radii
     }
     
-}
-
-// MARK: - Detailed Stop Point View
-extension MapViewRepresentable {
-    
-    func addDetailMarker(on uiView: MapView, for stopPoint: StopPoint) {
-        
-        if let view = self.detailedView {
-            uiView.viewAnnotations.remove(view)
-        }
-        
-        let lineModes = stopPoint.lineModes ?? []
-        let lines = Int((stopPoint.name ?? stopPoint.commonName ?? "").count / 23)
-        let option = ViewAnnotationOptions(
-            geometry: Point(CLLocationCoordinate2D(latitude: CLLocationDegrees(stopPoint.lat ?? 0), longitude:  CLLocationDegrees(stopPoint.lon ?? 0))),
-            width: 275,
-            height: 205,
-            allowOverlap: false,
-            anchor: .top,
-            offsetX: 0,
-            offsetY: (lineModes.contains(.tube) && lineModes.contains(.bus) ? -15 : lineModes.contains(.bus) ? 10 : lineModes.contains(.tube) ? -10 : lineModes.contains(.overground) ? 10 : 25) - (10 * CGFloat(lines)),
-            selected: true
-        )
-        
-        
-        
-        
-        let vc = UIHostingController(rootView: StopPointDetailMarkerView(stopPoint: stopPoint))
-        vc.view.backgroundColor = .clear
-        vc.view.isHidden = true
-        try? uiView.viewAnnotations.add(vc.view, options: option)
-        self.detailedView = vc.view
-        
-        
-    }
-    
-    func closeDetailedMarker(for uiView: MapView) {
-        guard let view = self.detailedView else {
-            return
-        }
-        
-        uiView.viewAnnotations.remove(view)
-        self.detailedView = nil
-    }
-}
-
-// MARK: - Publishers
-
-extension MapViewRepresentable {
-//    func addPublishers(for mapView: MapView) {
-//        let onShowDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)
-//            .compactMap { $0.object as? StopPoint }
-//        onShowDetailPublisher
-//            .sink { stopPoint in
-//                addDetailMarker(on: mapView, for: stopPoint)
-//            }
-//            .store(in: &cancelSet)
-//
-//        let onHideDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS)
-//        onHideDetailPublisher
-//            .sink { _ in
-//                self.closeDetailedMarker(for: mapView)
-//            }
-//            .store(in: &cancelSet)
-//    }
 }

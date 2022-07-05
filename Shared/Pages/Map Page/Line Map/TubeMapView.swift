@@ -37,7 +37,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     
     
     func makeUIView(context: Context) -> MapView {
-        let mapView: MapView = MapView()
+        let mapView: MapView = MapView(frame: .zero)
         mapView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
         
         mapView.gestures.options.pitchEnabled = false

@@ -16,14 +16,14 @@ public struct HomeView : View {
     @Environment(\.colorScheme) var colourScheme
     @Environment(\.safeAreaInsets) var edges
     
-    @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
-    @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
-    @StateObject private var lineModel: LineMapViewModel = LineMapViewModel()
+    @StateObject private var mainMapModel: MainMapViewModel = MainMapViewModel(searchRadius: 850, enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    @StateObject private var lineMapModel: LineMapViewModel = LineMapViewModel()
     @StateObject private var mapSearchModel: MapSearchPanelViewModel = MapSearchPanelViewModel()
-    
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     @Binding var tabBarHeight: CGFloat
     
+    
+    @State private var isShowingLineMap: Bool = false
     @State private var isShowingFilterSheet: Bool = false
     @State private var bottomPaddingFix: CGFloat = 0
     
@@ -38,7 +38,7 @@ public struct HomeView : View {
                     Spacer()
                     VStack {
                         
-                        Button(action: {  withAnimation { self.model.isShowingLineMap.toggle() }}) {
+                        Button(action: {  withAnimation { self.isShowingLineMap.toggle() }}) {
                             Image(systemName: "tram.circle")
                         }
                         .buttonStyle(MapButtonStyle())
@@ -48,10 +48,10 @@ public struct HomeView : View {
                         }
                         .buttonStyle(MapButtonStyle())
                         
-                        if self.model.isShowingLineMap {
-                            Button(action: { withAnimation { self.lineModel.filterAccessibility.toggle() }}) {
-                                Text(Image(systemName: self.lineModel.filterAccessibility ? "figure.walk.circle" : "figure.roll"))
-                                    .padding(self.lineModel.filterAccessibility ? 0 : 1)
+                        if self.isShowingLineMap {
+                            Button(action: { withAnimation { self.lineMapModel.filterAccessibility.toggle() }}) {
+                                Text(Image(systemName: self.lineMapModel.filterAccessibility ? "figure.walk.circle" : "figure.roll"))
+                                    .padding(self.lineMapModel.filterAccessibility ? 0 : 1)
                             }
                             .buttonStyle(MapButtonStyle())
                             .transition(.move(edge: .trailing))
@@ -62,9 +62,9 @@ public struct HomeView : View {
                                     .transition(.move(edge: .trailing))
                             }
                             
-                            if self.model.hasMovedFromLastLocation || self.model.isLoading {
+                            if self.mainMapModel.hasMovedFromLastLocation || self.mainMapModel.isSearching {
                                 self.searchHereButton()
-                                    .animation(.easeInOut, value: self.model.hasMovedFromLastLocation || self.model.isLoading)
+                                    .animation(.easeInOut, value: self.mainMapModel.hasMovedFromLastLocation || self.mainMapModel.isSearching)
                                     .transition(.move(edge: .trailing))
                             }
                         }
@@ -79,15 +79,15 @@ public struct HomeView : View {
                 VStack(spacing: 0) {
                     Spacer()
                    
-                    let hideScroll = self.mapModel.selectedPointIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
+                    let hideScroll = self.mainMapModel.selectedPointIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
                     if !hideScroll {
                         GeometryReader { geo in
-                            SnapCarouselView(items: self.mapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$mapModel.selectedPointIndex)
+                            SnapCarouselView(items: self.mainMapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$mainMapModel.selectedPointIndex)
                         }
                         .frame(height: 200)
                     }
                     
-                    if !self.model.isShowingLineMap {
+                    if !self.isShowingLineMap {
                         self.mapSearchPanel()
                             .transition(.move(edge: .bottom))
                     }
@@ -103,29 +103,29 @@ public struct HomeView : View {
             }
         }
         .onAppear {
-            self.lineModel.setup(for: ["elizabeth", "dlr", "london-overground", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"])
+            self.lineMapModel.setup(for: ["elizabeth", "dlr", "london-overground", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"])
             self.bottomPaddingFix = self.edges.bottom
         }
         .sheet(isPresented: $isShowingFilterSheet) {
-            if self.model.isShowingLineMap {
-                LineMapFilterView(viewModel: self.lineModel)
+            if self.isShowingLineMap {
+                LineMapFilterView(viewModel: self.lineMapModel)
             } else {
-                HomeMapFilterView(viewModel: self.model)
+                HomeMapFilterView(viewModel: self.mainMapModel)
             }
         }
         .background(
             self.mapBackground()
         )
-        .onChange(of: self.model.filters) { _ in
+        .onChange(of: self.mainMapModel.filters) { _ in
             Task {
-                if let newMarkers = await self.model.searchForMarkers(at: self.mapModel.mapCenter) {
-                    self.mapModel.stopPointMarkers = newMarkers
+                if let newMarkers = await self.mainMapModel.searchForMarkers(at: self.mainMapModel.mapCenter) {
+                    self.mainMapModel.stopPointMarkers = newMarkers
                 }
             }
         }
-        .onChange(of: self.mapModel.mapCenter) { newValue in
+        .onChange(of: self.mainMapModel.mapCenter) { newValue in
             withAnimation {
-                self.model.hasMovedFromLastLocation = newValue.distance(to: self.mapModel.mapLastCachedLocation) > 300
+                self.mainMapModel.hasMovedFromLastLocation = newValue.distance(to: self.mainMapModel.mapLastCachedLocation) > 300
             }
         }
         .onChange(of: self.edges.bottom) { newValue in
@@ -135,13 +135,13 @@ public struct HomeView : View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS), perform: { _ in
             withAnimation(.easeInOut) {
-                self.mapModel.selectedPointIndex = nil
+                self.mainMapModel.selectedPointIndex = nil
             }
         })
         .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)) { output in
             if let s = output.object as? StopPoint {
                 withAnimation(.easeInOut) {
-                    self.mapModel.selectedPointIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
+                    self.mainMapModel.selectedPointIndex = self.mainMapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
                 }
             }
         }
@@ -153,7 +153,7 @@ public struct HomeView : View {
     @ViewBuilder
     func mapSearchPanel() -> some View {
         
-        if !self.model.isShowingLineMap {
+        if !self.mainMapModel.isShowingLineMap {
             MapSearchPanelView(isFocused: $mapPanelFocused, model: mapSearchModel)
                 .transition(.move(edge: .bottom))
         }
@@ -161,26 +161,9 @@ public struct HomeView : View {
         Spacer().frame(height: 16)
     }
     
-    ///  A series of buttons containing filters for a TfL map search
-    @ViewBuilder
-    func filterButtons() -> some View {
-        ForEach(self.model.filters.filters, id: \.lineMode) { modeFilter in
-            withAnimation(.easeInOut) {
-                Button(action: { self.model.toggleLineModeFilter(modeFilter.lineMode) }) {
-                    HStack {
-                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark"))
-                            .bold()
-                        Text(modeFilter.lineMode.friendlyName)
-                    }
-                }
-                .buttonStyle(MapButtonStyle(backgroundColor: self.model.isFilterToggled(modeFilter.lineMode) ? .green : .red))
-            }
-        }
-    }
-    
     @ViewBuilder
     func searchHereButton() -> some View {
-        if self.model.isLoading {
+        if self.mainMapModel.isSearching {
             Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
                 .buttonStyle(MapButtonStyle())
                 .transition(.move(edge: .trailing))
@@ -194,12 +177,12 @@ public struct HomeView : View {
     @ViewBuilder
     func mapBackground() -> some View {
         
-        if self.model.isShowingLineMap {
-            LineMapView(viewModel: self.lineModel)
+        if self.isShowingLineMap {
+            LineMapView(viewModel: self.lineMapModel)
                 .edgesIgnoringSafeArea(.all)
                 .transition(.opacity)
         } else {
-            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$mapModel.selectedPointIndex)
+            MapViewRepresentable(viewModel: self.mainMapModel)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     self.search()
@@ -212,30 +195,30 @@ public struct HomeView : View {
     func goToCurrentLocation() {
         if let loc = LocationManager.shared.lastLocation?.coordinate {
             withAnimation {
-                self.mapModel.mapCenter = loc
-                self.mapModel.forceUpdatePosition = true
-                self.model.hasMovedFromLastLocation = false
-                self.mapModel.mapLastCachedLocation = loc
+                self.mainMapModel.mapCenter = loc
+                self.mainMapModel.forceUpdatePosition = true
+                self.mainMapModel.hasMovedFromLastLocation = false
+                self.mainMapModel.mapLastCachedLocation = loc
                 self.search()
             }
         }
     }
     
     func search() {
-        Task { [weak mapModel, weak model] in
-            guard let center = mapModel?.mapCenter else {
+        Task { [weak mainMapModel] in
+            guard let center = mainMapModel?.mapCenter else {
                 return
             }
             
-            mapModel?.setSearchedLocation(to: center)
+            mainMapModel?.setSearchedLocation(to: center)
 
-            if let newMarkers = await model?.searchForMarkers(at: center) {
-                mapModel?.stopPointMarkers = newMarkers
+            if let newMarkers = await mainMapModel?.searchForMarkers(at: center) {
+                mainMapModel?.stopPointMarkers = newMarkers
             }
 
             withAnimation {
-                mapModel?.updateCenter(to: center)
-                model?.hasMovedFromLastLocation = false
+                mainMapModel?.updateCenter(to: center)
+                mainMapModel?.hasMovedFromLastLocation = false
             }
         }
     }

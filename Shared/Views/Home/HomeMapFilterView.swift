@@ -11,10 +11,10 @@ import GoLondonSDK
 
 struct HomeMapFilterView: View {
     
-    @ObservedObject var viewModel: HomeViewModel
+    @ObservedObject var viewModel: MainMapViewModel
     @Environment(\.dismiss) private var dismiss
     
-    @StateObject var toggleVals: HomeViewModel.LineModeFilters = HomeViewModel.LineModeFilters([])
+    @State var toggleVals: [MainMapFilter] = []
     
     @State private var isShowingAlert: Bool = false
     @State private var alertDetails: AlertDetails?
@@ -35,14 +35,14 @@ struct HomeMapFilterView: View {
                     let height: CGFloat = (geo.size.height - (16 * CGFloat(3 - 1))) / CGFloat(3)
                     
                     LazyVGrid(columns: threeGridColumn, spacing: 16) {
-                        ForEach(self.toggleVals.filters, id: \.lineMode) { filter in
+                        ForEach(self.toggleVals, id: \.lineMode) { filter in
                             Button(action: { self.toggle(filter.lineMode) } ) {
                                 VStack {
                                     Spacer().frame(height: 8)
                                     Text(filter.lineMode.friendlyName)
                                         .bold()
                                         .multilineTextAlignment(.center)
-                                        .foregroundColor(self.toggleVals.isToggled(filter.lineMode) ? .white : .primary)
+                                        .foregroundColor(filter.toggled ? .white : .primary)
 
                                     Spacer()
                                     filter.lineMode.image
@@ -52,7 +52,7 @@ struct HomeMapFilterView: View {
                                     Spacer().frame(height: 24)
                                 }
                             }
-                            .buttonStyle(MapFilterButton(height: height, backgroundColour: self.toggleVals.isToggled(filter.lineMode) ? Color.blue : Color.layer2))
+                            .buttonStyle(MapFilterButton(height: height, backgroundColour: filter.toggled ? Color.blue : Color.layer2))
                         }
                     }
                 }
@@ -78,7 +78,7 @@ struct HomeMapFilterView: View {
         .padding(.vertical, 12)
         .interactiveDismissDisabled()
         .onAppear {
-            self.toggleVals.filters = GoLondon.homeFilterCache.filters.deepCopy()
+            self.toggleVals = GoLondon.homeFilterCache.deepCopy()
         }
         .alert(self.alertDetails?.title ?? "", isPresented: $isShowingAlert, presenting: self.alertDetails, actions: { details in
             ForEach(details.buttons ?? [], id: \.text) { button in
@@ -95,16 +95,18 @@ struct HomeMapFilterView: View {
     /// - Parameter lineMode: The lineMode to toggle
     func toggle(_ lineMode: LineMode) {
         withAnimation(.easeInOut) {
-            self.toggleVals.toggleFilter(lineMode)
-            let generator = UIImpactFeedbackGenerator(style: .light)
-            generator.impactOccurred()
+            if let index = self.toggleVals.firstIndex(where: { $0.lineMode == lineMode }) {
+                self.toggleVals[index].toggled.toggle()
+                let generator = UIImpactFeedbackGenerator(style: .light)
+                generator.impactOccurred()
+            }
         }
     }
 
     /// Evaluates whether to update the filters or not, and saves/dismisses view if necessary
     func updateFilters() {
         
-        if self.toggleVals.getAllToggled().count == 0 {
+        if self.toggleVals.filter({ $0.toggled }).count == 0 {
             self.alertDetails = AlertDetails(title: "Error", message: "Please select at least one type of stop point to show on the map", buttons: [AlertButtonType(text: "Ok", action: {})])
             self.isShowingAlert = true
             
