@@ -18,7 +18,9 @@ public struct SnapCarouselView: UIViewRepresentable {
     @State private var selectedIndexCache: Int?
     @State private var isDragging: Bool = false
     @State private var hasScrolledToFirstIndex: Bool = false
-        
+    
+    @State private var collectionView: UICollectionView?
+    
     public class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
         
         let parent: SnapCarouselView
@@ -59,12 +61,18 @@ public struct SnapCarouselView: UIViewRepresentable {
         public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
             self.parent.isDragging = true
         }
+        
         public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            let pageSide = self.parent.itemWidth
-            let offset = scrollView.contentOffset.x
-            self.parent.selectedIndexCache = Int(floor((offset - pageSide / 2) / pageSide) + 1)
-            self.parent.selectedIndex = Int(floor((offset - pageSide / 2) / pageSide) + 1)
-            self.parent.isDragging = false
+            
+            if self.parent.isDragging {
+                let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
+                if let collectionView = self.parent.collectionView,
+                   let ip = collectionView.indexPathForItem(at: center) {
+                    self.parent.selectedIndex = ip.row
+                }
+                
+                self.parent.isDragging = false
+            }
         }
         
     }
@@ -88,14 +96,22 @@ public struct SnapCarouselView: UIViewRepresentable {
         upView.dataSource = context.coordinator
         upView.backgroundColor = .clear
         
+        DispatchQueue.main.async {
+            self.collectionView = upView
+        }
+        
         return upView
     }
     
     public func updateUIView(_ uiView: UICollectionView, context: Context) {
         
+        DispatchQueue.main.async {
+            self.collectionView = uiView
+
+        }
         if self.selectedIndexCache != self.selectedIndex,
            !isDragging,
-            let selectedIndex {
+           let selectedIndex {
             DispatchQueue.main.async {
                 uiView.scrollToItem(at: IndexPath(row: selectedIndex, section: 0), at: .centeredHorizontally, animated: true)
                 self.selectedIndexCache = self.selectedIndex
@@ -174,8 +190,8 @@ open class UPCarouselFlowLayout: UICollectionViewFlowLayout {
     
     override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let superAttributes = super.layoutAttributesForElements(in: rect),
-            let attributes = NSArray(array: superAttributes, copyItems: true) as? [UICollectionViewLayoutAttributes]
-            else { return nil }
+              let attributes = NSArray(array: superAttributes, copyItems: true) as? [UICollectionViewLayoutAttributes]
+        else { return nil }
         return attributes.map({ self.transformLayoutAttributes($0) })
     }
     
@@ -208,11 +224,18 @@ open class UPCarouselFlowLayout: UICollectionViewFlowLayout {
     }
     
     override open func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-        guard let collectionView = collectionView , !collectionView.isPagingEnabled,
-            let layoutAttributes = self.layoutAttributesForElements(in: collectionView.bounds)
-            else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset) }
+        guard let collectionView = collectionView , !collectionView.isPagingEnabled
+        else { return super.targetContentOffset(forProposedContentOffset: proposedContentOffset) }
         
         let isHorizontal = (self.scrollDirection == .horizontal)
+        
+        var targetRect = collectionView.bounds
+        
+        targetRect.origin = isHorizontal ? CGPoint(x: proposedContentOffset.x, y: 0.0) : CGPoint(x: 0.0, y: proposedContentOffset.y)
+        
+        guard let layoutAttributes = self.layoutAttributesForElements(in: targetRect) else {
+            return super.targetContentOffset(forProposedContentOffset: proposedContentOffset)
+        }
         
         let midSide = (isHorizontal ? collectionView.bounds.size.width : collectionView.bounds.size.height) / 2
         let proposedContentOffsetCenterOrigin = (isHorizontal ? proposedContentOffset.x : proposedContentOffset.y) + midSide

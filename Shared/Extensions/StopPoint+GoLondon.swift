@@ -63,5 +63,6 @@ extension StopPoint {
 extension StopPoint: Hashable {
     public func hash(into hasher: inout Hasher) {
         hasher.combine(self.id)
+        hasher.combine(self.coordinate)
     }
 }

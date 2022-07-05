@@ -200,14 +200,18 @@ public struct MapViewRepresentable: UIViewRepresentable {
         try? uiView.mapboxMap.style.removeSource(withId: "stopMarkersSource")
         
         var features: [Feature] = []
-        for marker in self.viewModel.stopPointMarkers {
+        
+        for index in 0..<self.viewModel.stopPointMarkers.count {
+            let marker = self.viewModel.stopPointMarkers[index]
+            
             let renderer = ImageRenderer(content: StopPointMarkerView(marker: marker).shadow(radius: 1))
             renderer.scale = UIScreen.main.scale
             if let img = renderer.uiImage {
                 try? uiView.mapboxMap.style.addImage(img, id: marker.id)
                 
                 var feature = Feature(geometry: Point(marker.coordinate))
-                feature.identifier = FeatureIdentifier(rawValue: self.viewModel.stopPointMarkers.firstIndex(of: marker) ?? 0)
+                
+                feature.identifier = FeatureIdentifier(rawValue: index)
                 feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(marker.id)))
                 features.append(feature)
             }
