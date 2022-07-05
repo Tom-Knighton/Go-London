@@ -73,7 +73,7 @@ public struct MapViewRepresentable: UIViewRepresentable {
             }
         }
         
-        func showOnlyPin(of selectedIndex: Int?, for mapView: MapView) {
+        func showOnlyPin(of selectedIndex: Int?, for mapView: MapView, zoomTo: Bool = true) {
             
             if let selectedIndex = selectedIndex {
                 let stopPoint = self.parent.viewModel.stopPointMarkers[selectedIndex]
@@ -90,11 +90,17 @@ public struct MapViewRepresentable: UIViewRepresentable {
                     
                     layer.iconOpacity = .expression(opacity)
                 })
+                
+                if zoomTo {
+                    mapView.camera.fly(to: CameraOptions(center: stopPoint.coordinate))
+                }
             } else {
                 try? mapView.mapboxMap.style.updateLayer(withId: "stopMarkers", type: SymbolLayer.self, update: { (layer: inout SymbolLayer) throws in
                     layer.iconOpacity = .constant(1)
                 })
             }
+            
+            
         }
     }
     
