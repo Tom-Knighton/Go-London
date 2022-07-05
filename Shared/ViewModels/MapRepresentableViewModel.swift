@@ -30,6 +30,8 @@ class MapRepresentableViewModel: ObservableObject {
     
     @Published var searchedLocation: CLLocationCoordinate2D?
     
+    @Published var selectedPointIndex: Int?
+    
     private var cancellable: AnyCancellable?
         
     init(enableCurrentLocation: Bool, enableTrackingLocation: Bool, mapCenter: CLLocationCoordinate2D, stopPointMarkers: [StopPointAnnotation] = [], forceUpdatePosition: Bool = false, searchedLocation: CLLocationCoordinate2D? = nil) {

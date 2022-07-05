@@ -9,12 +9,7 @@ import Foundation
 import SwiftUI
 import MapboxMaps
 import GoLondonSDK
-//import SwiftUISnappingScrollView
 import Introspect
-
-class Store: ObservableObject {
-    @Published var selectedIndex: Int?
-}
 
 public struct HomeView : View {
     
@@ -34,10 +29,7 @@ public struct HomeView : View {
     
     @FocusState private var mapPanelFocused: Bool
     @Namespace private var mapSpace
-    
-    @State private var selectedStopId: String? = nil
-    
-    @StateObject private var tabStore = Store()
+        
     public var body: some View {
         
         GeometryReader { geo in
@@ -87,10 +79,10 @@ public struct HomeView : View {
                 VStack(spacing: 0) {
                     Spacer()
                    
-                    let hideScroll = self.tabStore.selectedIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
+                    let hideScroll = self.mapModel.selectedPointIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
                     if !hideScroll {
                         GeometryReader { geo in
-                            SnapCarouselView(items: self.mapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$tabStore.selectedIndex)
+                            SnapCarouselView(items: self.mapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$mapModel.selectedPointIndex)
                         }
                         .frame(height: 200)
                     }
@@ -143,15 +135,13 @@ public struct HomeView : View {
         }
         .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS), perform: { _ in
             withAnimation(.easeInOut) {
-                self.selectedStopId = nil
-
+                self.mapModel.selectedPointIndex = nil
             }
         })
         .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)) { output in
             if let s = output.object as? StopPoint {
                 withAnimation(.easeInOut) {
-                    self.selectedStopId = s.id
-                    self.tabStore.selectedIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
+                    self.mapModel.selectedPointIndex = self.mapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
                 }
             }
         }
@@ -209,7 +199,7 @@ public struct HomeView : View {
                 .edgesIgnoringSafeArea(.all)
                 .transition(.opacity)
         } else {
-            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$tabStore.selectedIndex)
+            MapViewRepresentable(viewModel: mapModel, selectedIndex: self.$mapModel.selectedPointIndex)
                 .edgesIgnoringSafeArea(.all)
                 .onAppear {
                     self.search()
