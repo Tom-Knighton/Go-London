@@ -286,6 +286,10 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     }
     
     func drawLines(features: [Feature], on mapView: MapView) {
+        
+        try? mapView.mapboxMap.style.removeLayer(withId: "lineLayer")
+        try? mapView.mapboxMap.style.removeSource(withId: "lineLayerSource")
+        
         let superLowZoomWidth = 1
         let lowZoomWidth = 3
         let highZoomWidth = 15
@@ -305,8 +309,8 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         source.lineMetrics = true
         source.data = .featureCollection(FeatureCollection(features: features))
         
-        var lineLayer = LineLayer(id: "line-layers")
-        lineLayer.source = "line-id-"
+        var lineLayer = LineLayer(id: "lineLayer")
+        lineLayer.source = "lineLayerSource"
         lineLayer.lineColor = .expression(Exp(.get) { "lineColour" })
         lineLayer.lineWidth = .expression(lineWidth)
         lineLayer.lineCap = .constant(.round)
@@ -314,11 +318,12 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         lineLayer.lineOpacity = .constant(0.7)
         lineLayer.lineOffset = .expression(Exp(.get) { "lineOffset" })
         
-        try? mapView.mapboxMap.style.addSource(source, id: "line-id-")
+        try? mapView.mapboxMap.style.addSource(source, id: "lineLayerSource")
         try? mapView.mapboxMap.style.addPersistentLayer(lineLayer, layerPosition: .below("poi-label"))
     }
     
     func makeNameGeometry(for line: LineRoutes) -> [Feature] {
+        
         var features: [Feature] = []
         
         let stops = line.stopPointSequences?.compactMap({ $0.stopPoint }).flatMap ({ $0 })
