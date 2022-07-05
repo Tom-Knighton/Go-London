@@ -79,8 +79,7 @@ struct MapSearchPanelView: View {
                                 return
                             }
                             
-                            print("ON RECEIVE")
-                            Task { 
+                            Task {
                                 guard model.searchText.count >= 3 else { return }
                                 await model.makeSearch()
                                 self.cachedText = text

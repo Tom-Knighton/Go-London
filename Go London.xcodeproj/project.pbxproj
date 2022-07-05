@@ -119,8 +119,6 @@
 		E2B9DFC7281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
 		E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
 		E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
-		E2C33D1B2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */; };
-		E2C33D1C2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */; };
 		E2DD5D6A280C813F00D0ECF5 /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */; };
 		E2DD5D6B280C813F00D0ECF5 /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */; };
 		E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7EB6E27F8D68800A5489B /* FadingText.swift */; };
@@ -191,7 +189,6 @@
 		E2B8F9472836699100AAAB10 /* Dog_Frankie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Frankie.json; sourceTree = "<group>"; };
 		E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPanelViewModel.swift; sourceTree = "<group>"; };
 		E2C33D172808315200C2E373 /* Notification+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+GoLondon.swift"; sourceTree = "<group>"; };
-		E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointDetailMarkerView.swift; sourceTree = "<group>"; };
 		E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewModel.swift; sourceTree = "<group>"; };
 		E2F7EB6E27F8D68800A5489B /* FadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadingText.swift; sourceTree = "<group>"; };
 		E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Go_LondonApp.swift; sourceTree = "<group>"; };
@@ -518,7 +515,6 @@
 			isa = PBXGroup;
 			children = (
 				E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */,
-				E2C33D1A2808336300C2E373 /* StopPointDetailMarkerView.swift */,
 				E2910A42285E8937007D23DF /* StopPointDetailView.swift */,
 			);
 			path = Markers;
@@ -728,7 +724,6 @@
 				E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */,
 				E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */,
 				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
-				E2C33D1B2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */,
 				E2680B3627EBE231004C37E9 /* RequestLocation.swift in Sources */,
 				E2680B4027EBE49E004C37E9 /* LocationManager.swift in Sources */,
 				E22B299928368B4C004009BA /* LinePage.swift in Sources */,
@@ -792,7 +787,6 @@
 				E2A469A92850CEC400DA6136 /* AlertDetails.swift in Sources */,
 				E22B299A28368B4C004009BA /* LinePage.swift in Sources */,
 				E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */,
-				E2C33D1C2808336300C2E373 /* StopPointDetailMarkerView.swift in Sources */,
 				E2A469A3284FE02F00DA6136 /* HomeMapFilterView.swift in Sources */,
 				E29DBDE1281D466F00CA047B /* GLTabBar.swift in Sources */,
 				E2680B2727EBDA57004C37E9 /* GoLondon.swift in Sources */,
