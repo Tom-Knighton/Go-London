@@ -223,12 +223,18 @@ public struct HomeView : View {
     
     func search() {
         Task { [weak mapModel, weak model] in
-            if let newMarkers = await model?.searchForMarkers(at: mapModel?.mapCenter ?? GoLondon.LiverpoolStreetCoord) {
+            guard let center = mapModel?.mapCenter else {
+                return
+            }
+            
+            mapModel?.setSearchedLocation(to: center)
+
+            if let newMarkers = await model?.searchForMarkers(at: center) {
                 mapModel?.stopPointMarkers = newMarkers
             }
 
             withAnimation {
-                mapModel?.updateCenter(to: mapModel?.mapCenter ?? GoLondon.LiverpoolStreetCoord)
+                mapModel?.updateCenter(to: center)
                 model?.hasMovedFromLastLocation = false
             }
         }

@@ -91,9 +91,7 @@ public class HomeViewModel: ObservableObject {
     
     func searchForMarkers(at location: CLLocationCoordinate2D) async -> [StopPointAnnotation]? {
         guard !isLoading else { return nil }
-        
-        
-        
+ 
         self.toggleIsLoading(to: true)
         
         let nearbyPoints = await GLSDK.Search.SearchAround(latitude: location.latitude, longitude: location.longitude, filterBy: self.filters.getAllToggled(), radius: Int(self.radius))

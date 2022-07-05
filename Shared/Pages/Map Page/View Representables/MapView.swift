@@ -182,7 +182,6 @@ public struct MapViewRepresentable: UIViewRepresentable {
             }
 
             if viewModel.stopPointMarkers != viewModel.internalCachedStopPointMarkers {
-                viewModel.setSearchedLocation(to: uiView.mapboxMap.cameraState.center)
                 viewModel.updateCacheMarkers()
                 self.addCircleLayer(for: uiView, radius: 850)
                 resetMarkers(for: uiView)
