@@ -15,6 +15,7 @@ struct MapSearchPanelView: View {
     @State var promptText = "nearby stations..."
     
     @ObservedObject var model: MapSearchPanelViewModel
+    @State private var cachedText: String = ""
     
     init(isFocused: FocusState<Bool>.Binding, model: MapSearchPanelViewModel) {
         self.isFocused = isFocused
@@ -74,9 +75,15 @@ struct MapSearchPanelView: View {
                 VStack {
                     GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: isFocused)
                         .onReceive(model.$searchText.debounce(for: 0.8, scheduler: RunLoop.main)) { text in
-                            Task {
+                            guard self.cachedText != text else {
+                                return
+                            }
+                            
+                            print("ON RECEIVE")
+                            Task { 
                                 guard model.searchText.count >= 3 else { return }
                                 await model.makeSearch()
+                                self.cachedText = text
                             }
                         }
                         .onTapGesture(perform: {
