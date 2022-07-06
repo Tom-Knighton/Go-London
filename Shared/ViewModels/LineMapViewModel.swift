@@ -79,10 +79,14 @@ public class LineMapViewModel: ObservableObject {
     /// - Parameter stopName: The complete name of the stop point
     /// - Remark: Will return none if there is no accessibility data
     /// - Remark: Will return the overview if more than one line is being rendered
-    func getAccessibilityType(for stopName: String, with data: GlobalViewModel) -> StationAccessibilityType {
+    func getAccessibilityType(for stopName: String) -> StationAccessibilityType {
+        
+        let data = GlobalViewModel.shared
+        
         let stopName = stopName.replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
-        guard let accessibleData = data.iradData.first(where: { $0.stationName == stopName }) else {
+        guard let accessibleData = data.lradData.first(where: { $0.stationName == stopName }) else {
+            print("No accessible data for \(stopName)")
             return .None
         }
         
@@ -108,7 +112,7 @@ public class LineMapViewModel: ObservableObject {
     
     func fetchToggledRoutes() async {
         Task {
-            self.lineRoutes = await GLSDK.Lines.Routes(for: self.lineFilters.filter { $0.toggled }.compactMap { $0.lineId }, fixCoordinates: false)
+            self.lineRoutes = await GlobalViewModel.shared.routesFor(self.lineFilters.filter { $0.toggled }.compactMap { $0.lineId })
         }
     }
     

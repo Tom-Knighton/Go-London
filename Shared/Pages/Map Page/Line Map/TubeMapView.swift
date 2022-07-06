@@ -27,7 +27,6 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     
     @ObservedObject private var viewModel: LineMapViewModel
     @State private var interchangeIconLayers: [String] = []
-    @EnvironmentObject private var globalViewModel: GlobalViewModel
     @State private var coordinateNames: [String: String]
     
     init(viewModel: LineMapViewModel) {
@@ -155,9 +154,6 @@ struct LineMapViewRepresntable: UIViewRepresentable {
                            let name = stopPoint.name ?? stopPoint.commonName {
                             if name.count < coord.count {
                                 self.coordinateNames[stopPoint.icsId ?? ""] = name
-                            } else {
-                                stopPoint.name = nil
-                                stopPoint.commonName = nil
                             }
                         } else {
                             self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
@@ -193,7 +189,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             var feature = Feature(geometry: Point(stopPoint.coordinate))
             
             if self.viewModel.filterAccessibility {
-                feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(stopPoint.id ?? "")), ("accessibility", JSONValue(self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "", with: self.globalViewModel).rawValue)))
+                feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(stopPoint.id ?? "")), ("accessibility", JSONValue(self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "UNK?").rawValue)))
             } else {
                 feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(stopPoint.id ?? "")))
             }
@@ -331,7 +327,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             var feature = Feature(geometry: Point(stopPoint.coordinate))
             
             if self.viewModel.filterAccessibility {
-                if self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "", with: self.globalViewModel) != .None {
+                if self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "") != .None {
                     if let name = self.coordinateNames[stopPoint.icsId ?? ""] {
                     
                         feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))

@@ -14,7 +14,6 @@ struct Go_LondonApp: App {
     
     @Environment(\.scenePhase) private var scenePhase
     @State var showLocationPermission = false
-    @StateObject var globalViewModel: GlobalViewModel = GlobalViewModel()
     @StateObject var tabManager: GLTabBarViewModel = GLTabBarViewModel(with: [
         GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .home, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Map", iconName: "map", selectedIconName: "map.fill", fontSize: 30), isSelected: false),
         GLTabBarViewModel.GLTabPage(uuid: UUID(), page: .lineStatus, icon: GLTabBarViewModel.GLTabPage.TabIcon(pageName: "Lines", iconName: "tram", selectedIconName: "tram.fill", fontSize: 24), isSelected: false)
@@ -24,6 +23,9 @@ struct Go_LondonApp: App {
     init() {
         LocationManager.shared.start()
         ResourceOptionsManager.default.resourceOptions.accessToken = GoLondon.MapboxKey
+        Task {
+            await GlobalViewModel.shared.setup()
+        }
     }
     
     var body: some Scene {
@@ -31,10 +33,6 @@ struct Go_LondonApp: App {
             ContentView()
             .sheet(isPresented: $showLocationPermission) {
                 RequestLocation()
-            }
-            .environmentObject(globalViewModel)
-            .task {
-                await self.globalViewModel.setup()
             }
             .environmentObject(tabManager)
         }
