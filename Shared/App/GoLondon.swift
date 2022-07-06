@@ -33,6 +33,7 @@ public class GoLondon {
     }
     
     private static var defaultLineModes = [LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr]
+    public static var defaultLineIds = ["elizabeth", "dlr", "london-overground", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"]
 
     
     /// Returns the cached homeMapFilters MainMapFilters, or a fresh all-toggled array if no cache was found
@@ -64,10 +65,14 @@ public class GoLondon {
                     let filters = try JSONDecoder().decode([LineMapFilter].self, from: data)
                     return filters
                 } catch {
-                    return []
+                    let values = self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+                    self.lineMapFilterCache = values
+                    return self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
                 }
             } else {
-                return []
+                let values = self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+                self.lineMapFilterCache = values
+                return self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
             }
         }
         
