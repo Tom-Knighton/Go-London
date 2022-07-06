@@ -83,7 +83,7 @@ public class LineMapViewModel: ObservableObject {
         
         let data = GlobalViewModel.shared
         
-        let stopName = stopName.replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let stopName = stopName.replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "DLR", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         guard let accessibleData = data.lradData.first(where: { $0.stationName == stopName }) else {
             print("No accessible data for \(stopName)")
