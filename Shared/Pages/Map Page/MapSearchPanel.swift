@@ -28,7 +28,7 @@ struct MapSearchPanelView: View {
             if model.isLoading {
                 ProgressView()
                     .progressViewStyle(.circular)
-                Spacer().frame(height: 4)
+                Spacer().frame(height: 8)
             }
             
             if self.model.searchResults.isEmpty == false {

@@ -20,15 +20,19 @@ struct SearchResultView: View {
                     Text(point.text ?? "")
                         .font(.title3)
                         .bold()
+                        .multilineTextAlignment(.center)
                     
                     Text(addressString)
+                        .multilineTextAlignment(.center)
                 } else if let point = point as? StopPoint {
                     Text(point.commonName ?? point.name ?? "")
                         .font(.title3)
                         .bold()
+                        .multilineTextAlignment(.center)
                     modesToDisplay()
                 }
             }
+            .padding(.horizontal, 12)
             HStack {
                 Spacer()
                 Image(systemName: "chevron.forward")
