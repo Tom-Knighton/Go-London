@@ -48,7 +48,6 @@ public class GlobalViewModel {
         
         if let data = UserDefaults.standard.data(forKey: "routeData"),
            let decompiled = try? JSONDecoder().decode([LineRoutes].self, from: data) {
-            print("T: decompile success \(decompiled.count)")
             self.lineRouteData = decompiled
         } else {
             await self.getLineRouteData()
@@ -87,7 +86,6 @@ public class GlobalViewModel {
  
     //MARK: - Get Lines
     private func getLineRouteData() async {
-        print("T: fetching from api: \(self.lineRoutesToCollect)")
         let data = await GLSDK.Lines.Routes(for: self.lineRoutesToCollect, fixCoordinates: true)
         self.lineRouteData = data
         
@@ -103,7 +101,6 @@ public class GlobalViewModel {
         
         let linesAlreadyInCache = lineIds.allSatisfy({ lineId in
             let exists = self.lineRouteData.contains(where: { $0.lineId == lineId })
-            print("T: line \(lineId) exists")
             return exists
         })
         
@@ -112,7 +109,6 @@ public class GlobalViewModel {
             let existing = self.lineRouteData.filter { route in
                 lineIds.contains(route.lineId ?? "")
             }
-            print("T: Returning existingData \(existing.count)")
             return existing
         }
         
@@ -139,7 +135,6 @@ public class GlobalViewModel {
         
         // If line already exists in cache, return it
         if let existingData = self.lineRouteData.first(where: { $0.lineId == lineId }) {
-            print("T: Returning existingData \(existingData)")
             return existingData
         }
         
