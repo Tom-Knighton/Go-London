@@ -328,7 +328,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             
             if self.viewModel.filterAccessibility {
                 if self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "") != .None {
-                    if let name = self.coordinateNames[stopPoint.icsId ?? ""] {
+                    if let name = self.viewModel.lineIds.count > 1 ? self.coordinateNames[stopPoint.icsId ?? ""] : stopPoint.commonName ?? stopPoint.name {
                     
                         feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))
                     } else {
@@ -338,7 +338,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
                     return nil
                 }
             } else {
-                if let name = self.coordinateNames[stopPoint.icsId ?? ""] {
+                if let name = self.viewModel.lineIds.count > 1 ? self.coordinateNames[stopPoint.icsId ?? ""] : stopPoint.commonName ?? stopPoint.name {
                     feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))
                 } else {
                     return nil
