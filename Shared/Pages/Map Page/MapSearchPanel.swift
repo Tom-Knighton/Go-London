@@ -38,7 +38,7 @@ struct MapSearchPanelView: View {
                         LazyVStack {
                             HStack {
                                 Spacer()
-                                Button(action: { self.model.searchResults.removeAll(); self.model.searchText = "" }) {
+                                Button(action: { withAnimation { self.model.searchResults.removeAll(); self.model.searchText = "" } } ) {
                                     HStack {
                                         Text(Image(systemName: "xmark"))
                                             .frame(width: 15, height: 15)
@@ -80,8 +80,15 @@ struct MapSearchPanelView: View {
                             }
                             
                             Task {
-                                guard model.searchText.count >= 3 else { return }
-                                await model.makeSearch()
+                                guard model.searchText.count >= 3 || model.searchText.count == 0 else { return }
+                                
+                                if model.searchText.count != 0 {
+                                    await model.makeSearch()
+                                } else {
+                                    withAnimation {
+                                        self.model.searchResults.removeAll()
+                                    }
+                                }
                                 self.cachedText = text
                             }
                         }
