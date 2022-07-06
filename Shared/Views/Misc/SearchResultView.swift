@@ -14,25 +14,34 @@ struct SearchResultView: View {
     @State var point: Point
     
     var body: some View {
-        VStack {
-            if let point = point as? POIPoint {
-                Text(point.text ?? "")
-                    .font(.title3)
-                    .bold()
-                
-                Text(addressString)
-            } else if let point = point as? StopPoint {
-                Text(point.commonName ?? point.name ?? "")
-                    .font(.title3)
-                    .bold()
-                modesToDisplay()
+        ZStack {
+            VStack {
+                if let point = point as? POIPoint {
+                    Text(point.text ?? "")
+                        .font(.title3)
+                        .bold()
+                    
+                    Text(addressString)
+                } else if let point = point as? StopPoint {
+                    Text(point.commonName ?? point.name ?? "")
+                        .font(.title3)
+                        .bold()
+                    modesToDisplay()
+                }
+            }
+            HStack {
+                Spacer()
+                Image(systemName: "chevron.forward")
+                    .font(Font.system(.caption).weight(.bold))
+                    .foregroundColor(Color(UIColor.tertiaryLabel))
+                Spacer().frame(width: 8)
             }
         }
         .padding()
         .frame(maxWidth: .infinity)
         .background(Color.layer1)
         .cornerRadius(10)
-        .shadow(radius: 1)
+        .shadow(radius: 3)
     }
     
     func findTubeModeGroup() -> LineModeGroup? {
