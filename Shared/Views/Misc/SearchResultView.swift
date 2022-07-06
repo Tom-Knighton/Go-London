@@ -41,7 +41,7 @@ struct SearchResultView: View {
         .frame(maxWidth: .infinity)
         .background(Color.layer1)
         .cornerRadius(10)
-        .shadow(radius: 3)
+        .shadow(radius: 1)
     }
     
     func findTubeModeGroup() -> LineModeGroup? {

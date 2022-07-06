@@ -114,6 +114,7 @@ struct MapSearchPanelView: View {
                 .fill(Color.layer1)
         )
         .padding(.horizontal)
+        .shadow(radius: 3)
     }
     
     func changeSearchText() {
