@@ -69,6 +69,11 @@ public struct SnapCarouselView: UIViewRepresentable {
                 let center = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
                 if let collectionView = self.parent.collectionView,
                    let ip = collectionView.indexPathForItem(at: center) {
+                    
+                    if ip.row != self.parent.selectedIndex {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
+                    
                     self.parent.selectedIndex = ip.row
                 }
                 
