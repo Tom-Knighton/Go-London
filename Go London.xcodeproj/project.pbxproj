@@ -8,127 +8,69 @@
 
 /* Begin PBXBuildFile section */
 		E202D4A428721FC3006055D6 /* MapTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202D4A328721FC3006055D6 /* MapTapGesture.swift */; };
-		E202D4A528721FC3006055D6 /* MapTapGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = E202D4A328721FC3006055D6 /* MapTapGesture.swift */; };
 		E22B299928368B4C004009BA /* LinePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299828368B4C004009BA /* LinePage.swift */; };
-		E22B299A28368B4C004009BA /* LinePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299828368B4C004009BA /* LinePage.swift */; };
 		E22B299C28368BEC004009BA /* LineStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299B28368BEC004009BA /* LineStatusViewModel.swift */; };
-		E22B299D28368BEC004009BA /* LineStatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B299B28368BEC004009BA /* LineStatusViewModel.swift */; };
 		E22B299F2836D48D004009BA /* Frog_Raymond.json in Resources */ = {isa = PBXBuildFile; fileRef = E22B299E2836D48D004009BA /* Frog_Raymond.json */; };
-		E22B29A02836D48D004009BA /* Frog_Raymond.json in Resources */ = {isa = PBXBuildFile; fileRef = E22B299E2836D48D004009BA /* Frog_Raymond.json */; };
 		E22B29A22836D5B7004009BA /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B29A12836D5B7004009BA /* Foundation+GoLondon.swift */; };
-		E22B29A32836D5B7004009BA /* Foundation+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B29A12836D5B7004009BA /* Foundation+GoLondon.swift */; };
 		E22B69BC284BD4D50026D42E /* GlobalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B69BB284BD4D50026D42E /* GlobalViewModel.swift */; };
-		E22B69BD284BD4D50026D42E /* GlobalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22B69BB284BD4D50026D42E /* GlobalViewModel.swift */; };
 		E243A99B2847E6F100A99988 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = E243A99A2847E6F100A99988 /* Introspect */; };
 		E244CE83283AC85B007A4A9A /* TubeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE82283AC85A007A4A9A /* TubeMapView.swift */; };
-		E244CE84283AC85B007A4A9A /* TubeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE82283AC85A007A4A9A /* TubeMapView.swift */; };
 		E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
-		E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E253FDFA287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
-		E253FDFB287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
-		E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1927EBCE7F004C37E9 /* GoLondonSDK */; };
 		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
-		E2680B2027EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
 		E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
-		E2680B2427EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
 		E2680B2627EBDA57004C37E9 /* GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2527EBDA57004C37E9 /* GoLondon.swift */; };
-		E2680B2727EBDA57004C37E9 /* GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2527EBDA57004C37E9 /* GoLondon.swift */; };
 		E2680B2E27EBE120004C37E9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B2D27EBE120004C37E9 /* Lottie */; };
 		E2680B3327EBE173004C37E9 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3227EBE173004C37E9 /* LottieView.swift */; };
-		E2680B3427EBE173004C37E9 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3227EBE173004C37E9 /* LottieView.swift */; };
-		E2680B3527EBE231004C37E9 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2927EBDF58004C37E9 /* RequestLocation.swift */; };
 		E2680B3627EBE231004C37E9 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2927EBDF58004C37E9 /* RequestLocation.swift */; };
-		E2680B3827EBE28A004C37E9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B3727EBE28A004C37E9 /* Lottie */; };
 		E2680B3C27EBE2D4004C37E9 /* LottieLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */; };
-		E2680B3D27EBE2D4004C37E9 /* LottieLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = E2680B3B27EBE2D4004C37E9 /* LottieLocation.json */; };
 		E2680B4027EBE49E004C37E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3F27EBE49E004C37E9 /* LocationManager.swift */; };
-		E2680B4127EBE49E004C37E9 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B3F27EBE49E004C37E9 /* LocationManager.swift */; };
 		E2680B4427EE715A004C37E9 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4327EE715A004C37E9 /* LocationPermission.swift */; };
-		E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4327EE715A004C37E9 /* LocationPermission.swift */; };
 		E2680B4727EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
-		E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B4627EE717F004C37E9 /* PermissionManager.swift */; };
 		E277B7E52854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
-		E277B7E62854022A009A06F6 /* LineMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E277B7E42854022A009A06F6 /* LineMapFilterView.swift */; };
 		E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */ = {isa = PBXBuildFile; productRef = E2910A40285E85BC007D23DF /* MapboxMaps */; };
 		E2910A43285E8938007D23DF /* StopPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A42285E8937007D23DF /* StopPointDetailView.swift */; };
-		E2910A44285E8938007D23DF /* StopPointDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A42285E8937007D23DF /* StopPointDetailView.swift */; };
 		E2910A5828620BB7007D23DF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A5728620BB7007D23DF /* FlowLayout.swift */; };
-		E2910A5928620BB7007D23DF /* FlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2910A5728620BB7007D23DF /* FlowLayout.swift */; };
 		E29DBDD428199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
-		E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD328199E1200CA047B /* SearchResultView.swift */; };
 		E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
-		E29DBDD8281B53BE00CA047B /* Point+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDD6281B53BE00CA047B /* Point+GoLondon.swift */; };
 		E29DBDDC281D462100CA047B /* AllLinesStatusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDB281D462100CA047B /* AllLinesStatusPage.swift */; };
-		E29DBDDD281D462100CA047B /* AllLinesStatusPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDB281D462100CA047B /* AllLinesStatusPage.swift */; };
 		E29DBDE0281D466F00CA047B /* GLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDF281D466F00CA047B /* GLTabBar.swift */; };
-		E29DBDE1281D466F00CA047B /* GLTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDDF281D466F00CA047B /* GLTabBar.swift */; };
 		E29DBDE3281D467E00CA047B /* GLTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */; };
-		E29DBDE4281D467E00CA047B /* GLTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE2281D467E00CA047B /* GLTabBarViewModel.swift */; };
 		E29DBDE9281D4E3900CA047B /* Environment+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE8281D4E3900CA047B /* Environment+GoLondon.swift */; };
-		E29DBDEA281D4E3900CA047B /* Environment+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29DBDE8281D4E3900CA047B /* Environment+GoLondon.swift */; };
 		E2A36A6227F63BA400AD8ECD /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6127F63BA400AD8ECD /* MapButton.swift */; };
 		E2A36A6927F6627000AD8ECD /* Line_Etc+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6827F6627000AD8ECD /* Line_Etc+GoLondon.swift */; };
 		E2A36A6B27F6723500AD8ECD /* StopPoint+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6A27F6723500AD8ECD /* StopPoint+GoLondon.swift */; };
 		E2A36A6D27F7706200AD8ECD /* MapSearchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6C27F7706200AD8ECD /* MapSearchPanel.swift */; };
-		E2A36A6E27F7706200AD8ECD /* MapSearchPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A6C27F7706200AD8ECD /* MapSearchPanel.swift */; };
 		E2A36A7127F772B100AD8ECD /* GLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7027F772B100AD8ECD /* GLTextField.swift */; };
-		E2A36A7227F772B100AD8ECD /* GLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7027F772B100AD8ECD /* GLTextField.swift */; };
 		E2A36A7427F7825900AD8ECD /* View+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */; };
-		E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A36A7327F7825900AD8ECD /* View+GoLondon.swift */; };
 		E2A469A2284FE02F00DA6136 /* HomeMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A469A1284FE02F00DA6136 /* HomeMapFilterView.swift */; };
-		E2A469A3284FE02F00DA6136 /* HomeMapFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A469A1284FE02F00DA6136 /* HomeMapFilterView.swift */; };
 		E2A469A5284FFAA400DA6136 /* MapFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A469A4284FFAA400DA6136 /* MapFilterButton.swift */; };
-		E2A469A6284FFAA400DA6136 /* MapFilterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A469A4284FFAA400DA6136 /* MapFilterButton.swift */; };
 		E2A469A82850CEC400DA6136 /* AlertDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A469A72850CEC400DA6136 /* AlertDetails.swift */; };
-		E2A469A92850CEC400DA6136 /* AlertDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2A469A72850CEC400DA6136 /* AlertDetails.swift */; };
 		E2AE9B3727F608E90055299A /* Color+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AE9B3627F608E90055299A /* Color+GoLondon.swift */; };
 		E2B8F9342835645B00AAAB10 /* LineOverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */; };
-		E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9332835645B00AAAB10 /* LineOverviewRow.swift */; };
 		E2B8F9372835649600AAAB10 /* LineOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */; };
-		E2B8F938283564C900AAAB10 /* LineOverviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B8F9362835649600AAAB10 /* LineOverviewViewModel.swift */; };
 		E2B8F9482836699100AAAB10 /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */; };
-		E2B8F9492836699100AAAB10 /* Dog_Franchesca.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93A2836699100AAAB10 /* Dog_Franchesca.json */; };
 		E2B8F94A2836699100AAAB10 /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */; };
-		E2B8F94B2836699100AAAB10 /* Dog_Gromit.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93B2836699100AAAB10 /* Dog_Gromit.json */; };
 		E2B8F94C2836699100AAAB10 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93C2836699100AAAB10 /* SearchingGif.json */; };
-		E2B8F94D2836699100AAAB10 /* SearchingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93C2836699100AAAB10 /* SearchingGif.json */; };
 		E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
-		E2B8F94F2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
 		E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
-		E2B8F9512836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
 		E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
-		E2B8F9532836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
 		E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
-		E2B8F9552836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
 		E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
-		E2B8F9572836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
 		E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
-		E2B8F9592836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
 		E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
-		E2B8F95B2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
 		E2B8F95C2836699100AAAB10 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9442836699100AAAB10 /* Dog_Fabio.json */; };
-		E2B8F95D2836699100AAAB10 /* Dog_Fabio.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9442836699100AAAB10 /* Dog_Fabio.json */; };
 		E2B8F95E2836699100AAAB10 /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9452836699100AAAB10 /* Dog_Tom.json */; };
-		E2B8F95F2836699100AAAB10 /* Dog_Tom.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9452836699100AAAB10 /* Dog_Tom.json */; };
 		E2B8F9602836699100AAAB10 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9462836699100AAAB10 /* LoadingGif.json */; };
-		E2B8F9612836699100AAAB10 /* LoadingGif.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9462836699100AAAB10 /* LoadingGif.json */; };
 		E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
-		E2B8F9632836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
 		E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
-		E2B9DFC7281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
 		E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
-		E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
 		E2DD5D6A280C813F00D0ECF5 /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */; };
-		E2DD5D6B280C813F00D0ECF5 /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */; };
 		E2F7EB6F27F8D68800A5489B /* FadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7EB6E27F8D68800A5489B /* FadingText.swift */; };
-		E2F7EB7027F8D68800A5489B /* FadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7EB6E27F8D68800A5489B /* FadingText.swift */; };
 		E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
-		E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
 		E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DF27E4AA85005132EF /* ContentView.swift */; };
-		E2FEF7F127E4AA87005132EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DF27E4AA85005132EF /* ContentView.swift */; };
 		E2FEF7F227E4AA87005132EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF7E027E4AA87005132EF /* Assets.xcassets */; };
-		E2FEF7F327E4AA87005132EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2FEF7E027E4AA87005132EF /* Assets.xcassets */; };
 		E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */; };
 		E2FF049B27F0FD86003A2ABB /* StopPointMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */; };
 /* End PBXBuildFile section */
@@ -195,7 +137,6 @@
 		E2FEF7DF27E4AA85005132EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2FEF7E027E4AA87005132EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2FEF7E527E4AA87005132EF /* Go London.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go London.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2FEF7EB27E4AA87005132EF /* Go London.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Go London.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FEF7ED27E4AA87005132EF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E2FF049727F08EB2003A2ABB /* StopPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointAnnotation.swift; sourceTree = "<group>"; };
 		E2FF049A27F0FD86003A2ABB /* StopPointMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopPointMarker.swift; sourceTree = "<group>"; };
@@ -210,15 +151,6 @@
 				E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */,
 				E2910A41285E85BC007D23DF /* MapboxMaps in Frameworks */,
 				E2680B2E27EBE120004C37E9 /* Lottie in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2FEF7E827E4AA87005132EF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2680B1A27EBCE7F004C37E9 /* GoLondonSDK in Frameworks */,
-				E2680B3827EBE28A004C37E9 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +420,6 @@
 			isa = PBXGroup;
 			children = (
 				E2FEF7E527E4AA87005132EF /* Go London.app */,
-				E2FEF7EB27E4AA87005132EF /* Go London.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -547,28 +478,6 @@
 			productReference = E2FEF7E527E4AA87005132EF /* Go London.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E2FEF7EA27E4AA87005132EF /* Go London (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E2FEF7F927E4AA87005132EF /* Build configuration list for PBXNativeTarget "Go London (macOS)" */;
-			buildPhases = (
-				E2FEF7E727E4AA87005132EF /* Sources */,
-				E2FEF7E827E4AA87005132EF /* Frameworks */,
-				E2FEF7E927E4AA87005132EF /* Resources */,
-				E2DDF0D32852103700651217 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Go London (macOS)";
-			packageProductDependencies = (
-				E2680B1927EBCE7F004C37E9 /* GoLondonSDK */,
-				E2680B3727EBE28A004C37E9 /* Lottie */,
-			);
-			productName = "Go London (macOS)";
-			productReference = E2FEF7EB27E4AA87005132EF /* Go London.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -580,9 +489,6 @@
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
 					E2FEF7E427E4AA87005132EF = {
-						CreatedOnToolsVersion = 13.2;
-					};
-					E2FEF7EA27E4AA87005132EF = {
 						CreatedOnToolsVersion = 13.2;
 					};
 				};
@@ -607,7 +513,6 @@
 			projectRoot = "";
 			targets = (
 				E2FEF7E427E4AA87005132EF /* Go London (iOS) */,
-				E2FEF7EA27E4AA87005132EF /* Go London (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -637,30 +542,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2FEF7E927E4AA87005132EF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2B8F9572836699100AAAB10 /* Dog_PurpleWalking.json in Resources */,
-				E2B8F9632836699100AAAB10 /* Dog_Frankie.json in Resources */,
-				E2B8F9592836699100AAAB10 /* Dog_Peter.json in Resources */,
-				E2B8F9532836699100AAAB10 /* Dog_Tutu.json in Resources */,
-				E2B8F9552836699100AAAB10 /* Dog_Louie.json in Resources */,
-				E2B8F9492836699100AAAB10 /* Dog_Franchesca.json in Resources */,
-				E22B29A02836D48D004009BA /* Frog_Raymond.json in Resources */,
-				E2B8F95F2836699100AAAB10 /* Dog_Tom.json in Resources */,
-				E2FEF7F327E4AA87005132EF /* Assets.xcassets in Resources */,
-				E2B8F9612836699100AAAB10 /* LoadingGif.json in Resources */,
-				E2B8F94D2836699100AAAB10 /* SearchingGif.json in Resources */,
-				E2B8F94B2836699100AAAB10 /* Dog_Gromit.json in Resources */,
-				E2B8F95D2836699100AAAB10 /* Dog_Fabio.json in Resources */,
-				E2B8F95B2836699100AAAB10 /* Dog_Rambo.json in Resources */,
-				E2680B3D27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
-				E2B8F9512836699100AAAB10 /* Dog_Wally.json in Resources */,
-				E2B8F94F2836699100AAAB10 /* Dog_Polly.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -683,26 +564,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Look for a global file named 'mapbox' or '.mapbox' within the home directory\ntoken_file=.mapbox\ntoken_file2=mapbox\ntoken=\"$(cat $token_file 2>/dev/null || cat $token_file2 2>/dev/null)\"\nif [ \"$token\" ]; then\n  plutil -replace MBXAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\n  echo 'Built token '\n  echo $token\nelse\n  echo 'warning: Missing Mapbox access token'\n  open 'https://account.mapbox.com/access-tokens/'\n  echo \"warning: Get an access token from <https://account.mapbox.com/access-tokens/>, then create a new file at $token_file or $token_file2 that contains the access token.\"\nfi\n";
-		};
-		E2DDF0D32852103700651217 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 12;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(INFOPLIST_PATH)",
-				"$(SRCROOT)/.mapbox",
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Look for a global file named 'mapbox' or '.mapbox' within the home directory\ntoken_file=.mapbox\ntoken_file2=mapbox\ntoken=\"$(cat $token_file 2>/dev/null || cat $token_file2 2>/dev/null)\"\nif [ \"$token\" ]; then\n  plutil -replace MBXAccessToken -string $token \"$TARGET_BUILD_DIR/$INFOPLIST_PATH\"\nelse\n  echo 'warning: Missing Mapbox access token'\n  open 'https://account.mapbox.com/access-tokens/'\n  echo \"warning: Get an access token from <https://account.mapbox.com/access-tokens/>, then create a new file at $token_file or $token_file2 that contains the access token.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -756,52 +617,6 @@
 				E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */,
 				E2A469A82850CEC400DA6136 /* AlertDetails.swift in Sources */,
 				E22B69BC284BD4D50026D42E /* GlobalViewModel.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E2FEF7E727E4AA87005132EF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E2A36A7227F772B100AD8ECD /* GLTextField.swift in Sources */,
-				E2680B2027EBCFDB004C37E9 /* HomeView.swift in Sources */,
-				E29DBDE4281D467E00CA047B /* GLTabBarViewModel.swift in Sources */,
-				E2B9DFC7281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */,
-				E29DBDD528199E1200CA047B /* SearchResultView.swift in Sources */,
-				E2680B2427EBD02B004C37E9 /* MapView.swift in Sources */,
-				E2FEF7F127E4AA87005132EF /* ContentView.swift in Sources */,
-				E2910A44285E8938007D23DF /* StopPointDetailView.swift in Sources */,
-				E2680B3527EBE231004C37E9 /* RequestLocation.swift in Sources */,
-				E2A36A7527F7825900AD8ECD /* View+GoLondon.swift in Sources */,
-				E29DBDD8281B53BE00CA047B /* Point+GoLondon.swift in Sources */,
-				E2680B4127EBE49E004C37E9 /* LocationManager.swift in Sources */,
-				E202D4A528721FC3006055D6 /* MapTapGesture.swift in Sources */,
-				E244CE84283AC85B007A4A9A /* TubeMapView.swift in Sources */,
-				E2A469A6284FFAA400DA6136 /* MapFilterButton.swift in Sources */,
-				E2C33D192808315200C2E373 /* Notification+GoLondon.swift in Sources */,
-				E22B69BD284BD4D50026D42E /* GlobalViewModel.swift in Sources */,
-				E2680B4527EE715A004C37E9 /* LocationPermission.swift in Sources */,
-				E29DBDEA281D4E3900CA047B /* Environment+GoLondon.swift in Sources */,
-				E277B7E62854022A009A06F6 /* LineMapFilterView.swift in Sources */,
-				E2680B4827EE717F004C37E9 /* PermissionManager.swift in Sources */,
-				E2A469A92850CEC400DA6136 /* AlertDetails.swift in Sources */,
-				E22B299A28368B4C004009BA /* LinePage.swift in Sources */,
-				E2B8F9352835645F00AAAB10 /* LineOverviewRow.swift in Sources */,
-				E2A469A3284FE02F00DA6136 /* HomeMapFilterView.swift in Sources */,
-				E29DBDE1281D466F00CA047B /* GLTabBar.swift in Sources */,
-				E2680B2727EBDA57004C37E9 /* GoLondon.swift in Sources */,
-				E2B8F938283564C900AAAB10 /* LineOverviewViewModel.swift in Sources */,
-				E2680B3427EBE173004C37E9 /* LottieView.swift in Sources */,
-				E2DD5D6B280C813F00D0ECF5 /* MainMapViewModel.swift in Sources */,
-				E29DBDDD281D462100CA047B /* AllLinesStatusPage.swift in Sources */,
-				E22B29A32836D5B7004009BA /* Foundation+GoLondon.swift in Sources */,
-				E22B299D28368BEC004009BA /* LineStatusViewModel.swift in Sources */,
-				E2910A5928620BB7007D23DF /* FlowLayout.swift in Sources */,
-				E244CE87283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */,
-				E2F7EB7027F8D68800A5489B /* FadingText.swift in Sources */,
-				E253FDFB287370BA008275BE /* Carousel.swift in Sources */,
-				E2A36A6E27F7706200AD8ECD /* MapSearchPanel.swift in Sources */,
-				E2FEF7EF27E4AA87005132EF /* Go_LondonApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -932,26 +747,30 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Go-London--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Go London";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London.dev";
+				MARKETING_VERSION = 0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London";
 				PRODUCT_NAME = "Go London";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -966,89 +785,31 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Go-London--iOS--Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Go London";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Go London can provide accurate travel and journey information as well as information on Stops around you";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London.dev";
+				MARKETING_VERSION = 0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London";
 				PRODUCT_NAME = "Go London";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E2FEF7FA27E4AA87005132EF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Go-London--macOS--Info.plist";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London";
-				PRODUCT_NAME = "Go London";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		E2FEF7FB27E4AA87005132EF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_IDENTITY = "-";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 8H3J46CN24;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Go-London--macOS--Info.plist";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "online.tomk.Go-London";
-				PRODUCT_NAME = "Go London";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1069,15 +830,6 @@
 			buildConfigurations = (
 				E2FEF7F727E4AA87005132EF /* Debug */,
 				E2FEF7F827E4AA87005132EF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E2FEF7F927E4AA87005132EF /* Build configuration list for PBXNativeTarget "Go London (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E2FEF7FA27E4AA87005132EF /* Debug */,
-				E2FEF7FB27E4AA87005132EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1130,17 +882,7 @@
 			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
 			productName = GoLondonSDK;
 		};
-		E2680B1927EBCE7F004C37E9 /* GoLondonSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2680B1027EBCADC004C37E9 /* XCRemoteSwiftPackageReference "GoLondonSDK-Swift" */;
-			productName = GoLondonSDK;
-		};
 		E2680B2D27EBE120004C37E9 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-		E2680B3727EBE28A004C37E9 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E2680B2C27EBE120004C37E9 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
