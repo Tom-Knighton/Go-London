@@ -9,20 +9,6 @@ import SwiftUI
 import MapboxMaps
 import Combine
 
-struct GeometryGetterMod: ViewModifier {
-    
-    @Binding var rect: CGRect
-    
-    func body(content: Content) -> some View {
-        return GeometryReader { (g) -> Color in // (g) -> Content in - is what it could be, but it doesn't work
-            DispatchQueue.main.async { // to avoid warning
-                self.rect = g.frame(in: .global)
-            }
-            return Color.clear // return content - doesn't work
-        }
-    }
-}
-
 struct ContentView: View {
     
     @Environment(\.colorScheme) private var colourScheme
@@ -30,7 +16,8 @@ struct ContentView: View {
     @FocusState var focused: Bool
     
     @State private var showTabBar: Bool = true
-    @State private var height: CGFloat = 0
+    
+    @State private var readRect: CGRect = CGRect()
     
     var body: some View {
         ZStack {
@@ -38,12 +25,13 @@ struct ContentView: View {
                 switch page.page {
                 case .home:
                     NavigationStack {
-                        HomeView(tabBarHeight: $height)
+                        HomeView()
                             .toolbar(.hidden)
                     }
                     .hideKeyboardWhenTappedAround()
                     .opacity(self.tabManager.currentPage.page == .home ? 1 : 0)
                     .id(page.uuid)
+                    .environment(\.tabBarHeight, readRect.height)
                     
                 case .lineStatus:
                     NavigationStack {
@@ -52,6 +40,7 @@ struct ContentView: View {
                     .navigationTitle("TfL Status:")
                     .opacity(self.tabManager.currentPage.page == .lineStatus ? 1 : 0)
                     .id(page.uuid)
+                    .environment(\.tabBarHeight, readRect.height)
                         
                 }
             }
@@ -61,6 +50,7 @@ struct ContentView: View {
             if self.showTabBar {
                 GLTabBar()
                     .transition(.move(edge: .bottom))
+                    .background(GeometryGetter(rect: $readRect))
             }
         }
         .edgesIgnoringSafeArea(.bottom)

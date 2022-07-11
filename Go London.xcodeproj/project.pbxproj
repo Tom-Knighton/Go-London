@@ -17,6 +17,7 @@
 		E244CE83283AC85B007A4A9A /* TubeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE82283AC85A007A4A9A /* TubeMapView.swift */; };
 		E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E253FDFA287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
+		E26107CA287CD65F000196CF /* GeometryGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26107C9287CD65F000196CF /* GeometryGetter.swift */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
 		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
 		E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
@@ -84,6 +85,7 @@
 		E244CE82283AC85A007A4A9A /* TubeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TubeMapView.swift; sourceTree = "<group>"; };
 		E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapViewModel.swift; sourceTree = "<group>"; };
 		E253FDF9287370BA008275BE /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
+		E26107C9287CD65F000196CF /* GeometryGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryGetter.swift; sourceTree = "<group>"; };
 		E2680B1E27EBCFDB004C37E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2680B2227EBD02B004C37E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2680B2527EBDA57004C37E9 /* GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondon.swift; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				E2A36A6F27F7729B00AD8ECD /* Controls */,
 				E2680B2927EBDF58004C37E9 /* RequestLocation.swift */,
 				E29DBDD328199E1200CA047B /* SearchResultView.swift */,
+				E26107C9287CD65F000196CF /* GeometryGetter.swift */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
 				E2680B3627EBE231004C37E9 /* RequestLocation.swift in Sources */,
 				E2680B4027EBE49E004C37E9 /* LocationManager.swift in Sources */,
+				E26107CA287CD65F000196CF /* GeometryGetter.swift in Sources */,
 				E22B299928368B4C004009BA /* LinePage.swift in Sources */,
 				E244CE83283AC85B007A4A9A /* TubeMapView.swift in Sources */,
 				E29DBDD7281B53BE00CA047B /* Point+GoLondon.swift in Sources */,

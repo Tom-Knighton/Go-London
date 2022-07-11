@@ -15,13 +15,12 @@ public struct HomeView : View {
     
     @Environment(\.colorScheme) var colourScheme
     @Environment(\.safeAreaInsets) var edges
+    @Environment(\.tabBarHeight) var tabBarHeight
     
     @StateObject private var mainMapModel: MainMapViewModel = MainMapViewModel(searchRadius: 850, enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
     @StateObject private var lineMapModel: LineMapViewModel = LineMapViewModel()
     @StateObject private var mapSearchModel: MapSearchPanelViewModel = MapSearchPanelViewModel()
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
-    @Binding var tabBarHeight: CGFloat
-    
     
     @State private var isShowingLineMap: Bool = false
     @State private var isShowingFilterSheet: Bool = false
@@ -96,7 +95,7 @@ public struct HomeView : View {
                         Spacer().frame(height: 0)
                             .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
                     } else {
-                        Spacer().frame(height: self.bottomPaddingFix + self.tabBarHeight + 40)
+                        Spacer().frame(height: self.tabBarHeight - self.bottomPaddingFix)
                             .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
                     }
                 }

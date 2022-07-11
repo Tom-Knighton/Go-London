@@ -11,6 +11,7 @@ import GoLondonSDK
 
 struct AllLinesStatusPage: View {
     
+    @Environment(\.tabBarHeight) private var tabBarHeight: CGFloat
     @StateObject private var viewModel: LineOverviewViewModel = LineOverviewViewModel()
     
     @State var hasInit: Bool = false
@@ -41,7 +42,7 @@ struct AllLinesStatusPage: View {
                     }
                 }
                 Spacer()
-                Spacer().frame(height: 16)
+                Spacer().frame(height: self.tabBarHeight)
             }
             .padding(.horizontal, 16)
         }

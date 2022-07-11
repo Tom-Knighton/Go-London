@@ -15,6 +15,7 @@ struct LinePage: View {
     
     @State public var line: Line
     
+    @Environment(\.tabBarHeight) private var tabBarHeight: CGFloat
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject private var tabManager: GLTabBarViewModel
     @Namespace private var mapNamespace
@@ -55,6 +56,7 @@ struct LinePage: View {
                     if !self.isFullScreenMapShowing {
                         ZStack {
                             LineMapView(viewModel: self.lineModel)
+                                .allowsHitTesting(false)
                                 .matchedGeometryEffect(id: "map", in: mapNamespace)
                             
                             VStack {
@@ -91,7 +93,7 @@ struct LinePage: View {
                         self.affectedRoutes(for: disruption)
                     }
                     
-                    Spacer().frame(height: 24)
+                    Spacer().frame(height: self.tabBarHeight)
                 }
             }
             
