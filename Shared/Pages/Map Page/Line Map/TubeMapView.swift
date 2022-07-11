@@ -206,7 +206,7 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         try? mapView.mapboxMap.style.removeSource(withId: "interchangesSource")
 
         let lowZoomSize = 0
-        let highZoomSize = 0.8
+        let highZoomSize = self.viewModel.filterAccessibility ? 1.4 : 0.8
         let interchangeIconSize = Exp(.interpolate) {
             Exp(.linear)
             Exp(.zoom)
