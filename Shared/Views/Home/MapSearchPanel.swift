@@ -111,17 +111,20 @@ struct MapSearchPanelView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.layer1)
+                .fill(Material.regular)
+                .shadow(radius: 3)
         )
         .padding(.horizontal)
-        .shadow(radius: 3)
     }
     
     func changeSearchText() {
-        let random = ["nearby stations", "nearby streets", "far away towns", "far away stations", "landmarks", "addresses", "places of interest", "restuarants", "hotels"]
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.promptText = "\(random.randomElement() ?? "nearby stations")..."
-            self.changeSearchText()
+        let random = ["nearby stations", "nearby streets", "far away towns", "far away stations", "landmarks", "addresses", "places of interest", "restuarants", "hotels",  "bus stops", "cities"]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+            withAnimation(.easeInOut(duration: 1)) {
+                self.promptText = "\(random.randomElement() ?? "nearby stations")..."
+                self.changeSearchText()
+            }
+            
         }
     }
 }

@@ -71,7 +71,11 @@ extension Color {
         }
     }
     
-    static var darkRed: Color = Color(hex: "#F9413E")
-    static var layer1: Color = Color("Layer1")
-    static var layer2: Color = Color("Layer2")
+    static let darkRed: Color = Color(hex: "#F9413E")
+    static let layer1: Color = Color("Layer1")
+    static let layer2: Color = Color("Layer2")
+    
+    static let systemBackground = Color(UIColor.systemBackground)
+    static let secondarySystemBackground = Color(UIColor.secondarySystemBackground)
+    static let tertiarySystemBackground = Color(UIColor.tertiarySystemBackground)
 }

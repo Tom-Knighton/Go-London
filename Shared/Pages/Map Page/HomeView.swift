@@ -96,7 +96,7 @@ public struct HomeView : View {
                         Spacer().frame(height: 0)
                             .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
                     } else {
-                        Spacer().frame(height: self.bottomPaddingFix + self.tabBarHeight + 32)
+                        Spacer().frame(height: self.bottomPaddingFix + self.tabBarHeight + 40)
                             .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
                     }
                 }
