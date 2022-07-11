@@ -91,8 +91,11 @@ public class LineMapViewModel: ObservableObject {
         
         var accessibility: StationAccessibilityType = .None
         if self.isViewingSingleLine, let lineId = self.lineRoutes.first?.lineId {
-            let lineData = accessibleData.lineAccessibility?.first(where: { LineMode.friendlyTubeLineName(for: lineId ) == $0.lineName ?? "" })
-            
+            let lineData = accessibleData.lineAccessibility?.first(where: {
+                let friendly = LineMode.friendlyTubeLineName(for: lineId)
+                return friendly == $0.lineName ?? "" || friendly == "Elizabeth Line" && $0.lineName ?? "" == "TfL Rail"
+                
+            })
             accessibility = lineData?.accessibility ?? .None
         } else {
             accessibility = accessibleData.overviewAccessibility ?? .None
