@@ -184,8 +184,9 @@ struct LinePage: View {
                 LottieView(name: dog.dogGifName, loopMode: .loop)
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        //                    SoundService.shared.playSound(soundfile: "dogbark.wav")
+                        self.viewModel.playDogSound()
                     }
+                    .id(dog.dogName)
                 Group {
                     Text("Yay! This line has good service and ") +
                     Text(dog.dogName)

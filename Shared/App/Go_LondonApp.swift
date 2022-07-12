@@ -8,6 +8,7 @@
 import SwiftUI
 import GoLondonSDK
 import MapboxMaps
+import Lottie
 
 @main
 struct Go_LondonApp: App {
@@ -23,6 +24,7 @@ struct Go_LondonApp: App {
     init() {
         LocationManager.shared.start()
         ResourceOptionsManager.default.resourceOptions.accessToken = GoLondon.MapboxKey
+        LottieConfiguration.shared.renderingEngine = .coreAnimation
         Task {
             await GlobalViewModel.shared.setup()
         }

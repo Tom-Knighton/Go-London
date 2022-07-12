@@ -43,7 +43,6 @@ final class LineStatusViewModel: ObservableObject {
             DogGif(dogName: "Funky Franchesca", dogGifName: "Dog_Franchesca", weighting: 100),
             DogGif(dogName: "Fun Frankie", dogGifName: "Dog_Frankie", weighting: 100),
             DogGif(dogName: "Grumpy Gromit", dogGifName: "Dog_Gromit", weighting: 100),
-            DogGif(dogName: "Licky Louie", dogGifName: "Dog_Louie", weighting: 100),
             DogGif(dogName: "Posturing Polly", dogGifName: "Dog_Polly", weighting: 100),
             DogGif(dogName: "Rabid Rambo", dogGifName: "Dog_Rambo", weighting: 100),
             DogGif(dogName: "Troublesome Tom", dogGifName: "Dog_Tom", weighting: 100),
@@ -54,5 +53,10 @@ final class LineStatusViewModel: ObservableObject {
         ]
         
         self.dogGif = dogGifs.weightedRandomElement() ?? dogGifs[0]
+    }
+    
+    func playDogSound() {
+        let dogBarks: [String] = ["dogBark1.mp3", "dogBark2.mp3", "dogBark3.mp3", "dogBark4.mp3"]
+        AudioManager.shared.playAudio(fileName: dogBarks.randomElement() ?? "dogBark1.mp3")
     }
 }

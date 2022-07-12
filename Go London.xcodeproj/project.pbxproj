@@ -18,6 +18,11 @@
 		E244CE86283AD7E9007A4A9A /* LineMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */; };
 		E253FDFA287370BA008275BE /* Carousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E253FDF9287370BA008275BE /* Carousel.swift */; };
 		E26107CA287CD65F000196CF /* GeometryGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26107C9287CD65F000196CF /* GeometryGetter.swift */; };
+		E26107D0287E1916000196CF /* dogBark2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E26107CC287E1916000196CF /* dogBark2.mp3 */; };
+		E26107D1287E1916000196CF /* dogBark1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E26107CD287E1916000196CF /* dogBark1.mp3 */; };
+		E26107D2287E1916000196CF /* dogBark3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E26107CE287E1916000196CF /* dogBark3.mp3 */; };
+		E26107D3287E1916000196CF /* dogBark4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E26107CF287E1916000196CF /* dogBark4.mp3 */; };
+		E26107D5287E193F000196CF /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E26107D4287E193F000196CF /* AudioManager.swift */; };
 		E2680B1227EBCADC004C37E9 /* GoLondonSDK in Frameworks */ = {isa = PBXBuildFile; productRef = E2680B1127EBCADC004C37E9 /* GoLondonSDK */; };
 		E2680B1F27EBCFDB004C37E9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B1E27EBCFDB004C37E9 /* HomeView.swift */; };
 		E2680B2327EBD02B004C37E9 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2680B2227EBD02B004C37E9 /* MapView.swift */; };
@@ -57,7 +62,6 @@
 		E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93D2836699100AAAB10 /* Dog_Polly.json */; };
 		E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93E2836699100AAAB10 /* Dog_Wally.json */; };
 		E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */; };
-		E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9402836699100AAAB10 /* Dog_Louie.json */; };
 		E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */; };
 		E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9422836699100AAAB10 /* Dog_Peter.json */; };
 		E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9432836699100AAAB10 /* Dog_Rambo.json */; };
@@ -86,6 +90,11 @@
 		E244CE85283AD7E9007A4A9A /* LineMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineMapViewModel.swift; sourceTree = "<group>"; };
 		E253FDF9287370BA008275BE /* Carousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Carousel.swift; sourceTree = "<group>"; };
 		E26107C9287CD65F000196CF /* GeometryGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeometryGetter.swift; sourceTree = "<group>"; };
+		E26107CC287E1916000196CF /* dogBark2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogBark2.mp3; sourceTree = "<group>"; };
+		E26107CD287E1916000196CF /* dogBark1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogBark1.mp3; sourceTree = "<group>"; };
+		E26107CE287E1916000196CF /* dogBark3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogBark3.mp3; sourceTree = "<group>"; };
+		E26107CF287E1916000196CF /* dogBark4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dogBark4.mp3; sourceTree = "<group>"; };
+		E26107D4287E193F000196CF /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		E2680B1E27EBCFDB004C37E9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E2680B2227EBD02B004C37E9 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E2680B2527EBDA57004C37E9 /* GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLondon.swift; sourceTree = "<group>"; };
@@ -122,7 +131,6 @@
 		E2B8F93D2836699100AAAB10 /* Dog_Polly.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Polly.json; sourceTree = "<group>"; };
 		E2B8F93E2836699100AAAB10 /* Dog_Wally.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Wally.json; sourceTree = "<group>"; };
 		E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Tutu.json; sourceTree = "<group>"; };
-		E2B8F9402836699100AAAB10 /* Dog_Louie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Louie.json; sourceTree = "<group>"; };
 		E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_PurpleWalking.json; sourceTree = "<group>"; };
 		E2B8F9422836699100AAAB10 /* Dog_Peter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Peter.json; sourceTree = "<group>"; };
 		E2B8F9432836699100AAAB10 /* Dog_Rambo.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Rambo.json; sourceTree = "<group>"; };
@@ -163,6 +171,17 @@
 				E244CE82283AC85A007A4A9A /* TubeMapView.swift */,
 			);
 			path = "Line Map";
+			sourceTree = "<group>";
+		};
+		E26107CB287E1906000196CF /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				E26107CD287E1916000196CF /* dogBark1.mp3 */,
+				E26107CC287E1916000196CF /* dogBark2.mp3 */,
+				E26107CE287E1916000196CF /* dogBark3.mp3 */,
+				E26107CF287E1916000196CF /* dogBark4.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		E2680B1827EBCE7F004C37E9 /* Frameworks */ = {
@@ -236,6 +255,7 @@
 		E2680B3927EBE2BC004C37E9 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E26107CB287E1906000196CF /* Audio */,
 				E2680B3A27EBE2C2004C37E9 /* Lottie Files */,
 			);
 			path = Assets;
@@ -251,7 +271,6 @@
 				E2B8F93D2836699100AAAB10 /* Dog_Polly.json */,
 				E2B8F93E2836699100AAAB10 /* Dog_Wally.json */,
 				E2B8F93F2836699100AAAB10 /* Dog_Tutu.json */,
-				E2B8F9402836699100AAAB10 /* Dog_Louie.json */,
 				E2B8F9412836699100AAAB10 /* Dog_PurpleWalking.json */,
 				E2B8F9422836699100AAAB10 /* Dog_Peter.json */,
 				E2B8F9432836699100AAAB10 /* Dog_Rambo.json */,
@@ -269,6 +288,7 @@
 			children = (
 				E2680B4227EE7146004C37E9 /* Permissions */,
 				E2680B3F27EBE49E004C37E9 /* LocationManager.swift */,
+				E26107D4287E193F000196CF /* AudioManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -524,9 +544,10 @@
 			files = (
 				E2B8F9562836699100AAAB10 /* Dog_PurpleWalking.json in Resources */,
 				E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */,
+				E26107D0287E1916000196CF /* dogBark2.mp3 in Resources */,
 				E2B8F9582836699100AAAB10 /* Dog_Peter.json in Resources */,
+				E26107D3287E1916000196CF /* dogBark4.mp3 in Resources */,
 				E2B8F9522836699100AAAB10 /* Dog_Tutu.json in Resources */,
-				E2B8F9542836699100AAAB10 /* Dog_Louie.json in Resources */,
 				E2B8F9482836699100AAAB10 /* Dog_Franchesca.json in Resources */,
 				E22B299F2836D48D004009BA /* Frog_Raymond.json in Resources */,
 				E2B8F95E2836699100AAAB10 /* Dog_Tom.json in Resources */,
@@ -535,9 +556,11 @@
 				E2B8F94C2836699100AAAB10 /* SearchingGif.json in Resources */,
 				E2B8F94A2836699100AAAB10 /* Dog_Gromit.json in Resources */,
 				E2B8F95C2836699100AAAB10 /* Dog_Fabio.json in Resources */,
+				E26107D1287E1916000196CF /* dogBark1.mp3 in Resources */,
 				E2B8F95A2836699100AAAB10 /* Dog_Rambo.json in Resources */,
 				E2680B3C27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
 				E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */,
+				E26107D2287E1916000196CF /* dogBark3.mp3 in Resources */,
 				E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +608,7 @@
 				E2FF049827F08EB2003A2ABB /* StopPointAnnotation.swift in Sources */,
 				E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */,
 				E2680B3627EBE231004C37E9 /* RequestLocation.swift in Sources */,
+				E26107D5287E193F000196CF /* AudioManager.swift in Sources */,
 				E2680B4027EBE49E004C37E9 /* LocationManager.swift in Sources */,
 				E26107CA287CD65F000196CF /* GeometryGetter.swift in Sources */,
 				E22B299928368B4C004009BA /* LinePage.swift in Sources */,
