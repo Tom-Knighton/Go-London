@@ -37,7 +37,7 @@ struct LinePage: View {
                                 .bold()
                                 .font(.title2)
                             Text(status?.statusSeverityDescription ?? "")
-                                .foregroundColor(.green) // TODO: replace
+                                .foregroundColor(self.statusColour(for: status))
                                 .bold()
                                 .font(.title2)
                         }
@@ -122,6 +122,17 @@ struct LinePage: View {
     }
     
     //MARK: - View Builders
+    
+    func statusColour(for status: LineStatus?) -> Color {
+        switch status?.statusSeverity {
+        case 10, 18:
+            return .green
+        case 3, 5, 7, 9, 13, 14, 15, 17, 20, 0:
+            return .yellow
+        default:
+            return .red
+        }
+    }
     
     
     @ViewBuilder
