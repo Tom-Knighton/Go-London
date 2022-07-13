@@ -17,7 +17,13 @@ struct LineMapFilterView: View {
     @State var toggleVals: [LineMapFilter] = []
     
     @State private var isShowingAlert: Bool = false
-    @State private var alertDetails: AlertDetails?
+    @State private var alertDetails: AlertDetails? = nil
+    @State private var isLoading: Bool = false
+    
+    init(viewModel: LineMapViewModel) {
+        self.viewModel = viewModel
+        self._toggleVals = State(wrappedValue: GoLondon.lineMapFilterCache.deepCopy())
+    }
     
     var body: some View {
         let threeGridColumn = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -61,9 +67,15 @@ struct LineMapFilterView: View {
                 Spacer()
                 
                 Button(action: { self.updateFilters() } ) {
-                    Text("Save Filters")
-                        .padding()
-                        .frame(maxWidth: .infinity)
+                    if self.isLoading {
+                        ProgressView()
+                            .foregroundColor(.white)
+                    } else {
+                        Text("Save Filters")
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                    }
+                    
                 }
                 .buttonStyle(.borderedProminent)
                
@@ -78,12 +90,6 @@ struct LineMapFilterView: View {
         .edgesIgnoringSafeArea(.all)
         .padding(.vertical, 12)
         .interactiveDismissDisabled()
-        .onAppear {
-            if GoLondon.lineMapFilterCache.isEmpty {
-                GoLondon.lineMapFilterCache = self.viewModel.lineFilters.deepCopy()
-            }
-            self.toggleVals = GoLondon.lineMapFilterCache.deepCopy()
-        }
         .alert(self.alertDetails?.title ?? "", isPresented: $isShowingAlert, presenting: self.alertDetails, actions: { details in
             ForEach(details.buttons ?? [], id: \.text) { button in
                 Button(button.text, role: button.role, action: button.action)
@@ -112,6 +118,7 @@ struct LineMapFilterView: View {
     /// Evaluates whether to update the filters or not, and saves/dismisses view if necessary
     func updateFilters() {
         
+        self.isLoading = true
         if self.toggleVals.filter({ $0.toggled }).count == 0 {
             self.alertDetails = AlertDetails(title: "Error", message: "Please select at least one line to show on the map", buttons: [AlertButtonType(text: "Ok", action: {})])
             self.isShowingAlert = true
@@ -122,6 +129,11 @@ struct LineMapFilterView: View {
         self.viewModel.lineFilters = self.toggleVals
         GoLondon.lineMapFilterCache = self.toggleVals
         
+        Task {
+            await self.viewModel.fetchToggledRoutes()
+        }
+        
         self.dismiss()
+        self.isLoading = false
     }
 }

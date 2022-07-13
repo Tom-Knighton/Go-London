@@ -66,12 +66,12 @@ public class GoLondon {
                     return filters
                 } catch {
                     let values = self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
-                    self.lineMapFilterCache = values
+                    try? UserDefaults.standard.set(JSONEncoder().encode(values), forKey: "lineMapFilterCache")
                     return self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
                 }
             } else {
                 let values = self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
-                self.lineMapFilterCache = values
+                try? UserDefaults.standard.set(JSONEncoder().encode(values), forKey: "lineMapFilterCache")
                 return self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
             }
         }

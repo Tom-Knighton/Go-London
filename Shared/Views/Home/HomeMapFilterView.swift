@@ -17,7 +17,12 @@ struct HomeMapFilterView: View {
     @State var toggleVals: [MainMapFilter] = []
     
     @State private var isShowingAlert: Bool = false
-    @State private var alertDetails: AlertDetails?
+    @State private var alertDetails: AlertDetails? = nil
+    
+    init(viewModel: MainMapViewModel) {
+        self.viewModel = viewModel
+        self._toggleVals = State(wrappedValue: GoLondon.homeFilterCache.deepCopy())
+    }
     
     var body: some View {
         let threeGridColumn = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
@@ -77,9 +82,6 @@ struct HomeMapFilterView: View {
         .edgesIgnoringSafeArea(.all)
         .padding(.vertical, 12)
         .interactiveDismissDisabled()
-        .onAppear {
-            self.toggleVals = GoLondon.homeFilterCache.deepCopy()
-        }
         .alert(self.alertDetails?.title ?? "", isPresented: $isShowingAlert, presenting: self.alertDetails, actions: { details in
             ForEach(details.buttons ?? [], id: \.text) { button in
                 Button(button.text, role: button.role, action: button.action)
