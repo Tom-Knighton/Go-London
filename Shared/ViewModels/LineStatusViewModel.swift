@@ -56,6 +56,11 @@ final class LineStatusViewModel: ObservableObject {
     }
     
     func playDogSound() {
+        if self.dogGif?.isFrog == true {
+            AudioManager.shared.playAudio(fileName: "frogNoise.mp3")
+            return
+        }
+        
         let dogBarks: [String] = ["dogBark1.mp3", "dogBark2.mp3", "dogBark3.mp3", "dogBark4.mp3"]
         AudioManager.shared.playAudio(fileName: dogBarks.randomElement() ?? "dogBark1.mp3")
     }

@@ -71,6 +71,7 @@
 		E2B8F9622836699100AAAB10 /* Dog_Frankie.json in Resources */ = {isa = PBXBuildFile; fileRef = E2B8F9472836699100AAAB10 /* Dog_Frankie.json */; };
 		E2B9DFC6281012A500A87CE8 /* MapSearchPanelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */; };
 		E2C33D182808315200C2E373 /* Notification+GoLondon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C33D172808315200C2E373 /* Notification+GoLondon.swift */; };
+		E2CDA72328894A0D00AA57A8 /* frogNoise.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E2CDA72228894A0D00AA57A8 /* frogNoise.mp3 */; };
 		E2DD5D6A280C813F00D0ECF5 /* MainMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */; };
 		E2FEF7EE27E4AA87005132EF /* Go_LondonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */; };
 		E2FEF7F027E4AA87005132EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2FEF7DF27E4AA85005132EF /* ContentView.swift */; };
@@ -140,6 +141,7 @@
 		E2B8F9472836699100AAAB10 /* Dog_Frankie.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Dog_Frankie.json; sourceTree = "<group>"; };
 		E2B9DFC5281012A500A87CE8 /* MapSearchPanelViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchPanelViewModel.swift; sourceTree = "<group>"; };
 		E2C33D172808315200C2E373 /* Notification+GoLondon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+GoLondon.swift"; sourceTree = "<group>"; };
+		E2CDA72228894A0D00AA57A8 /* frogNoise.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = frogNoise.mp3; sourceTree = "<group>"; };
 		E2DD5D69280C813F00D0ECF5 /* MainMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMapViewModel.swift; sourceTree = "<group>"; };
 		E2FEF7DE27E4AA85005132EF /* Go_LondonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Go_LondonApp.swift; sourceTree = "<group>"; };
 		E2FEF7DF27E4AA85005132EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		E26107CB287E1906000196CF /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				E2CDA72228894A0D00AA57A8 /* frogNoise.mp3 */,
 				E26107CD287E1916000196CF /* dogBark1.mp3 */,
 				E26107CC287E1916000196CF /* dogBark2.mp3 */,
 				E26107CE287E1916000196CF /* dogBark3.mp3 */,
@@ -561,6 +564,7 @@
 				E2680B3C27EBE2D4004C37E9 /* LottieLocation.json in Resources */,
 				E2B8F9502836699100AAAB10 /* Dog_Wally.json in Resources */,
 				E26107D2287E1916000196CF /* dogBark3.mp3 in Resources */,
+				E2CDA72328894A0D00AA57A8 /* frogNoise.mp3 in Resources */,
 				E2B8F94E2836699100AAAB10 /* Dog_Polly.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

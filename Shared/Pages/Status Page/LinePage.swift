@@ -105,6 +105,9 @@ struct LinePage: View {
             self.viewModel.setup(for: self.line)
             self.lineModel.setup(for: [self.line.id ?? ""])
         }
+        .onDisappear {
+            AudioManager.shared.stop()
+        }
         .background(Color.layer1)
         .navigationTitle(self.viewModel.line?.name ?? "")
         .introspectNavigationController { navController in
