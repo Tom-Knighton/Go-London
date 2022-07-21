@@ -12,26 +12,32 @@ import Introspect
 
 struct LinePage: View {
     
-    @ObservedObject var viewModel: LineStatusViewModel
+    
+    @State public var line: Line
+    
+    @Environment(\.tabBarHeight) private var tabBarHeight: CGFloat
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @EnvironmentObject private var tabManager: GLTabBarViewModel
     @Namespace private var mapNamespace
     
     @State private var isFullScreenMapShowing: Bool = false
-    @State private var filterMapDisability: Bool = false
+    
+    @StateObject private var viewModel: LineStatusViewModel = LineStatusViewModel()
+    @StateObject private var lineModel: LineMapViewModel = LineMapViewModel()
+
     
     var body: some View {
-        let status = self.viewModel.line.currentStatus
+        let status = self.viewModel.line?.currentStatus ?? .none
         ZStack {
             ScrollView {
                 VStack(spacing: 0) {
                     LineStatusCard {
                         VStack {
-                            Text("\(self.viewModel.line.name ?? "") is reporting:")
+                            Text("\(self.viewModel.line?.name ?? "") is reporting:")
                                 .bold()
                                 .font(.title2)
                             Text(status?.statusSeverityDescription ?? "")
-                                .foregroundColor(.green) // TODO: replace
+                                .foregroundColor(self.statusColour(for: status))
                                 .bold()
                                 .font(.title2)
                         }
@@ -49,7 +55,8 @@ struct LinePage: View {
 
                     if !self.isFullScreenMapShowing {
                         ZStack {
-                            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: .constant(false))
+                            LineMapView(viewModel: self.lineModel)
+                                .allowsHitTesting(false)
                                 .matchedGeometryEffect(id: "map", in: mapNamespace)
                             
                             VStack {
@@ -78,6 +85,7 @@ struct LinePage: View {
                             self.toggleMapOverlay(to: true)
                         }
                     }
+                   
                     
                     if let disruption = status?.disruption,
                        let routes = disruption.affectedRoutes,
@@ -85,7 +93,7 @@ struct LinePage: View {
                         self.affectedRoutes(for: disruption)
                     }
                     
-                    Spacer().frame(height: 24)
+                    Spacer().frame(height: self.tabBarHeight)
                 }
             }
             
@@ -93,14 +101,15 @@ struct LinePage: View {
                 self.fullscreenMapView()
             }
         }
-        .background(Color.layer1)
-        .navigationBarBackButtonHidden(true)
-        .navigationTitle(self.viewModel.line.name ?? "")
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                self.backButton()
-            }
+        .onAppear {
+            self.viewModel.setup(for: self.line)
+            self.lineModel.setup(for: [self.line.id ?? ""])
         }
+        .onDisappear {
+            AudioManager.shared.stop()
+        }
+        .background(Color.layer1)
+        .navigationTitle(self.viewModel.line?.name ?? "")
         .introspectNavigationController { navController in
             navController.isNavigationBarHidden = self.isFullScreenMapShowing
         }
@@ -108,25 +117,40 @@ struct LinePage: View {
     
     
     func toggleMapOverlay(to val: Bool) {
+        
+        self.tabManager.setTabBarVisibility(to: !val)
         withAnimation {
             self.isFullScreenMapShowing = val
-        }
-        
-        DispatchQueue.main.async {
-            self.tabManager.showTabBar = !val
         }
     }
     
     //MARK: - View Builders
+    
+    func statusColour(for status: LineStatus?) -> Color {
+        switch status?.statusSeverity {
+        case 10, 18:
+            return .green
+        case 3, 5, 7, 9, 13, 14, 15, 17, 20, 0:
+            return .yellow
+        default:
+            return .red
+        }
+    }
     
     
     @ViewBuilder
     /// A view that should overlay the current screen containing the line map + options
     func fullscreenMapView() -> some View {
         ZStack {
-            LineMapView(lineId: self.viewModel.line.id ?? "", filterDisability: self.$filterMapDisability)
+            LineMapView(viewModel: self.lineModel)
                 .edgesIgnoringSafeArea(.all)
                 .matchedGeometryEffect(id: "map", in: mapNamespace)
+                .onAppear {
+                    self.lineModel.cachedLineRoutes = []
+                }
+                .onDisappear {
+                    self.lineModel.cachedLineRoutes = []
+                }
             
             HStack {
                 Spacer()
@@ -139,18 +163,14 @@ struct LinePage: View {
                     .buttonStyle(MapButtonStyle(backgroundColor: .black))
                     .matchedGeometryEffect(id: "mapExp", in: mapNamespace)
                     
-                    Button(action: { self.filterMapDisability.toggle() }) {
+                    Button(action: { withAnimation { self.lineModel.filterAccessibility.toggle() } }) {
                         ZStack {
-                            Circle()
-                                .frame(width: 75, height: 75)
-                                .foregroundColor(self.filterMapDisability ? Color.blue : Color.gray)
-                                .shadow(radius: 3)
                             Image(systemName: "figure.roll")
-                                .frame(width: 75, height: 75)
                                 .shadow(radius: 3)
-                                .foregroundColor(self.filterMapDisability ? Color.white : Color.black)
+                                .foregroundColor(self.lineModel.filterAccessibility ? Color.white : Color.primary)
                         }
                     }
+                    .buttonStyle(MapButtonStyle(backgroundColor: self.lineModel.filterAccessibility ? Color.blue : Color.layer1))
                     
                     Spacer().frame(width: 16)
                 }
@@ -167,8 +187,9 @@ struct LinePage: View {
                 LottieView(name: dog.dogGifName, loopMode: .loop)
                     .frame(width: 250, height: 250)
                     .onTapGesture {
-                        //                    SoundService.shared.playSound(soundfile: "dogbark.wav")
+                        self.viewModel.playDogSound()
                     }
+                    .id(dog.dogName)
                 Group {
                     Text("Yay! This line has good service and ") +
                     Text(dog.dogName)
@@ -220,15 +241,6 @@ struct LinePage: View {
         }
         .padding(.trailing, 16)
     }
-    
-    /// A custom back button since default does not seem to work?
-    @ViewBuilder
-    func backButton() -> some View {
-        Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
-            Text(Image(systemName: "chevron.backward")) + Text("Go back")
-        }
-        .hiddenIf(self.isFullScreenMapShowing)
-    }
 }
 
 
@@ -247,28 +259,5 @@ struct LineStatusCard<Content>: View where Content: View {
         .background(Color.layer2.cornerRadius(15).shadow(radius: 5))
         .padding(.vertical, verticalPadding)
         .padding(.horizontal, 16)
-    }
-}
-
-extension UINavigationController: UIGestureRecognizerDelegate {
-    
-    override open func viewDidLoad() {
-        super.viewDidLoad()
-        interactivePopGestureRecognizer?.delegate = self
-    }
-    
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        return viewControllers.count > 1
-    }
-}
-
-
-struct NavigationLazyView<Content: View>: View {
-    let build: () -> Content
-    init(_ build: @autoclosure @escaping () -> Content) {
-        self.build = build
-    }
-    var body: Content {
-        build()
     }
 }

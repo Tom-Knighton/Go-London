@@ -67,6 +67,7 @@ class KeyboardResponder: ObservableObject {
     }
     
     deinit {
+        print("****DEINIT keyboard")
         _center.removeObserver(self)
     }
     
@@ -76,16 +77,15 @@ class KeyboardResponder: ObservableObject {
             guard let duration: TimeInterval = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
             keyboardDuration = duration
             
-            withAnimation(.interpolatingSpring(stiffness: 100, damping: 15)) {
+            withAnimation(.easeInOut) {
                 self.currentHeight = keyboardSize.height
             }
-
         }
     }
     
     @objc func keyBoardWillHide(notification: Notification) {
         
-        withAnimation(.interpolatingSpring(stiffness: 150, damping: 15)) {
+        withAnimation(.interpolatingSpring(stiffness: 100, damping: 15)) {
             currentHeight = 0
         }
     }

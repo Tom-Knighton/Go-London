@@ -22,4 +22,8 @@ class MapSearchPanelViewModel: ObservableObject {
             self?.isLoading = false
         }
     }
+    
+    deinit {
+        print("****DEINIT: MapSearchPanel")
+    }
 }

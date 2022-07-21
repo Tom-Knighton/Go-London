@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 protocol WeightedElement {
     var weighting: Int { get set }
@@ -35,6 +36,20 @@ extension Collection where Element: WeightedElement {
     }
 }
 
+extension Collection where Element: Codable {
+    
+    func deepCopy() -> [Element] {
+        let json = try? JSONEncoder().encode(self.map { $0 })
+        
+        guard let json = json else {
+            return self.map { $0 }
+        }
+        
+        let toReturn = try? JSONDecoder().decode([Element].self, from: json)
+        return toReturn ?? self.map { $0 }
+    }
+}
+
 extension UIApplication {
     
     var keyWindow: UIWindow? {
@@ -50,4 +65,32 @@ extension UIApplication {
             .first(where: \.isKeyWindow)
     }
     
+}
+
+extension CLLocationCoordinate2D: Hashable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(latitude)
+        hasher.combine(longitude)
+    }
+}
+
+extension Array {
+    mutating func mutateEach(by transform: (inout Element) throws -> Void) rethrows {
+        self = try map { el in
+            var el = el
+            try transform(&el)
+            return el
+        }
+    }
+}
+
+extension UIView {
+    public func addTapAction(_ selector: Selector, target: AnyObject) {
+        let gesture = UITapGestureRecognizer(target: target, action: selector)
+        self.addGestureRecognizer(gesture)
+    }
 }

@@ -34,6 +34,27 @@ extension Color {
         )
     }
     
+    var hexValue: String {
+        let uic = UIColor(self)
+        guard let components = uic.cgColor.components, components.count >= 3 else {
+            return ""
+        }
+        let r = Float(components[0])
+        let g = Float(components[1])
+        let b = Float(components[2])
+        var a = Float(1.0)
+
+        if components.count >= 4 {
+            a = Float(components[3])
+        }
+
+        if a != Float(1.0) {
+            return String(format: "#%02lX%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255), lroundf(a * 255))
+        } else {
+            return String(format: "#%02lX%02lX%02lX", lroundf(r * 255), lroundf(g * 255), lroundf(b * 255))
+        }
+    }
+    
     func darker(by percentage: CGFloat = 30) -> Color {
         return self.adjust(by: -1 * abs(percentage))
     }
@@ -50,7 +71,11 @@ extension Color {
         }
     }
     
-    static var darkRed: Color = Color(hex: "#F9413E")
-    static var layer1: Color = Color("Layer1")
-    static var layer2: Color = Color("Layer2")
+    static let darkRed: Color = Color(hex: "#F9413E")
+    static let layer1: Color = Color("Layer1")
+    static let layer2: Color = Color("Layer2")
+    
+    static let systemBackground = Color(UIColor.systemBackground)
+    static let secondarySystemBackground = Color(UIColor.secondarySystemBackground)
+    static let tertiarySystemBackground = Color(UIColor.tertiarySystemBackground)
 }

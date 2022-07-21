@@ -9,56 +9,140 @@ import Foundation
 import SwiftUI
 import MapboxMaps
 import GoLondonSDK
+import Introspect
 
 public struct HomeView : View {
     
     @Environment(\.colorScheme) var colourScheme
     @Environment(\.safeAreaInsets) var edges
+    @Environment(\.tabBarHeight) var tabBarHeight
     
-    @StateObject private var model: HomeViewModel = HomeViewModel(radius: 850)
-
-    @StateObject private var mapModel: MapRepresentableViewModel = MapRepresentableViewModel(styleURI: MapStyle.DefaultDark.loadStyle(), enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
-    
+    @StateObject private var mainMapModel: MainMapViewModel = MainMapViewModel(searchRadius: 850, enableCurrentLocation: true, enableTrackingLocation: false, mapCenter: LocationManager.shared.lastLocation?.coordinate ?? GoLondon.LiverpoolStreetCoord)
+    @StateObject private var lineMapModel: LineMapViewModel = LineMapViewModel()
+    @StateObject private var mapSearchModel: MapSearchPanelViewModel = MapSearchPanelViewModel()
     @StateObject private var keyboard: KeyboardResponder = KeyboardResponder()
     
-    @Binding var tabBarHeight: CGFloat
+    @State private var isShowingLineMap: Bool = false
+    @State private var isShowingFilterSheet: Bool = false
+    @State private var bottomPaddingFix: CGFloat = 0
     
+    @FocusState private var mapPanelFocused: Bool
+    @Namespace private var mapSpace
+        
     public var body: some View {
         
         GeometryReader { geo in
-            VStack {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    LazyHStack {
-                        if self.model.hasMovedFromLastLocation {
-                            self.searchHereButton()
+            ZStack {
+                HStack {
+                    Spacer()
+                    VStack {
+                        
+                        Button(action: {  withAnimation { self.isShowingLineMap.toggle() }}) {
+                            Image(systemName: "tram.circle")
+                        }
+                        .buttonStyle(MapButtonStyle())
+                        
+                        Button(action: { self.isShowingFilterSheet.toggle() }) {
+                            Image(systemName: "line.3.horizontal.decrease.circle")
+                        }
+                        .buttonStyle(MapButtonStyle())
+                        
+                        if self.isShowingLineMap {
+                            Button(action: { withAnimation { self.lineMapModel.filterAccessibility.toggle() }}) {
+                                Text(Image(systemName: self.lineMapModel.filterAccessibility ? "figure.walk.circle" : "figure.roll"))
+                                    .padding(self.lineMapModel.filterAccessibility ? 0 : 1)
+                            }
+                            .buttonStyle(MapButtonStyle())
+                            .transition(.move(edge: .trailing))
+                        } else {
+                            if let _ = LocationManager.shared.lastLocation?.coordinate {
+                                Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
+                                    .buttonStyle(MapButtonStyle())
+                                    .transition(.move(edge: .trailing))
+                            }
+                            
+                            if self.mainMapModel.hasMovedFromLastLocation || self.mainMapModel.isSearching {
+                                self.searchHereButton()
+                                    .animation(.easeInOut, value: self.mainMapModel.hasMovedFromLastLocation || self.mainMapModel.isSearching)
+                                    .transition(.move(edge: .trailing))
+                            }
                         }
                         
-                        if let _ = LocationManager.shared.lastLocation?.coordinate {
-                            Button(action: { self.goToCurrentLocation() }) { Text(Image(systemName: "location.circle.fill")) }
-                                .buttonStyle(MapButtonStyle())
-                                .transition(.move(edge: .leading))
-                        }
-                        
-                        self.filterButtons()
-                        
+                        Spacer()
                     }
-                    .padding(.horizontal, 16)
+                    Spacer().frame(width: 16)
                 }
-                .frame(maxWidth: .infinity,  minHeight: 60, maxHeight: 60)
                 
-                self.mapSearchPanel()
+                
+                
+                VStack(spacing: 0) {
+                    Spacer()
+                   
+                    let hideScroll = self.mainMapModel.selectedPointIndex == nil || !self.mapSearchModel.searchText.isEmpty || !self.mapSearchModel.searchResults.isEmpty
+                    if !hideScroll {
+                        GeometryReader { geo in
+                            SnapCarouselView(items: self.mainMapModel.stopPointMarkers, itemWidth: geo.size.width - 40, selectedIndex: self.$mainMapModel.selectedPointIndex)
+                        }
+                        .frame(height: 200)
+                    }
+                    
+                    if !self.isShowingLineMap {
+                        self.mapSearchPanel()
+                            .transition(.move(edge: .bottom))
+                    }
+                    
+                    if self.keyboard.currentHeight != 0 {
+                        Spacer().frame(height: 0)
+                            .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
+                    } else {
+                        Spacer().frame(height: self.tabBarHeight - self.bottomPaddingFix)
+                            .matchedGeometryEffect(id: "mapSpace", in: self.mapSpace)
+                    }
+                }
+            }
+        }
+        .onAppear {
+            self.lineMapModel.setup(for: ["elizabeth", "dlr", "london-overground", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"])
+            self.bottomPaddingFix = self.edges.bottom
+        }
+        .sheet(isPresented: $isShowingFilterSheet) {
+            if self.isShowingLineMap {
+                LineMapFilterView(viewModel: self.lineMapModel)
+            } else {
+                HomeMapFilterView(viewModel: self.mainMapModel)
             }
         }
         .background(
             self.mapBackground()
         )
-        .onChange(of: self.model.filters.filters) { _ in
+        .onChange(of: self.mainMapModel.filters) { _ in
             Task {
-                await self.model.searchForMarkers(at: mapModel.mapCenter)
+                if let newMarkers = await self.mainMapModel.searchForMarkers(at: self.mainMapModel.mapCenter) {
+                    self.mainMapModel.stopPointMarkers = newMarkers
+                }
             }
         }
-        .onChange(of: self.mapModel.mapCenter) { newValue in
-            self.model.hasMovedFromLastLocation = newValue.distance(to: self.mapModel.mapLastCachedLocation) > 300
+        .onChange(of: self.mainMapModel.mapCenter) { newValue in
+            withAnimation {
+                self.mainMapModel.hasMovedFromLastLocation = newValue.distance(to: self.mainMapModel.mapLastCachedLocation) > 300
+            }
+        }
+        .onChange(of: self.edges.bottom) { newValue in
+            if newValue > self.bottomPaddingFix {
+                self.bottomPaddingFix = newValue
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS), perform: { _ in
+            withAnimation(.easeInOut) {
+                self.mainMapModel.selectedPointIndex = nil
+            }
+        })
+        .onReceive(NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)) { output in
+            if let s = output.object as? StopPoint {
+                withAnimation(.easeInOut) {
+                    self.mainMapModel.selectedPointIndex = self.mainMapModel.stopPointMarkers.firstIndex(where: { $0.stopPoint.id == s.id }) ?? 7
+                }
+            }
         }
     }
     
@@ -67,73 +151,74 @@ public struct HomeView : View {
     /// View at bottom of page holding map search bar and results
     @ViewBuilder
     func mapSearchPanel() -> some View {
-        Spacer()
-        MapSearchPanelView()
-        Spacer().frame(height: 16)
-    }
-    
-    ///  A series of buttons containing filters for a TfL map search
-    @ViewBuilder
-    func filterButtons() -> some View {
-        ForEach(self.model.filters.filters, id: \.lineMode) { modeFilter in
-            withAnimation(.easeInOut) {
-                Button(action: { self.model.toggleLineModeFilter(modeFilter.lineMode) }) {
-                    HStack {
-                        Text(Image(systemName: self.model.isFilterToggled(modeFilter.lineMode) ? "checkmark" : "xmark"))
-                            .bold()
-                        Text(modeFilter.lineMode.friendlyName)
-                    }
-                }
-                .buttonStyle(MapButtonStyle(backgroundColor: self.model.isFilterToggled(modeFilter.lineMode) ? .green : .red))
-            }
+        
+        if !self.mainMapModel.isShowingLineMap {
+            MapSearchPanelView(isFocused: $mapPanelFocused, model: mapSearchModel)
+                .transition(.move(edge: .bottom))
         }
+        
+        Spacer().frame(height: 16)
     }
     
     @ViewBuilder
     func searchHereButton() -> some View {
-        if self.model.isLoading {
+        if self.mainMapModel.isSearching {
             Button(action: {}) { ProgressView().progressViewStyle(.circular).foregroundColor(.white) }
                 .buttonStyle(MapButtonStyle())
-                .transition(.move(edge: .leading))
+                .transition(.move(edge: .trailing))
         } else {
-            Button(action: { Task { search() } }) { Text("Search Here") }
+            Button(action: { Task { search() } }) { Image(systemName: "location.magnifyingglass") }
                 .buttonStyle(MapButtonStyle())
-                .transition(.move(edge: .leading))
+                .transition(.move(edge: .trailing))
         }
     }
     
     @ViewBuilder
     func mapBackground() -> some View {
-        MapViewRepresentable(viewModel: mapModel)
-            .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                self.mapModel.styleURI = colourScheme == .dark ? MapStyle.DefaultDark.loadStyle() : MapStyle.DefaultLight.loadStyle()
-                search()
-            }
-            .onChange(of: colourScheme) { newValue in
-                self.mapModel.styleURI = newValue == .dark ? MapStyle.DefaultDark.loadStyle() : MapStyle.DefaultLight.loadStyle()
-            }
+        
+        if self.isShowingLineMap {
+            LineMapView(viewModel: self.lineMapModel)
+                .edgesIgnoringSafeArea(.all)
+                .transition(.opacity)
+        } else {
+            MapViewRepresentable(viewModel: self.mainMapModel)
+                .edgesIgnoringSafeArea(.all)
+                .onAppear {
+                    self.search()
+                }
+                .transition(.opacity)
+        }
     }
     
     //MARK: - Functions
     func goToCurrentLocation() {
         if let loc = LocationManager.shared.lastLocation?.coordinate {
-            self.mapModel.mapCenter = loc
-            self.mapModel.forceUpdatePosition = true
-            self.model.hasMovedFromLastLocation = false
-            self.mapModel.mapLastCachedLocation = loc
-            self.search()
+            withAnimation {
+                self.mainMapModel.mapCenter = loc
+                self.mainMapModel.forceUpdatePosition = true
+                self.mainMapModel.hasMovedFromLastLocation = false
+                self.mainMapModel.mapLastCachedLocation = loc
+                self.search()
+            }
         }
     }
     
     func search() {
-        Task {
-            if let newMarkers = await self.model.searchForMarkers(at: self.mapModel.mapCenter) {
-                self.mapModel.stopPointMarkers = newMarkers
+        Task { [weak mainMapModel] in
+            guard let center = mainMapModel?.mapCenter else {
+                return
             }
             
-            self.mapModel.updateCenter(to: self.mapModel.mapCenter)
-            self.model.hasMovedFromLastLocation = false
+            mainMapModel?.setSearchedLocation(to: center)
+
+            if let newMarkers = await mainMapModel?.searchForMarkers(at: center) {
+                mainMapModel?.stopPointMarkers = newMarkers
+            }
+
+            withAnimation {
+                mainMapModel?.updateCenter(to: center)
+                mainMapModel?.hasMovedFromLastLocation = false
+            }
         }
     }
 }

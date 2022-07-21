@@ -16,17 +16,195 @@ public class GoLondon {
     
     public static let UKBounds: CoordinateBounds = CoordinateBounds(southwest: CLLocationCoordinate2D(latitude: 49.84612, longitude: -11.84651), northeast: CLLocationCoordinate2D(latitude: 59.03151, longitude: 1.04011))
     
+    public static var MapboxKey: String {
+        if let infoPlistPath = Bundle.main.url(forResource: "Info", withExtension: "plist") {
+            do {
+                let infoPlistData = try Data(contentsOf: infoPlistPath)
+                
+                if let dict = try PropertyListSerialization.propertyList(from: infoPlistData, options: [], format: nil) as? [String: Any] {
+                    return dict["MBXAccessToken"] as! String
+                }
+            } catch {
+                fatalError("No MBXAccessToken found")
+            }
+        }
+        
+        fatalError("No valid Info.plist found")
+    }
     
-    #if DEBUG
+    private static var defaultLineModes = [LineMode.bus, LineMode.elizabethLine, LineMode.tube, LineMode.overground, LineMode.nationalRail, LineMode.dlr]
+    public static var defaultLineIds = ["elizabeth", "dlr", "london-overground", "central", "bakerloo", "circle", "district", "hammersmith-city", "jubilee", "metropolitan", "northern", "piccadilly", "victoria", "waterloo-city"]
+
+    
+    /// Returns the cached homeMapFilters MainMapFilters, or a fresh all-toggled array if no cache was found
+    public static var homeFilterCache: [MainMapFilter] {
+        get {
+            if let data = UserDefaults.standard.data(forKey: "mainMapFilterCache") {
+                do {
+                    let filters = try JSONDecoder().decode([MainMapFilter].self, from: data)
+                    return filters
+                } catch {
+                    return defaultLineModes.compactMap { MainMapFilter(lineMode: $0) }
+                }
+            } else {
+                return defaultLineModes.compactMap { MainMapFilter(lineMode: $0) }
+            }
+        }
+        
+        set {
+            try? UserDefaults.standard.set(JSONEncoder().encode(newValue), forKey: "mainMapFilterCache")
+        }
+    }
+    
+    
+    /// Returns the cached lineMapFilters, or an empty array if none have been set
+    public static var lineMapFilterCache: [LineMapFilter] {
+        get {
+            if let data = UserDefaults.standard.data(forKey: "lineMapFilterCache") {
+                do {
+                    let filters = try JSONDecoder().decode([LineMapFilter].self, from: data)
+                    return filters
+                } catch {
+                    let values = self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+                    try? UserDefaults.standard.set(JSONEncoder().encode(values), forKey: "lineMapFilterCache")
+                    return self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+                }
+            } else {
+                let values = self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+                try? UserDefaults.standard.set(JSONEncoder().encode(values), forKey: "lineMapFilterCache")
+                return self.defaultLineIds.compactMap { LineMapFilter(lineId: $0, toggled: true) }
+            }
+        }
+        
+        set {
+            try? UserDefaults.standard.set(JSONEncoder().encode(newValue), forKey: "lineMapFilterCache")
+        }
+    }
+    
+#if DEBUG
     public static var defaultStopPoint: StopPoint {
         let decoder = JSONDecoder()
         let stopPoint: StopPoint = try! decoder.decode(StopPoint.self, from: Data("""
-{"pointType":"Stop","icsId":null,"zone":null,"id":"940GZZLUMED","naptanId":"940GZZLUMED","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[{"modeName":"bus","lineIdentifier":["205","25","277","323","425","d6","d7","n205","n25","n277"]},{"modeName":"tube","lineIdentifier":["central","district","hammersmith-city"]}],"children":[{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED1","naptanId":"9400ZZLUMED1","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0},{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED2","naptanId":"9400ZZLUMED2","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0},{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED3","naptanId":"9400ZZLUMED3","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0},{"pointType":"Stop","icsId":null,"zone":null,"id":"9400ZZLUMED4","naptanId":"9400ZZLUMED4","name":null,"commonName":"Mile End Underground Station","indicator":null,"stopLetter":null,"hubNaptanCode":null,"lineModeGroups":[],"children":[],"properties":[{"name":"WiFi","value":"No"},{"name":"Zone","value":"No Information"},{"name":"Waiting Room","value":"No Information"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"No Information"},{"name":"Toilets","value":"No Information"}],"childStationIds":[],"lat":0,"lon":0}],"properties":[{"name":"WiFi","value":"yes"},{"name":"Zone","value":"2"},{"name":"Waiting Room","value":"yes"},{"name":"Car Park","value":"No Information"},{"name":"Lifts","value":"0"},{"name":"Toilets","value":"no"}],"childStationIds":["9400ZZLUMED1","9400ZZLUMED2","9400ZZLUMED3","9400ZZLUMED4"],"lat":51.525124,"lon":-0.03364}
+{
+    "pointType": "Stop",
+    "icsId": null,
+    "zone": null,
+    "id": "910GLIVST",
+    "naptanId": "910GLIVST",
+    "name": null,
+    "commonName": "London Liverpool Street Rail Station",
+    "indicator": null,
+    "stopLetter": null,
+    "hubNaptanCode": "HUBLST",
+    "lineModes": [
+      "overground",
+      "national-rail",
+      "elizabeth-line"
+    ],
+    "lineModeGroups": [
+      {
+        "modeName": "national-rail",
+        "lineIdentifier": [
+          "c2c",
+          "greater-anglia"
+        ]
+      },
+      {
+        "modeName": "elizabeth-line",
+        "lineIdentifier": [
+          "elizabeth"
+        ]
+      },
+      {
+        "modeName": "overground",
+        "lineIdentifier": [
+          "london-overground"
+        ]
+      }
+    ],
+    "children": [
+      {
+        "pointType": "Stop",
+        "icsId": null,
+        "zone": null,
+        "id": "9100LIVST0",
+        "naptanId": "9100LIVST0",
+        "name": null,
+        "commonName": "Liverpool Street Station",
+        "indicator": null,
+        "stopLetter": null,
+        "hubNaptanCode": "HUBLST",
+        "lineModes": [],
+        "lineModeGroups": [],
+        "children": [],
+        "properties": [
+          {
+            "name": "WiFi",
+            "value": "No"
+          },
+          {
+            "name": "Zone",
+            "value": "No Information"
+          },
+          {
+            "name": "Waiting Room",
+            "value": "No Information"
+          },
+          {
+            "name": "Car Park",
+            "value": "No Information"
+          },
+          {
+            "name": "Lifts",
+            "value": "No Information"
+          },
+          {
+            "name": "Toilets",
+            "value": "No Information"
+          }
+        ],
+        "childStationIds": [],
+        "lat": 0,
+        "lon": 0
+      }
+    ],
+    "properties": [
+      {
+        "name": "WiFi",
+        "value": "yes"
+      },
+      {
+        "name": "Zone",
+        "value": "1"
+      },
+      {
+        "name": "Waiting Room",
+        "value": "yes"
+      },
+      {
+        "name": "Car Park",
+        "value": "No Information"
+      },
+      {
+        "name": "Lifts",
+        "value": "1"
+      },
+      {
+        "name": "Toilets",
+        "value": "no"
+      }
+    ],
+    "childStationIds": [
+      "9100LIVST0"
+    ],
+    "lat": 51.51799,
+    "lon": -0.081426
+  }
 """.utf8))
         return stopPoint
     }
     
-    #endif
+#endif
 }
 
 public enum MapStyle {

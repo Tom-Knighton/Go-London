@@ -12,18 +12,13 @@ import GoLondonSDK
 
 struct LineMapView: View {
     
-    @State var lineId: String = ""
-    @Binding var filterDisability: Bool
-    @StateObject private var viewModel: LineMapViewModel = LineMapViewModel()
+    @ObservedObject var viewModel: LineMapViewModel
     
     var body: some View {
-        LineMapViewRepresntable(viewModel: viewModel, filterAccessibility: filterDisability)
+        LineMapViewRepresntable(viewModel: viewModel)
             .edgesIgnoringSafeArea(.all)
-            .onAppear {
-                Task {
-                    self.viewModel.setup(for: [self.lineId])
-                    await self.viewModel.fetchStopPoints()
-                }
+            .task {
+                await self.viewModel.fetchToggledRoutes()
             }
     }
 }
@@ -32,20 +27,17 @@ struct LineMapViewRepresntable: UIViewRepresentable {
     
     @ObservedObject private var viewModel: LineMapViewModel
     @State private var interchangeIconLayers: [String] = []
-    @EnvironmentObject private var globalViewModel: GlobalViewModel
+    @State private var coordinateNames: [String: String]
     
-    private var filterAccessibility: Bool
-    
-    init(viewModel: LineMapViewModel, filterAccessibility: Bool = false) {
+    init(viewModel: LineMapViewModel) {
         self.viewModel = viewModel
-        self.filterAccessibility = filterAccessibility
+        self.coordinateNames = [:]
     }
     
     
     func makeUIView(context: Context) -> MapView {
-        let myResourceOptions = ResourceOptions(accessToken: "sk.eyJ1IjoidG9ta25pZ2h0b24iLCJhIjoiY2wzeDkxMDg1MDF2eTNqcXc1MnhsdHAwaiJ9.SFzxQzwL-3PRISNLHb0qpg")
-        let mapInitOptions: MapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: self.viewModel.mapStyle.loadStyle())
-        let mapView: MapView = MapView(frame: .zero, mapInitOptions: mapInitOptions)
+        let mapView: MapView = MapView(frame: .zero)
+        mapView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
         
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.pinchRotateEnabled = false
@@ -78,6 +70,15 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             try? mapView.mapboxMap.style.addImage(interchangeOnly, id: "interchangeOnly")
         }
         
+        mapView.mapboxMap.onNext(.mapLoaded) { [weak viewModel, weak mapView] _ in
+            if let mapView = mapView,
+               viewModel?.lineRoutes.isEmpty == false {
+                DispatchQueue.main.async {
+                    self.drawMapDetails(on: mapView)
+                }
+            }
+        }
+        
         return mapView
     }
     
@@ -95,31 +96,31 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             uiView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
         }
         
-        if self.viewModel.cachedFilterAccessibility != self.filterAccessibility {
+        if self.viewModel.lineFilters != self.viewModel.cachedLineFilters {
+            uiView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle()) { _ in
+                self.drawMapDetails(on: uiView)
+            }
+            self.viewModel.cachedLineFilters = self.viewModel.lineFilters
+        }
+        
+        if self.viewModel.cachedFilterAccessibility != self.viewModel.filterAccessibility {
             DispatchQueue.main.async {
-                self.interchangeIconLayers.forEach { layer in
-                    try? uiView.mapboxMap.style.removeLayer(withId: layer)
-                }
-                self.interchangeIconLayers = []
                 
-                var index = 0
+                var points: [Feature] = []
+                var names: [Feature] = []
                 self.viewModel.lineRoutes.forEach { route in
-                    route.stopPointSequences?.forEach({ branch in
-                        self.drawInterchangeIcons(on: uiView, for: branch, index: index, filterStepFree: filterAccessibility)
-                        index += 1
-                    })
+                    points.append(contentsOf: self.makeInterchangeGeometry(for: route))
+                    names.append(contentsOf: self.makeNameGeometry(for: route))
                 }
-                self.viewModel.updateCachedAccessibility(to: filterAccessibility)
+                self.drawInterchanges(features: points, on: uiView)
+                self.drawStopNames(features: names, on: uiView)
+                self.viewModel.updateCachedAccessibility(to: self.viewModel.filterAccessibility)
             }
         }
     }
     
     func drawMapDetails(on mapView: MapView) {
                 
-        mapView.viewAnnotations.removeAll()
-        
-        var index = 0
-        
         if let image = UIImage(named: "interchange"),
            let freeToTrain = UIImage(named: "freeToTrain"),
            let freeToPlatform = UIImage(named: "freeToPlatform"),
@@ -136,16 +137,39 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             print("Error getting assets")
         }
         
-        self.viewModel.lineRoutes.forEach { route in
-            route.stopPointSequences?.forEach({ branch in
+        var lineRoutes = self.viewModel.lineRoutes.filter({ route in
+            self.viewModel.lineFilters.contains(where: { $0.lineId == route.lineId ?? "" && $0.toggled })
+        })
+        
+        
+        var lines: [Feature] = []
+        var interchanges: [Feature] = []
+        var names: [Feature] = []
+        lineRoutes.mutateEach { route in
+            route.stopPointSequences?.mutateEach { branch in
                 
-                self.drawInterchangeIcons(on: mapView, for: branch, index: index)
-                self.drawStopNames(on: mapView, for: branch, index: index)
-                self.drawLines(on: mapView, for: branch, index: index)
-                
-                index += 1
-            })
+                if self.viewModel.lineIds.count != 1 {
+                    branch.stopPoint?.mutateEach{ stopPoint in
+                        if let coord = self.coordinateNames[stopPoint.icsId ?? ""],
+                           let name = stopPoint.name ?? stopPoint.commonName {
+                            if name.count < coord.count {
+                                self.coordinateNames[stopPoint.icsId ?? ""] = name
+                            }
+                        } else {
+                            self.coordinateNames[stopPoint.icsId ?? ""] = stopPoint.name ?? stopPoint.commonName ?? ""
+                        }
+                    }
+                }
+            }
+            
+            lines.append(self.makeLineGeometry(for: route))
+            interchanges.append(contentsOf: self.makeInterchangeGeometry(for: route))
+            names.append(contentsOf: self.makeNameGeometry(for: route))
         }
+        
+        self.drawLines(features: lines, on: mapView)
+        self.drawInterchanges(features: interchanges, on: mapView)
+        self.drawStopNames(features: names, on: mapView)
         
         let coords = self.viewModel.lineRoutes.compactMap { $0.stopPointSequences?.compactMap { $0.stopPoint?.compactMap { $0.coordinate} } }.flatMap { $0 }.flatMap { $0 }
         
@@ -156,49 +180,41 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         let camOpts = mapView.mapboxMap.camera(for: coords, padding: .init(top: 16, left: 16, bottom: 16, right: 16), bearing: 0, pitch: 0)
         mapView.mapboxMap.setCamera(to: camOpts)
     }
+        
+    func makeInterchangeGeometry(for line: LineRoutes) -> [Feature] {
+        var features: [Feature] = []
+        
+        let stops = line.stopPointSequences?.compactMap({ $0.stopPoint }).flatMap ({ $0 })
+        features = stops?.compactMap({ stopPoint in
+            var feature = Feature(geometry: Point(stopPoint.coordinate))
+            
+            if self.viewModel.filterAccessibility {
+                feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(stopPoint.id ?? "")), ("accessibility", JSONValue(self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "UNK?").rawValue)))
+            } else {
+                feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(stopPoint.id ?? "")))
+            }
+            
+            return feature
+        }) ?? []
+        
+        return features
+    }
     
-    func drawInterchangeIcons(on mapView: MapView, for branch: Branch, index: Int, filterStepFree: Bool = false) {
+    func drawInterchanges(features: [Feature], on mapView: MapView) {
+        
+        try? mapView.mapboxMap.style.removeLayer(withId: "interchanges")
+        try? mapView.mapboxMap.style.removeSource(withId: "interchangesSource")
+
         let lowZoomSize = 0
-        let highZoomSize = filterStepFree ? 1.8 : 0.8
+        let highZoomSize = self.viewModel.filterAccessibility ? 1.4 : 0.8
         let interchangeIconSize = Exp(.interpolate) {
             Exp(.linear)
             Exp(.zoom)
             8
             lowZoomSize
-            filterStepFree ? 14 : 18
+            18
             highZoomSize
         }
-        
-        let pointId = String(describing: branch.lineId ?? "") + String(describing: index)
-        var pointSource = GeoJSONSource()
-        pointSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {
-            
-            var feat = Feature(geometry: Point($0.coordinate))
-            let stopName = ($0.commonName ?? $0.name ?? "").replacingOccurrences(of: "Underground", with: "").replacingOccurrences(of: "Station", with: "").replacingOccurrences(of: "Rail", with: "").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            
-            // Gets relevant accessible data
-            let isViewingSingleLine = self.viewModel.lineIds.count == 1
-            var accessibleView: StationAccessibilityType? = .None
-            if let accessibleData = globalViewModel.iradData.first(where: { spa in // If we have data for this stop
-                spa.stationName == stopName
-            }) {
-                if !isViewingSingleLine, // If we are viewing a single line only
-                   let lineData = accessibleData.lineAccessibility?.first(where: { spla in // And we have data for this line at this top
-                       self.viewModel.lineIds.contains { $0.contains(spla.lineName ?? "UNK__" )}
-                   }) {
-                    accessibleView = lineData.accessibility // Set the data for that line
-                } else {
-                    accessibleView = accessibleData.overviewAccessibility // Otherwise set the general overview for the station
-                }
-            }
-            
-            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue(stopName)), ("accessibility", JSONValue(accessibleView?.rawValue ?? "None")))
-            return feat
-            
-        } ?? []))
-
-        var symbolLayer = SymbolLayer(id: pointId)
-        symbolLayer.source = pointId
         
         let interchangeIcon = Exp(.switchCase) {
             Exp(.eq) {
@@ -231,30 +247,115 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             }
             "interchangeOnly"
             
-            "interchange"
+            ""
         }
         
+        var source = GeoJSONSource()
+        source.data = .featureCollection(FeatureCollection(features: features))
         
-        symbolLayer.iconImage = filterStepFree ? .expression(interchangeIcon) : .constant(.name("interchange"))
-        symbolLayer.iconSize = .expression(interchangeIconSize)
-        symbolLayer.iconAllowOverlap = .constant(true)
-        
-        try? mapView.mapboxMap.style.addSource(pointSource, id: pointId)
-        try? mapView.mapboxMap.style.addPersistentLayer(symbolLayer)
-        self.interchangeIconLayers.append(pointId)
+        var interchangeLayer = SymbolLayer(id: "interchanges")
+        interchangeLayer.source = "interchangesSource"
+        interchangeLayer.iconImage = self.viewModel.filterAccessibility ? .expression(interchangeIcon) : .constant(.name("interchange"))
+        interchangeLayer.iconSize = .expression(interchangeIconSize)
+        interchangeLayer.iconAllowOverlap = .constant(true)
+
+        try? mapView.mapboxMap.style.addSource(source, id: "interchangesSource")
+        try? mapView.mapboxMap.style.addPersistentLayer(interchangeLayer, layerPosition: .below("poi-label"))
     }
     
-    func drawStopNames(on mapView: MapView, for branch: Branch, index: Int, filterStepFree: Bool = false) {
-        let nameId = "names-" + String(describing: branch.lineId ?? "") + String(describing: index)
-        var nameSource = GeoJSONSource()
-        nameSource.data = .featureCollection(.init(features: branch.stopPoint?.compactMap {
-            
-            var feat = Feature(geometry: Point($0.coordinate.coordinate(at: LocationDistance(1), facing: LocationDirection(180))))
-            feat.properties = JSONObject(dictionaryLiteral: ("stopName", JSONValue($0.commonName ?? $0.name ?? "")))
-            return feat
-            
-        } ?? []))
+    func makeLineGeometry(for line: LineRoutes) -> Feature {
         
+        var feature = Feature(geometry: MultiLineString(line.stopPointSequences?.compactMap({ $0.stopPoint?.compactMap { $0.coordinate } }) ?? []))
+        
+        var offset: Double = 0
+        if !self.viewModel.isViewingSingleLine {
+            if line.lineId == "circle" {
+                offset = -2.5
+            } else if line.lineId == "hammersmith-city" {
+                offset = 2.5
+            }
+        }
+        
+        feature.properties = JSONObject(dictionaryLiteral: ("lineColour", JSONValue(LineMode.lineColour(for: line.lineId ?? "").hexValue)), ("lineId", JSONValue(line.lineId ?? "")), ("lineOffset", JSONValue(rawValue: offset)))
+        
+        return feature
+    }
+    
+    func drawLines(features: [Feature], on mapView: MapView) {
+        
+        try? mapView.mapboxMap.style.removeLayer(withId: "lineLayer")
+        try? mapView.mapboxMap.style.removeSource(withId: "lineLayerSource")
+        
+        let superLowZoomWidth = 1
+        let lowZoomWidth = 3
+        let highZoomWidth = 15
+        let lineWidth = Exp(.interpolate) {
+            
+            Exp(.linear)
+            Exp(.zoom)
+            0
+            superLowZoomWidth
+            12
+            lowZoomWidth
+            18
+            highZoomWidth
+        }
+        
+        var source = GeoJSONSource()
+        source.lineMetrics = true
+        source.data = .featureCollection(FeatureCollection(features: features))
+        
+        var lineLayer = LineLayer(id: "lineLayer")
+        lineLayer.source = "lineLayerSource"
+        lineLayer.lineColor = .expression(Exp(.get) { "lineColour" })
+        lineLayer.lineWidth = .expression(lineWidth)
+        lineLayer.lineCap = .constant(.round)
+        lineLayer.lineJoin = .constant(.round)
+        lineLayer.lineOpacity = .constant(0.7)
+        lineLayer.lineOffset = .expression(Exp(.get) { "lineOffset" })
+        
+        try? mapView.mapboxMap.style.addSource(source, id: "lineLayerSource")
+        try? mapView.mapboxMap.style.addPersistentLayer(lineLayer, layerPosition: .below("poi-label"))
+    }
+    
+    func makeNameGeometry(for line: LineRoutes) -> [Feature] {
+        
+        var features: [Feature] = []
+        
+        let stops = line.stopPointSequences?.compactMap({ $0.stopPoint }).flatMap ({ $0 })
+        features = stops?.compactMap({ stopPoint in
+            var feature = Feature(geometry: Point(stopPoint.coordinate))
+            
+            if self.viewModel.filterAccessibility {
+                if self.viewModel.getAccessibilityType(for: stopPoint.name ?? stopPoint.commonName ?? "") != .None {
+                    if let name = self.viewModel.lineIds.count > 1 ? self.coordinateNames[stopPoint.icsId ?? ""] : stopPoint.commonName ?? stopPoint.name {
+                    
+                        feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))
+                    } else {
+                        return nil
+                    }
+                } else {
+                    return nil
+                }
+            } else {
+                if let name = self.viewModel.lineIds.count > 1 ? self.coordinateNames[stopPoint.icsId ?? ""] : stopPoint.commonName ?? stopPoint.name {
+                    feature.properties = JSONObject(dictionaryLiteral: ("name", JSONValue(name)))
+                } else {
+                    return nil
+                }
+            }
+            
+            return feature
+        }) ?? []
+        
+        return features
+    }
+    
+    func drawStopNames(features: [Feature], on mapView: MapView) {
+        
+        try? mapView.mapboxMap.style.removeLayer(withId: "stopNames")
+        try? mapView.mapboxMap.style.removeSource(withId: "stopNamesSource")
+
         let lowTextSize = 0
         let midTextSize = 20
         let highTextSize = 28
@@ -268,10 +369,13 @@ struct LineMapViewRepresntable: UIViewRepresentable {
             20
             highTextSize
         }
-
-        var stopNamesLayer = SymbolLayer(id: "names-\(String(describing: index))")
-        stopNamesLayer.source = nameId
-        stopNamesLayer.textField = .expression(Exp(.get) { "stopName" })
+        
+        var source = GeoJSONSource()
+        source.data = .featureCollection(FeatureCollection(features: features))
+        
+        var stopNamesLayer = SymbolLayer(id: "stopNames")
+        stopNamesLayer.source = "stopNamesSource"
+        stopNamesLayer.textField = .expression(Exp(.get) { "name" })
         stopNamesLayer.textSize = .expression(stopNameTextSize)
         stopNamesLayer.textOffset = .constant([0, 2])
         stopNamesLayer.textFont = .constant(["Gill Sans Nova Medium"])
@@ -280,40 +384,8 @@ struct LineMapViewRepresntable: UIViewRepresentable {
         stopNamesLayer.textHaloWidth = .constant(1)
         stopNamesLayer.textAllowOverlap = .constant(true)
         
-        try? mapView.mapboxMap.style.addSource(nameSource, id: nameId)
+        try? mapView.mapboxMap.style.addSource(source, id: "stopNamesSource")
         try? mapView.mapboxMap.style.addPersistentLayer(stopNamesLayer)
+
     }
-    
-    func drawLines(on mapView: MapView, for branch: Branch, index: Int) {
-        let superLowZoomWidth = 1
-        let lowZoomWidth = 3
-        let highZoomWidth = 15
-        let lineWidth = Exp(.interpolate) {
-            Exp(.linear)
-            Exp(.zoom)
-            0
-            superLowZoomWidth
-            12
-            lowZoomWidth
-            18
-            highZoomWidth
-        }
-        
-        var source = GeoJSONSource()
-        source.lineMetrics = true
-        source.data = .feature(Feature(geometry: LineString(branch.stopPoint?.compactMap { $0.coordinate } ?? [] )))
-        var lineLayer = LineLayer(id: "line-layer-\(String(describing: index))")
-        lineLayer.source = "line-id-\(String(describing: index))"
-        lineLayer.lineColor = .constant(StyleColor(UIColor(LineMode.lineColour(for: branch.lineId ?? ""))))
-        lineLayer.lineWidth = .expression(lineWidth)
-        lineLayer.lineCap = .constant(.round)
-        lineLayer.lineJoin = .constant(.round)
-        
-        try? mapView.mapboxMap.style.addSource(source, id: "line-id-\(String(describing: index))")
-        try? mapView.mapboxMap.style.addPersistentLayer(lineLayer, layerPosition: .below("poi-label"))
-    }
-    
 }
-
-
-

@@ -11,10 +11,16 @@ import GoLondonSDK
 
 struct MapSearchPanelView: View {
     
-    @FocusState var isFocused: Bool
+    private var isFocused: FocusState<Bool>.Binding
     @State var promptText = "nearby stations..."
     
-    @ObservedObject var model: MapSearchPanelViewModel = MapSearchPanelViewModel()
+    @ObservedObject var model: MapSearchPanelViewModel
+    @State private var cachedText: String = ""
+    
+    init(isFocused: FocusState<Bool>.Binding, model: MapSearchPanelViewModel) {
+        self.isFocused = isFocused
+        self.model = model
+    }
     
     var body: some View {
         VStack {
@@ -22,6 +28,7 @@ struct MapSearchPanelView: View {
             if model.isLoading {
                 ProgressView()
                     .progressViewStyle(.circular)
+                Spacer().frame(height: 8)
             }
             
             if self.model.searchResults.isEmpty == false {
@@ -31,7 +38,7 @@ struct MapSearchPanelView: View {
                         LazyVStack {
                             HStack {
                                 Spacer()
-                                Button(action: { self.model.searchResults.removeAll(); self.model.searchText = "" }) {
+                                Button(action: { withAnimation { self.model.searchResults.removeAll(); self.model.searchText = "" } } ) {
                                     HStack {
                                         Text(Image(systemName: "xmark"))
                                             .frame(width: 15, height: 15)
@@ -66,16 +73,30 @@ struct MapSearchPanelView: View {
             }
             withAnimation(.easeInOut) {
                 VStack {
-                    GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: $isFocused)
+                    GLTextField(text: $model.searchText, prompt: $promptText, promptPrefix: "Search for ", leftSystemImage: "magnifyingglass.circle", isFocused: isFocused)
                         .onReceive(model.$searchText.debounce(for: 0.8, scheduler: RunLoop.main)) { text in
+                            guard self.cachedText != text else {
+                                return
+                            }
+                            
                             Task {
-                                guard model.searchText.count >= 3 else { return }
-                                await model.makeSearch()
+                                guard model.searchText.count >= 3 || model.searchText.count == 0 else { return }
+                                
+                                if model.searchText.count != 0 {
+                                    await model.makeSearch()
+                                } else {
+                                    withAnimation {
+                                        self.model.searchResults.removeAll()
+                                    }
+                                }
+                                self.cachedText = text
                             }
                         }
                         .onTapGesture(perform: {
-                            if !self.isFocused {
-                                self.isFocused = true
+                            withAnimation(.easeInOut) {
+                                if !self.isFocused.wrappedValue {
+                                    self.isFocused.wrappedValue = true
+                                }
                             }
                         })
                         .onAppear {
@@ -90,16 +111,20 @@ struct MapSearchPanelView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.layer1)
+                .fill(Material.regular)
+                .shadow(radius: 3)
         )
         .padding(.horizontal)
     }
     
     func changeSearchText() {
-        let random = ["nearby stations", "nearby streets", "far away towns", "far away stations", "landmarks", "addresses", "places of interest", "restuarants", "hotels"]
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            self.promptText = "\(random.randomElement() ?? "nearby stations")..."
-            self.changeSearchText()
+        let random = ["nearby stations", "nearby streets", "far away towns", "far away stations", "landmarks", "addresses", "places of interest", "restuarants", "hotels",  "bus stops", "cities"]
+        DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+            withAnimation(.easeInOut(duration: 1)) {
+                self.promptText = "\(random.randomElement() ?? "nearby stations")..."
+                self.changeSearchText()
+            }
+            
         }
     }
 }

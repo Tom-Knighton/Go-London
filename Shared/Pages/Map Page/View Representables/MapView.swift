@@ -5,7 +5,6 @@
 //  Created by Tom Knighton on 23/03/2022.
 //
 
-import Foundation
 import UIKit
 import SwiftUI
 import GoLondonSDK
@@ -14,8 +13,9 @@ import MapboxMaps
 
 public struct MapViewRepresentable: UIViewRepresentable {
     
-    @ObservedObject var viewModel: MapRepresentableViewModel
+    @ObservedObject var viewModel: MainMapViewModel
     
+    @State private var cachedSelectedIndex: Int? = -1
     @State private var circleAnnotationManager: CircleAnnotationManager?
     
     @State private var cancelSet: Set<AnyCancellable> = []
@@ -23,6 +23,12 @@ public struct MapViewRepresentable: UIViewRepresentable {
     @State private var detailedView: UIView? = nil
     
     public class Coordinator: GestureManagerDelegate {
+        
+        private var parent: MapViewRepresentable
+        
+        init(_ parent: MapViewRepresentable) {
+            self.parent = parent
+        }
         
         public func gestureManager(_ gestureManager: GestureManager, didBegin gestureType: GestureType) {}
         
@@ -34,17 +40,80 @@ public struct MapViewRepresentable: UIViewRepresentable {
         }
         
         public func gestureManager(_ gestureManager: GestureManager, didEndAnimatingFor gestureType: GestureType) {}
+        
+        @MainActor
+        @objc
+        func mapTapped(_ sender: MapTapGesture) {
+            guard let mapView = sender.mapView else {
+                return
+            }
+
+            let point = sender.location(in: mapView)
+            
+            let options = RenderedQueryOptions(layerIds: ["stopMarkers"], filter: nil)
+            mapView.mapboxMap.queryRenderedFeatures(at: point, options: options) { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let features):
+                    if !features.isEmpty,
+                       let first = features.first,
+                       let id = first.feature.identifier?.rawValue as? Double {
+                        
+                        withAnimation {
+                            self.parent.viewModel.selectedPointIndex = Int(id)
+                        }
+                    } else {
+                        self.parent.viewModel.selectedPointIndex = nil
+                    }
+                    
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+        
+        @MainActor
+        func showOnlyPin(of selectedIndex: Int?, for mapView: MapView, zoomTo: Bool = true) {
+            
+            if let selectedIndex = selectedIndex {
+                let stopPoint = self.parent.viewModel.stopPointMarkers[selectedIndex]
+                try? mapView.mapboxMap.style.updateLayer(withId: "stopMarkers", type: SymbolLayer.self, update: { (layer: inout SymbolLayer) throws in
+                    let opacity = Exp(.switchCase) {
+                        Exp(.eq) {
+                            Exp(.get) { "id" }
+                            stopPoint.id
+                        }
+                        1
+                        
+                        0.1
+                    }
+                    
+                    layer.iconOpacity = .expression(opacity)
+                })
+                
+                if zoomTo {
+                    mapView.camera.fly(to: CameraOptions(center: stopPoint.coordinate))
+                }
+            } else {
+                try? mapView.mapboxMap.style.updateLayer(withId: "stopMarkers", type: SymbolLayer.self, update: { (layer: inout SymbolLayer) throws in
+                    layer.iconOpacity = .constant(1)
+                })
+            }
+            
+            
+        }
     }
     
     public func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(self)
     }
     
     public func makeUIView(context: Context) -> MapView {
-        let myResourceOptions = ResourceOptions(accessToken: "pk.eyJ1IjoidG9ta25pZ2h0b24iLCJhIjoiY2p0ZWhyb2s2MTR1NzN5bzdtZm9udmJueSJ9.c4dShyMCfZ6JhsnFRf72Rg")
-        let mapInitOptions: MapInitOptions = MapInitOptions(resourceOptions: myResourceOptions, styleURI: viewModel.styleURI)
-        let mapView: MapView = MapView(frame: .zero, mapInitOptions: mapInitOptions)
         
+        let mapView = MapView(frame: .zero)
+        mapView.mapboxMap.loadStyleURI(self.viewModel.mapStyle.loadStyle())
+
         mapView.gestures.options.pitchEnabled = false
         mapView.gestures.options.pinchRotateEnabled = false
         mapView.gestures.options.panDecelerationFactor = 0.99
@@ -54,9 +123,10 @@ public struct MapViewRepresentable: UIViewRepresentable {
         mapView.ornaments.scaleBarView.isHidden = true
         
         mapView.presentsWithTransaction = true
+        mapView.viewAnnotations.validatesViews = false
         
         mapView.mapboxMap.setCamera(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
-        
+                
         if viewModel.enableCurrentLocation {
             let cameraLocationConsumer = CameraLocationConsumer(mapView: mapView)
             mapView.location.options.puckType = .puck2D(.makeDefault(showBearing: true))
@@ -75,78 +145,97 @@ public struct MapViewRepresentable: UIViewRepresentable {
         
         DispatchQueue.main.async {
             self.circleAnnotationManager = mapView.annotations.makeCircleAnnotationManager()
+            self.cachedSelectedIndex = self.viewModel.selectedPointIndex
         }
         
-        mapView.mapboxMap.onNext(.mapLoaded) { _ in
+        mapView.mapboxMap.onNext(.mapLoaded) {  _ in
             viewModel.searchedLocation = mapView.mapboxMap.cameraState.center
-            resetMarkers(for: mapView)
             
             self.addCircleLayer(for: mapView, radius: 850)
+            resetMarkers(for: mapView)
             
-            self.addPublishers(for: mapView)
+            let tapGesture = MapTapGesture(target: context.coordinator, action: #selector(context.coordinator.mapTapped(_:)))
+            tapGesture.mapView = mapView
+            mapView.addGestureRecognizer(tapGesture)
             
         }
         
-        mapView.mapboxMap.onEvery(.cameraChanged) { _ in
+        mapView.mapboxMap.onEvery(.cameraChanged) { [weak viewModel, weak mapView] _ in
             DispatchQueue.main.async {
-                if viewModel.mapCenter != mapView.cameraState.center {
-                    viewModel.updateCenter(to: mapView.cameraState.center)
+                if let center = mapView?.cameraState.center,
+                    viewModel?.mapCenter != center {
+                    viewModel?.updateCenter(to: center)
                 }
             }
         }
         
         mapView.gestures.delegate = context.coordinator
-        
         return mapView
     }
     
     public func updateUIView(_ uiView: MapView, context: Context) {
-        
-        self.addCircleLayer(for: uiView, radius: 850)
-        
+                
         DispatchQueue.main.async {
-            if viewModel.internalCacheStyle != viewModel.styleURI {
-                uiView.mapboxMap.loadStyleURI(viewModel.styleURI, completion: nil)
+            if viewModel.internalCacheStyle != viewModel.mapStyle {
+                uiView.mapboxMap.loadStyleURI(viewModel.mapStyle.loadStyle(), completion: nil)
                 viewModel.updateCacheStyle()
-                self.addCircleLayer(for: uiView, radius: 850)
             }
-            
+
             if viewModel.stopPointMarkers != viewModel.internalCachedStopPointMarkers {
-                viewModel.setSearchedLocation(to: uiView.mapboxMap.cameraState.center)
                 viewModel.updateCacheMarkers()
                 self.addCircleLayer(for: uiView, radius: 850)
                 resetMarkers(for: uiView)
             }
-            
+
             if viewModel.forceUpdatePosition {
                 viewModel.forceUpdatePosition = false
                 uiView.camera.fly(to: CameraOptions(center: viewModel.mapCenter, zoom: 12.5))
+            }
+            
+            if self.cachedSelectedIndex != self.viewModel.selectedPointIndex {
+                context.coordinator.showOnlyPin(of: self.viewModel.selectedPointIndex, for: uiView)
+                self.cachedSelectedIndex = self.viewModel.selectedPointIndex
             }
         }
     }
     
     func resetMarkers(for uiView: MapView) {
-        uiView.viewAnnotations.removeAll()
-
-        for marker in viewModel.stopPointMarkers {
-            let options = ViewAnnotationOptions(
-                geometry: Point(marker.coordinate),
-
-                width: 25,
-                height: 25,
-                allowOverlap: true,
-                anchor: .bottom,
-                offsetX: 0,
-                offsetY: 10
-            )
-            let vc = UIHostingController(rootView: StopPointMarkerView(marker: marker))
-            vc.view.backgroundColor = .clear
-            vc.view.isHidden = true
-            try? uiView.viewAnnotations.add(vc.view, options: options)
+        
+        try? uiView.mapboxMap.style.removeLayer(withId: "stopMarkers")
+        try? uiView.mapboxMap.style.removeSource(withId: "stopMarkersSource")
+        
+        var features: [Feature] = []
+        
+        for index in 0..<self.viewModel.stopPointMarkers.count {
+            let marker = self.viewModel.stopPointMarkers[index]
+            
+            let renderer = ImageRenderer(content: StopPointMarkerView(marker: marker).shadow(radius: 1))
+            renderer.scale = UIScreen.main.scale
+            if let img = renderer.uiImage {
+                try? uiView.mapboxMap.style.addImage(img, id: marker.id)
+                
+                var feature = Feature(geometry: Point(marker.coordinate))
+                
+                feature.identifier = FeatureIdentifier(rawValue: index)
+                feature.properties = JSONObject(dictionaryLiteral: ("id", JSONValue(marker.id)))
+                features.append(feature)
+            }
         }
+        
+        
+        var source = GeoJSONSource()
+        source.data = .featureCollection(FeatureCollection(features: features))
+        
+        var pointLayer = SymbolLayer(id: "stopMarkers")
+        pointLayer.source = "stopMarkersSource"
+        pointLayer.iconImage = .expression(Exp(.get) { "id" })
+        pointLayer.iconAllowOverlap = .constant(true)
+        pointLayer.iconAnchor = .constant(.bottom)
+        pointLayer.symbolZOrder = .constant(.source)
+        pointLayer.iconOpacityTransition = StyleTransition(duration: 0.7, delay: 0.3)
+        try? uiView.mapboxMap.style.addSource(source, id: "stopMarkersSource")
+        try? uiView.mapboxMap.style.addPersistentLayer(pointLayer)
     }
-    
-    
 }
 
 public class CameraLocationConsumer: LocationConsumer {
@@ -197,7 +286,7 @@ extension MapViewRepresentable {
         layer.circleStrokeOpacity = .constant(1.0)
         
         try? currentStyle.addSource(source, id: "search-circle-source")
-        try? currentStyle.addLayer(layer)
+        try? currentStyle.addPersistentLayer(layer)
         
     }
     
@@ -229,65 +318,3 @@ extension MapViewRepresentable {
     }
     
 }
-
-// MARK: - Detailed Stop Point View
-extension MapViewRepresentable {
-    
-    func addDetailMarker(on uiView: MapView, for stopPoint: StopPoint) {
-        
-        if let view = self.detailedView {
-            uiView.viewAnnotations.remove(view)
-        }
-        let lineModes = stopPoint.lineModes ?? []
-        let lines = Int((stopPoint.name ?? stopPoint.commonName ?? "").count / 23)
-        let option = ViewAnnotationOptions(
-            geometry: Point(CLLocationCoordinate2D(latitude: CLLocationDegrees(stopPoint.lat ?? 0), longitude:  CLLocationDegrees(stopPoint.lon ?? 0))),
-            width: 275,
-            height: 205,
-            allowOverlap: false,
-            anchor: .top,
-            offsetX: 0,
-            offsetY: (lineModes.contains(.tube) && lineModes.contains(.bus) ? -15 : lineModes.contains(.bus) ? 10 : lineModes.contains(.tube) ? -10 : lineModes.contains(.overground) ? 10 : 25) - (10 * CGFloat(lines)),
-            selected: true
-        )
-        
-        let vc = UIHostingController(rootView: StopPointDetailMarkerView(stopPoint: stopPoint))
-        vc.view.backgroundColor = .clear
-        vc.view.isHidden = true
-        try? uiView.viewAnnotations.add(vc.view, options: option)
-        self.detailedView = vc.view
-        
-        
-    }
-    
-    func closeDetailedMarker(for uiView: MapView) {
-        guard let view = self.detailedView else {
-            return
-        }
-        
-        uiView.viewAnnotations.remove(view)
-        self.detailedView = nil
-    }
-}
-
-// MARK: - Publishers
-
-extension MapViewRepresentable {
-    func addPublishers(for mapView: MapView) {
-        let onShowDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_SHOW_DETAIL_VIEW)
-            .compactMap { $0.object as? StopPoint }
-        onShowDetailPublisher
-            .sink { stopPoint in
-                self.addDetailMarker(on: mapView, for: stopPoint)
-            }
-            .store(in: &cancelSet)
-        
-        let onHideDetailPublisher = NotificationCenter.default.publisher(for: .GL_MAP_CLOSE_DETAIL_VIEWS)
-        onHideDetailPublisher
-            .sink { _ in
-                self.closeDetailedMarker(for: mapView)
-            }
-            .store(in: &cancelSet)
-    }
-}
-

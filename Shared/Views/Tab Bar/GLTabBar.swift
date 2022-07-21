@@ -10,13 +10,14 @@ import SwiftUI
 struct GLTabBar: View {
     
     @EnvironmentObject var tabManager: GLTabBarViewModel
+    @State private var bottomPaddingFix: CGFloat = 0
     @Environment(\.safeAreaInsets) var edges
 
     var body: some View {
         VStack {
             HStack {
                 ForEach(self.tabManager.allPages, id: \.self) { page in
-                    Button(action: { self.tabManager.selectPage(page.icon.pageName)}) {
+                    Button(action: { withAnimation { self.tabManager.selectPage(page.icon.pageName) }}) {
                         Spacer()
                         VStack {
                             Group {
@@ -28,6 +29,7 @@ struct GLTabBar: View {
                             }
                             .font(.system(size: page.isSelected ? page.icon.fontSize - 1 : page.icon.fontSize, weight: page.isSelected ? .bold : .regular))
                             .foregroundColor(Color(UIColor.label))
+                            .shadow(radius: 3)
                             
                             Text(page.icon.pageName)
                                 .foregroundColor(Color(UIColor.label))
@@ -37,17 +39,23 @@ struct GLTabBar: View {
                         Spacer()
                     }
                 }
-                .padding(.bottom, edges.bottom)
+                .padding(.bottom, self.bottomPaddingFix)
             }
             .frame(minHeight: 25)
             .padding(.vertical, 15)
-            .background(Color.layer1)
+            .background(Material.regular)
             .cornerRadius(10, corners: [.topLeft, .topRight])
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
             .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
-            .edgesIgnoringSafeArea(.bottom)
+            .onAppear {
+                self.bottomPaddingFix = self.edges.bottom
+            }
+            .onChange(of: self.edges.bottom) { newVal in
+                if newVal > self.bottomPaddingFix {
+                    self.bottomPaddingFix = newVal
+                }
+            }
         }
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

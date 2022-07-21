@@ -10,18 +10,19 @@ import SwiftUI
 
 struct MapButtonStyle: ButtonStyle {
     
-    var backgroundColor: Color = .blue
-    var textColor: Color = .white
+    var backgroundColor: Color = .layer2
+    var textColor: Color = .blue
     
     func makeBody(configuration: Configuration) -> some View {
         withAnimation(.easeInOut) {
             configuration.label
-                .padding(.vertical, 16)
-                .padding(.horizontal, 20)
-                .background(configuration.isPressed ? self.backgroundColor.darker(by: 5) : self.backgroundColor)
+                .padding(20)
+                .clipShape(Circle())
+                .background(Circle().fill(self.backgroundColor))
+                .brightness(configuration.isPressed ? -0.1 : 0)
                 .shadow(radius: 3)
                 .foregroundColor(self.textColor)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
+                .font(.system(size: 20))
         }
     }
 }
